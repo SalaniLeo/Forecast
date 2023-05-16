@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>dev.salaniLeo.Forecast</id>
+  <name>Forecast</name>
+  <summary>Beautifle weather app</summary>
+  <description>
+    <p>
+
+    Modern weather app made with libadwaita
+
+    </p>
+  </description>
+  <launchable type="desktop-id">dev.salaniLeo.Forecast.desktop</launchable>
+  <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
+  <metadata_license>CC-BY-SA-3.0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <content_rating type="oars-1.1" />
+  
+  
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/SalaniLeo/Immagini/master/assets/screenshots/screenshot1.png</image>
+      <caption>Library</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/SalaniLeo/Immagini/master/assets/screenshots/screenshot2.png</image>
+      <caption>New image page</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/SalaniLeo/Immagini/master/assets/screenshots/screenshot3.png</image>
+      <caption>New image page with advanced options</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/SalaniLeo/Immagini/master/assets/screenshots/screenshot4.png</image>
+      <caption>Preferences</caption>
+    </screenshot>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/SalaniLeo/Immagini/master/assets/screenshots/screenshot5.png</image>
+      <caption>Image options</caption>
+    </screenshot>
+  </screenshots>
+  
+  
+  <releases>
+      <release version="0.1.0" date="2023-04-14">
+      <description>
+        <p>What's changed</p>
+        <ul>
+          <li>Added 'include libraries' option</li>
+          <li>Fixed rename app not working if renamed more than one time</li>
+        </ul>
+        <p>>Updates</p>
+        <ul>
+          <li>Fixed error with renaming the app more than one time</li>
+          <li>Fixed error with launching appimages in some distros</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+</component>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="dev.salaniLeo.forecast" path="/dev/salaniLeo/forecast/" gettext-domain="forecast">
+
+    <key name="api-key-s" type="s">
+      <default>'72d251b81d30ef572ae667dfe6c4ee1a'</default>
+      <summary>the app starts with this option enabled</summary>
+      <description>automatically enables the option to create appimages in foldermode</description>
+    </key>
+
+    <key name="api-key-b" type="b">
+      <default>false</default>
+      <summary>the app starts with this option enabled</summary>
+      <description>automatically enables the option to create appimages in foldermode</description>
+    </key>
+
+
+    <key name="gradient-bg" type="b">
+      <default>true</default>
+      <summary>Uses a weather based gradient as background</summary>
+      <description>use gradient for background</description>
+    </key>
+
+    <key name="wthr-locs" type="as">
+      <default>[]</default>
+      <summary>List of weather places</summary>
+      <description>stores all user selected location</description>
+    </key>
+
+  </schema>
+</schemalist>
