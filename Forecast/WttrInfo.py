@@ -265,16 +265,29 @@ def get_forecast(refresh):
     forecast = get_frcst() # calls api to get forecast
 
     i = 0
+    hours = 0
 
     # adds forecast per 3 hours intervals
     for weather in forecast["list"]:
         i = i+1
         if i<10:
-            
+
             box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)    #
-            box.append(Gtk.Label(label=weather['dt_txt'][10:16]))             # Creates box for every 3 hours prevision
+            
+            local_time = int(convert_time(forecast["city"]["timezone"])[:2]) + hours  # gets local city time
+            
+            if local_time > 24: # checks if local_time is more than 24
+                local_time = local_time - 24
+                if local_time < 10: # checks if local_time is less than 10
+                    local_time = '0' + str(local_time) # adds a zero to time es. 1 -> 01
+            local_time = str(local_time) + ':00' # adds minutes to time es. 01 -> 01:00
+                         
+                                
+            box.append(Gtk.Label(label=local_time))    # Creates box for every 3 hours prevision
             box.append(set_frcst_icon(weather))                               # 
             box.append(Gtk.Label(label=str(round(weather['main']['temp'], 1)) + " °C")) #
+            
+            hours = hours + 3
             
             if refresh:
                 forecast_box.remove(forecast_box.get_first_child())
@@ -529,7 +542,7 @@ def get_wttr_description(code):
 def convert_time(timezone):
     
     local_time = timezone//3600
-    
+        
     global_time = pytz.timezone('Europe/London')  
     
     converted_datetime = local_time + int(datetime.utcnow().strftime("%H"))
@@ -540,5 +553,5 @@ def convert_time(timezone):
         converted_datetime = "0" + str(converted_datetime)
         
     local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M")
-        
+                
     return local_full_time

@@ -15,6 +15,7 @@ pkgdatadir = join_paths(get_option('prefix'), get_option('datadir'), meson.proje
 moduledir = join_paths(pkgdatadir, 'forecast')
 
 subdir('data')
+subdir('share/icons')
 
 python = import('python')
 

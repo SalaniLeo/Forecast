@@ -2,6 +2,7 @@ import sys
 from Forecast.WttrInfo import *
 from threading import Thread
 import gi
+import os
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, Gio, Gdk
@@ -15,6 +16,8 @@ saved_locations = settings.get_strv('wthr-locs')
 # saved_locations = []
 
 flatpak = None
+
+css_provider = Gtk.CssProvider()
 
 class Application(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
@@ -31,12 +34,8 @@ class Application(Gtk.ApplicationWindow):
         
         self.application = kwargs.get('application')
         self.style_manager = self.application.get_style_manager()
-        
-    
-        self.css_provider = Gtk.CssProvider()
-        self.css_provider.load_from_path('data/style.css')
-        Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), self.css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-    
+
+
         # sets properties to main page #
         self.set_title('Forecast - loading')
         self.set_default_size(850, 500)        
@@ -301,7 +300,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         if self.api_key_entry.get_text() is not None:       # saves api key to gsettings
             self.saveString(self.api_key_entry, self.api_key_entry.get_text(), "api-key-s")
 
-def start(AppId, Flatpak):
+def start(AppId, Flatpak, appimage):
     
     global flatpak
     flatpak = Flatpak
@@ -309,8 +308,12 @@ def start(AppId, Flatpak):
     global css_provider
     if flatpak:
         css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
+    elif appimage:
+        css_provider.load_from_path('style.css')
     else:
         css_provider.load_from_path('data/style.css')
+
+    Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     app = Forecast(application_id=AppId)
     app.run(sys.argv)

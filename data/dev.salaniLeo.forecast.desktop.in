@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Forecast
-Exec=Forecast
+Exec=forecast
 Icon=dev.salaniLeo.Forecast
 Terminal=false
 Type=Application
