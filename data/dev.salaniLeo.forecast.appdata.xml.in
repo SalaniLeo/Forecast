@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>dev.salaniLeo.Forecast</id>
+  <id>dev.salaniLeo.forecast</id>
   <name>Forecast</name>
   <summary>Beautifle weather app</summary>
   <description>
@@ -10,7 +10,7 @@
 
     </p>
   </description>
-  <launchable type="desktop-id">dev.salaniLeo.Forecast.desktop</launchable>
+  <launchable type="desktop-id">dev.salaniLeo.forecast.desktop</launchable>
   <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
   <metadata_license>CC-BY-SA-3.0</metadata_license>
   <project_license>GPL-3.0</project_license>
