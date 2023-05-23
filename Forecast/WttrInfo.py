@@ -312,9 +312,6 @@ def add_city(city, window, first_time):
     
     if len(coords_raw.split("; ")) == 2:
         
-        # lati = coords_raw.split("; ")[0]  # gets latitude of new city  
-        # longi = coords_raw.split("; ")[1] # gets longitude of new city
-        
         if city in saved_locations: # skips city if already added
             # TODO
             None

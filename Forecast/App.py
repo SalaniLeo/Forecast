@@ -201,6 +201,9 @@ class search_page(Gtk.Box):
         
         if len(saved_locations) == 0:
             first_time = True
+            saved_locations.append(entry.get_text())
+            
+        print(len(saved_locations))
         
         city = entry.get_text()
 
