@@ -34,18 +34,9 @@
   
   
   <releases>
-      <release version="0.1.0" date="2023-04-14">
+      <release version="0.1.0" date="2023-05-23">
       <description>
-        <p>What's changed</p>
-        <ul>
-          <li>Added 'include libraries' option</li>
-          <li>Fixed rename app not working if renamed more than one time</li>
-        </ul>
-        <p>>Updates</p>
-        <ul>
-          <li>Fixed error with renaming the app more than one time</li>
-          <li>Fixed error with launching appimages in some distros</li>
-        </ul>
+        <p>First release</p>
       </description>
     </release>
   </releases>
