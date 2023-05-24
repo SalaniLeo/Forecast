@@ -2,7 +2,7 @@
 <h2> Beautiful weather app for Linux </h2>
 <p> Weather app made with a minimalistic design in mind</p>
 <h2>Install</h2>
-Waiting for the icon to be created
+Waiting for flathub to publish the app
 
 <h2>Preview</h2>
 <img src="data/images/app1.png" alt=""> 
