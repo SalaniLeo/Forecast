@@ -385,9 +385,7 @@ def set_frcst_icon(forecast):
                 
         img = Gtk.Image()
         img.set_pixel_size(35)
-        
-        print(icon_loc + icon_id)
-                
+                        
         if icon_id == "01d":
             img.set_from_file(icon_loc + 'weather-clear-large.svg')
         elif icon_id == "02d" or icon_id == "03d":
