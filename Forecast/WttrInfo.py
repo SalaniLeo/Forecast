@@ -420,7 +420,7 @@ def set_frcst_icon(forecast):
             img.set_from_file(icon_loc + 'weather-snow-large.svg')
         elif icon_id == "50n":
             img.set_from_file(icon_loc + 'weather-fog-large.svg')
-
+            
         return img
     
 # ---- sets icon for current weather ---- #
@@ -430,7 +430,7 @@ def forecast_icon(icon, size, frcst):
         global situa_img
         
         situa_img.set_pixel_size(size)
-
+        
         if icon == "01d":
             situa_img.set_from_file(icon_loc + 'weather-clear-large.svg')
             css_class = "clear_sky"
@@ -444,42 +444,42 @@ def forecast_icon(icon, size, frcst):
             situa_img.set_from_file(icon_loc + 'weather-showers-scattered-large.svg')
             css_class = 'showers_scattered'
         elif icon == "10d":
-            situa_img.set_from_icon_name(icon_loc + 'weather-showers-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-showers-large.svg')
             css_class = 'showers_large'
         elif icon == "11d":
-            situa_img.set_from_icon_name(icon_loc + 'weather-storm-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-storm-large.svg')
             css_class = 'storm'
         elif icon == "13d":
-            situa_img.set_from_icon_name(icon_loc + 'weather-snow-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-snow-large.svg')
             css_class = 'snow'
         elif icon == "50d":
-            situa_img.set_from_icon_name(icon_loc + 'weather-fog-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-fog-large.svg')
             css_class = 'fog'
 
         # -------- night icons --------- # 
         elif icon == "01n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-clear-night-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-clear-night-large.svg')
             css_class = 'clear_sky_night'
         elif icon == "02n" or icon == "03n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-few-clouds-night-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-few-clouds-night-large.svg')
             css_class = 'few_clouds_night'
         elif icon == "04n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-overcast-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-overcast-large.svg')
             css_class = 'overcast_night'
         elif icon == "09n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-showers-scattered-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-showers-scattered-large.svg')
             css_class = 'showers_scattered_night'
         elif icon == "10n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-showers-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-showers-large.svg')
             css_class = 'showers_large_night'
         elif icon == "11n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-storm-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-storm-large.svg')
             css_class = 'storm_night'
         elif icon == "13n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-snow-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-snow-large.svg')
             css_class = 'snow_night'
         elif icon == "50n":
-            situa_img.set_from_icon_name(icon_loc + 'weather-fog-large.svg')
+            situa_img.set_from_file(icon_loc + 'weather-fog-large.svg')
             css_class = 'fog_night'   
 
 
