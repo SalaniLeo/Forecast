@@ -2,6 +2,8 @@
 Name=Forecast
 Exec=forecast
 Icon=dev.salaniLeo.forecast
+Keywords[en]=Weather;Forecast;Temperature;
+Comment[en]=Forecast app for GNOME
 Terminal=false
 Type=Application
 Categories=GTK;

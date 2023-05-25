@@ -33,6 +33,7 @@ configure_file(
   install_dir: '/app/bin'
 )
 
+install_subdir('data/status', install_dir: '/app/share/icons/hicolor/scalable')
 install_subdir('Forecast', install_dir: '/app/bin')
 
 gnome.post_install(

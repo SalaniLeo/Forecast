@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="weather-storm-symbolic.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1440"
+     inkscape:window-height="836"
+     id="namedview10"
+     showgrid="false"
+     inkscape:zoom="45.9375"
+     inkscape:cx="8"
+     inkscape:cy="8"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <g
+     id="g843">
+    <path
+       d="M 9.51,0.044 C 8.237,0.044 7.203,1.017 7.062,2.262 6.738,2.14 6.405,2.044 6.039,2.044 c -1.643,0 -2.975,1.343 -2.975,3 0,0.098 0.022,0.186 0.031,0.281 a 1.982,1.982 0 0 0 -1.022,-0.281 1.992,1.992 0 0 0 -1.984,2 C 0.09,8.15 0.905,9 2,9 H 7 V 7.5 C 6.984,6.714 7.74,6.03 8.518,6.013 9.318,5.996 10.017,6.693 10,7.5 V 9 h 4.5 c 0.822,0 1.455,-0.627 1.455,-1.456 0,-0.828 -0.666,-1.5 -1.487,-1.5 -0.206,0 -0.411,0.05 -0.59,0.125 a 2.44,2.44 0 0 0 0.094,-0.625 c 0,-1.23 -0.886,-2.228 -2.046,-2.438 0.042,-0.181 0.062,-0.368 0.062,-0.562 a 2.49,2.49 0 0 0 -2.479,-2.5 z"
+       style="color:#000000;fill:#5e5c64;marker:none;fill-opacity:1"
+       overflow="visible"
+       id="path2" />
+    <path
+       d="M 8.492,6.994 A 0.5,0.5 0 0 0 8,7.5 V 10 H 5 v 1 H 3.293 l -2.646,2.646 a 0.50027817,0.50027817 0 1 0 0.707,0.708 L 3.707,12 H 5 v 3 a 0.5,0.5 0 1 0 1,0 V 11.576 A 0.5,0.5 0 0 0 6,11.424 V 11 h 2 v 0.707 l 2,2 V 15 a 0.5,0.5 0 1 0 1,0 v -1 h 1.362 l 2.38,1.428 a 0.5,0.5 0 1 0 0.516,-0.856 L 12.638,13 h -1.93 L 9,11.293 V 10.576 A 0.5,0.5 0 0 0 9,10.424 V 7.5 A 0.5,0.5 0 0 0 8.492,6.994 Z"
+       style="color:#000000;line-height:normal;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;text-orientation:mixed;shape-padding:0;isolation:auto;mix-blend-mode:normal;fill:#f9f06b;fill-opacity:1"
+       font-weight="400"
+       font-family="sans-serif"
+       overflow="visible"
+       id="path4" />
+  </g>
+</svg>

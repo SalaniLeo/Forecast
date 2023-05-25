@@ -14,8 +14,6 @@ main_window = None
 css_class = None
 saved_locations = settings.get_strv('wthr-locs')
 
-css_provider = Gtk.CssProvider()
-
 title = None
 
 both_update = True #TODO
@@ -30,10 +28,13 @@ situa_img = Gtk.Image()
 
 forecast_box = Gtk.Box(spacing=24, orientation=Gtk.Orientation.HORIZONTAL)
 
+icon_loc = None
+
 class main_page(Gtk.Box):
-    def __init__(self, thread, window, name):
+    def __init__(self, thread, window, name, flatpak):
         super().__init__()
         
+        global icon_loc
         global meteo
         global lat
         global lon
@@ -42,6 +43,13 @@ class main_page(Gtk.Box):
             text_raw = name.split(" - ")[1]
         else:
             text_raw = saved_locations[0]
+            
+        if flatpak:
+            icon_loc = '/app/share/icons/hicolor/scalable/status/'
+        # elif appimage:
+        #     icon_loc.load_from_path('style.css')
+        else:
+            icon_loc = 'data/status/'
             
         coords_raw = text_raw[text_raw.find("(")+1:text_raw.find(")")]
             
@@ -377,41 +385,43 @@ def set_frcst_icon(forecast):
                 
         img = Gtk.Image()
         img.set_pixel_size(35)
+        
+        print(icon_loc + icon_id)
                 
         if icon_id == "01d":
-            img.set_from_icon_name('weather-clear-large')
+            img.set_from_file(icon_loc + 'weather-clear-large.svg')
         elif icon_id == "02d" or icon_id == "03d":
-            img.set_from_icon_name('weather-few-clouds-large')
+            img.set_from_file(icon_loc + 'weather-few-clouds-large.svg')
         elif icon_id == "04d":
-            img.set_from_icon_name('weather-overcast-large')
+            img.set_from_file(icon_loc + 'weather-overcast-large.svg')
         elif icon_id == "09d":
-            img.set_from_icon_name('weather-showers-scattered-large')
+            img.set_from_file(icon_loc + 'weather-showers-scattered-large.svg')
         elif icon_id == "10d":
-            img.set_from_icon_name('weather-showers-large')
+            img.set_from_file(icon_loc + 'weather-showers-large.svg')
         elif icon_id == "11d":
-            img.set_from_icon_name('weather-storm-large')
+            img.set_from_file(icon_loc + 'weather-storm-large.svg')
         elif icon_id == "13d":
-            img.set_from_icon_name('weather-snow-large')
+            img.set_from_file(icon_loc + 'weather-snow-large.svg')
         elif icon_id == "50d":
-            img.set_from_icon_name('weather-fog-large')
+            img.set_from_file(icon_loc + 'weather-fog-large.svg')
 
         # -------- night icon_ids --------- # 
         elif icon_id == "01n":
-            img.set_from_icon_name('weather-clear-night-symbolic')
+            img.set_from_file(icon_loc + 'weather-clear-night-large.svg')
         elif icon_id == "02n" or icon_id == "03n":
-            img.set_from_icon_name('weather-few-clouds-night-large')
+            img.set_from_file(icon_loc + 'weather-few-clouds-night-large.svg')
         elif icon_id == "04n":
-            img.set_from_icon_name('weather-overcast-large')
+            img.set_from_file(icon_loc + 'weather-overcast-large.svg')
         elif icon_id == "09n":
-            img.set_from_icon_name('weather-showers-scattered-large')
+            img.set_from_file(icon_loc + 'weather-showers-scattered-large.svg')
         elif icon_id == "10n":
-            img.set_from_icon_name('weather-showers-large')
+            img.set_from_file(icon_loc + 'weather-showers-large.svg')
         elif icon_id == "11n":
-            img.set_from_icon_name('weather-storm-large')
+            img.set_from_file(icon_loc + 'weather-storm-large.svg')
         elif icon_id == "13n":
-            img.set_from_icon_name('weather-snow-large')
+            img.set_from_file(icon_loc + 'weather-snow-large.svg')
         elif icon_id == "50n":
-            img.set_from_icon_name('weather-fog-large')
+            img.set_from_file(icon_loc + 'weather-fog-large.svg')
 
         return img
     
@@ -424,54 +434,54 @@ def forecast_icon(icon, size, frcst):
         situa_img.set_pixel_size(size)
 
         if icon == "01d":
-            situa_img.set_from_icon_name('weather-clear-large')
+            situa_img.set_from_file(icon_loc + 'weather-clear-large.svg')
             css_class = "clear_sky"
         elif icon == "02d" or icon == "03d":
-            situa_img.set_from_icon_name('weather-few-clouds-large')
+            situa_img.set_from_file(icon_loc + 'weather-few-clouds-large.svg')
             css_class = 'few_clouds'
         elif icon == "04d":
-            situa_img.set_from_icon_name('weather-overcast-large')
+            situa_img.set_from_file(icon_loc + 'weather-overcast-large.svg')
             css_class = 'overcast'
         elif icon == "09d":
-            situa_img.set_from_icon_name('weather-showers-scattered-large')
+            situa_img.set_from_file(icon_loc + 'weather-showers-scattered-large.svg')
             css_class = 'showers_scattered'
         elif icon == "10d":
-            situa_img.set_from_icon_name('weather-showers-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-showers-large.svg')
             css_class = 'showers_large'
         elif icon == "11d":
-            situa_img.set_from_icon_name('weather-storm-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-storm-large.svg')
             css_class = 'storm'
         elif icon == "13d":
-            situa_img.set_from_icon_name('weather-snow-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-snow-large.svg')
             css_class = 'snow'
         elif icon == "50d":
-            situa_img.set_from_icon_name('weather-fog-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-fog-large.svg')
             css_class = 'fog'
 
         # -------- night icons --------- # 
         elif icon == "01n":
-            situa_img.set_from_icon_name('weather-clear-night-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-clear-night-large.svg')
             css_class = 'clear_sky_night'
         elif icon == "02n" or icon == "03n":
-            situa_img.set_from_icon_name('weather-few-clouds-night-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-few-clouds-night-large.svg')
             css_class = 'few_clouds_night'
         elif icon == "04n":
-            situa_img.set_from_icon_name('weather-overcast-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-overcast-large.svg')
             css_class = 'overcast_night'
         elif icon == "09n":
-            situa_img.set_from_icon_name('weather-showers-scattered-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-showers-scattered-large.svg')
             css_class = 'showers_scattered_night'
         elif icon == "10n":
-            situa_img.set_from_icon_name('weather-showers-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-showers-large.svg')
             css_class = 'showers_large_night'
         elif icon == "11n":
-            situa_img.set_from_icon_name('weather-storm-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-storm-large.svg')
             css_class = 'storm_night'
         elif icon == "13n":
-            situa_img.set_from_icon_name('weather-snow-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-snow-large.svg')
             css_class = 'snow_night'
         elif icon == "50n":
-            situa_img.set_from_icon_name('weather-fog-large')
+            situa_img.set_from_icon_name(icon_loc + 'weather-fog-large.svg')
             css_class = 'fog_night'   
 
 

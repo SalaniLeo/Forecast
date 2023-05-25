@@ -85,12 +85,12 @@ class Application(Gtk.ApplicationWindow):
     def start_application(main_window):
         
         # starts main thread
-        wttr_thrd = Thread(target=main_page, args=(None, main_window, None))
+        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, flatpak))
         wttr_thrd.start()
         
     def add_city(button, active, main_window, name):
         if name is None:
-            main_page(None, main_window, name)
+            main_page(None, main_window, name, flatpak)
         
 
         
