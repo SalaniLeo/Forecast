@@ -410,9 +410,8 @@ def add_city(city, window, first_time):
 def get_loc(button, self, entry, window, complete):
         wttr_thrd = Thread(target=get_cities, args=(self, entry))
         wttr_thrd.start()
-        
 
-# ---- funtction to get city based on user input ---- #
+# ---- function to get city based on user input ---- #
 def get_cities(any, self, entry):
 
     # gets user input
@@ -433,17 +432,16 @@ def get_cities(any, self, entry):
         # gets info about each element given in the api response
         for element in data["list"]:
             text = element['name'] + " - " + element["sys"]['country'] + " (" + str(element["coord"]["lat"]) + "; " + str(element["coord"]["lon"]) + ")"
-
             cities.append(text) # adds info to cities list
 
-            for city in cities:
-                i = i + 1 
-                self.completion_model.insert_with_values(  #
-                    position=i,                            # adds city to dropdown menu
-                    columns=(1,),                          #
-                    values=[str(city)],                    #
-                )
-    
+        for city in cities:
+            i = i + 1
+            self.completion_model.insert_with_values(  #
+                position=i,                            # adds city to dropdown menu
+                columns=(1,),                          #
+                values=[str(city)],                    #
+            )
+
 # ---- applies gradient background ---- #
 def apply_bg(switch, active):
     if active is True:
