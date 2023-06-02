@@ -20,7 +20,6 @@ flatpak = None
 css_provider = Gtk.CssProvider()
 
 units = None
-units_list = None
 available_units = ['Metric System, °C - Km/h', 'Imperial System, °F - mph']
 
 
@@ -35,12 +34,6 @@ class Application(Gtk.ApplicationWindow):
         global units
         global units_list
         application = self
-    
-        units = settings.get_string('units')
-        if units == available_units[0]:
-            units_list = 0
-        elif units == available_units[1]:
-            units_list = 1
     
         # creates headerbar #
         self.header_bar = Gtk.HeaderBar()
@@ -98,12 +91,12 @@ class Application(Gtk.ApplicationWindow):
     def start_application(main_window):
         
         # starts main thread
-        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, flatpak, units))
+        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, flatpak))
         wttr_thrd.start()
         
     def add_city(button, active, main_window, name):
         if name is None:
-            main_page(None, main_window, name, flatpak, units)
+            main_page(None, main_window, name, flatpak)
         
 
         
@@ -249,10 +242,11 @@ class ForecastPreferences(Adw.PreferencesWindow):
         use_gradient_bg_row.set_subtitle("Applies a gradient based on current weather and time. Requires restart to disable")
         use_gradient_bg_row.add_suffix(widget=use_gradient_bg_switch)
         
-        
-        
-        weather_preferences = Adw.PreferencesGroup.new()
-        weather_preferences.set_title('Weather preferences') 
+        units = settings.get_string('units')
+        if units == available_units[0]:
+            units_list = 0
+        elif units == available_units[1]:
+            units_list = 1
         
         units_choice = Gtk.ComboBoxText()
         for text in available_units:
@@ -286,11 +280,10 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         # adds option rows to option page
         application_preferences.add(child=use_gradient_bg_row)
-        weather_preferences.add(child=units_row)
+        application_preferences.add(child=units_row)
         api_preferences.add(child=api_key_row)
         
         forecast_opt_page.add(group=application_preferences)
-        forecast_opt_page.add(group=weather_preferences)
         forecast_opt_page.add(group=api_preferences)
 
     def change_unit(self, combobox):
