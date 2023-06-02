@@ -19,6 +19,11 @@ flatpak = None
 
 css_provider = Gtk.CssProvider()
 
+units = None
+units_list = None
+available_units = ['Metric System, °C - Km/h', 'Imperial System, °F - mph']
+
+
 class Application(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,7 +32,15 @@ class Application(Gtk.ApplicationWindow):
         
         global application
         global style_manager
+        global units
+        global units_list
         application = self
+    
+        units = settings.get_string('units')
+        if units == available_units[0]:
+            units_list = 0
+        elif units == available_units[1]:
+            units_list = 1
     
         # creates headerbar #
         self.header_bar = Gtk.HeaderBar()
@@ -85,12 +98,12 @@ class Application(Gtk.ApplicationWindow):
     def start_application(main_window):
         
         # starts main thread
-        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, flatpak))
+        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, flatpak, units))
         wttr_thrd.start()
         
     def add_city(button, active, main_window, name):
         if name is None:
-            main_page(None, main_window, name, flatpak)
+            main_page(None, main_window, name, flatpak, units)
         
 
         
@@ -117,7 +130,6 @@ class Forecast(Adw.Application):
     # ----- refreshes meteo ----- #
     def refresh(button, self):
         main_page.refresh(None, None, None)
-        
 
     # ----- shows about window ------ #
     def show_about(self, action, param):
@@ -202,8 +214,6 @@ class search_page(Gtk.Box):
         if len(saved_locations) == 0:
             first_time = True
             saved_locations.append(entry.get_text())
-            
-        print(len(saved_locations))
         
         city = entry.get_text()
 
@@ -226,7 +236,10 @@ class ForecastPreferences(Adw.PreferencesWindow):
         forecast_opt_page = Adw.PreferencesPage.new()
         self.add(page=forecast_opt_page)
 
-        forecast_options = Adw.PreferencesGroup.new()
+
+
+        application_preferences = Adw.PreferencesGroup.new()
+        application_preferences.set_title('App preferences')
 
         # creates option to select gradient background
         use_gradient_bg_switch = self.opt_switch(None, "gradient-bg")
@@ -235,6 +248,28 @@ class ForecastPreferences(Adw.PreferencesWindow):
         use_gradient_bg_row.set_title(title='Use gradient as background')
         use_gradient_bg_row.set_subtitle("Applies a gradient based on current weather and time. Requires restart to disable")
         use_gradient_bg_row.add_suffix(widget=use_gradient_bg_switch)
+        
+        
+        
+        weather_preferences = Adw.PreferencesGroup.new()
+        weather_preferences.set_title('Weather preferences') 
+        
+        units_choice = Gtk.ComboBoxText()
+        for text in available_units:
+            units_choice.append_text(text=text)
+        units_choice.set_active(index_=units_list)
+        units_choice.connect('changed', self.change_unit)
+        units_choice.set_valign(Gtk.Align.CENTER)
+        
+        units_row = Adw.ActionRow.new()
+        units_row.set_title(title='Units')
+        units_row.set_subtitle("Select which unit of measurement to use")
+        units_row.add_suffix(widget=units_choice)
+        
+        
+        
+        api_preferences = Adw.PreferencesGroup.new()
+        api_preferences.set_title('Api preferences')
         
         # creates option for changing api key
         self.api_key_entry = Gtk.Entry()
@@ -250,11 +285,20 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
 
         # adds option rows to option page
-        forecast_options.add(child=use_gradient_bg_row)
-        forecast_options.add(child=api_key_row)
+        application_preferences.add(child=use_gradient_bg_row)
+        weather_preferences.add(child=units_row)
+        api_preferences.add(child=api_key_row)
         
-        forecast_opt_page.add(group=forecast_options)
-        # TODO
+        forecast_opt_page.add(group=application_preferences)
+        forecast_opt_page.add(group=weather_preferences)
+        forecast_opt_page.add(group=api_preferences)
+
+    def change_unit(self, combobox):
+        global units 
+        units = combobox.get_active_text()
+        self.saveString(None, units, 'units')
+        main_page.refresh(None, None, 'True')
+        
         
     # ---- creates a switch for an option ---- #
     def opt_switch(self, entry, option):
@@ -302,6 +346,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
     def do_shutdown(self, quit):
         if self.api_key_entry.get_text() is not None:       # saves api key to gsettings
             self.saveString(self.api_key_entry, self.api_key_entry.get_text(), "api-key-s")
+
+
 
 def start(AppId, Flatpak, appimage):
     

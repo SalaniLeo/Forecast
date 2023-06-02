@@ -27,5 +27,11 @@
       <description>stores all user selected location</description>
     </key>
 
+    <key name="units" type="s">
+      <default>'metric'</default>
+      <summary>Units</summary>
+      <description>chooses what unit of measure to use</description>
+    </key>
+
   </schema>
 </schemalist>

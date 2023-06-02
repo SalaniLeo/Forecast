@@ -1,5 +1,4 @@
 import requests
-import pytz
 from datetime import datetime, timedelta
 import gi
 from threading import Thread
@@ -26,18 +25,26 @@ situa_label = Gtk.Label()
 situa_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 situa_img = Gtk.Image()
 
-forecast_box = Gtk.Box(spacing=24, orientation=Gtk.Orientation.HORIZONTAL)
+hourly_forecast_box = Gtk.Box(spacing=24, orientation=Gtk.Orientation.HORIZONTAL)
+daily_forecast_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
 icon_loc = None
 
+today = datetime.now()
+
+degrees_unit = None
+speed_unit = None
+
 class main_page(Gtk.Box):
-    def __init__(self, thread, window, name, flatpak):
+    def __init__(self, thread, window, name, flatpak, units):
         super().__init__()
         
         global icon_loc
         global meteo
         global lat
         global lon
+        global degrees_unit
+        global speed_unit
         
         if name is not None:
             text_raw = name.split(" - ")[1]
@@ -50,7 +57,15 @@ class main_page(Gtk.Box):
         #     icon_loc.load_from_path('style.css')
         else:
             icon_loc = 'data/status/'
+
+
+        raw_units = settings.get_string('units')
+
+        degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
+        speed_unit   = raw_units[raw_units.find("-")+1:]
+
             
+
         coords_raw = text_raw[text_raw.find("(")+1:text_raw.find(")")]
             
         lat = coords_raw.split("; ")[0]
@@ -90,27 +105,40 @@ class main_page(Gtk.Box):
         
         window.saved_loc_box.set_active(index_=0)
 
-
-        # ------ top grid ------ #
-
-        self.icon_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        self.icon_box.append(set_icon(window, meteo, False))
-        self.icon_box.append(set_info(meteo))
-        self.icon_box.set_margin_start(12)
-        self.icon_box.set_halign(Gtk.Align.FILL)
-
         
-        # ------ forecast ------ #
+        # ------ 3 hours forecast ------ #
 
         get_forecast(False)
 
-        forecast_window = Gtk.ScrolledWindow()
+        hourly_forecast_window = Gtk.ScrolledWindow()
 
-        forecast_window.set_min_content_height(100)
-        forecast_window.set_child(forecast_box)
-        forecast_window.set_halign(Gtk.Align.FILL)
-        forecast_window.set_hexpand(True)
-        forecast_window.set_margin_top(44)
+        hourly_forecast_window.set_min_content_height(100)
+        hourly_forecast_window.set_child(hourly_forecast_box)
+        hourly_forecast_window.set_halign(Gtk.Align.FILL)
+        hourly_forecast_window.set_hexpand(True)
+        hourly_forecast_window.set_margin_top(44)
+        
+        # ---- per day forecast ---- # 
+        
+        day_forecast_window = Gtk.Box()
+        day_forecast_window.append(daily_forecast_box)
+        day_forecast_window.set_halign(Gtk.Align.START)
+        day_forecast_window.set_margin_start(12)
+        
+        
+        # ------ top grid ------ #
+        
+        self.icon_frcts_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.icon_frcts_box.append(set_icon(window, meteo, False))
+        self.icon_frcts_box.append(day_forecast_window)
+
+
+        self.icon_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
+        self.icon_box.append(self.icon_frcts_box)
+        self.icon_box.append(set_info(meteo))
+        self.icon_box.set_margin_start(12)
+        self.icon_box.set_halign(Gtk.Align.FILL)
+        
 
         # ------ main page ------ #
         
@@ -122,7 +150,8 @@ class main_page(Gtk.Box):
         
         
         self.append(self.icon_box)
-        self.append(forecast_window)
+        self.append(hourly_forecast_window)
+
                 
         # -- adds itself to stack -- #
         
@@ -134,7 +163,7 @@ class main_page(Gtk.Box):
 
     
     # ---- function to refresh weather and change city ---- #
-    def refresh(lati, longi, box_pos):
+    def refresh(lati, longi, change_units):
         global meteo
         global lat
         global lon
@@ -158,6 +187,14 @@ class main_page(Gtk.Box):
             
             main_window.header_bar.set_title_widget()                         
 
+        if change_units == 'True':
+            global degrees_unit
+            global speed_unit
+            
+            raw_units = settings.get_string('units')
+
+            degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
+            speed_unit   = raw_units[raw_units.find("-")+1:]
 
         set_info(meteo) # updates labels to new city weather
         set_icon(main_window, meteo, False) # updates icon to new city weather
@@ -242,23 +279,29 @@ def set_info(meteo):
     
     # --- gets info from api response --- #
     local_time  = str(convert_time(meteo['timezone']))
-    feels_like  = str(round(meteo['main']['feels_like'], 1)) + " °C  "
+    feels_like  = str(round(meteo['main']['feels_like'], 1)) + degrees_unit
     humidity    = str(meteo["main"]["humidity"])   + "%    "
-    wind_speed  = str(meteo['wind']['speed'])      + "Km/h " + wind_dir(meteo['wind']['deg'])
-    pressure    = str(meteo['main']['pressure'])   + " hPa "
+    wind_speed  = str(meteo['wind']['speed'])      + speed_unit +' '+ wind_dir(meteo['wind']['deg'])
+    pressure    = str(meteo['main']['pressure'])   + ' hPa'
     last_update = str(datetime.now().strftime("%H:%M"))
+
+    try:
+        wind_gusts  = str(meteo['wind']['gust'])       + speed_unit
+    except:
+        wind_gusts  = '...'
 
     info_label.set_margin_end(24)
     info_label.set_margin_top(24)
     info_label.set_halign(Gtk.Align.END)
-    info_label.set_valign(Gtk.Align.CENTER)
+    info_label.set_valign(Gtk.Align.START)
     info_label.set_markup(       
-            "Local time:  " +  local_time  + "\n" +
-            "  Feels like:  " +  feels_like  + "\n" +
-            "          Wind:  "       +  wind_speed  + "\n" +
-            "  Humidity:  "   +  humidity    + "\n\n" +
-            "  Last updated:  " + datetime.now().strftime("%H:%M")
-
+            "Last updated:  "   +  last_update   +      "\n"     +
+            "Local time:  "     +  local_time    +      "\n\n"   +
+            "  Feels like:  "   +  feels_like    +      "\n"     +
+            "          Wind:  " +  wind_speed    +      "\n"     +
+            "         Gusts:  " +  wind_gusts    +      "\n"     +
+            "  Humidity:  "     +  humidity      +      "\n"     +
+            "   Pressure:  "    +  pressure      +      "\n\n" 
     )        
             
     return info_label
@@ -266,21 +309,25 @@ def set_info(meteo):
 # --- sets up forecast --- #
 def get_forecast(refresh):
     global forecast
-    global forecast_box
+    global hourly_forecast_box
+    global daily_forecast_box
     
-    forecast_box.set_hexpand(True)
-    forecast_box.set_halign(Gtk.Align.CENTER)
     forecast = get_frcst() # calls api to get forecast
+    
+    daily_forecast_box.set_hexpand(True)
+    daily_forecast_box.set_halign(Gtk.Align.CENTER) 
+    
+    hourly_forecast_box.set_hexpand(True)
+    hourly_forecast_box.set_halign(Gtk.Align.CENTER)
 
-    i = 0
     hours = 0
 
     # adds forecast per 3 hours intervals
     for weather in forecast["list"]:
-        i = i+1
-        if i<10:
+        
+        if hours <= 24:
 
-            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)    #
+            hourly_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)    #
             
             local_time = int(convert_time(forecast["city"]["timezone"])[:2]) + hours  # gets local city time
             
@@ -291,16 +338,42 @@ def get_forecast(refresh):
             local_time = str(local_time) + ':00' # adds minutes to time es. 01 -> 01:00
                          
                                 
-            box.append(Gtk.Label(label=local_time))    # Creates box for every 3 hours prevision
-            box.append(set_frcst_icon(weather))                               # 
-            box.append(Gtk.Label(label=str(round(weather['main']['temp'], 1)) + " °C")) #
-            
-            hours = hours + 3
-            
+            hourly_box.append(Gtk.Label(label=local_time))    # Creates box for every 3 hours prevision
+            hourly_box.append(set_frcst_icon(weather, 35))                               # 
+            hourly_box.append(Gtk.Label(label=str(round(weather['main']['temp'], 1)) + " °C")) #
+                    
             if refresh:
-                forecast_box.remove(forecast_box.get_first_child())
-            forecast_box.append(box) # adds 3 hour interval to slider
+                hourly_forecast_box.remove(hourly_forecast_box.get_first_child())
+                        
+            hourly_forecast_box.append(hourly_box) # adds 3 hour interval to slider
+
+
+        if refresh:
+            daily_forecast_box.remove(daily_forecast_box.get_first_child())
+                       
+        
+        daily_forecast_box.append(get_day_situa(weather, hours))
+
+        hours = hours + 3
+        
+def get_day_situa(weather, hours):
+    daily_box = Gtk.Box()
     
+    wttr_date = weather["dt_txt"][8:10]
+    if wttr_date != today.strftime('%d'):
+        if int(weather['dt_txt'][11:13]) == 15:
+                date_string = weather['dt_txt'][0:10]
+                date = datetime.strptime(date_string, "%Y-%m-%d")
+                daily_box.append(Gtk.Label(label=date.strftime("%a, %b %d")))
+                daily_box.append(set_frcst_icon(weather, 30))
+                
+        if hours == 117 and int(weather['dt_txt'][11:13]) >= 0:
+                date_string = weather['dt_txt'][0:10]
+                date = datetime.strptime(date_string, "%Y-%m-%d")
+                daily_box.append(Gtk.Label(label=date.strftime("%a, %b %d")))
+                daily_box.append(set_frcst_icon(weather, 30))
+                
+    return daily_box
     
 def switch_city(combobox):
     city = saved_locations[combobox.get_active()]
@@ -379,12 +452,13 @@ def apply_bg(switch, active):
 
 
 # ---- sets icon for forecast ---- #
-def set_frcst_icon(forecast):
+def set_frcst_icon(forecast, icon_size):
         
-        icon_id = forecast["weather"][0]['icon']
+        icon_id = forecast["weather"][0]['icon'] 
                 
         img = Gtk.Image()
-        img.set_pixel_size(35)
+        img.set_pixel_size(icon_size)
+        img.set_halign(Gtk.Align.CENTER)
                         
         if icon_id == "01d":
             img.set_from_file(icon_loc + 'weather-clear-large.svg')
@@ -547,9 +621,7 @@ def get_wttr_description(code):
 def convert_time(timezone):
     
     local_time = timezone//3600
-        
-    global_time = pytz.timezone('Europe/London')  
-    
+            
     converted_datetime = local_time + int(datetime.utcnow().strftime("%H"))
         
     if converted_datetime > 24:
