@@ -2,6 +2,7 @@ import sys
 from Forecast.WttrInfo import *
 from threading import Thread
 import gi
+import os
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, Gio, Gdk
@@ -106,6 +107,7 @@ class Forecast(Adw.Application):
         self.create_action('refresh', self.refresh)
         self.create_action('preferences', self.show_preferences)
         self.create_action('about', self.show_about)
+        self.create_action('quit', self.exit_app, ['<Control>w', '<Control>q'])
 
     # ---- action to perform on startup ---- #
     def on_activate(self, app):  
@@ -117,6 +119,8 @@ class Forecast(Adw.Application):
         action = Gio.SimpleAction.new(name, None)
         action.connect('activate', callback)
         self.add_action(action)
+        if shortcuts:
+            self.set_accels_for_action(f'app.{name}', shortcuts)
 
     # ----- refreshes meteo ----- #
     def refresh(button, self):
@@ -139,6 +143,9 @@ class Forecast(Adw.Application):
     def show_preferences(self, action, param):
         adw_preferences_window = ForecastPreferences(application)
         adw_preferences_window.show()
+
+    def exit_app(self, action, param):
+        self.quit()
 
 
 # ------- first page that shows when app is opened for the first time ------- #
