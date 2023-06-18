@@ -1,3 +1,6 @@
 # List of source files containing translatable strings.
+data/dev.salaniLeo.forecast.appdata.xml.in
+data/dev.salaniLeo.forecast.desktop.in
+data/dev.salaniLeo.forecast.gschema.xml
 Forecast/App.py
 Forecast/WttrInfo.py

@@ -43,7 +43,7 @@ class Application(Gtk.ApplicationWindow):
 
 
         # sets properties to main page #
-        self.set_title('Forecast - loading')
+        self.set_title(_('Forecast - loading'))
         self.set_default_size(850, 390)        
 
         # creates stack containing the pages #
@@ -55,8 +55,8 @@ class Application(Gtk.ApplicationWindow):
 
         # menu button #
         self.menu_button_model = Gio.Menu()
-        self.menu_button_model.append('Preferences', 'app.preferences')
-        self.menu_button_model.append('About', 'app.about')
+        self.menu_button_model.append(_('Preferences'), 'app.preferences')
+        self.menu_button_model.append(_('About Forecast'), 'app.about')
         self.menu_button = Gtk.MenuButton.new()
         self.menu_button.set_margin_end(4)
         self.menu_button.set_icon_name(icon_name='open-menu-symbolic')
@@ -67,6 +67,7 @@ class Application(Gtk.ApplicationWindow):
 
         # refresh button
         self.refresh_button = Gtk.Button.new_from_icon_name('view-refresh-symbolic')
+        self.refresh_button.set_tooltip_text(_("Refresh"))
         self.refresh_button.connect("clicked", Forecast.refresh, self)
 
 
@@ -107,7 +108,7 @@ class Forecast(Adw.Application):
 
         self.connect('activate', self.on_activate)
         self.create_action('refresh', self.refresh)
-        self.create_action('preferences', self.show_preferences)
+        self.create_action('preferences', self.show_preferences, ['<Control>comma'])
         self.create_action('about', self.show_about)
         self.create_action('quit', self.exit_app, ['<Control>w', '<Control>q'])
 
@@ -132,13 +133,15 @@ class Forecast(Adw.Application):
     def show_about(self, action, param):
         dialog = Adw.AboutWindow()
         dialog.set_transient_for(application)
-        dialog.set_application_name('Forecast')
+        dialog.set_application_name(_("Forecast"))
         dialog.set_version("0.2")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments("Meteo app made with GTK")
+        dialog.set_comments(_("Forecast app for GNOME"))
         dialog.set_website("https://github.com/SalaniLeo/Forecast")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salaniLeo.Forecast")
+        # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+        dialog.set_translator_credits(_("translator-credits"))
         dialog.present()
 
    # ----- shows preferences window ----- #
@@ -171,7 +174,7 @@ class search_page(Gtk.Box):
 
         if first:
             # welcome title 
-            self.title = Gtk.Label(label='Welcome to Forecast!\nsearch a city')
+            self.title = Gtk.Label(label=_('Welcome to Forecast!\nSearch a City'))
             self.title.set_justify(Gtk.Justification.CENTER)
             self.title.set_valign(Gtk.Align.START)
             self.title.set_vexpand(True)
@@ -189,7 +192,7 @@ class search_page(Gtk.Box):
             self.set_spacing(48)
 
             # sets title and adds self as app child
-            window.set_title('Forecast')
+            window.set_title(_('Forecast'))
             window.stack.add_child(self)
             if saved_locations is not None:
                 window.stack.set_visible_child(self)
@@ -201,7 +204,7 @@ class search_page(Gtk.Box):
                 window.add_button.set_icon_name('list-add-symbolic')
             else:
                 window.header_bar.set_title_widget(self.search_bar)
-                self.search_bar.set_placeholder_text('Search a city')
+                self.search_bar.set_placeholder_text(_('Search a city'))
                 self.search_bar.connect('activate', self.add_loc, window)
                 window.add_button.set_icon_name('edit-undo-symbolic')
 
@@ -224,7 +227,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
     def __init__(self, parent,  **kwargs):
         super().__init__(**kwargs)   
 
-        self.set_title(title='Preferences')
+        self.set_title(title=_('Preferences'))
         self.set_transient_for(parent)
         self.connect('close-request', self.do_shutdown)
 
@@ -233,13 +236,13 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         # -- background radient -- #
         application_preferences = Adw.PreferencesGroup.new()
-        application_preferences.set_title('App preferences')
+        application_preferences.set_title(_('App Preferences'))
 
         use_gradient_bg_switch = self.opt_switch(None, "gradient-bg")
 
         use_gradient_bg_row = Adw.ActionRow.new()
-        use_gradient_bg_row.set_title(title='Use gradient as background')
-        use_gradient_bg_row.set_subtitle("Applies a gradient based on current weather and time. Requires restart to disable")
+        use_gradient_bg_row.set_title(title=_('Use Gradient as Background'))
+        use_gradient_bg_row.set_subtitle(_("Applies a gradient based on current weather and time. Requires restart to disable"))
         use_gradient_bg_row.add_suffix(widget=use_gradient_bg_switch)
 
         # -- units -- #
@@ -257,13 +260,13 @@ class ForecastPreferences(Adw.PreferencesWindow):
         units_choice.set_valign(Gtk.Align.CENTER)
 
         units_row = Adw.ActionRow.new()
-        units_row.set_title(title='Units')
-        units_row.set_subtitle("Select which unit of measurement to use")
+        units_row.set_title(title=_('Units'))
+        units_row.set_subtitle(_("Select which unit of measurement to use"))
         units_row.add_suffix(widget=units_choice)
 
         # -- api key -- #
         api_preferences = Adw.PreferencesGroup.new()
-        api_preferences.set_title('Api preferences')
+        api_preferences.set_title(_('API Preferences'))
 
         # creates option for changing api key
         self.api_key_entry = Gtk.Entry()
@@ -272,8 +275,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
         api_key_switch = self.opt_switch(self.api_key_entry, "api-key-b")
 
         api_key_row = Adw.ActionRow.new()
-        api_key_row.set_title(title='Use personal api key')
-        api_key_row.set_subtitle("Choose wether to use default api key or personal key")
+        api_key_row.set_title(title=_("Use Personal API Key"))
+        api_key_row.set_subtitle(_("Choose whether to use default API key or personal key"))
         api_key_row.add_suffix(widget=self.api_key_entry)
         api_key_row.add_suffix(widget=api_key_switch)
 

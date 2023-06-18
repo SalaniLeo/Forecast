@@ -195,7 +195,7 @@ class main_page(Gtk.Box):
                     last_refresh = current_time
                     meteo = get_wttr(lat, lon) # requests newer data to apis
                 else:
-                    wait_toast = Adw.Toast.new('You must wait at least one minute to refresh')
+                    wait_toast = Adw.Toast.new(_('You must wait at least one minute to refresh'))
                     main_window.toast_overlay.add_toast(wait_toast)
         # -- if new city is being added -- #
         else: 
@@ -278,8 +278,8 @@ def get_frcst():
 # --- converts wind degrees to direction --- #
 def wind_dir(angle):
         directions = [
-            "N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE",
-            "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW",
+            _("N"), _("NNE"), _("NE"), _("ENE"), _("E"), _("ESE"), _("SE"), _("SSE"),
+            _("S"), _("SSW"), _("SW"), _("WSW"), _("W"), _("WNW"), _("NW"), _("NNW"),
         ]
         index = round(angle / (360.0 / len(directions))) % len(directions)
         return directions[index]
@@ -309,25 +309,22 @@ def get_info(meteo):
     text_label.set_valign(Gtk.Align.END)
     text_label.set_css_classes(['text_light'])
     text_label.set_markup(
-        "Last update \n\n" +
-        
-        "Feels like \n" +
-        "Wind \n" +
-        "Gusts \n" + 
-        "Pressure \n" + 
-        "Humidity \n"
-        )
+        _("Last update") + '\n\n' +
+        _("Feels like") + '\n' +
+        _("Wind") + '\n' +
+        _("Gusts") + '\n' +
+        _("Pressure") + '\n' +
+        _("Humidity") + '\n'
+    )
 
     info_label.set_valign(Gtk.Align.START)
     info_label.set_markup(
         last_update + '\n\n' +
-
         feels_like + '\n' +
         wind_speed + '\n' +
         wind_gusts + '\n' +
         pressure + '\n' +
         humidity + '\n' 
-
     )
 
     return conditions_box
@@ -643,58 +640,58 @@ def forecast_icon(icon, size, frcst):
 # ---- function to translate id to weather description ---- #
 def get_wttr_description(code):
     switcher = {
-        230 and 200: ('Thunderstorm with Light Rain'),
-        231 and 201: ('Thunderstorm with Rain'),
-        232 and 202: ('Thunderstorm with Heavy Rain'),
-        210: ('Light Thunderstorm'),
-        211: ('Thunderstorm'),
-        212: ('Heavy Thunderstorm'),
-        221: ('Ragged Thunderstorm'),
-        300: ('Light Drizzle'),
-        301: ('Drizzle'),
-        302: ('Heavy Drizzle'),
-        310: ('Light Drizzle Rain'),
-        311: ('Drizzle Rain'),
-        312: ('Heavy Drizzle Rain'),
-        313: ('Shower Rain and Drizzle'),
-        314: ('Heavy Rain and Drizzle'),
-        321: ('Shower Drizzle'),
-        500: ('Light Rain'),
-        501: ('Moderate Rain'),
-        502: ('Heavy Rain'),
-        503: ('Very Heavy Rain'),
-        504: ('Extreme Rain'),
-        511: ('Freezing Rain'),
-        520: ('Light Shower Rain'),
-        521: ('Shower Rain'),
-        522: ('Heavy Shower Rain'),
-        531: ('Ragged Shower Rain'),
-        600: ('Light Snow'),
-        601: ('Snow'),
-        602: ('Heavy Snow'),
-        611: ('Sleet'),
-        612: ('Light Shower Sleet'),
-        613: ('Shower Sleet'),
-        615: ('Light Rain and Snow'),
-        616: ('Rain and Snow'),
-        620: ('Light Shower Snow'),
-        621: ('Shower Snow'),
-        622: ('Heavy Shower Snow'),
-        701: ('Mist'),
-        711: ('Smoke'),
-        721: ('Haze'),
-        731: ('Sand/Dust Whirls'),
-        741: ('Fog'),
-        751: ('Sand'),
-        761: ('Dust'),
-        762: ('Volcanic Ash'),
-        771: ('Squalls'),
-        781: ('Tornado'),
-        800: ('Clear Sky'),
-        801: ('Few Clouds'),
-        802: ('Scattered Clouds'),
-        803: ('Broken Clouds'),
-        804: ('Overcast Clouds')
+        230 and 200: (_('Thunderstorm with Light Rain')),
+        231 and 201: (_('Thunderstorm with Rain')),
+        232 and 202: (_('Thunderstorm with Heavy Rain')),
+        210: (_('Light Thunderstorm')),
+        211: (_('Thunderstorm')),
+        212: (_('Heavy Thunderstorm')),
+        221: (_('Ragged Thunderstorm')),
+        300: (_('Light Drizzle')),
+        301: (_('Drizzle')),
+        302: (_('Heavy Drizzle')),
+        310: (_('Light Drizzle Rain')),
+        311: (_('Drizzle Rain')),
+        312: (_('Heavy Drizzle Rain')),
+        313: (_('Shower Rain and Drizzle')),
+        314: (_('Heavy Rain and Drizzle')),
+        321: (_('Shower Drizzle')),
+        500: (_('Light Rain')),
+        501: (_('Moderate Rain')),
+        502: (_('Heavy Rain')),
+        503: (_('Very Heavy Rain')),
+        504: (_('Extreme Rain')),
+        511: (_('Freezing Rain')),
+        520: (_('Light Shower Rain')),
+        521: (_('Shower Rain')),
+        522: (_('Heavy Shower Rain')),
+        531: (_('Ragged Shower Rain')),
+        600: (_('Light Snow')),
+        601: (_('Snow')),
+        602: (_('Heavy Snow')),
+        611: (_('Sleet')),
+        612: (_('Light Shower Sleet')),
+        613: (_('Shower Sleet')),
+        615: (_('Light Rain and Snow')),
+        616: (_('Rain and Snow')),
+        620: (_('Light Shower Snow')),
+        621: (_('Shower Snow')),
+        622: (_('Heavy Shower Snow')),
+        701: (_('Mist')),
+        711: (_('Smoke')),
+        721: (_('Haze')),
+        731: (_('Sand/Dust Whirls')),
+        741: (_('Fog')),
+        751: (_('Sand')),
+        761: (_('Dust')),
+        762: (_('Volcanic Ash')),
+        771: (_('Squalls')),
+        781: (_('Tornado')),
+        800: (_('Clear Sky')),
+        801: (_('Few Clouds')),
+        802: (_('Scattered Clouds')),
+        803: (_('Broken Clouds')),
+        804: (_('Overcast Clouds'))
     }
     return switcher.get(int(code), ('Not available'))
 

@@ -2,13 +2,9 @@
 <component type="desktop">
   <id>dev.salaniLeo.forecast</id>
   <name>Forecast</name>
-  <summary>Weather app for gnome</summary>
+  <summary>Weather app for GNOME</summary>
   <description>
-    <p>
-
-    Beautiful and modern weather app for linux
-
-    </p>
+    <p>Beautiful and modern weather app for Linux</p>
   </description>
   <launchable type="desktop-id">dev.salaniLeo.forecast.desktop</launchable>
   <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
