@@ -44,7 +44,7 @@ class Application(Gtk.ApplicationWindow):
 
         # sets properties to main page #
         self.set_title('Forecast - loading')
-        self.set_default_size(850, 500)        
+        self.set_default_size(850, 390)        
 
         # creates stack containing the pages #
         self.stack = Gtk.Stack()
@@ -131,7 +131,7 @@ class Forecast(Adw.Application):
         dialog = Adw.AboutWindow()
         dialog.set_transient_for(application)
         dialog.set_application_name('Forecast')
-        dialog.set_version("0.1.0")
+        dialog.set_version("0.1.1")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
         dialog.set_comments("Meteo app made with GTK")
         dialog.set_website("https://github.com/SalaniLeo/Forecast")
@@ -153,7 +153,7 @@ class search_page(Gtk.Box):
     def __init__(self, button, window, first, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.completion_model = Gtk.ListStore.new([GObject.TYPE_INT, GObject.TYPE_STRING])
+        self.completion_model = Gtk.ListStore.new([])
 
         self.completion = Gtk.EntryCompletion.new()
         self.completion.set_model(model=self.completion_model)
@@ -229,12 +229,10 @@ class ForecastPreferences(Adw.PreferencesWindow):
         forecast_opt_page = Adw.PreferencesPage.new()
         self.add(page=forecast_opt_page)
 
-
-
+        # -- background radient -- #
         application_preferences = Adw.PreferencesGroup.new()
         application_preferences.set_title('App preferences')
 
-        # creates option to select gradient background
         use_gradient_bg_switch = self.opt_switch(None, "gradient-bg")
 
         use_gradient_bg_row = Adw.ActionRow.new()
@@ -242,6 +240,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         use_gradient_bg_row.set_subtitle("Applies a gradient based on current weather and time. Requires restart to disable")
         use_gradient_bg_row.add_suffix(widget=use_gradient_bg_switch)
 
+        # -- units -- #
         units = settings.get_string('units')
         if units == available_units[0]:
             units_list = 0
@@ -260,8 +259,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         units_row.set_subtitle("Select which unit of measurement to use")
         units_row.add_suffix(widget=units_choice)
 
-
-
+        # -- api key -- #
         api_preferences = Adw.PreferencesGroup.new()
         api_preferences.set_title('Api preferences')
 
@@ -332,7 +330,6 @@ class ForecastPreferences(Adw.PreferencesWindow):
         else:
             api_key = entry.get_text()                  #
             entry.remove_css_class(css_class='error')   # sets entry to on
-            print(api_key)
 
     # ---- actions to perform before closing preferences window ---- #
     def do_shutdown(self, quit):
