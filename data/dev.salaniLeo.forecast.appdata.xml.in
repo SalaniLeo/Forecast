@@ -6,7 +6,7 @@
   <description>
     <p>
 
-    Modern weather app made with libadwaita
+    Beautiful and modern weather app for linux
 
     </p>
   </description>
@@ -52,12 +52,13 @@
               <li>Added glass effect to 3 hours forecast and wind</li>
             </ul>
         </description>
-
+    </release>
+    
       <release version="0.1.0" date="2023-05-23">
         <description>
           <p>First release</p>
         </description>
-        
     </release>
+    
   </releases>
 </component>
