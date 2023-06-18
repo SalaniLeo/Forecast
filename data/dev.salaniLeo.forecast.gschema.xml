@@ -4,33 +4,33 @@
 
     <key name="api-key-s" type="s">
       <default>'72d251b81d30ef572ae667dfe6c4ee1a'</default>
-      <summary>the app starts with this option enabled</summary>
-      <description>automatically enables the option to create appimages in foldermode</description>
+      <summary>The app starts with this option enabled</summary>
+      <description>Automatically enables the option to create appimages in foldermode</description>
     </key>
 
     <key name="api-key-b" type="b">
       <default>false</default>
-      <summary>the app starts with this option enabled</summary>
-      <description>automatically enables the option to create appimages in foldermode</description>
+      <summary>The app starts with this option enabled</summary>
+      <description>Automatically enables the option to create appimages in foldermode</description>
     </key>
 
 
     <key name="gradient-bg" type="b">
       <default>true</default>
       <summary>Uses a weather based gradient as background</summary>
-      <description>use gradient for background</description>
+      <description>Use gradient for background</description>
     </key>
 
     <key name="wthr-locs" type="as">
       <default>[]</default>
       <summary>List of weather places</summary>
-      <description>stores all user selected location</description>
+      <description>Stores all user selected location</description>
     </key>
 
     <key name="units" type="s">
       <default>'Metric System, °C - Km/h'</default>
       <summary>Units</summary>
-      <description>chooses what unit of measure to use</description>
+      <description>Chooses what unit of measure to use</description>
     </key>
 
   </schema>
