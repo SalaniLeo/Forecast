@@ -296,6 +296,8 @@ def get_info(meteo, refresh):
     text_label.set_valign(Gtk.Align.END)
     text_label.set_css_classes(['text_light'])
     text_label.set_markup(
+        "Last update \n\n" +
+        
         "Feels like \n" +
         "Wind \n" +
         "Gusts \n" + 
@@ -305,6 +307,8 @@ def get_info(meteo, refresh):
 
     info_label.set_valign(Gtk.Align.START)
     info_label.set_markup(
+        last_update + '\n\n' +
+
         feels_like + '\n' +
         wind_speed + '\n' +
         wind_gusts + '\n' +
