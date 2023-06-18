@@ -28,7 +28,7 @@
     </key>
 
     <key name="units" type="s">
-      <default>'metric'</default>
+      <default>'Metric System, °C - Km/h'</default>
       <summary>Units</summary>
       <description>chooses what unit of measure to use</description>
     </key>
