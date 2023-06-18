@@ -140,6 +140,8 @@ class Forecast(Adw.Application):
         dialog.set_website("https://github.com/SalaniLeo/Forecast")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salaniLeo.Forecast")
+        # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+        dialog.set_translator_credits(_("translator-credits"))
         dialog.present()
 
    # ----- shows preferences window ----- #
