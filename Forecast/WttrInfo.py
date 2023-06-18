@@ -133,7 +133,7 @@ class main_page(Gtk.Box):
         self.next_hours_scroll.set_valign(Gtk.Align.END)
         self.next_hours_scroll.set_min_content_height(200)
         
-        self.inner_right_box.append(get_info(meteo, False))
+        self.inner_right_box.append(get_info(meteo))
         self.inner_right_box.append(self.next_hours_scroll)
 
         self.right_box.append(self.inner_right_box)
@@ -172,50 +172,50 @@ class main_page(Gtk.Box):
         global meteo
         global lat
         global lon
-        
         global last_refresh
 
         current_time = time.time()
         
-        if current_time - last_refresh >= 60:
-            last_refresh = current_time
-                
-            if change_units == 'True':
-                global degrees_unit
-                global speed_unit
-                global units
+        if change_units == 'True':
+            global degrees_unit
+            global speed_unit
+            global units
 
-                raw_units = settings.get_string('units')
-                degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
-                speed_unit   = raw_units[raw_units.find("-")+1:]
-                units = raw_units.split(' ')[0].lower()
+            raw_units = settings.get_string('units')
+            degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
+            speed_unit   = raw_units[raw_units.find("-")+1:]
+            units = raw_units.split(' ')[0].lower()
 
+        # -- checks if new city coords are being added to list -- #
+        if lati == None:
+            if change_units:
+                meteo = get_wttr(lat, lon) # requests newer data to apis
             else:
-                # -- checks if new city coords are being added to list -- #
-                if lati == None:
+                if current_time - last_refresh >= 60:
+                    last_refresh = current_time
                     meteo = get_wttr(lat, lon) # requests newer data to apis
-
-                # -- if new city is being added -- #
                 else:
-                    lat = lati  # updates global variables to new ones
-                    lon = longi #
+                    wait_toast = Adw.Toast.new('You must wait at least one minute to refresh')
+                    main_window.toast_overlay.add_toast(wait_toast)
+        # -- if new city is being added -- #
+        else: 
+            lat = lati  # updates global variables to new ones
+            lon = longi #
 
-                    meteo = get_wttr(lati, longi) # requests new city weather
+            meteo = get_wttr(lati, longi) # requests new city weather
 
-                    # main_window.header_bar.set_css_classes(['title'])
-                    global title
-                    title = Gtk.Label(label=meteo["name"] +" - "+meteo["weather"][0]['description']).set_css_classes(['title'])
+            # main_window.header_bar.set_css_classes(['title'])
+            global title 
+            title = Gtk.Label(label=meteo["name"] +" - "+meteo["weather"][0]['description']).set_css_classes(['title'])
 
-                    main_window.header_bar.set_title_widget()
+            main_window.header_bar.set_title_widget()                         
 
-            get_info(meteo, True) # updates labels to new city weather
-            set_icon(main_window, meteo, False) # updates icon to new city weather
-            if both_update:
-                get_forecast(True)
-        
-        else:
-            wait_toast = Adw.Toast.new('You must wait at least one minute to refresh')
-            main_window.toast_overlay.add_toast(wait_toast)
+
+        get_info(meteo) # updates labels to new city weather
+        set_icon(main_window, meteo, False) # updates icon to new city weather
+        if both_update:
+            get_forecast(True)
+
 
     # ---- box used to fill blanc spaces ---- #
     def wttr_fill(self):
@@ -285,7 +285,7 @@ def wind_dir(angle):
         return directions[index]
 
 # ----- gets all the info for the bottom label ----- #
-def get_info(meteo, refresh):
+def get_info(meteo):
     
     global conditions_box
     global text_label
@@ -643,16 +643,13 @@ def forecast_icon(icon, size, frcst):
 # ---- function to translate id to weather description ---- #
 def get_wttr_description(code):
     switcher = {
-        200: ('Thunderstorm with Light Rain'),
-        201: ('Thunderstorm with Rain'),
-        202: ('Thunderstorm with Heavy Rain'),
+        230 and 200: ('Thunderstorm with Light Rain'),
+        231 and 201: ('Thunderstorm with Rain'),
+        232 and 202: ('Thunderstorm with Heavy Rain'),
         210: ('Light Thunderstorm'),
         211: ('Thunderstorm'),
         212: ('Heavy Thunderstorm'),
         221: ('Ragged Thunderstorm'),
-        230: ('Thunderstorm with Light Drizzle'),
-        231: ('Thunderstorm with Drizzle'),
-        232: ('Thunderstorm with Heavy Drizzle'),
         300: ('Light Drizzle'),
         301: ('Drizzle'),
         302: ('Heavy Drizzle'),

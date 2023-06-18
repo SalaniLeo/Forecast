@@ -35,20 +35,21 @@
   
   <releases>
 
-      <release version="0.1.1" date="2023-06-19">
+      <release version="0.1.1" date="2023-06-18">
         <description>
           <p>Version 0.1.1</p>
-            <p>Updates</p>
+            <p>Updates:</p>
             <ul>
               <li>Improved design</li>
               <li>Searching for cities is a lot quicker</li>
               <li>Added roadmap on github</li>
+              <li>Added one minute time pause for refreshing</li>
             </ul>
             <p>Design changes:</p>
             <ul>
               <li>Added 5 days forecast</li>
               <li>Modified current data label</li>
-              <li>Added glass effect to 3 hours forecast</li>
+              <li>Added glass effect to 3 hours forecast and wind</li>
             </ul>
         </description>
 

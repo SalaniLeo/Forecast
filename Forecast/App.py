@@ -5,7 +5,7 @@ import gi
 import os
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Gtk, Adw, Gio, Gdk
+from gi.repository import Gtk, Adw, Gio, Gdk, GObject
 
 toast_overlay = Adw.ToastOverlay.new()
 meteo = None
@@ -155,8 +155,8 @@ class search_page(Gtk.Box):
     def __init__(self, button, window, first, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.completion_model = Gtk.ListStore.new([])
-
+        self.completion_model = Gtk.ListStore.new([GObject.TYPE_INT, GObject.TYPE_STRING])
+        
         self.completion = Gtk.EntryCompletion.new()
         self.completion.set_model(model=self.completion_model)
         self.completion.set_text_column(column=1)

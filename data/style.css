@@ -53,9 +53,9 @@
 
 } .storm{
 
-    background: linear-gradient(127deg, alpha(rgba(108,123,152,1), 1), alpha(rgba(92,92,92,1), 1) 100%),
-    linear-gradient(217deg, alpha(rgba(108,123,152,1), 1), alpha(rgba(92,92,92,1), 1) 100%),
-    linear-gradient(336deg, alpha(rgba(108,123,152,1), 1), alpha(rgba(92,92,92,1), 1) 100%);
+    background: linear-gradient(127deg, alpha(rgb(117, 117, 102), 1), alpha(rgb(134, 137, 154), 0) 100%),
+    linear-gradient(217deg, alpha(rgb(117, 117, 102), 1), alpha(rgb(14, 83, 126), 1) 100%),
+    linear-gradient(336deg, alpha(rgb(117, 117, 102), 1), alpha(rgb(14, 83, 126), 1) 100%);
 
 } .snow{
 
