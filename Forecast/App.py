@@ -136,7 +136,7 @@ class Forecast(Adw.Application):
         dialog.set_application_name(_("Forecast"))
         dialog.set_version("0.2")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments("Meteo app made with GTK")
+        dialog.set_comments(_("Forecast app for GNOME"))
         dialog.set_website("https://github.com/SalaniLeo/Forecast")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salaniLeo.Forecast")
