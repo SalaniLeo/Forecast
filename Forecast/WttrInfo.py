@@ -1,9 +1,10 @@
 import requests
 from datetime import datetime
 import gi
+import time
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Gtk, Gio
+from gi.repository import Gtk, Gio, Adw
 
 meteo = None
 forecast = None
@@ -37,6 +38,8 @@ today = datetime.now()
 degrees_unit = None
 speed_unit = None
 units = None
+
+last_refresh = 0
 
 class main_page(Gtk.Box):
     def __init__(self, thread, window, name, flatpak):
@@ -169,40 +172,50 @@ class main_page(Gtk.Box):
         global meteo
         global lat
         global lon
+        
+        global last_refresh
 
-        if change_units == 'True':
-            global degrees_unit
-            global speed_unit
-            global units
+        current_time = time.time()
+        
+        if current_time - last_refresh >= 60:
+            last_refresh = current_time
+                
+            if change_units == 'True':
+                global degrees_unit
+                global speed_unit
+                global units
 
-            raw_units = settings.get_string('units')
-            degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
-            speed_unit   = raw_units[raw_units.find("-")+1:]
-            units = raw_units.split(' ')[0].lower()
+                raw_units = settings.get_string('units')
+                degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
+                speed_unit   = raw_units[raw_units.find("-")+1:]
+                units = raw_units.split(' ')[0].lower()
 
-        else:
-            # -- checks if new city coords are being added to list -- #
-            if lati == None:
-                meteo = get_wttr(lat, lon) # requests newer data to apis
-
-            # -- if new city is being added -- #
             else:
-                lat = lati  # updates global variables to new ones
-                lon = longi #
+                # -- checks if new city coords are being added to list -- #
+                if lati == None:
+                    meteo = get_wttr(lat, lon) # requests newer data to apis
 
-                meteo = get_wttr(lati, longi) # requests new city weather
+                # -- if new city is being added -- #
+                else:
+                    lat = lati  # updates global variables to new ones
+                    lon = longi #
 
-                # main_window.header_bar.set_css_classes(['title'])
-                global title
-                title = Gtk.Label(label=meteo["name"] +" - "+meteo["weather"][0]['description']).set_css_classes(['title'])
+                    meteo = get_wttr(lati, longi) # requests new city weather
 
-                main_window.header_bar.set_title_widget()
+                    # main_window.header_bar.set_css_classes(['title'])
+                    global title
+                    title = Gtk.Label(label=meteo["name"] +" - "+meteo["weather"][0]['description']).set_css_classes(['title'])
 
+                    main_window.header_bar.set_title_widget()
 
-        get_info(meteo, True) # updates labels to new city weather
-        set_icon(main_window, meteo, False) # updates icon to new city weather
-        if both_update:
-            get_forecast(True)
+            get_info(meteo, True) # updates labels to new city weather
+            set_icon(main_window, meteo, False) # updates icon to new city weather
+            if both_update:
+                get_forecast(True)
+        
+        else:
+            wait_toast = Adw.Toast.new('You must wait at least one minute to refresh')
+            main_window.toast_overlay.add_toast(wait_toast)
 
     # ---- box used to fill blanc spaces ---- #
     def wttr_fill(self):
@@ -319,17 +332,24 @@ def get_info(meteo, refresh):
 
     return conditions_box
 
-def create_info_box(label, data, icon):
+def create_info_box(text, data, icon):
     box = Gtk.Box(spacing=3)
+    label = Gtk.Label()
     if icon != None:
-        box.append(get_icon(meteo, 20, icon)) 
-    if label == None:
-        box.append(Gtk.Label(label=data))
+        icon = get_icon(meteo, 20, icon)
+        box.append(icon)
+
+    if text == None:
+        if '°' in data:
+            label.set_css_classes(['text_medium'])
+        if icon != None:
+            icon.set_css_classes(['icon_light'])
+        label.set_label(data)
     else:
-        box.append(Gtk.Label(label=label + data))
-        
+        label.set_label(text + data)
+
+    box.append(label)
     box.set_halign(Gtk.Align.CENTER)
-    
     return box
 
 # --- sets up forecast --- #

@@ -6,13 +6,13 @@
     margin: 4px;
 }
 
-.title{
-    font-size: 16px;
-    font-weight: 600;
-}
-
 .text_light{
     color: rgba(255, 255, 255, 0.8);
+}
+
+.text_medium{
+    font-size: 16px;
+    font-weight: 550; 
 }
 
 .text_big{
@@ -25,6 +25,10 @@
     0px 2px 12px rgba(0,0,0,0.15),
     0px 6px 32px rgba(0,0,0,0.1);
     border-radius: 12px;
+}
+
+.icon_light{
+    filter: grayscale(100%) brightness(500%);
 }
 
 /* ------------- day --------------- */

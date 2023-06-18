@@ -83,6 +83,8 @@ class Application(Gtk.ApplicationWindow):
         window_handle.set_child(toast_overlay)
         toast_overlay.set_child(child=self.stack)
 
+        self.toast_overlay = toast_overlay
+
         # starts the weather app
         if len(saved_locations) > 0:
             self.start_application()
