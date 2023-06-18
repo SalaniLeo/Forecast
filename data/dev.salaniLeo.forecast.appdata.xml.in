@@ -35,9 +35,9 @@
   
   <releases>
 
-      <release version="0.1.1" date="2023-06-18">
+      <release version="0.2" date="2023-06-18">
         <description>
-          <p>Version 0.1.1</p>
+          <p>Version 0.2</p>
             <p>Updates:</p>
             <ul>
               <li>Improved design</li>
