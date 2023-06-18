@@ -108,7 +108,7 @@ class Forecast(Adw.Application):
 
         self.connect('activate', self.on_activate)
         self.create_action('refresh', self.refresh)
-        self.create_action('preferences', self.show_preferences)
+        self.create_action('preferences', self.show_preferences, ['<Control>comma'])
         self.create_action('about', self.show_about)
         self.create_action('quit', self.exit_app, ['<Control>w', '<Control>q'])
 
