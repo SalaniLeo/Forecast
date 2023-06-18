@@ -21,7 +21,6 @@
     ],
     "modules": [
   	"data/dependencies/python3-requests.json",
-  	"data/dependencies/python3-pytz.json",
         {
             "name": "forecast",
             "buildsystem": "meson",
