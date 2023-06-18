@@ -1,5 +1,5 @@
 # Roadmap
-## Feature I'll add in the future.
+## Features I'll add in the future.
 (not in chronological order)
 <ul>
   <li>Separate page with much more detailed weather info. It will contain also graphs for temperature trend.</li>
