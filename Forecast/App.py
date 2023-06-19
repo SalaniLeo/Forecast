@@ -270,21 +270,27 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         # creates option for changing api key
         self.api_key_entry = Gtk.Entry()
+        self.api_key_entry.set_editable(True)
         self.api_key_entry.set_valign(Gtk.Align.CENTER)
         self.api_key_entry.set_text(settings.get_string("api-key-s"))
+        self.api_key_entry.set_width_chars(35)
         api_key_switch = self.opt_switch(self.api_key_entry, "api-key-b")
 
         api_key_row = Adw.ActionRow.new()
         api_key_row.set_title(title=_("Use Personal API Key"))
         api_key_row.set_subtitle(_("Choose whether to use default API key or personal key"))
-        api_key_row.add_suffix(widget=self.api_key_entry)
         api_key_row.add_suffix(widget=api_key_switch)
+
+        personal_api_key_row = Adw.ActionRow.new()
+        personal_api_key_row.set_title(title=_("Personal API Key"))
+        personal_api_key_row.add_suffix(widget=self.api_key_entry)
 
 
         # adds option rows to option page
         application_preferences.add(child=use_gradient_bg_row)
         application_preferences.add(child=units_row)
         api_preferences.add(child=api_key_row)
+        api_preferences.add(child=personal_api_key_row)
 
         forecast_opt_page.add(group=application_preferences)
         forecast_opt_page.add(group=api_preferences)
