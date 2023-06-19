@@ -29,10 +29,7 @@ class Application(Gtk.ApplicationWindow):
 
         # settings.set_strv('wthr-locs', [])
 
-        global application
-        global style_manager
-        global units
-        global units_list
+        global application, style_manager, units, units_list
         application = self
 
         # creates headerbar #
@@ -238,12 +235,32 @@ class ForecastPreferences(Adw.PreferencesWindow):
         application_preferences = Adw.PreferencesGroup.new()
         application_preferences.set_title(_('App Preferences'))
 
+        appearance_preferences = Adw.PreferencesGroup.new()
+        appearance_preferences.set_title(_('Appearance Preferences'))
+
+
         use_gradient_bg_switch = self.opt_switch(None, "gradient-bg")
 
         use_gradient_bg_row = Adw.ActionRow.new()
         use_gradient_bg_row.set_title(title=_('Use Gradient as Background'))
         use_gradient_bg_row.set_subtitle(_("Applies a gradient based on current weather and time. Requires restart to disable"))
         use_gradient_bg_row.add_suffix(widget=use_gradient_bg_switch)
+
+
+        use_glassy_sw = self.opt_switch(None, "use-glassy")
+
+        use_glassy_look = Adw.ActionRow.new()
+        use_glassy_look.set_title(title=_('Use glassy background look'))
+        use_glassy_look.set_subtitle(_("Applies a glass-like background to elements"))
+        use_glassy_look.add_suffix(widget=use_glassy_sw)
+
+
+        use_glassy_sw = self.opt_switch(None, "enhance-contrast")
+
+        enhance_contrast = Adw.ActionRow.new()
+        enhance_contrast.set_title(title=_('Use dark text on dark background'))
+        enhance_contrast.set_subtitle(_("Chenges the text color from light to dark on light backgrounds"))
+        enhance_contrast.add_suffix(widget=use_glassy_sw)
 
         # -- units -- #
         units = settings.get_string('units')
@@ -272,8 +289,9 @@ class ForecastPreferences(Adw.PreferencesWindow):
         self.api_key_entry = Gtk.Entry()
         self.api_key_entry.set_editable(True)
         self.api_key_entry.set_valign(Gtk.Align.CENTER)
-        self.api_key_entry.set_text(settings.get_string("api-key-s"))
+        self.api_key_entry.set_size_request(175, -1)
         self.api_key_entry.set_width_chars(35)
+        self.api_key_entry.set_text(settings.get_string("api-key-s"))
         api_key_switch = self.opt_switch(self.api_key_entry, "api-key-b")
 
         api_key_row = Adw.ActionRow.new()
@@ -285,14 +303,18 @@ class ForecastPreferences(Adw.PreferencesWindow):
         personal_api_key_row.set_title(title=_("Personal API Key"))
         personal_api_key_row.add_suffix(widget=self.api_key_entry)
 
-
         # adds option rows to option page
-        application_preferences.add(child=use_gradient_bg_row)
         application_preferences.add(child=units_row)
         api_preferences.add(child=api_key_row)
         api_preferences.add(child=personal_api_key_row)
 
+        appearance_preferences.add(child=use_gradient_bg_row)
+        appearance_preferences.add(child=use_glassy_look)
+        appearance_preferences.add(child=enhance_contrast)
+
+
         forecast_opt_page.add(group=application_preferences)
+        forecast_opt_page.add(group=appearance_preferences)
         forecast_opt_page.add(group=api_preferences)
 
     def change_unit(self, combobox):
@@ -300,7 +322,6 @@ class ForecastPreferences(Adw.PreferencesWindow):
         units = combobox.get_active_text()
         self.saveString(None, units, 'units')
         main_page.refresh(None, None, 'True')
-
 
     # ---- creates a switch for an option ---- #
     def opt_switch(self, entry, option):
@@ -311,7 +332,13 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         # -- if option is gradient bg connects switch to apply a gradient -- #
         if option == "gradient-bg":
-            switch.connect('state-set', apply_bg)
+            switch.connect('state-set', style.apply_bg)
+
+        if option == 'use-glassy':
+            switch.connect('state-set', style.apply_glassy)
+
+        if option == 'enhance-contrast':
+            switch.connect('state-set', style.apply_enhanced_text)
 
         # -- if option is api key switch state sets colors based on state -- #
         if option == "api-key-b":
@@ -354,12 +381,13 @@ def start(AppId, Flatpak, appimage):
     flatpak = Flatpak
 
     global css_provider
+
     if flatpak:
-        css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
-    elif appimage:
-        css_provider.load_from_path('style.css')
+        css_provider.load_from_path('/home/leo/Projects/Forecast/data/style.css')
+    # elif appimage:
+    #     css_provider.load_from_path('style.css')
     else:
-        css_provider.load_from_path('data/style.css')
+        css_provider.load_from_path('/home/leo/Projects/Forecast/data/style.css')
 
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 

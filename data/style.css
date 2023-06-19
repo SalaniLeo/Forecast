@@ -1,8 +1,8 @@
 .glassy{
 
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10PX;
-    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 4px;
     margin: 4px;
 }
 
@@ -30,6 +30,11 @@
 .icon_light{
     filter: grayscale(100%) brightness(500%);
 }
+
+.dark {
+    color: rgba(0, 0, 0, 0.737);
+}
+
 
 /* ------------- day --------------- */
 

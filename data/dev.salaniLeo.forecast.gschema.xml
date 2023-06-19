@@ -14,7 +14,6 @@
       <description>Automatically enables the option to create appimages in foldermode</description>
     </key>
 
-
     <key name="gradient-bg" type="b">
       <default>true</default>
       <summary>Uses a weather based gradient as background</summary>
@@ -31,6 +30,18 @@
       <default>'Metric System, °C - Km/h'</default>
       <summary>Units</summary>
       <description>Chooses what unit of measure to use</description>
+    </key>
+
+    <key name="use-glassy" type="b">
+      <default>false</default>
+      <summary>Changes the look of some elements</summary>
+      <description>Sets whether to show some elements like cards</description>
+    </key>
+
+    <key name="enhance-contrast" type="b">
+      <default>true</default>
+      <summary>Changes the color of the text to dark</summary>
+      <description>Changes the color of the text if the background is too light</description>
     </key>
 
   </schema>
