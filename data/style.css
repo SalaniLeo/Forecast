@@ -6,6 +6,14 @@
     margin: 4px;
 }
 
+.dark {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.light {
+    color: rgba(255, 255, 255, 0.65);
+}
+
 .text_light{
     color: rgba(255, 255, 255, 0.8);
 }
@@ -29,10 +37,6 @@
 
 .icon_light{
     filter: grayscale(100%) brightness(500%);
-}
-
-.dark {
-    color: rgba(0, 0, 0, 0.737);
 }
 
 

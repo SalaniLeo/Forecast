@@ -4,7 +4,7 @@
   <name>Forecast</name>
   <summary>Weather app for GNOME</summary>
   <description>
-    <p>Beautiful and modern weather app for Linux</p>
+    <p>Alternative weather app with custom css styling and more</p>
   </description>
   <launchable type="desktop-id">dev.salaniLeo.forecast.desktop</launchable>
   <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
@@ -31,6 +31,23 @@
   
   <releases>
 
+      <release version="0.2.1" date="2023-06-20">
+        <description>
+          <p>Version 0.2.1</p>
+            <h3>Updates:</h3>
+            <ul>
+              <li>Improved design</li>
+              <li>Custom api-key option is now more legible</li>
+            </ul>
+            <h3>Design changes:</h3>
+            <ul>
+              <li>Added dark text on light backgrounds</li>
+              <li>Added option to use glass-like background for all elements</li>
+              <li>Readded local time for selected city</li>
+            </ul>
+        </description>
+    </release>
+    
       <release version="0.2" date="2023-06-18">
         <description>
           <p>Version 0.2</p>

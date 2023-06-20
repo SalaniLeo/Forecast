@@ -131,7 +131,7 @@ class Forecast(Adw.Application):
         dialog = Adw.AboutWindow()
         dialog.set_transient_for(application)
         dialog.set_application_name(_("Forecast"))
-        dialog.set_version("0.2")
+        dialog.set_version("0.2.1")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
         dialog.set_comments(_("Forecast app for GNOME"))
         dialog.set_website("https://github.com/SalaniLeo/Forecast")

@@ -238,6 +238,15 @@ class main_page(Gtk.Box):
             meteo = get_wttr(lati, longi) # requests new city weather
             get_forecast(True)
 
+        hours = int(convert_time(meteo["timezone"])[:2])
+        if settings.get_boolean('enhance-contrast'):
+            if hours >= 19 or hours < 6:
+                style.apply_enhanced_text(None, False)
+            else:
+                style.apply_enhanced_text(None, True)
+
+
+
         get_info(meteo) # updates labels to new city weather
         set_icon(main_window, meteo, False) # updates icon to new city weather
 
@@ -568,11 +577,11 @@ class style:
                 main_window.saved_loc_box.set_css_classes(['dark'])
         else:
             if time >= 19 or time < 6:
-                app.remove_css_class('light')
-                main_window.saved_loc_box.remove_css_class('light')
-            else:
                 app.remove_css_class('dark')
                 main_window.saved_loc_box.remove_css_class('dark')
+            else:
+                app.set_css_classes(['light'])
+                main_window.saved_loc_box.set_css_classes(['light'])
 
     def apply_glassy(switch, state):
         global situa_box, conditions_box, daily_forecast_box
