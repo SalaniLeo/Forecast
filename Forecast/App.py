@@ -251,7 +251,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         use_glassy_look = Adw.ActionRow.new()
         use_glassy_look.set_title(title=_('Use glassy background look'))
-        use_glassy_look.set_subtitle(_("Applies a glass-like background to elements"))
+        use_glassy_look.set_subtitle(_("Applies a glass-like background to all elements"))
         use_glassy_look.add_suffix(widget=use_glassy_sw)
 
 

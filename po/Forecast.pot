@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 00:08+0300\n"
+"POT-Creation-Date: 2023-06-20 13:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,7 @@ msgstr ""
 msgid "Stores all user selected location"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:32 Forecast/App.py:263
+#: data/dev.salaniLeo.forecast.gschema.xml:32 Forecast/App.py:280
 msgid "Units"
 msgstr ""
 
@@ -121,71 +121,99 @@ msgstr ""
 msgid "Chooses what unit of measure to use"
 msgstr ""
 
-#: Forecast/App.py:46
+#: Forecast/App.py:43
 msgid "Forecast - loading"
 msgstr ""
 
-#: Forecast/App.py:58 Forecast/App.py:230
+#: Forecast/App.py:55 Forecast/App.py:227
 msgid "Preferences"
 msgstr ""
 
-#: Forecast/App.py:59
+#: Forecast/App.py:56
 msgid "About Forecast"
 msgstr ""
 
-#: Forecast/App.py:70
+#: Forecast/App.py:67
 msgid "Refresh"
 msgstr ""
 
-#: Forecast/App.py:139
+#: Forecast/App.py:133 Forecast/App.py:192
+msgid "Forecast"
+msgstr ""
+
+#: Forecast/App.py:136
 msgid "Forecast app for GNOME"
 msgstr ""
 
-#: Forecast/App.py:144
+#: Forecast/App.py:141
 msgid "translator-credits"
 msgstr ""
 
-#: Forecast/App.py:177
+#: Forecast/App.py:174
 msgid ""
 "Welcome to Forecast!\n"
 "Search a City"
 msgstr ""
 
-#: Forecast/App.py:207
+#: Forecast/App.py:204
 msgid "Search a city"
 msgstr ""
 
-#: Forecast/App.py:239
+#: Forecast/App.py:236
 msgid "App Preferences"
 msgstr ""
 
-#: Forecast/App.py:244
-msgid "Use Gradient as Background"
+#: Forecast/App.py:239
+msgid "Appearance Preferences"
 msgstr ""
 
 #: Forecast/App.py:245
+msgid "Use Gradient as Background"
+msgstr ""
+
+#: Forecast/App.py:246
 msgid ""
 "Applies a gradient based on current weather and time. Requires restart to "
 "disable"
 msgstr ""
 
-#: Forecast/App.py:264
-msgid "Select which unit of measurement to use"
+#: Forecast/App.py:253
+msgid "Use glassy background look"
 msgstr ""
 
-#: Forecast/App.py:269
-msgid "API Preferences"
+#: Forecast/App.py:254
+msgid "Applies a glass-like background to all elements"
+msgstr ""
+
+#: Forecast/App.py:261
+msgid "Use dark text on dark background"
+msgstr ""
+
+#: Forecast/App.py:262
+msgid "Chenges the text color from light to dark on light backgrounds"
 msgstr ""
 
 #: Forecast/App.py:280
-msgid "Use Personal API Key"
+msgid "Units"
 msgstr ""
 
 #: Forecast/App.py:281
+msgid "Select which unit of measurement to use"
+msgstr ""
+
+#: Forecast/App.py:286
+msgid "API Preferences"
+msgstr ""
+
+#: Forecast/App.py:298
+msgid "Use Personal API Key"
+msgstr ""
+
+#: Forecast/App.py:299
 msgid "Choose whether to use default API key or personal key"
 msgstr ""
 
-#: Forecast/App.py:285
+#: Forecast/App.py:303
 msgid "Personal API Key"
 msgstr ""
 

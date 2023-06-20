@@ -4,14 +4,14 @@
 
     <key name="api-key-s" type="s">
       <default>'72d251b81d30ef572ae667dfe6c4ee1a'</default>
-      <summary>The app starts with this option enabled</summary>
-      <description>Automatically enables the option to create appimages in foldermode</description>
+      <summary>Stores the api key</summary>
+      <description>stores the api key</description>
     </key>
 
     <key name="api-key-b" type="b">
       <default>false</default>
-      <summary>The app starts with this option enabled</summary>
-      <description>Automatically enables the option to create appimages in foldermode</description>
+      <summary>If false uses the default api key</summary>
+      <description>When this is true the app know to use the custom api key</description>
     </key>
 
     <key name="gradient-bg" type="b">

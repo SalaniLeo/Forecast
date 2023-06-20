@@ -427,11 +427,7 @@ def get_forecast(refresh):
             hourly_box.append(style.get_icon(weather, 35, None))
             hourly_box.append(create_info_box(None, wind_speed, 'weather-windy-small.svg'))
             hourly_box.append(create_info_box(None, str(round(weather['main']['temp'], 1)) + '°', None))
-            if use_glassy:
-                hourly_box.set_css_classes(['glassy'])
-            else:
-                hourly_box.set_margin_end(6)
-                hourly_box.set_margin_start(6)
+            hourly_box.set_css_classes(['glassy'])
 
             if refresh:
                 hourly_forecast_box.remove(hourly_forecast_box.get_first_child())
@@ -580,20 +576,15 @@ class style:
 
     def apply_glassy(switch, state):
         global situa_box, conditions_box, daily_forecast_box
+        use_glassy = settings.get_boolean('use-glassy')
         if state:
-            if use_glassy:
-                situa_box.set_css_classes(['glassy'])
-            if use_glassy:
-                conditions_box.set_css_classes(['glassy'])
-            if use_glassy:
-                daily_forecast_box.set_css_classes(['glassy'])
+            situa_box.set_css_classes(['glassy'])
+            conditions_box.set_css_classes(['glassy'])
+            daily_forecast_box.set_css_classes(['glassy'])
         else:
-            if use_glassy:
-                situa_box.remove_css_class('glassy')
-            if use_glassy:
-                conditions_box.remove_css_class('glassy')
-            if use_glassy:
-                daily_forecast_box.remove_css_class('glassy')
+            situa_box.remove_css_class('glassy')
+            conditions_box.remove_css_class('glassy')
+            daily_forecast_box.remove_css_class('glassy')
 
     # ---- applies gradient background ---- #
     def apply_bg(switch, active):
