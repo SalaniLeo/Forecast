@@ -34,12 +34,12 @@
       <release version="0.2.1" date="2023-06-20">
         <description>
           <p>Version 0.2.1</p>
-            <h3>Updates:</h3>
+            <p>Updates:</p>
             <ul>
               <li>Improved design</li>
               <li>Custom api-key option is now more legible</li>
             </ul>
-            <h3>Design changes:</h3>
+            <p>Design changes:</p>
             <ul>
               <li>Added dark text on light backgrounds</li>
               <li>Added option to use glass-like background for all elements</li>
