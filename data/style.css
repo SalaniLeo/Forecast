@@ -11,7 +11,7 @@
 }
 
 .light {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 1);
 }
 
 .text_light{
@@ -33,6 +33,7 @@
     0px 2px 12px rgba(0,0,0,0.15),
     0px 6px 32px rgba(0,0,0,0.1);
     border-radius: 12px;
+    border: solid 1px gray;
 }
 
 .icon_light{
