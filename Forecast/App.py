@@ -2,7 +2,7 @@ import sys
 from Forecast.WttrInfo import *
 from threading import Thread
 import gi
-import os
+from gettext import gettext as _
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, Gio, Gdk, GObject
@@ -15,9 +15,7 @@ style_manager = None
 saved_locations = settings.get_strv('wthr-locs')
 # saved_locations = []
 
-flatpak = None
-
-css_provider = Gtk.CssProvider()
+package = None
 
 units = None
 available_units = ['Metric System, °C - Km/h', 'Imperial System, °F - mph']
@@ -90,12 +88,12 @@ class Application(Gtk.ApplicationWindow):
     # ---- if everything is ok the application gets started correctly via this def ---- #
     def start_application(main_window):
         # starts main thread
-        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, flatpak))
+        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, package))
         wttr_thrd.start()
 
     def add_city(button, active, main_window, name):
         if name is None:
-            main_page(None, main_window, name, flatpak, units)
+            main_page(None, main_window, name, package)
 
 
 
@@ -376,19 +374,19 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
 
 
-def start(AppId, Flatpak, appimage):
-    global flatpak
-    flatpak = Flatpak
+def start(AppId, type):
+    global package
+    package = type
 
-    global css_provider
+    css_provider = Gtk.CssProvider()
 
-    if flatpak:
-        css_provider.load_from_path('/home/leo/Projects/Forecast/data/style.css')
-    # elif appimage:
-    #     css_provider.load_from_path('style.css')
-    else:
-        css_provider.load_from_path('/home/leo/Projects/Forecast/data/style.css')
-
+    if package == 'flatpak':
+        css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
+    elif package == 'appimage':
+        css_provider.load_from_path('data/style.css')
+    elif package == None:
+        css_provider.load_from_path('data/style.css')
+        
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     app = Forecast(application_id=AppId)

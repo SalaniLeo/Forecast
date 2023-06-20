@@ -5,6 +5,7 @@ import time
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Gio, Adw
+from gettext import gettext as _
 
 meteo = None
 forecast = None
@@ -48,7 +49,7 @@ speed_unit   = raw_units[raw_units.find("-")+1:]
 last_refresh = 0
 
 class main_page(Gtk.Box):
-    def __init__(self, thread, window, name, flatpak):
+    def __init__(self, thread, window, name, package):
         super().__init__()
 
         global icon_loc, meteo, lat, lon
@@ -58,11 +59,11 @@ class main_page(Gtk.Box):
         else:
             text_raw = saved_locations[0]
 
-        if flatpak:
+        if package == 'flatpak':
             icon_loc = '/app/share/icons/hicolor/scalable/status/'
-        # elif appimage:
-        #     icon_loc.load_from_path('style.css')
-        else:
+        elif package == 'appimage':
+            icon_loc = 'data/status/'
+        elif package == None:
             icon_loc = 'data/status/'
 
         # extracts the coordinates from saved locations
