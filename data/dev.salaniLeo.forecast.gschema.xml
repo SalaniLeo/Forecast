@@ -44,5 +44,11 @@
       <description>Changes the color of the text if the background is too light</description>
     </key>
 
+    <key name="selected-city" type="i">
+      <default>0</default>
+      <summary>Default weather city</summary>
+      <description>Changes the default city for the weather</description>
+    </key>
+
   </schema>
 </schemalist>

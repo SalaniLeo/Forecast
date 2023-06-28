@@ -15,16 +15,20 @@
   
   <screenshots>
     <screenshot type="default">
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1.png</image>
+      <caption>first screenshot</caption>
+    </screenshot>
+    <screenshot type="default">
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2.png</image>
-      <caption>clouds</caption>
+      <caption>second screenshot</caption>
     </screenshot>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3.png</image>
-      <caption>sandstorm</caption>
+      <caption>third screenshot</caption>
     </screenshot>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4.png</image>
-      <caption>night</caption>
+      <caption>fourth screenshot</caption>
     </screenshot>
   </screenshots>
   
