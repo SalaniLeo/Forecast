@@ -1,5 +1,6 @@
 import sys
 from Forecast.WttrInfo import *
+from .getInfos import *
 from threading import Thread
 import gi
 from gettext import gettext as _
@@ -13,7 +14,6 @@ application = None
 settings = Gio.Settings.new("dev.salaniLeo.forecast")
 style_manager = None
 saved_locations = settings.get_strv('wthr-locs')
-# saved_locations = []
 
 package = None
 
@@ -24,29 +24,54 @@ available_units = ['Metric System, °C - Km/h', 'Imperial System, °F - mph']
 class Application(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        # settings.set_strv('wthr-locs', [])
-
         global application, style_manager, units, units_list
         application = self
 
+        # city search bar
+        self.search_bar = Forecast.search_entry()
+        self.search_bar.set_valign(Gtk.Align.START)
+        self.search_bar.set_hexpand(True)
+
         # creates headerbar #
         self.header_bar = Gtk.HeaderBar()
+        self.header_bar.add_css_class(css_class='flat')
 
         self.application = kwargs.get('application')
         self.style_manager = self.application.get_style_manager()
 
+        # creates stack containing the pages #
+        self.weather_stack = Gtk.Stack()
+        self.weather_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+
+        # window handle
+        window_handle = Gtk.WindowHandle()
 
         # sets properties to main page #
         self.set_title(_('Forecast - loading'))
-        self.set_default_size(850, 390)        
+        self.set_default_size(850, 500)
+        self.set_titlebar(self.header_bar)
+        self.set_child(child=window_handle)
 
-        # creates stack containing the pages #
-        self.stack = Gtk.Stack()
-        self.stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        spinner = Gtk.Spinner.new()
+        spinner.set_size_request(100, 100)
+        spinner.start()
+        self.spinner_box = Gtk.Box()
+        self.spinner_box.append(spinner)
+        self.spinner_box.set_halign(Gtk.Align.CENTER)
+        self.spinner_box.set_valign(Gtk.Align.CENTER)
+        self.loading_stack = Gtk.Stack()
+        self.loading_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        self.loading_stack.add_child(self.spinner_box)
+        self.loading_stack.add_child(self.weather_stack)
+        self.stack_switcher = Gtk.StackSwitcher.new()
+        self.stack_switcher.set_stack(stack=self.weather_stack)
+        self.header_bar.set_title_widget(title_widget=self.stack_switcher)
+
+        window_handle.set_child(toast_overlay)
+        toast_overlay.set_child(child=self.loading_stack)
 
         if len(saved_locations) == 0:
-            self.first_page = search_page(None, self, True)
+            self.gotoFirstPage()
 
         # menu button #
         self.menu_button_model = Gio.Menu()
@@ -65,36 +90,31 @@ class Application(Gtk.ApplicationWindow):
         self.refresh_button.set_tooltip_text(_("Refresh"))
         self.refresh_button.connect("clicked", Forecast.refresh, self)
 
-
-        # header bar
-        self.header_bar.add_css_class(css_class='flat')
-
-        self.set_titlebar(self.header_bar)
-
-        # window handle
-        window_handle = Gtk.WindowHandle()
-        self.set_child(child=window_handle)
-
-        # adds toast_overlay to self #
-        window_handle.set_child(toast_overlay)
-        toast_overlay.set_child(child=self.stack)
-
         self.toast_overlay = toast_overlay
 
         # starts the weather app
         if len(saved_locations) > 0:
             self.start_application()
 
+    def gotoFirstPage(self):
+        search_page(None, self, True)
+
+    def create_toast(self, text):
+        toast = Adw.Toast()
+        toast.set_title(text)
+        toast_overlay.add_toast(toast)
+
     # ---- if everything is ok the application gets started correctly via this def ---- #
-    def start_application(main_window):
-        # starts main thread
-        wttr_thrd = Thread(target=main_page, args=(None, main_window, None, package))
+    def start_application(self):
+        wttr_thrd = Thread(target=main_page, args=(None, self, None, package))
         wttr_thrd.start()
+
+        # global_info_thrd = Thread(target=global_weather, args=(None, main_window))
+        # global_info_thrd.start()
 
     def add_city(button, active, main_window, name):
         if name is None:
             main_page(None, main_window, name, package)
-
 
 
 class Forecast(Adw.Application):
@@ -123,6 +143,16 @@ class Forecast(Adw.Application):
     # ----- refreshes meteo ----- #
     def refresh(button, self):
         main_page.refresh(None, None, None)
+        
+        
+    def rm_loc(button, row, location, self):
+        global saved_locations
+
+        settings.set_int('selected-city', settings.get_int('selected-city')-1)
+        saved_locations.remove(location)
+        settings.set_strv('wthr-locs', saved_locations)
+        load_locations(True, 0, application)
+        self.locations.remove(row)
 
     # ----- shows about window ------ #
     def show_about(self, action, param):
@@ -144,6 +174,22 @@ class Forecast(Adw.Application):
         adw_preferences_window = ForecastPreferences(application)
         adw_preferences_window.show()
 
+    def search_entry():
+        completion_model = Gtk.ListStore.new([GObject.TYPE_INT, GObject.TYPE_STRING])
+        completion = Gtk.EntryCompletion.new()
+        completion.set_model(model=completion_model)
+        completion.set_text_column(column=1)
+
+        # city search bar
+        search_bar = Gtk.Entry()
+        search_bar.set_valign(Gtk.Align.START)
+        search_bar.set_hexpand(True)
+        search_bar.set_completion(completion=completion)
+        search_bar.connect('changed', get_cities, completion_model, search_bar)
+        search_bar.connect('activate', search_page.add_loc, search_bar)
+            
+        return search_bar
+
     def exit_app(self, action, param):
         self.quit()
 
@@ -152,20 +198,6 @@ class Forecast(Adw.Application):
 class search_page(Gtk.Box):
     def __init__(self, button, window, first, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        self.completion_model = Gtk.ListStore.new([GObject.TYPE_INT, GObject.TYPE_STRING])
-        
-        self.completion = Gtk.EntryCompletion.new()
-        self.completion.set_model(model=self.completion_model)
-        self.completion.set_text_column(column=1)
-
-        # city search bar
-        self.search_bar = Gtk.Entry()
-        # self.search_bar.set_halign(Gtk.Align.CENTER)
-        self.search_bar.set_valign(Gtk.Align.START)
-        self.search_bar.set_hexpand(True)
-        self.search_bar.set_completion(completion=self.completion)
-        self.search_bar.connect('changed', get_cities, self, self.search_bar)
 
         if first:
             # welcome title 
@@ -178,7 +210,7 @@ class search_page(Gtk.Box):
 
             # sets main grid properties and childs
             self.set_orientation(Gtk.Orientation.VERTICAL)
-            self.append(self.search_bar)
+            self.append(application.search_bar)
             self.append(self.title)
             self.set_margin_start(50)
             self.set_margin_end(50)
@@ -188,34 +220,36 @@ class search_page(Gtk.Box):
 
             # sets title and adds self as app child
             window.set_title(_('Forecast'))
-            window.stack.add_child(self)
+            window.loading_stack.add_child(self)
             if saved_locations is not None:
-                window.stack.set_visible_child(self)
-            self.search_bar.connect('activate', self.add_loc, window)
+                window.loading_stack.set_visible_child(self)
+            application.search_bar.connect('activate', search_page.add_loc, application.search_bar)
+            application.search_bar.set_placeholder_text(_('Search a city'))
 
         else:
             if window.add_button.get_icon_name() == 'edit-undo-symbolic':
-                window.header_bar.remove(window.header_bar.get_title_widget())
-                window.add_button.set_icon_name('list-add-symbolic')
+                self.close_search()
             else:
-                window.header_bar.set_title_widget(self.search_bar)
-                self.search_bar.set_placeholder_text(_('Search a city'))
-                self.search_bar.connect('activate', self.add_loc, window)
-                window.add_button.set_icon_name('edit-undo-symbolic')
+                self.open_search()
 
-    def add_loc(key, entry, self):
+    def close_search(self):
+        application.header_bar.remove(application.header_bar.get_title_widget())
+        application.add_button.set_icon_name('list-add-symbolic')  
+        application.header_bar.set_title_widget(application.stack_switcher)
+
+    def open_search(self):
+        application.header_bar.set_title_widget(application.search_bar)
+        application.add_button.set_icon_name('edit-undo-symbolic')
+
+    def add_loc(self, entry):
+        global saved_locations
         first_time = False
-
         if len(saved_locations) == 0:
             first_time = True
-            saved_locations.append(entry.get_text())
-
+        saved_locations.append(entry.get_text())
         city = entry.get_text()
-
-        add_city(city, self, first_time)
-        self.add_city(None, self, entry.get_text())
-        self.add_button.set_icon_name('list-add-symbolic')
-
+        add_city(city, application, first_time, search_page)
+        application.add_city(self, application, entry.get_text())
 
 # -------- preferences class ---------- #
 class ForecastPreferences(Adw.PreferencesWindow):
@@ -225,20 +259,54 @@ class ForecastPreferences(Adw.PreferencesWindow):
         self.set_title(title=_('Preferences'))
         self.set_transient_for(parent)
         self.connect('close-request', self.do_shutdown)
+        self.locations_changed = False
+
+        location_page = Adw.PreferencesPage()
+        location_page.set_title(_("Locations"))
+        location_page.set_icon_name('mark-location-symbolic')
+        self.add(location_page)
 
         forecast_opt_page = Adw.PreferencesPage.new()
+        forecast_opt_page.set_title(_("Preferences"))
+        forecast_opt_page.set_icon_name('org.gnome.Settings-symbolic')
         self.add(page=forecast_opt_page)
+
+        self.locations = Adw.PreferencesGroup()
+        self.locations.set_title(_("Locations"))
+        location_page.add(self.locations)
+
+        for loc in settings.get_strv('wthr-locs'):
+            coords_raw = loc[loc.find("(")+1:loc.find(")")]
+
+            place_name = loc.split('-')
+
+            country_it = place_name[1][:3][1:]
+            full_country = COUNTRY_CODES.get(str(country_it))
+
+            b = Gtk.Button()
+            b.set_size_request(30,30)
+            b.set_valign(Gtk.Align.CENTER)
+            b.set_icon_name(icon_name='user-trash-symbolic')
+            b.get_style_context().add_class(class_name='error')
+
+            location = Adw.ActionRow.new()
+            location.set_title(title=f'{place_name[0]}- {country_it}')
+            location.set_subtitle(coords_raw)
+            location.set_activatable(True)
+            location.add_suffix(b)
+            location.connect("activated", self.set_default_location)
+            self.locations.add(location)
+
+            b.connect('clicked', Forecast.rm_loc, location, loc, self)
+
 
         # -- background radient -- #
         application_preferences = Adw.PreferencesGroup.new()
         application_preferences.set_title(_('App Preferences'))
-
         appearance_preferences = Adw.PreferencesGroup.new()
         appearance_preferences.set_title(_('Appearance Preferences'))
-
-
+        
         use_gradient_bg_switch = self.opt_switch(None, "gradient-bg")
-
         use_gradient_bg_row = Adw.ActionRow.new()
         use_gradient_bg_row.set_title(title=_('Use Gradient as Background'))
         use_gradient_bg_row.set_subtitle(_("Applies a gradient based on current weather and time. Requires restart to disable"))
@@ -246,13 +314,10 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
 
         use_glassy_sw = self.opt_switch(None, "use-glassy")
-
         use_glassy_look = Adw.ActionRow.new()
         use_glassy_look.set_title(title=_('Use glassy background look'))
         use_glassy_look.set_subtitle(_("Applies a glass-like background to all elements"))
         use_glassy_look.add_suffix(widget=use_glassy_sw)
-
-
         use_glassy_sw = self.opt_switch(None, "enhance-contrast")
 
         enhance_contrast = Adw.ActionRow.new()
@@ -314,6 +379,21 @@ class ForecastPreferences(Adw.PreferencesWindow):
         forecast_opt_page.add(group=application_preferences)
         forecast_opt_page.add(group=appearance_preferences)
         forecast_opt_page.add(group=api_preferences)
+        
+    def set_default_location(self, row):
+            active = f'{row.get_title()} ({row.get_subtitle()})'
+            locs = settings.get_strv('wthr-locs')
+            activeNum = locs.index(active)
+            print(activeNum)
+            settings.set_int('selected-city', activeNum)
+            switch_city(None)
+            application.saved_loc_box.set_active(index_=settings.get_int('selected-city'))
+
+    def search(self, btn):
+        if self.add_icon.get_icon_name() == 'edit-undo-symbolic':
+            self.close_search()
+        else:
+            self.open_search()
 
     def change_unit(self, combobox):
         global units 
@@ -371,8 +451,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
     def do_shutdown(self, quit):
         if self.api_key_entry.get_text() is not None:       # saves api key to gsettings
             self.saveString(self.api_key_entry, self.api_key_entry.get_text(), "api-key-s")
-
-
+        if self.locations_changed:
+            Forecast.refresh(None, None)
 
 def start(AppId, type):
     global package

@@ -2,6 +2,7 @@ import requests
 from datetime import datetime
 import gi
 import time
+import threading
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Gio, Adw
@@ -11,12 +12,11 @@ meteo = None
 forecast = None
 settings = Gio.Settings.new("dev.salaniLeo.forecast")
 main_window = None
-saved_locations = settings.get_strv('wthr-locs')
 use_glassy = settings.get_boolean('use-glassy')
 
 app = None
 
-both_update = True #TODO
+update = True
 
 lat = None
 lon = None
@@ -24,40 +24,35 @@ lon = None
 conditions_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
 text_label = Gtk.Label()
 info_label = Gtk.Label()
-
 title_label = Gtk.Label()
 subtitle_label = Gtk.Label()
 local_tm_label = Gtk.Label()
-
 situa_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
 situa_img = Gtk.Image()
-
 hourly_forecast_box = Gtk.Box(spacing=0, orientation=Gtk.Orientation.HORIZONTAL)
-daily_forecast_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-
-icon_loc = None
-
-today = datetime.now()
-
+daily_forecast_box  = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+icon_loc     = None
+today        = datetime.now()
 degrees_unit = None
-speed_unit = None
-units = settings.get_string('units').split(' ')[0].lower()
-raw_units = settings.get_string('units')
+speed_unit   = None
+units        = settings.get_string('units').split(' ')[0].lower()
+raw_units    = settings.get_string('units')
 degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
 speed_unit   = raw_units[raw_units.find("-")+1:]
-
 last_refresh = 0
 
 class main_page(Gtk.Box):
     def __init__(self, thread, window, name, package):
         super().__init__()
-
         global icon_loc, meteo, lat, lon
+        
+        # adds itself to stack
+        window.weather_stack.add_titled(child=self, name='Weather', title='Weather')
 
         if name is not None:
             text_raw = name.split(" - ")[1]
         else:
-            text_raw = saved_locations[0]
+            text_raw = settings.get_strv('wthr-locs')[settings.get_int('selected-city')]
 
         if package == 'flatpak':
             icon_loc = '/app/share/icons/hicolor/scalable/status/'
@@ -121,6 +116,7 @@ class main_page(Gtk.Box):
 
         # creates the box to switch city
         window.saved_loc_box = Gtk.ComboBoxText.new()
+        window.saved_loc_box.set_active(index_=settings.get_int('selected-city'))
 
         # sets properties for the top-left current situa label
         global conditions_box
@@ -133,7 +129,7 @@ class main_page(Gtk.Box):
         conditions_box.set_size_request(250, 175)
 
         # loads all saved locations
-        load_locations(False, 0, window)
+        load_locations(False, settings.get_int('selected-city'), window)
 
         # adds everything to headerbar
         window.header_bar.pack_start(window.saved_loc_box)
@@ -141,7 +137,7 @@ class main_page(Gtk.Box):
         window.header_bar.pack_end(window.menu_button)
         window.header_bar.pack_end(window.add_button)
         
-        window.saved_loc_box.set_active(index_=0)
+        window.saved_loc_box.connect('changed', switch_city)
 
         # ------ 3 hours forecast ------ #
         get_forecast(False)
@@ -196,17 +192,17 @@ class main_page(Gtk.Box):
         if settings.get_boolean('use-glassy'):
             style.apply_glassy(None, True)
 
-        # adds itself to stack
-        window.stack.add_child(self)
-        if saved_locations is not None:
-            window.stack.set_visible_child(self)
-
-        window.saved_loc_box.connect('changed', switch_city)
+        if settings.get_strv('wthr-locs') is not None:
+            window.loading_stack.set_visible_child(window.weather_stack)
 
     # ---- function to refresh weather and change city ---- #
     def refresh(lati, longi, change_units):
-        global meteo, lat, lon, last_refresh, app
+        wttr_thrd = threading.Thread(target=reload_weather, args=(lati, longi, change_units))
+        wttr_thrd.start()
+        main_window.loading_stack.set_visible_child(main_window.spinner_box)
 
+def reload_weather(lati, longi, change_units):
+        global meteo, lat, lon, last_refresh, app
         current_time = time.time()
 
         if change_units == 'True':
@@ -250,26 +246,18 @@ class main_page(Gtk.Box):
 
         get_info(meteo) # updates labels to new city weather
         set_icon(main_window, meteo, False) # updates icon to new city weather
-
-
-    # ---- box used to fill blanc spaces ---- #
-    def wttr_fill(self):
-        wttr_fill = Gtk.Box()
-        wttr_fill.set_hexpand(True)
-        wttr_fill.set_vexpand(False)
-        return wttr_fill
+        
+        main_window.loading_stack.set_visible_child(main_window.weather_stack)
 
 # ---- updates cities inside combo box ---- #
 def load_locations(remove, active, window):
-    if window is not None:
-        global main_window
-        main_window = window
-
     if remove:
         main_window.saved_loc_box.remove_all()
-    for text in saved_locations:
+    for text in settings.get_strv('wthr-locs'):
         main_window.saved_loc_box.append_text(text=str(text.rsplit(" - ",1)[0]))
+    print(active)
     main_window.saved_loc_box.set_active(index_=active)
+
 
 # ---- sorts icons based on if it's the forecast or now ---- #
 def set_icon(window, meteo, forecast):
@@ -327,7 +315,6 @@ def wind_dir(angle):
 
 # ----- gets all the info for the bottom label ----- #
 def get_info(meteo):
-
     global conditions_box
     global text_label
     global info_label
@@ -375,17 +362,18 @@ def create_info_box(text, data, icon):
     box = Gtk.Box(spacing=3)
     label = Gtk.Label()
     if icon != None:
-        icon = style.get_icon(meteo, 20, icon)
+        icon = style.get_icon(meteo, 15, icon)
         box.append(icon)
 
     if text == None:
         if '°' in data:
             label.set_css_classes(['text_medium'])
-        if icon != None:
-            icon.set_css_classes(['icon_light'])
         label.set_label(data)
     else:
         label.set_label(text + data)
+        
+    if icon != None:
+            icon.set_css_classes(['icon_light'])
 
     box.append(label)
     box.set_halign(Gtk.Align.CENTER)
@@ -398,7 +386,6 @@ def get_forecast(refresh):
     global daily_forecast_box
 
     forecast = get_frcst() # calls api to get forecast
-
     daily_forecast_box.set_halign(Gtk.Align.END)
     daily_forecast_box.set_valign(Gtk.Align.END)
 
@@ -419,12 +406,11 @@ def get_forecast(refresh):
         # declares the temperature for every 3 hour interval
         temperature = weather['main']['temp']
         wind_speed  = str(weather['wind']['speed']) + speed_unit
-
+        rain_prob = str(int(weather['pop']*100)) + '%'
         # adds 24h forecast per 3 hours intervals
         if hours <= 21:
 
             hourly_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
-            
             local_time = int(convert_time(forecast["city"]["timezone"])[:2]) + hours  # gets local city time
 
             if local_time >= 24: # checks if local_time is more than 24
@@ -436,8 +422,10 @@ def get_forecast(refresh):
             hourly_box.append(Gtk.Label(label=local_time))    # Creates box for every 3 hours prevision
             hourly_box.append(style.get_icon(weather, 35, None))
             hourly_box.append(create_info_box(None, wind_speed, 'weather-windy-small.svg'))
+            hourly_box.append(create_info_box(None, rain_prob, 'humidity.svg'))
             hourly_box.append(create_info_box(None, str(round(weather['main']['temp'], 1)) + '°', None))
-            hourly_box.set_css_classes(['glassy'])
+            hourly_box.set_margin_start(12)
+            hourly_box.set_margin_end(12)
 
             if refresh:
                 hourly_forecast_box.remove(hourly_forecast_box.get_first_child())
@@ -490,42 +478,42 @@ def get_day_situa(weather, hours, min_temp, max_temp):
     return box
     
 def switch_city(combobox):
-    city = saved_locations[combobox.get_active()]
-
-    if city is not None:
-        coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
-        lati = coords_raw.split("; ")[0]  # gets latitude of new city  
-        longi = coords_raw.split("; ")[1] # gets longitude of new city
-
-        main_page.refresh(lati, longi, len(saved_locations))
+    global last_refresh
+    current_time = time.time()
+    if update:
+        if current_time - last_refresh >= 0.5:
+            last_refresh = current_time
+            if combobox == None:
+                city = settings.get_strv('wthr-locs')[settings.get_int('selected-city')-1]
+            else:
+                city = settings.get_strv('wthr-locs')[combobox.get_active()]
+            if city is not None:
+                coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
+                lati = coords_raw.split("; ")[0]  # gets latitude of new city  
+                longi = coords_raw.split("; ")[1] # gets longitude of new city
+                main_page.refresh(lati, longi, len(settings.get_strv('wthr-locs')))
     
 # ---- adds new city to cities list and calls each function to update weather and forecast based on new city ---- #
-def add_city(city, window, first_time): 
-    global saved_locations
-
+def add_city(city, window, first_time, search): 
+    saved_locations = settings.get_strv('wthr-locs')
     coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
     
     if len(coords_raw.split("; ")) == 2:
-        
-        if city in saved_locations: # skips city if already added
-            # TODO
-            None
+        if city in settings.get_strv('wthr-locs'): # skips city if already added
+            window.create_toast(_('The selected city has already been added'))
         else:
-
             saved_locations.append(str(city))   # adds new city to cities list
             settings.set_strv('wthr-locs', saved_locations)  # updates gschema setting to contain new city
-            
             if first_time:
                 window.start_application()
             else:
                 load_locations(True, len(saved_locations)-1, window)
-
+                search.close_search(window)
 
 # ---- funtction to get city based on user input ---- #
-def get_cities(any, self, entry):
-
+def get_cities(button, completion_model, search_entry):
     # gets user input
-    name = entry.get_text()
+    name = search_entry.get_text()
     
     # calls api to get cities
     response = requests.get("http://api.openweathermap.org/data/2.5/find?q="+ name +"&units=metric&appid=72d251b81d30ef572ae667dfe6c4ee1a")
@@ -537,7 +525,7 @@ def get_cities(any, self, entry):
 
     # checks if response if OK
     if int(cod) == 200:
-        self.completion_model.clear()
+        completion_model.clear()
 
         # gets info about each element given in the api response
         for element in data["list"]:
@@ -547,7 +535,7 @@ def get_cities(any, self, entry):
 
         for city in cities:
             i = i + 1
-            self.completion_model.insert_with_values(  #
+            completion_model.insert_with_values(  #
                 position=i,                            # adds city to dropdown menu
                 columns=(1,),                          #
                 values=[str(city)],                    #
@@ -591,10 +579,12 @@ class style:
             situa_box.set_css_classes(['glassy'])
             conditions_box.set_css_classes(['glassy'])
             daily_forecast_box.set_css_classes(['glassy'])
+            hourly_forecast_box.set_css_classes(['glassy'])
         else:
             situa_box.remove_css_class('glassy')
             conditions_box.remove_css_class('glassy')
             daily_forecast_box.remove_css_class('glassy')
+            hourly_forecast_box.remove_css_class('glassy')
 
     # ---- applies gradient background ---- #
     def apply_bg(switch, active):
@@ -612,10 +602,12 @@ class style:
             except:
                 icon_id = forecast["weather"]['icon']
 
-            if icon != None:
+            if icon != None and icon.split('.')[-1] != icon:
                 img.set_from_file(icon_loc + icon)
+            elif icon != None and icon.split('.')[-1] != icon:
+                img.set_from_icon_name(icon)
 
-            else:
+            elif icon == None:
                 if icon_id == "01d":
                     img.set_from_file(icon_loc + 'weather-clear-large.svg')
                 elif icon_id == "02d" or icon_id == "03d":
