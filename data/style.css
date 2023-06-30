@@ -28,6 +28,13 @@
     font-weight: 500;
 }
 
+.bold{
+
+    font-size: 28px;
+    font-weight: 1000;
+
+}
+
 .main_window{
     box-shadow: 0px 1px 6px rgba(0,0,0,0.3),
     0px 2px 12px rgba(0,0,0,0.15),
