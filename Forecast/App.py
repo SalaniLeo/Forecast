@@ -1,8 +1,8 @@
 import sys
 from Forecast.WttrInfo import *
-from .getInfos import *
 from threading import Thread
 import gi
+import socket
 from gettext import gettext as _
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -27,6 +27,8 @@ class Application(Gtk.ApplicationWindow):
         global application, style_manager, units, units_list
         application = self
 
+        # settings.set_strv('wthr-locs', [])
+
         # city search bar
         self.search_bar = Forecast.search_entry()
         self.search_bar.set_valign(Gtk.Align.START)
@@ -35,6 +37,12 @@ class Application(Gtk.ApplicationWindow):
         # creates headerbar #
         self.header_bar = Gtk.HeaderBar()
         self.header_bar.add_css_class(css_class='flat')
+        
+        # refresh button
+        self.refresh_button = Gtk.Button.new_from_icon_name('view-refresh-symbolic')
+        self.refresh_button.set_tooltip_text(_("Refresh"))
+        self.refresh_button.connect("clicked", Forecast.refresh)
+
 
         self.application = kwargs.get('application')
         self.style_manager = self.application.get_style_manager()
@@ -65,16 +73,16 @@ class Application(Gtk.ApplicationWindow):
         self.loading_stack.add_child(self.weather_stack)
         self.stack_switcher = Gtk.StackSwitcher.new()
         self.stack_switcher.set_stack(stack=self.weather_stack)
-        self.header_bar.set_title_widget(title_widget=self.stack_switcher)
+        
+        
+        # self.header_bar.set_title_widget(title_widget=self.stack_switcher)
 
         window_handle.set_child(toast_overlay)
         toast_overlay.set_child(child=self.loading_stack)
 
-        if len(saved_locations) == 0:
-            self.gotoFirstPage()
-
         # menu button #
         self.menu_button_model = Gio.Menu()
+        self.menu_button_model.append(_('Refresh'), 'app.refresh')
         self.menu_button_model.append(_('Preferences'), 'app.preferences')
         self.menu_button_model.append(_('About Forecast'), 'app.about')
         self.menu_button = Gtk.MenuButton.new()
@@ -85,19 +93,23 @@ class Application(Gtk.ApplicationWindow):
         self.add_button = Gtk.Button.new_from_icon_name('list-add-symbolic')
         self.add_button.connect('clicked', search_page, self, False)
 
-        # refresh button
-        self.refresh_button = Gtk.Button.new_from_icon_name('view-refresh-symbolic')
-        self.refresh_button.set_tooltip_text(_("Refresh"))
-        self.refresh_button.connect("clicked", Forecast.refresh, self)
+        # self.header_bar.pack_start(self.refresh_button)
+        # self.header_bar.pack_end(self.menu_button)
 
         self.toast_overlay = toast_overlay
 
-        # starts the weather app
-        if len(saved_locations) > 0:
-            self.start_application()
+        internet = self.check_connection()
 
-    def gotoFirstPage(self):
-        search_page(None, self, True)
+        # starts the weather app
+        if len(saved_locations) > 0 and internet:
+            self.start_application()
+        elif len(saved_locations) == 0:
+            self.gotoFirstPage()
+        elif internet == False:
+            self.no_network_page()
+
+    def gotoFirstPage(self, first=True):
+        search_page(None, self, first)
 
     def create_toast(self, text):
         toast = Adw.Toast()
@@ -115,6 +127,30 @@ class Application(Gtk.ApplicationWindow):
     def add_city(button, active, main_window, name):
         if name is None:
             main_page(None, main_window, name, package)
+            
+    def no_network_page(self):
+        no_ntwrk_box = Gtk.Box()
+        
+        no_ntwrk_status = Adw.StatusPage.new()
+        no_ntwrk_status.set_hexpand(True)
+        no_ntwrk_status.set_title(_("No internet connection"))
+        # no_ntwrk_status.set_description(description='No AppImage files are inside the library' +    str(error))
+        no_ntwrk_status.set_icon_name('network-no-route-symbolic')
+        application.set_title(_('Forecast - No Internet Connection'))
+
+        no_ntwrk_box.append(no_ntwrk_status)
+        no_ntwrk_box.set_hexpand(True)
+
+        self.loading_stack.add_child(no_ntwrk_box)
+        self.loading_stack.set_visible_child(no_ntwrk_box)
+
+    def check_connection(self):
+        try:
+            socket.create_connection(("1.1.1.1", 53))
+            return True
+        except OSError:
+            pass
+        return False
 
 
 class Forecast(Adw.Application):
@@ -122,7 +158,7 @@ class Forecast(Adw.Application):
         super().__init__(**kwargs)
 
         self.connect('activate', self.on_activate)
-        self.create_action('refresh', self.refresh)
+        self.create_action('refresh', self.refresh, ['<Control>r'])
         self.create_action('preferences', self.show_preferences, ['<Control>comma'])
         self.create_action('about', self.show_about)
         self.create_action('quit', self.exit_app, ['<Control>w', '<Control>q'])
@@ -141,17 +177,22 @@ class Forecast(Adw.Application):
             self.set_accels_for_action(f'app.{name}', shortcuts)
 
     # ----- refreshes meteo ----- #
-    def refresh(button, self):
-        main_page.refresh(None, None, None)
+    def refresh(button=None, self=None, args=None):
+        internet = application.check_connection()
         
-        
+        if internet == True:
+            main_page.refresh()
+        else:
+            application.create_toast(_('No internet connection'))
+            application.no_network_page()
+
     def rm_loc(button, row, location, self):
         global saved_locations
-
-        settings.set_int('selected-city', settings.get_int('selected-city')-1)
+        active = settings.get_int('selected-city')-1
+        settings.set_int('selected-city', active)
         saved_locations.remove(location)
         settings.set_strv('wthr-locs', saved_locations)
-        load_locations(True, 0, application)
+        load_locations(True, active, application)
         self.locations.remove(row)
 
     # ----- shows about window ------ #
@@ -159,9 +200,9 @@ class Forecast(Adw.Application):
         dialog = Adw.AboutWindow()
         dialog.set_transient_for(application)
         dialog.set_application_name(_("Forecast"))
-        dialog.set_version("0.2.1")
+        dialog.set_version("0.2.2")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments(_("Forecast app for GNOME"))
+        dialog.set_comments(_("Weather app for Linux"))
         dialog.set_website("https://github.com/SalaniLeo/Forecast")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salaniLeo.Forecast")
@@ -200,18 +241,37 @@ class search_page(Gtk.Box):
         super().__init__(*args, **kwargs)
 
         if first:
+
             # welcome title 
-            self.title = Gtk.Label(label=_('Welcome to Forecast!\nSearch a City'))
+            self.title = Gtk.Label(label=_('Welcome to Forecast!\n'))
             self.title.set_justify(Gtk.Justification.CENTER)
             self.title.set_valign(Gtk.Align.START)
-            self.title.set_vexpand(True)
-            self.title.set_hexpand(True)
-            self.title.set_css_classes(['text_big'])
+            self.title.set_css_classes(['bold'])
+            
+            self.subtitle = Gtk.Label(label=_('Search a city'))
+            self.subtitle.set_justify(Gtk.Justification.CENTER)
+            self.subtitle.set_valign(Gtk.Align.START)
+            self.subtitle.set_css_classes(['text_medium'])
+
+            if package == 'flatpak':
+                self.title_image = Gtk.Image.new_from_resource('/app/share/icons/hicolor/symbolic/apps/dev.salaniLeo.forecast-symbolic.svg')
+            elif package == None:
+                self.title_image = Gtk.Image.new_from_file('share/icons/hicolor/scalable/apps/dev.salaniLeo.forecast.svg')
+
+            self.title_image.set_pixel_size(175)
+            self.title_image.set_vexpand(True)
+            self.title_image.set_valign(Gtk.Align.CENTER)
+
+            self.title_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+            self.title_box.append(self.title)
+            self.title_box.append(self.subtitle)
+            self.title_box.append(self.title_image)
+            self.title_box.set_vexpand(True)
 
             # sets main grid properties and childs
             self.set_orientation(Gtk.Orientation.VERTICAL)
             self.append(application.search_bar)
-            self.append(self.title)
+            self.append(self.title_box)
             self.set_margin_start(50)
             self.set_margin_end(50)
             self.set_margin_top(24)
@@ -246,9 +306,8 @@ class search_page(Gtk.Box):
         first_time = False
         if len(saved_locations) == 0:
             first_time = True
+        add_city(entry.get_text(), application, first_time, search_page)
         saved_locations.append(entry.get_text())
-        city = entry.get_text()
-        add_city(city, application, first_time, search_page)
         application.add_city(self, application, entry.get_text())
 
 # -------- preferences class ---------- #
@@ -281,7 +340,6 @@ class ForecastPreferences(Adw.PreferencesWindow):
             place_name = loc.split('-')
 
             country_it = place_name[1][:3][1:]
-            full_country = COUNTRY_CODES.get(str(country_it))
 
             b = Gtk.Button()
             b.set_size_request(30,30)
@@ -386,20 +444,14 @@ class ForecastPreferences(Adw.PreferencesWindow):
             activeNum = locs.index(active)
             print(activeNum)
             settings.set_int('selected-city', activeNum)
-            switch_city(None)
-            application.saved_loc_box.set_active(index_=settings.get_int('selected-city'))
-
-    def search(self, btn):
-        if self.add_icon.get_icon_name() == 'edit-undo-symbolic':
-            self.close_search()
-        else:
-            self.open_search()
+            switch_city(activeNum)
+            application.saved_loc_box.set_active(index_=activeNum)
 
     def change_unit(self, combobox):
         global units 
         units = combobox.get_active_text()
         self.saveString(None, units, 'units')
-        main_page.refresh(None, None, 'True')
+        main_page.refresh(change_units='True')
 
     # ---- creates a switch for an option ---- #
     def opt_switch(self, entry, option):
@@ -452,7 +504,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         if self.api_key_entry.get_text() is not None:       # saves api key to gsettings
             self.saveString(self.api_key_entry, self.api_key_entry.get_text(), "api-key-s")
         if self.locations_changed:
-            Forecast.refresh(None, None)
+            Forecast.refresh()
 
 def start(AppId, type):
     global package

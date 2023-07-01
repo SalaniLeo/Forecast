@@ -44,15 +44,24 @@ last_refresh = 0
 class main_page(Gtk.Box):
     def __init__(self, thread, window, name, package):
         super().__init__()
-        global icon_loc, meteo, lat, lon
-        
+        global icon_loc, meteo, lat, lon, app, main_window, forecast
+
+        main_window = window
+        app = self
+
         # adds itself to stack
-        window.weather_stack.add_titled(child=self, name='Weather', title='Weather')
+        window.weather_stack.add_titled(child=self, name='Weather', title=_('Weather'))
 
         if name is not None:
             text_raw = name.split(" - ")[1]
         else:
-            text_raw = settings.get_strv('wthr-locs')[settings.get_int('selected-city')]
+            if settings.get_int('selected-city') < 0:
+                settings.set_int('selected-city', 0)
+            if len(settings.get_strv('wthr-locs')) <= settings.get_int('selected-city'):
+                settings.set_int('selected-city', 0)
+                text_raw = settings.get_strv('wthr-locs')[0]
+            else:
+                text_raw = settings.get_strv('wthr-locs')[settings.get_int('selected-city')]
 
         if package == 'flatpak':
             icon_loc = '/app/share/icons/hicolor/scalable/status/'
@@ -63,18 +72,12 @@ class main_page(Gtk.Box):
 
         # extracts the coordinates from saved locations
         coords_raw = text_raw[text_raw.find("(")+1:text_raw.find(")")]
-            
+
         lat = coords_raw.split("; ")[0]
         lon = coords_raw.split("; ")[1]
 
-        # gets weather from api
         meteo = get_wttr(lat, lon)
-
-        # sets main_window to windo
-        global main_window
-        main_window = window
-        global app
-        app = self
+        get_forecast(False)
 
         # sets properties for current situa
         global title_label
@@ -82,7 +85,7 @@ class main_page(Gtk.Box):
         title_label.set_halign(Gtk.Align.START)
         title_label.set_valign(Gtk.Align.START)
         title_label.set_css_classes(['text_big'])
-        
+
         # sets properties for temperature
         global subtitle_label
         subtitle_label.set_justify(Gtk.Justification.LEFT)
@@ -130,21 +133,16 @@ class main_page(Gtk.Box):
 
         # loads all saved locations
         load_locations(False, settings.get_int('selected-city'), window)
-
-        # adds everything to headerbar
-        window.header_bar.pack_start(window.saved_loc_box)
-        window.header_bar.pack_start(window.refresh_button)
-        window.header_bar.pack_end(window.menu_button)
-        window.header_bar.pack_end(window.add_button)
         
         window.saved_loc_box.connect('changed', switch_city)
-
-        # ------ 3 hours forecast ------ #
-        get_forecast(False)
 
         self.right_box = Gtk.Box()
         self.inner_right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
+        window.header_bar.pack_start(window.saved_loc_box)
+        window.header_bar.pack_end(window.menu_button)
+        window.header_bar.pack_end(window.add_button)
+        window.header_bar.pack_start(window.refresh_button)        
         # creates a scroll window to store 3 hour forecast
         self.next_hours_scroll = Gtk.ScrolledWindow()
         self.next_hours_scroll.set_child(hourly_forecast_box)
@@ -196,13 +194,13 @@ class main_page(Gtk.Box):
             window.loading_stack.set_visible_child(window.weather_stack)
 
     # ---- function to refresh weather and change city ---- #
-    def refresh(lati, longi, change_units):
+    def refresh(lati=None, longi=None, change_units=None):
         wttr_thrd = threading.Thread(target=reload_weather, args=(lati, longi, change_units))
         wttr_thrd.start()
         main_window.loading_stack.set_visible_child(main_window.spinner_box)
 
 def reload_weather(lati, longi, change_units):
-        global meteo, lat, lon, last_refresh, app
+        global meteo, lat, lon, last_refresh, app, forecast
         current_time = time.time()
 
         if change_units == 'True':
@@ -219,6 +217,7 @@ def reload_weather(lati, longi, change_units):
         if lati == None:
             if change_units:
                 meteo = get_wttr(lat, lon) # requests newer data to apis
+                get_forecast(True)
             else:
                 if current_time - last_refresh >= 60:
                     last_refresh = current_time
@@ -235,8 +234,8 @@ def reload_weather(lati, longi, change_units):
             meteo = get_wttr(lati, longi) # requests new city weather
             get_forecast(True)
 
-        hours = int(convert_time(meteo["timezone"])[:2])
         if settings.get_boolean('enhance-contrast'):
+            hours = int(convert_time(meteo["timezone"])[:2])
             if hours >= 19 or hours < 6:
                 style.apply_enhanced_text(None, False)
             else:
@@ -255,7 +254,6 @@ def load_locations(remove, active, window):
         main_window.saved_loc_box.remove_all()
     for text in settings.get_strv('wthr-locs'):
         main_window.saved_loc_box.append_text(text=str(text.rsplit(" - ",1)[0]))
-    print(active)
     main_window.saved_loc_box.set_active(index_=active)
 
 
@@ -386,6 +384,7 @@ def get_forecast(refresh):
     global daily_forecast_box
 
     forecast = get_frcst() # calls api to get forecast
+
     daily_forecast_box.set_halign(Gtk.Align.END)
     daily_forecast_box.set_valign(Gtk.Align.END)
 
@@ -483,10 +482,15 @@ def switch_city(combobox):
     if update:
         if current_time - last_refresh >= 0.5:
             last_refresh = current_time
-            if combobox == None:
-                city = settings.get_strv('wthr-locs')[settings.get_int('selected-city')-1]
+            if isinstance(combobox, int):
+                city = settings.get_strv('wthr-locs')[combobox]
+            # else:
+                # if combobox.get_active() < 0:
+                    # main_window.gotoFirstPage()
+                    # main_window.header_bar.remove(main_window.refresh_button)
+                    # main_window.header_bar.remove(main_window.add_button)
             else:
-                city = settings.get_strv('wthr-locs')[combobox.get_active()]
+                    city = settings.get_strv('wthr-locs')[combobox.get_active()]
             if city is not None:
                 coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
                 lati = coords_raw.split("; ")[0]  # gets latitude of new city  
@@ -499,7 +503,7 @@ def add_city(city, window, first_time, search):
     coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
     
     if len(coords_raw.split("; ")) == 2:
-        if city in settings.get_strv('wthr-locs'): # skips city if already added
+        if city in settings.get_strv('wthr-locs') and first_time != True: # skips city if already added
             window.create_toast(_('The selected city has already been added'))
         else:
             saved_locations.append(str(city))   # adds new city to cities list
@@ -547,8 +551,10 @@ def convert_time(timezone):
     converted_datetime = local_time + int(datetime.utcnow().strftime("%H"))
     if converted_datetime > 24:
         converted_datetime = "0" + str(converted_datetime - 24)
-    elif(converted_datetime<10):
+    elif(converted_datetime < 10) and local_time > 0:
         converted_datetime = "0" + str(converted_datetime)
+    elif(converted_datetime < 10) and local_time < 0:
+        converted_datetime = '0' + str(converted_datetime).split('-')[-1]
     local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M")
     return local_full_time
 
