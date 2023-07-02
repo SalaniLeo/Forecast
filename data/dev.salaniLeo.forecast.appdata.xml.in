@@ -37,26 +37,16 @@
   </screenshots>
 
   <releases>
-      <release version="0.2.2" date="2023-07-01">
+      <release version="0.2.2" date="2023-07-02">
         <description>
           <p>Version 0.2.2</p>
-            <p>Updates:</p>
             <ul>
-              <li>Improved design, see below</li>
+              <li>Complete redesign, see github for more</li>
               <li>Added locations page in preferences</li>
               <li>Now you can delete locations</li>
               <li>Added no network status page</li>
               <li>Added reload shortcut</li>
               <li>Fixed some bugs</li>
-            </ul>
-            <p>Design changes:</p>
-            <ul>
-              <li>Improved background gradient for all conditions during night</li>
-              <li>Modified first time open window</li>
-              <li>Added smooth transitioning between cities</li>
-              <li>Added smooth transitioning when reloading</li>
-              <li>Added loading page while getting api response</li>
-              <li>Added probability of rain in 3-hours forecast</li>
             </ul>
         </description>
     </release>
