@@ -21,12 +21,13 @@ update = True
 lat = None
 lon = None
 
-conditions_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+conditions_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=32)
 text_label = Gtk.Label()
 info_label = Gtk.Label()
 title_label = Gtk.Label()
 subtitle_label = Gtk.Label()
 local_tm_label = Gtk.Label()
+last_update = Gtk.Label()
 situa_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
 situa_img = Gtk.Image()
 hourly_forecast_box = Gtk.Box(spacing=0, orientation=Gtk.Orientation.HORIZONTAL)
@@ -123,69 +124,73 @@ class main_page(Gtk.Box):
 
         # sets properties for the top-left current situa label
         global conditions_box
-        conditions_box.set_halign(Gtk.Align.END)
-        conditions_box.set_valign(Gtk.Align.CENTER)
-        conditions_box.set_margin_top(24)
-        conditions_box.set_margin_end(24)
+        conditions_box.set_halign(Gtk.Align.CENTER)
+        conditions_box.set_valign(Gtk.Align.START)
         conditions_box.append(text_label)
         conditions_box.append(info_label)
-        conditions_box.set_size_request(250, 175)
-
+        
+        global last_update
+        last_update.set_halign(Gtk.Align.CENTER)
+        last_update.set_valign(Gtk.Align.CENTER)
+        
         # loads all saved locations
         load_locations(False, settings.get_int('selected-city'), window)
         
         window.saved_loc_box.connect('changed', switch_city)
-
-        self.right_box = Gtk.Box()
-        self.inner_right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-
+        
         window.header_bar.pack_start(window.saved_loc_box)
         window.header_bar.pack_end(window.menu_button)
         window.header_bar.pack_end(window.add_button)
         window.header_bar.pack_start(window.refresh_button)        
         # creates a scroll window to store 3 hour forecast
-        self.next_hours_scroll = Gtk.ScrolledWindow()
-        self.next_hours_scroll.set_child(hourly_forecast_box)
-        self.next_hours_scroll.set_valign(Gtk.Align.CENTER)
-        self.next_hours_scroll.set_vexpand(True)
-        self.next_hours_scroll.set_hexpand(True)
-        self.next_hours_scroll.set_valign(Gtk.Align.END)
-        self.next_hours_scroll.set_min_content_height(150)
-        
-        # creates a sub box for the right box
-        self.inner_right_box.append(get_info(meteo))
-        self.inner_right_box.set_hexpand(True)
+        # self.next_hours_scroll = Gtk.ScrolledWindow()
+        # self.next_hours_scroll.set_child(hourly_forecast_box)
+        # self.next_hours_scroll.set_valign(Gtk.Align.START)
+        # self.next_hours_scroll.set_vexpand(True)
+        # self.next_hours_scroll.set_hexpand(True)
+        # self.next_hours_scroll.set_min_content_height(250)
+        # self.next_hours_scroll.set_min_content_width(310)
 
-        # creates the right box
-        self.right_box.append(self.inner_right_box)
+        self.today_title = Gtk.Label(label=_('Today'))
+        self.today_title.set_css_classes(['text_big'])
+        self.today_title.set_halign(Gtk.Align.CENTER)
+        self.today_title.set_valign(Gtk.Align.CENTER)
+
+        self.today_title_box = Gtk.Box()
+        self.today_title_box.append(self.today_title)
+        self.today_title_box.set_halign(Gtk.Align.CENTER)
+
+        self.right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=18)
+        self.right_box.append(self.today_title_box)
+        self.right_box.append(hourly_forecast_box)
+        self.right_box.append(get_info(meteo))
         self.right_box.set_hexpand(True)
-
-        # next 5 days forecast
-        self.days_situa_box = Gtk.Box()
-        self.days_situa_box.append(daily_forecast_box)
-        self.days_situa_box.set_halign(Gtk.Align.START)
+        
+        self.frcst_title = Gtk.Label(label=_('Forecast'))
+        self.frcst_title.set_css_classes(['text_big'])
+        self.frcst_title.set_halign(Gtk.Align.START)
 
         # current weather situa icon and label
-        self.left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         self.left_box.append(set_icon(window, meteo, False))
-        self.left_box.append(self.days_situa_box)
+        self.left_box.set_hexpand(True)
+        self.left_box.append(self.frcst_title)
+        self.left_box.append(daily_forecast_box)
 
-        self.top_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        self.top_box.append(self.left_box)
-        self.top_box.append(self.right_box)
+        self.append(self.left_box)
+        self.append(self.right_box)
 
         # main page properties
         self.set_margin_top(6)
         self.set_margin_bottom(6)
         self.set_margin_end(6)
-        self.set_margin_start(6)
-        self.set_orientation(Gtk.Orientation.VERTICAL)
+        self.set_margin_start(12)
+        self.set_orientation(Gtk.Orientation.HORIZONTAL)
         self.set_hexpand(True)
 
-        self.append(self.top_box)
-        self.append(self.next_hours_scroll)
+        # self.append(self.next_hours_scroll)
 
-        if settings.get_boolean("enhance-contrast"):
+        if settings.get_boolean("enhance-contrast") and settings.get_boolean("gradient-bg"):
             style.apply_enhanced_text(None, True)
         if settings.get_boolean('use-glassy'):
             style.apply_glassy(None, True)
@@ -234,7 +239,7 @@ def reload_weather(lati, longi, change_units):
             meteo = get_wttr(lati, longi) # requests new city weather
             get_forecast(True)
 
-        if settings.get_boolean('enhance-contrast'):
+        if settings.get_boolean('enhance-contrast') and settings.get_boolean("gradient-bg"):
             hours = int(convert_time(meteo["timezone"])[:2])
             if hours >= 19 or hours < 6:
                 style.apply_enhanced_text(None, False)
@@ -294,6 +299,9 @@ def set_icon(window, meteo, forecast):
 
 # ---- weather api call ---- #
 def get_wttr(lat, lon):
+    global last_update
+    upd = str(' - '+_('Last update:') + datetime.now().strftime("%H:%M"))
+    last_update.set_label(upd)
     response = requests.get("http://api.openweathermap.org/data/2.5/weather?lat="+ lat +"&lon="+ lon +"&units="+ units +"&appid=" + settings.get_string('api-key-s'))
     return response.json()
 
@@ -322,7 +330,10 @@ def get_info(meteo):
     humidity    = str(meteo["main"]["humidity"])   + "%    "
     wind_speed  = str(meteo['wind']['speed'])      + speed_unit +' '+ wind_dir(meteo['wind']['deg'])
     pressure    = str(meteo['main']['pressure'])   + ' hPa    '
-    last_update = str(datetime.now().strftime("%H:%M"))
+    Visibility  = str(meteo['visibility']/1000) + speed_unit.split('/')[0]
+    Sunrise     = str(convert_timestamp(meteo['sys']['sunrise']))
+    Sunset      = str(convert_timestamp(meteo['sys']['sunset']))
+    Timezone    = str(convert_timezone(meteo['timezone']/3600))
 
     try:
         wind_gusts  = str(meteo['wind']['gust']) + speed_unit
@@ -333,26 +344,31 @@ def get_info(meteo):
 
     text_label.set_valign(Gtk.Align.CENTER)
     text_label.set_halign(Gtk.Align.CENTER)
-    text_label.set_margin_start(24)
+    text_label.set_css_classes(['text_space'])
     text_label.set_markup(
-        _("Last update") + '\n\n' +
         _("Feels like") + '\n' +
         _("Wind") + '\n' +
         _("Gusts") + '\n' +
         _("Pressure") + '\n' +
-        _("Humidity") + '\n'
+        _("Humidity") + '\n' +
+        _("Visibility") + '\n' +
+        _("Sunrise") + '\n' +
+        _("Sunset") + '\n'
     )
 
     info_label.set_valign(Gtk.Align.CENTER)
     info_label.set_halign(Gtk.Align.CENTER)
+    info_label.set_css_classes(['text_space'])
     info_label.set_markup(
-        last_update + '\n\n' +
         feels_like + '\n' +
         wind_speed + '\n' +
         wind_gusts + '\n' +
         pressure + '\n' +
-        humidity + '\n' 
-    )
+        humidity + '\n' +
+        Visibility + '\n' +
+        Sunrise + '\n' +
+        Sunset + '\n'
+)
 
     return conditions_box
 
@@ -385,8 +401,7 @@ def get_forecast(refresh):
 
     forecast = get_frcst() # calls api to get forecast
 
-    daily_forecast_box.set_halign(Gtk.Align.END)
-    daily_forecast_box.set_valign(Gtk.Align.END)
+    daily_forecast_box.set_halign(Gtk.Align.START)
 
     hourly_forecast_box.set_halign(Gtk.Align.CENTER)
     hourly_forecast_box.set_valign(Gtk.Align.CENTER)
@@ -406,8 +421,9 @@ def get_forecast(refresh):
         temperature = weather['main']['temp']
         wind_speed  = str(weather['wind']['speed']) + speed_unit
         rain_prob = str(int(weather['pop']*100)) + '%'
+
         # adds 24h forecast per 3 hours intervals
-        if hours <= 21:
+        if hours <= 15:
 
             hourly_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=8)
             local_time = int(convert_time(forecast["city"]["timezone"])[:2]) + hours  # gets local city time
@@ -420,8 +436,8 @@ def get_forecast(refresh):
 
             hourly_box.append(Gtk.Label(label=local_time))    # Creates box for every 3 hours prevision
             hourly_box.append(style.get_icon(weather, 35, None))
-            hourly_box.append(create_info_box(None, wind_speed, 'weather-windy-small.svg'))
-            hourly_box.append(create_info_box(None, rain_prob, 'humidity.svg'))
+            # hourly_box.append(create_info_box(None, wind_speed, 'weather-windy-small.svg'))
+            # hourly_box.append(create_info_box(None, rain_prob, 'humidity.svg'))
             hourly_box.append(create_info_box(None, str(round(weather['main']['temp'], 1)) + '°', None))
             hourly_box.set_margin_start(12)
             hourly_box.set_margin_end(12)
@@ -503,7 +519,7 @@ def add_city(city, window, first_time, search):
     coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
     
     if len(coords_raw.split("; ")) == 2:
-        if city in settings.get_strv('wthr-locs') and first_time != True: # skips city if already added
+        if city in settings.get_strv('wthr-locs'): # skips city if already added
             window.create_toast(_('The selected city has already been added'))
         else:
             saved_locations.append(str(city))   # adds new city to cities list
@@ -558,6 +574,17 @@ def convert_time(timezone):
     local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M")
     return local_full_time
 
+def convert_timezone(hours):
+    if hours < 0:
+        lbl = f'UTC - {int(hours)}'
+    else:
+        lbl = f'UTC - {int(hours)}'
+    return lbl
+
+def convert_timestamp(time):
+    converted_time = datetime.fromtimestamp(time)
+    formatted_time = converted_time.strftime("%H:%M")
+    return formatted_time
 
 # ----- class to manage all the custom styling of the app ----- #
 class style:

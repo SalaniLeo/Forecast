@@ -31,9 +31,7 @@ class Application(Gtk.ApplicationWindow):
 
         # city search bar
         self.search_bar = Forecast.search_entry()
-        self.search_bar.set_valign(Gtk.Align.START)
-        self.search_bar.set_hexpand(True)
-
+        
         # creates headerbar #
         self.header_bar = Gtk.HeaderBar()
         self.header_bar.add_css_class(css_class='flat')
@@ -56,7 +54,7 @@ class Application(Gtk.ApplicationWindow):
 
         # sets properties to main page #
         self.set_title(_('Forecast - loading'))
-        self.set_default_size(850, 500)
+        self.set_default_size(780, 420)
         self.set_titlebar(self.header_bar)
         self.set_child(child=window_handle)
 
@@ -92,9 +90,6 @@ class Application(Gtk.ApplicationWindow):
 
         self.add_button = Gtk.Button.new_from_icon_name('list-add-symbolic')
         self.add_button.connect('clicked', search_page, self, False)
-
-        # self.header_bar.pack_start(self.refresh_button)
-        # self.header_bar.pack_end(self.menu_button)
 
         self.toast_overlay = toast_overlay
 
@@ -226,6 +221,7 @@ class Forecast(Adw.Application):
         search_bar.set_valign(Gtk.Align.START)
         search_bar.set_hexpand(True)
         search_bar.set_completion(completion=completion)
+        search_bar.set_placeholder_text(_('Search a city'))
         search_bar.connect('changed', get_cities, completion_model, search_bar)
         search_bar.connect('activate', search_page.add_loc, search_bar)
             
@@ -270,7 +266,7 @@ class search_page(Gtk.Box):
 
             # sets main grid properties and childs
             self.set_orientation(Gtk.Orientation.VERTICAL)
-            self.append(application.search_bar)
+            self.append(Forecast.search_entry())
             self.append(self.title_box)
             self.set_margin_start(50)
             self.set_margin_end(50)
@@ -283,9 +279,7 @@ class search_page(Gtk.Box):
             window.loading_stack.add_child(self)
             if saved_locations is not None:
                 window.loading_stack.set_visible_child(self)
-            application.search_bar.connect('activate', search_page.add_loc, application.search_bar)
-            application.search_bar.set_placeholder_text(_('Search a city'))
-
+                
         else:
             if window.add_button.get_icon_name() == 'edit-undo-symbolic':
                 self.close_search()
@@ -308,7 +302,7 @@ class search_page(Gtk.Box):
             first_time = True
         add_city(entry.get_text(), application, first_time, search_page)
         saved_locations.append(entry.get_text())
-        application.add_city(self, application, entry.get_text())
+        # application.add_city(self, application, entry.get_text())
 
 # -------- preferences class ---------- #
 class ForecastPreferences(Adw.PreferencesWindow):
@@ -442,7 +436,6 @@ class ForecastPreferences(Adw.PreferencesWindow):
             active = f'{row.get_title()} ({row.get_subtitle()})'
             locs = settings.get_strv('wthr-locs')
             activeNum = locs.index(active)
-            print(activeNum)
             settings.set_int('selected-city', activeNum)
             switch_city(activeNum)
             application.saved_loc_box.set_active(index_=activeNum)
