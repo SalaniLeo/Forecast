@@ -39,7 +39,6 @@
   <releases>
       <release version="0.2.2" date="2023-07-02">
         <description>
-          <p>Version 0.2.2</p>
             <ul>
               <li>Complete redesign, see github for more</li>
               <li>Added locations page in preferences</li>

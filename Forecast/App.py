@@ -249,19 +249,19 @@ class search_page(Gtk.Box):
             self.subtitle.set_valign(Gtk.Align.START)
             self.subtitle.set_css_classes(['text_medium'])
 
-            if package == 'flatpak':
-                self.title_image = Gtk.Image.new_from_resource('/app/share/icons/hicolor/symbolic/apps/dev.salaniLeo.forecast-symbolic.svg')
-            elif package == None:
-                self.title_image = Gtk.Image.new_from_file('share/icons/hicolor/scalable/apps/dev.salaniLeo.forecast.svg')
+            # if package == 'flatpak':
+            #     self.title_image = Gtk.Image.new_from_resource('/app/share/icons/hicolor/scalable/apps/dev.salaniLeo.forecast.svg')
+            # elif package == None:
+            #     self.title_image = Gtk.Image.new_from_file('share/icons/hicolor/scalable/apps/dev.salaniLeo.forecast.svg')
 
-            self.title_image.set_pixel_size(175)
-            self.title_image.set_vexpand(True)
-            self.title_image.set_valign(Gtk.Align.CENTER)
+            # self.title_image.set_pixel_size(175)
+            # self.title_image.set_vexpand(True)
+            # self.title_image.set_valign(Gtk.Align.CENTER)
 
             self.title_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             self.title_box.append(self.title)
             self.title_box.append(self.subtitle)
-            self.title_box.append(self.title_image)
+            # self.title_box.append(self.title_image)
             self.title_box.set_vexpand(True)
 
             # sets main grid properties and childs
