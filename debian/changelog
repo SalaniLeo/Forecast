@@ -1,0 +1,27 @@
+forecast (0.2.2-1) stable; urgency=medium
+
+  * Removed window border
+  * Updated appdata and added option to gschemas
+  * Modified night css
+  * Added smooth transitions and reloads,
+    also added options to manage saved locations
+  * Updated css and screenshots
+  * Added new version to appdata
+  * Updated app
+  * Complete redesign of the app
+  * Updated potfile
+  * Updated screenshots and style
+  * Added v0.2.2
+
+ -- Himadri Sekhar Basu <hsb10@iitbbs.ac.in>  Tue, 04 Jul 2023 12:41:58 +0530
+
+forecast (0.2.1-1) stable; urgency=medium
+
+  * Initial release.
+  * Added release 0.2.1
+  * Added support for an AppImage build
+  * Added __init__.py
+  * Updated screenshots
+  * Updated release 0.2.1
+
+ -- Himadri Sekhar Basu <hsb10@iitbbs.ac.in>  Tue, 04 Jul 2023 12:40:52 +0530
