@@ -1,4 +1,5 @@
 import sys
+import os
 from Forecast.WttrInfo import *
 from threading import Thread
 import gi
@@ -510,8 +511,8 @@ def start(AppId, type):
     elif package == 'appimage':
         css_provider.load_from_path('data/style.css')
     elif package == None:
-        css_provider.load_from_path('data/style.css')
-        
+        css_provider.load_from_path(os.path.abspath(os.path.dirname(__file__))+'/data/style.css')
+    
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     app = Forecast(application_id=AppId)

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -rf builddir
+meson -Dprefix=$HOME/.local builddir
+meson compile -C builddir --verbose
+meson install -C builddir --dry-run

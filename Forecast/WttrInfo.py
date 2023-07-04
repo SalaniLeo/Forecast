@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import gi
+import os
 import time
 import threading
 gi.require_version('Gtk', '4.0')
@@ -69,7 +70,7 @@ class main_page(Gtk.Box):
         elif package == 'appimage':
             icon_loc = 'data/status/'
         elif package == None:
-            icon_loc = 'data/status/'
+            icon_loc = os.path.abspath(os.path.dirname(__file__))+'/data/status/'
 
         # extracts the coordinates from saved locations
         coords_raw = text_raw[text_raw.find("(")+1:text_raw.find(")")]
