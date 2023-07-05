@@ -44,7 +44,7 @@ class global_weather(Gtk.Box):
         main_box.append(self.get_widgets())
 
         window.stack.add_titled(self, 'Satellites', 'Satellites')
-            
+    
     def get_widgets(self):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         label = Gtk.Label(label='Satellites - Meteosat')
@@ -55,7 +55,7 @@ class global_weather(Gtk.Box):
         box.set_halign(Gtk.Align.START)
         
         browser = WebKit.WebView()
-        browser.load_uri('https://google.com')
+        browser.load_uri('https://www.google.com')
         # box.append(browser)
         
         return box

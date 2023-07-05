@@ -42,3 +42,11 @@ gnome.compile_resources('forecast',
   install: true,
   install_dir: pkgdatadir,
 )
+
+python = import('python')
+py3 = python.find_installation('python3')
+app_install_dir = py3.get_install_dir()
+install_data(
+  'style.css',
+  install_dir: join_paths(app_install_dir, 'Forecast/data')
+)
