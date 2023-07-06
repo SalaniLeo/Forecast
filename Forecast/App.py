@@ -1,9 +1,10 @@
 import sys
-import os
 from Forecast.WttrInfo import *
 from threading import Thread
+from Forecast.accurate_forecast import accurate_forecast
 import gi
 import socket
+import os
 from gettext import gettext as _
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
@@ -12,15 +13,10 @@ from gi.repository import Gtk, Adw, Gio, Gdk, GObject
 toast_overlay = Adw.ToastOverlay.new()
 meteo = None
 application = None
-settings = Gio.Settings.new("dev.salaniLeo.forecast")
 style_manager = None
-saved_locations = settings.get_strv('wthr-locs')
-
 package = None
-
 units = None
-available_units = ['Metric System, °C - Km/h', 'Imperial System, °F - mph']
-
+saved_locations = app_data.weather_locs_list()
 
 class Application(Gtk.ApplicationWindow):
     def __init__(self, *args, **kwargs):
@@ -28,7 +24,8 @@ class Application(Gtk.ApplicationWindow):
         global application, style_manager, units, units_list
         application = self
 
-        # settings.set_strv('wthr-locs', [])
+        self.pages_names = []
+        self.icons_list  = []
 
         # city search bar
         self.search_bar = Forecast.search_entry()
@@ -49,15 +46,17 @@ class Application(Gtk.ApplicationWindow):
         # creates stack containing the pages #
         self.weather_stack = Gtk.Stack()
         self.weather_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        self.weather_stack.add_css_class(css_class='flat')
 
         # window handle
         window_handle = Gtk.WindowHandle()
 
         # sets properties to main page #
         self.set_title(_('Forecast - loading'))
-        self.set_default_size(780, 420)
+        self.set_default_size(800, 480)
         self.set_titlebar(self.header_bar)
         self.set_child(child=window_handle)
+        self.set_css_classes(['main_window'])
 
         spinner = Gtk.Spinner.new()
         spinner.set_size_request(100, 100)
@@ -70,11 +69,11 @@ class Application(Gtk.ApplicationWindow):
         self.loading_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         self.loading_stack.add_child(self.spinner_box)
         self.loading_stack.add_child(self.weather_stack)
+        self.loading_stack.set_transition_duration(duration=250)
         self.stack_switcher = Gtk.StackSwitcher.new()
         self.stack_switcher.set_stack(stack=self.weather_stack)
-        
-        
-        # self.header_bar.set_title_widget(title_widget=self.stack_switcher)
+
+        self.header_bar.set_title_widget(title_widget=self.stack_switcher)
 
         window_handle.set_child(toast_overlay)
         toast_overlay.set_child(child=self.loading_stack)
@@ -97,9 +96,9 @@ class Application(Gtk.ApplicationWindow):
         internet = self.check_connection()
 
         # starts the weather app
-        if len(saved_locations) > 0 and internet:
+        if len(app_data.weather_locs_list()) > 0 and internet:
             self.start_application()
-        elif len(saved_locations) == 0:
+        elif len(app_data.weather_locs_list()) == 0:
             self.gotoFirstPage()
         elif internet == False:
             self.no_network_page()
@@ -117,9 +116,6 @@ class Application(Gtk.ApplicationWindow):
         wttr_thrd = Thread(target=main_page, args=(None, self, None, package))
         wttr_thrd.start()
 
-        # global_info_thrd = Thread(target=global_weather, args=(None, main_window))
-        # global_info_thrd.start()
-
     def add_city(button, active, main_window, name):
         if name is None:
             main_page(None, main_window, name, package)
@@ -130,7 +126,6 @@ class Application(Gtk.ApplicationWindow):
         no_ntwrk_status = Adw.StatusPage.new()
         no_ntwrk_status.set_hexpand(True)
         no_ntwrk_status.set_title(_("No internet connection"))
-        # no_ntwrk_status.set_description(description='No AppImage files are inside the library' +    str(error))
         no_ntwrk_status.set_icon_name('network-no-route-symbolic')
         application.set_title(_('Forecast - No Internet Connection'))
 
@@ -184,10 +179,10 @@ class Forecast(Adw.Application):
 
     def rm_loc(button, row, location, self):
         global saved_locations
-        active = settings.get_int('selected-city')-1
-        settings.set_int('selected-city', active)
+        active = constants.settings.get_int('selected-city')-1
+        constants.settings.set_int('selected-city', active)
         saved_locations.remove(location)
-        settings.set_strv('wthr-locs', saved_locations)
+        constants.settings.set_strv('wthr-locs', saved_locations)
         load_locations(True, active, application)
         self.locations.remove(row)
 
@@ -250,19 +245,9 @@ class search_page(Gtk.Box):
             self.subtitle.set_valign(Gtk.Align.START)
             self.subtitle.set_css_classes(['text_medium'])
 
-            # if package == 'flatpak':
-            #     self.title_image = Gtk.Image.new_from_resource('/app/share/icons/hicolor/scalable/apps/dev.salaniLeo.forecast.svg')
-            # elif package == None:
-            #     self.title_image = Gtk.Image.new_from_file('share/icons/hicolor/scalable/apps/dev.salaniLeo.forecast.svg')
-
-            # self.title_image.set_pixel_size(175)
-            # self.title_image.set_vexpand(True)
-            # self.title_image.set_valign(Gtk.Align.CENTER)
-
             self.title_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             self.title_box.append(self.title)
             self.title_box.append(self.subtitle)
-            # self.title_box.append(self.title_image)
             self.title_box.set_vexpand(True)
 
             # sets main grid properties and childs
@@ -329,7 +314,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         self.locations.set_title(_("Locations"))
         location_page.add(self.locations)
 
-        for loc in settings.get_strv('wthr-locs'):
+        for loc in app_data.weather_locs_list(): 
             coords_raw = loc[loc.find("(")+1:loc.find(")")]
 
             place_name = loc.split('-')
@@ -351,7 +336,6 @@ class ForecastPreferences(Adw.PreferencesWindow):
             self.locations.add(location)
 
             b.connect('clicked', Forecast.rm_loc, location, loc, self)
-
 
         # -- background radient -- #
         application_preferences = Adw.PreferencesGroup.new()
@@ -379,14 +363,14 @@ class ForecastPreferences(Adw.PreferencesWindow):
         enhance_contrast.add_suffix(widget=use_glassy_sw)
 
         # -- units -- #
-        units = settings.get_string('units')
-        if units == available_units[0]:
+        units = constants.raw_units
+        if units == constants.available_units[0]:
             units_list = 0
-        elif units == available_units[1]:
+        elif units == constants.available_units[1]:
             units_list = 1
 
         units_choice = Gtk.ComboBoxText()
-        for text in available_units:
+        for text in constants.available_units:
             units_choice.append_text(text=text)
         units_choice.set_active(index_=units_list)
         units_choice.connect('changed', self.change_unit)
@@ -407,7 +391,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         self.api_key_entry.set_valign(Gtk.Align.CENTER)
         self.api_key_entry.set_size_request(175, -1)
         self.api_key_entry.set_width_chars(35)
-        self.api_key_entry.set_text(settings.get_string("api-key-s"))
+        self.api_key_entry.set_text(constants.api_key)
         api_key_switch = self.opt_switch(self.api_key_entry, "api-key-b")
 
         api_key_row = Adw.ActionRow.new()
@@ -428,16 +412,15 @@ class ForecastPreferences(Adw.PreferencesWindow):
         appearance_preferences.add(child=use_glassy_look)
         appearance_preferences.add(child=enhance_contrast)
 
-
         forecast_opt_page.add(group=application_preferences)
         forecast_opt_page.add(group=appearance_preferences)
         forecast_opt_page.add(group=api_preferences)
         
     def set_default_location(self, row):
             active = f'{row.get_title()} ({row.get_subtitle()})'
-            locs = settings.get_strv('wthr-locs')
+            locs = app_data.weather_locs_list()
             activeNum = locs.index(active)
-            settings.set_int('selected-city', activeNum)
+            constants.settings.set_int('selected-city', activeNum)
             switch_city(activeNum)
             application.saved_loc_box.set_active(index_=activeNum)
 
@@ -451,12 +434,12 @@ class ForecastPreferences(Adw.PreferencesWindow):
     def opt_switch(self, entry, option):
         switch = Gtk.Switch()                                   #
         switch.set_valign(align=Gtk.Align.CENTER)               # creates switch
-        switch.set_active(settings.get_boolean(option))         #
+        switch.set_active(constants.settings.get_boolean(option))         #
         switch.connect('notify::active', self.saveOpt, option)  # connects to save option when clicked
 
         # -- if option is gradient bg connects switch to apply a gradient -- #
         if option == "gradient-bg":
-            switch.connect('state-set', style.apply_bg)
+            switch.connect('state-set', sw_set_bg, application, application.icons_list, application.pages_names)
 
         if option == 'use-glassy':
             switch.connect('state-set', style.apply_glassy)
@@ -470,18 +453,15 @@ class ForecastPreferences(Adw.PreferencesWindow):
                 entry.add_css_class(css_class='error') # adds red color to entry
                 entry.set_editable(False)              # sets entry to uneditable
             switch.connect('state-set', self.change_state, entry) # connects to changing state of entry based on switch state
-
         return switch
 
     # ---- saves whatever boolean is asked to be saved in gschema settings ---- #
     def saveOpt(self, switch, GParamBoolean, option):
-        global settings
-        settings.set_boolean(option, switch.get_state())
+        constants.settings.set_boolean(option, switch.get_state())
 
     # ---- saves whatever string is asked to be saved in gschema settings ---- #
     def saveString(self, entry, string, option):
-        global settings
-        settings.set_string(option, string)
+        constants.settings.set_string(option, string)
 
     # ---- sets given entry to red if a switch is turned off ---- #
     def change_state(opt, switch, active, entry):
@@ -508,11 +488,18 @@ def start(AppId, type):
 
     if package == 'flatpak':
         css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
-    elif package == 'appimage':
-        css_provider.load_from_path('data/style.css')
     elif package == None:
+        css_provider.load_from_path('data/style.css')
+    elif package == 'debian':
         css_provider.load_from_path(os.path.abspath(os.path.dirname(__file__))+'/data/style.css')
-    
+
+    if package == 'flatpak':
+        constants.icon_loc = '/app/share/icons/hicolor/scalable/status/'
+    elif package == 'debian':
+        constants.icon_loc = os.path.abspath(os.path.dirname(__file__))+'/data/status/'
+    elif package == None:
+        constants.icon_loc = '/data/status/'
+
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
     app = Forecast(application_id=AppId)

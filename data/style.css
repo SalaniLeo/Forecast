@@ -50,11 +50,6 @@
     background-color: #424242;
 }
 
-.icon_light{
-    filter: brightness(0) invert(1) saturate(5500000);
-}
-
-
 /* ------------- day --------------- */
 
 .clear_sky, .few_clouds {
