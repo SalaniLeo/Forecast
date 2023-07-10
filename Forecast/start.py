@@ -14,6 +14,9 @@ if 'IS_APP_APPIMAGE' in os.environ:
     appimage = True
     app_type = 'appimage'
 
+if 'IS_DEBIAN' in os.environ:
+    appimage = True
+    app_type = 'debian'
 
 class main():
     app = start(AppId, app_type)

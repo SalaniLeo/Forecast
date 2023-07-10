@@ -355,12 +355,12 @@ class ForecastPreferences(Adw.PreferencesWindow):
         use_glassy_look.set_title(title=_('Use glassy background look'))
         use_glassy_look.set_subtitle(_("Applies a glass-like background to all elements"))
         use_glassy_look.add_suffix(widget=use_glassy_sw)
-        use_glassy_sw = self.opt_switch(None, "enhance-contrast")
 
+        enhance_contrast_sw = self.opt_switch(None, "enhance-contrast")
         enhance_contrast = Adw.ActionRow.new()
         enhance_contrast.set_title(title=_('Use dark text on dark background'))
         enhance_contrast.set_subtitle(_("Chenges the text color from light to dark on light backgrounds"))
-        enhance_contrast.add_suffix(widget=use_glassy_sw)
+        enhance_contrast.add_suffix(widget=enhance_contrast_sw)
 
         # -- units -- #
         units = constants.raw_units
@@ -409,7 +409,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         api_preferences.add(child=personal_api_key_row)
 
         appearance_preferences.add(child=use_gradient_bg_row)
-        appearance_preferences.add(child=use_glassy_look)
+        # appearance_preferences.add(child=use_glassy_look)
         appearance_preferences.add(child=enhance_contrast)
 
         forecast_opt_page.add(group=application_preferences)
@@ -441,8 +441,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
         if option == "gradient-bg":
             switch.connect('state-set', sw_set_bg, application, application.icons_list, application.pages_names)
 
-        if option == 'use-glassy':
-            switch.connect('state-set', style.apply_glassy)
+        # if option == 'use-glassy':
+        #     switch.connect('state-set', style.apply_glassy)
 
         if option == 'enhance-contrast':
             switch.connect('state-set', style.apply_enhanced_text)
@@ -498,7 +498,7 @@ def start(AppId, type):
     elif package == 'debian':
         constants.icon_loc = os.path.abspath(os.path.dirname(__file__))+'/data/status/'
     elif package == None:
-        constants.icon_loc = '/data/status/'
+        constants.icon_loc = 'data/status/'
 
     Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 

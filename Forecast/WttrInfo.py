@@ -44,6 +44,7 @@ class main_page(Gtk.Box):
         process_locations(name)
         meteo = get_weather()
         pollution = get_pollution()
+        forecast = get_forecast() # calls api to get forecast
         process_forecast(False)
         main_window.icons_list.append(meteo['weather'][0]['icon'])
 
@@ -156,8 +157,8 @@ class main_page(Gtk.Box):
 
         if app_data.use_dark_text() and app_data.use_gradient_bg():
             style.apply_enhanced_text(None, True)
-        if app_data.use_glassy_elements():
-            style.apply_glassy(None, True)
+        # if app_data.use_glassy_elements():
+        #     style.apply_glassy(None, True)
         if app_data.weather_locs_list() is not None:
             window.loading_stack.set_visible_child(window.weather_stack)
 
@@ -180,14 +181,14 @@ def reload_weather(lati, longi, change_units):
         if lati == None:
             if change_units:
                 meteo = get_weather() # requests newer data to apis
-                pollution = get_pollution()
-                process_forecast(True)
+                forecast = get_forecast() # calls api to get forecast
             else:
                 if current_time - last_refresh >= 60:
                     last_refresh = current_time
                     meteo = get_weather() # requests newer data to apis
                     pollution = get_pollution()
-                    process_forecast(True)
+                    forecast = get_forecast() # calls api to get forecast
+                    accurate_forecast.refresh(meteo, forecast)
                 else:
                     wait_toast = Adw.Toast.new(_('You must wait at least one minute to refresh'))
                     main_window.toast_overlay.add_toast(wait_toast)
@@ -197,10 +198,10 @@ def reload_weather(lati, longi, change_units):
             lon = longi #
 
             meteo = get_weather() # requests new city weather
-            pollution = get_pollution()
-            process_forecast(True)
+            forecast = get_forecast() # calls api to get forecast
+            accurate_forecast.refresh(meteo, forecast)
 
-        if app_data.use_glassy_elements() and app_data.use_gradient_bg():
+        if app_data.use_dark_text() and app_data.use_gradient_bg():
             hours = int(convert_time(meteo["timezone"])[:2])
             if hours >= 19 or hours < 6:
                 style.apply_enhanced_text(None, False)
@@ -209,6 +210,7 @@ def reload_weather(lati, longi, change_units):
 
         get_info_box(True) # updates labels to new city weather
         fill_title(main_window, meteo) # updates icon to new city weather
+        process_forecast(True)
 
         main_window.loading_stack.set_visible_child(main_window.weather_stack)
         main_window.weather_stack.connect("notify::visible-child", change_bg, main_window, main_window.icons_list, main_window.pages_names)
@@ -284,14 +286,15 @@ def get_info_box(refresh):
     sys_info_lbl = advanced_infos[6]
     base_pllt_txt_lbl = advanced_infos[7]
     base_pllt_info_lbl = advanced_infos[8]
-
+    pllt_status_lbl = advanced_infos[9]
+    pllt_scale_lbl = advanced_infos[10]
 
     base_box = Gtk.Box(spacing=38)
     base_box.set_halign(Gtk.Align.CENTER)
 
     conditions_boxes = []
 
-    if not refresh:    
+    if not refresh:
         base_box.append(base_text_label)
         base_box.append(base_info_label)
         conditions_boxes.append(base_box)
@@ -328,7 +331,8 @@ def get_info_box(refresh):
         _("Feels like") + '\n' +
         _("Wind") + '\n' +
         _("Pressure") + '\n' +
-        _("Humidity") + '\n\n' +
+        _("Humidity") + '\n' +
+        _("Pollution") + '\n\n' +
         _("Last update")
     )
 
@@ -336,7 +340,8 @@ def get_info_box(refresh):
         feels_like + '\n' +
         wind_speed + '\n' +
         pressure + '\n' +
-        humidity + '\n\n' +
+        humidity + '\n' +
+        pollution_level + '\n\n' +
         Last_update
     )
 
@@ -370,26 +375,30 @@ def get_info_box(refresh):
         Timezone
     )
 
+    base_pllt_txt_lbl.set_markup(
+        _("Pollution level")
+    )
+
+    base_pllt_info_lbl.set_markup(
+        pollution_level
+    )
+
     pollution_label.set_markup(
         _("co") + '\n' +
-        _("no") + '\n' +
         _("no2") + '\n' +
         _("o3") + '\n' +
         _("so2") + '\n' +
         _("pm 2.5") + '\n' +
-        _("pm 10") + '\n' +
-        _("nh3") + '\n'
+        _("pm 10") + '\n'
     )
 
     pollution_text_lbl.set_markup(
         pollution_co + '\n' +
-        pollution_no + '\n' +
         pollution_no2 + '\n' +
         pollution_o3 + '\n' +
         pollution_so2 + '\n' +
         pollution_pm2_5 + '\n' +
-        pollution_pm10 + '\n' +
-        pollution_nh3 + '\n'
+        pollution_pm10 + '\n'
     )
 
     return conditions_boxes
@@ -399,8 +408,6 @@ def process_forecast(refresh):
     global forecast
     global hourly_forecast_box
     global daily_forecast_box
-
-    forecast = get_forecast() # calls api to get forecast
 
     daily_forecast_box.set_halign(Gtk.Align.START)
 
@@ -615,14 +622,12 @@ class style:
                 app.set_css_classes(['light'])
                 main_window.saved_loc_box.set_css_classes(['light'])
 
-    def apply_glassy(switch, state):
-        if state:
-            situa_box.set_css_classes(['glassy'])
-            conditions_box.set_css_classes(['glassy'])
-            daily_forecast_box.set_css_classes(['glassy'])
-            hourly_forecast_box.set_css_classes(['glassy'])
-        else:
-            situa_box.remove_css_class('glassy')
-            conditions_box.remove_css_class('glassy')
-            daily_forecast_box.remove_css_class('glassy')
-            hourly_forecast_box.remove_css_class('glassy')
+    # def apply_glassy(switch, state):
+    #     if state:
+    #         situa_box.set_css_classes(['glassy'])
+    #         daily_forecast_box.set_css_classes(['glassy'])
+    #         hourly_forecast_box.set_css_classes(['glassy'])
+    #     else:
+    #         situa_box.remove_css_class('glassy')
+    #         daily_forecast_box.remove_css_class('glassy')
+    #         hourly_forecast_box.remove_css_class('glassy')

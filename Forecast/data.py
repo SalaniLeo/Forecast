@@ -22,6 +22,12 @@ class constants():
     today        = datetime.now()
     api_key      = settings.get_string('api-key-s')
     available_units = [metric_system, imperial_system]
+    #pollution index
+    air_good = _('Good')
+    air_fair = _('Fair')
+    air_moderate = _('Moderate')
+    air_poor = _('Poor')
+    air_very_poor = _('Very Poor')
 
     def wind_dir(angle):
         directions = [
@@ -42,8 +48,8 @@ class app_data():
     def use_gradient_bg():
         return constants.settings.get_boolean("gradient-bg")
     
-    def use_glassy_elements():
-        return constants.settings.get_boolean('use-glassy')
+    # def use_glassy_elements():
+    #     return constants.settings.get_boolean('use-glassy')
     
     def weather_locs_list():
         return constants.settings.get_strv('wthr-locs')
@@ -56,7 +62,7 @@ class app_data():
         constants.degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]
         constants.speed_unit   = raw_units[raw_units.find("-")+1:]
         constants.units = raw_units.split(' ')[0].lower()
-        
+
 class elements():
     def dynamic_stack():
         stack = Gtk.Stack()
@@ -103,19 +109,23 @@ class elements():
 
         cndts_info_label = Gtk.Label()
         cndts_txt_label = Gtk.Label()
-        cndts_box = elements.create_info_box(_('Conditions:'), cndts_txt_label, cndts_info_label)
+        cndts_box = elements.create_info_box(_('Conditions'), cndts_txt_label, cndts_info_label)
 
         base_pllt_txt_lbl = Gtk.Label()
         base_pllt_info_lbl = Gtk.Label()
-        pllt_box = elements.create_info_box(_('Pollution:'), base_pllt_txt_lbl, base_pllt_info_lbl)
+        base_pllt_box = elements.create_info_box(_('Pollution'), base_pllt_txt_lbl, base_pllt_info_lbl)
 
         pllt_info_lbl = Gtk.Label()
         pllt_txt_lbl = Gtk.Label()
-        pllt_box = elements.create_info_box(_('Pollution:'), pllt_txt_lbl, pllt_info_lbl)
+        pllt_box = elements.create_info_box((''), pllt_txt_lbl, pllt_info_lbl)
+
+        pllt_status_lbl = Gtk.Label()
+        pllt_scale_lbl = Gtk.Label()
+        pllt_status_box = elements.create_info_box('', pllt_status_lbl, pllt_scale_lbl)
 
         sys_info_lbl = Gtk.Label()
         sys_txt_lbl = Gtk.Label()
-        sys_box = elements.create_info_box(_('System:'), sys_txt_lbl, sys_info_lbl)
+        sys_box = elements.create_info_box(_('Location info'), sys_txt_lbl, sys_info_lbl)
 
         pages = [stack, second_box, first_box]
 
@@ -126,10 +136,14 @@ class elements():
 
         stack.add_child(second_box)
         stack.add_child(first_box)
-        stack.set_halign(Gtk.Align.START)
+        stack.set_halign(Gtk.Align.CENTER)
+
+        inn_right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        inn_right_box.append(sys_box)
+        inn_right_box.append(base_pllt_box)
 
         second_box.append(cndts_box)
-        second_box.append(sys_box)
+        second_box.append(inn_right_box)
         second_box.set_valign(Gtk.Align.CENTER)
         first_box.append(pllt_box)
 
@@ -141,14 +155,16 @@ class elements():
         name.append(main_box)
         name.append(cndts_txt_label)
         name.append(cndts_info_label)
-        name.append(pllt_info_lbl)
         name.append(pllt_txt_lbl)
+        name.append(pllt_info_lbl)
         name.append(sys_txt_lbl)
         name.append(sys_info_lbl)
-        name.append(base_pllt_info_lbl)
         name.append(base_pllt_txt_lbl)
+        name.append(base_pllt_info_lbl)
+        name.append(pllt_status_lbl)
+        name.append(pllt_scale_lbl)
         return name
-    
+
     def create_info_box(title, txt_lbl, info_lbl):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_name(title)
@@ -194,4 +210,5 @@ def change_bg(stack, gparamstring, main_window, icons, names):
         app_style.apply_bg(main_window, icon, True)
 
 def sw_set_bg(switch, state, main_window, icons, names):
+    print(icons[0])
     app_style.apply_bg(main_window, icons[0], False)
