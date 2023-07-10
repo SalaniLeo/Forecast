@@ -47,7 +47,16 @@
     0px 6px 32px rgba(0,0,0,0.1);
     border-radius:13px;
     border : 1px solid rgba(100, 100, 100,.3);
-    background-color: #424242;
+    background-color: #282828;
+    transition-duration: 0.75s;
+}
+
+.info_sw{
+
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+
 }
 
 /* ------------- day --------------- */
@@ -78,10 +87,10 @@
 
 } .snow{
 
-    background: linear-gradient(127deg, alpha(rgb(126, 126, 126), 1), alpha(rgba(92,92,92,1), 1) 100%),
-    linear-gradient(217deg, alpha(rgb(126, 126, 126), 1), alpha(rgba(92,92,92,1), 1) 100%),
-    linear-gradient(336deg, alpha(rgb(126, 126, 126), 1), alpha(rgba(92,92,92,1), 1) 100%);
-    
+    background: linear-gradient(127deg, alpha(rgb(208, 209, 217), 1), alpha(rgb(134, 137, 154), 0) 100%),
+    linear-gradient(217deg, alpha(rgb(208, 209, 217), 1), alpha(rgb(89, 89, 89), 1) 100%),
+    linear-gradient(336deg, alpha(rgb(103, 103, 103), 1), alpha(rgb(118, 118, 118), 1) 100%);
+
 } .fog{
 
     background: linear-gradient(127deg, alpha(rgb(126, 126, 126), 1), alpha(rgb(126, 126, 126), 1) 100%),
@@ -94,16 +103,16 @@
 
 .clear_sky_night, .few_clouds_night{
 
-    background: linear-gradient(127deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(3, 0, 41), 0) 100%),
+    background: linear-gradient(127deg, alpha(rgb(0, 20, 33), 1), alpha(rgb(3, 0, 41), 0) 100%),
     linear-gradient(217deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(3, 0, 41), 1) 100%),
     linear-gradient(336deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(3, 0, 41), 1) 100%);
 
 
 } .overcast_night, .showers_scattered_night {
 
-    background: linear-gradient(127deg, alpha(rgb(57, 57, 57), 1), alpha(rgb(3, 0, 41), 0) 100%),
-    linear-gradient(217deg, alpha(rgb(31, 31, 31), 1), alpha(rgb(3, 0, 41), 1) 100%),
-    linear-gradient(336deg, alpha(rgb(31, 31, 31), 1), alpha(rgb(3, 0, 41), 1) 100%);
+    background: linear-gradient(127deg, alpha(rgb(0, 34, 45), 1), alpha(rgb(3, 0, 41), 0) 100%),
+    linear-gradient(217deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(3, 0, 41), 1) 100%),
+    linear-gradient(336deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(3, 0, 41), 1) 100%);
 
 } .showers_large_night {
 
@@ -119,13 +128,13 @@
 
 } .snow_night{
 
-    background: linear-gradient(127deg, alpha(rgba(50,50,50,1), 1), alpha(rgba(98,98,98,1), 1) 100%),
-    linear-gradient(217deg, alpha(rgba(50,50,50,1), 1), alpha(rgba(98,98,98,1), 1) 100%),
-    linear-gradient(336deg, alpha(rgba(50,50,50,1), 1), alpha(rgba(98,98,98,1), 1) 100%);
+    background: linear-gradient(127deg, alpha(rgb(208, 209, 217), 1), alpha(rgb(208, 209, 217), 0) 100%),
+    linear-gradient(217deg, alpha(rgb(208, 209, 217), 1), alpha(rgb(211, 238, 255), 1) 100%),
+    linear-gradient(336deg, alpha(rgb(208, 209, 217), 1), alpha(rgb(181, 187, 190), 1) 100%);
 
 } .fog_night{
 
-    background: linear-gradient(127deg, alpha(rgb(28, 27, 38), 1), alpha(rgb(50,50,50), 0) 100%),
-    linear-gradient(217deg, alpha(rgb(50,50,50), 1), alpha(rgb(28, 27, 38), 1) 100%);
-
+    background: linear-gradient(127deg, alpha(rgb(0, 20, 33), 1), alpha(rgb(3, 0, 41), 0) 100%),
+    linear-gradient(217deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(47, 47, 47), 1) 100%),
+    linear-gradient(336deg, alpha(rgb(0, 15, 20), 1), alpha(rgb(3, 0, 41), 1) 100%);
 } 
