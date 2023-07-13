@@ -1,0 +1,667 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-20 13:20+0200\n"
+"PO-Revision-Date: 2023-07-13 12:02-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:4 Forecast/App.py:197
+#: Forecast/App.py:278 Forecast/WttrInfo.py:169
+msgid "Forecast"
+msgstr "Previsão do tempo"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:5
+msgid "Weather app for GNOME"
+msgstr "Aplicativo de clima para GNOME"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:7
+msgid "Alternative weather app with custom css styling and more"
+msgstr ""
+"Aplicativo de clima alternativo com estilo css personalizado e muito mais"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:19
+msgid "first screenshot"
+msgstr "primeira captura de tela"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:23
+msgid "second screenshot"
+msgstr "segunda captura de tela"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:27
+msgid "third screenshot"
+msgstr "terceira captura de tela"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:31
+msgid "fourth screenshot"
+msgstr "quarta captura de tela"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:35
+msgid "fifth screenshot"
+msgstr "quinta captura de tela"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:42
+msgid "Version 0.2.2"
+msgstr "Versão 0.2.2"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:43
+#: data/dev.salaniLeo.forecast.appdata.xml.in:67
+#: data/dev.salaniLeo.forecast.appdata.xml.in:84
+msgid "Updates:"
+msgstr "Atualizações:"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:45
+msgid "Improved design, see below"
+msgstr "Design melhorado, veja abaixo"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:46
+msgid "Added locations page in preferences"
+msgstr "Página de locais adicionada às preferências"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:47
+msgid "Now you can delete locations"
+msgstr "Agora você pode deletar locais"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:48
+msgid "Added no network status page"
+msgstr "Página de status de rede não adicionada"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:49
+msgid "Added reload shortcut"
+msgstr "Atalho de recarregamento adicionado"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:50
+msgid "Fixed some bugs"
+msgstr "Bugs corrigidos"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:52
+#: data/dev.salaniLeo.forecast.appdata.xml.in:72
+#: data/dev.salaniLeo.forecast.appdata.xml.in:91
+msgid "Design changes:"
+msgstr "Mudanças de design:"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:54
+msgid "Improved background gradient for all conditions during night"
+msgstr "Gradiente de fundo melhorado para todas as condições noturnas"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:55
+msgid "Modified first time open window"
+msgstr "Primeiro acesso modificado"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:56
+msgid "Added smooth transitioning between cities"
+msgstr "Adicionada transição suave entre cidades"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:57
+msgid "Added smooth transitioning when reloading"
+msgstr "Adicionada transição suave ao recarregar"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:58
+msgid "Added loading page while getting api response"
+msgstr "Adicionada página de carregamento durante resposta de api"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:59
+msgid "Added probability of rain in 3-hours forecast"
+msgstr "Adicionada probabilidade de chuva em 3 horas"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:66
+msgid "Version 0.2.1"
+msgstr "Versão 0.2.1"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:69
+#: data/dev.salaniLeo.forecast.appdata.xml.in:86
+msgid "Improved design"
+msgstr "Design melhorado"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:70
+msgid "Custom api-key option is now more legible"
+msgstr "Opção de chave de api customizada agora é mais legível"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:74
+msgid "Added dark text on light backgrounds"
+msgstr "Texto escuro adicionado a fundos mais claros"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:75
+msgid "Added option to use glass-like background for all elements"
+msgstr "Opção de usar fundos transparentes para todos os elementos"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:76
+msgid "Readded local time for selected city"
+msgstr "Hora local readicionada para cidade selecionada"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:83
+msgid "Version 0.2"
+msgstr "Versão 0.2"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:87
+msgid "Searching for cities is a lot quicker"
+msgstr "Busca por cidades se tornou mais rápida"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:88
+msgid "Added roadmap on github"
+msgstr "Roadmap adicionado no github"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:89
+msgid "Added one minute time pause for refreshing"
+msgstr "Adicionado um minuto de pausa para recarregar"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:93
+msgid "Added 5 days forecast"
+msgstr "Adicionada previsão de 5 dias"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:94
+msgid "Modified current data label"
+msgstr "Etiqueta de dados do momento foi modificada"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:95
+msgid "Added glass effect to 3 hours forecast and wind"
+msgstr "Adicionado efeito transparente para previsão de 3 horas e ventanias"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:102
+msgid "First release"
+msgstr "Primeira versão"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:7
+msgid "Stores the api key"
+msgstr "Armazena a chave api"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:8
+msgid "stores the api key"
+msgstr "armazena a chave api"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:13
+msgid "If false uses the default api key"
+msgstr "Se o valor é falso, usa a chave api padrão"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:14
+msgid "When this is true the app know to use the custom api key"
+msgstr ""
+"Quando isto é verdadeiro, o app sabe como utilizar a chave api customizada"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:19
+msgid "Uses a weather based gradient as background"
+msgstr "Usa um gradiente baseado na previsão como fundo"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:20
+msgid "Use gradient for background"
+msgstr "Usa gradiente como fundo"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:25
+msgid "List of weather places"
+msgstr "Lista de climas locais"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:26
+msgid "Stores all user selected location"
+msgstr "Armazena locais selecionados pelo usuário"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:31 Forecast/App.py:395
+msgid "Units"
+msgstr "Unidades"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:32
+msgid "Chooses what unit of measure to use"
+msgstr "Escolhe qual unidade de medida se usa"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:37
+msgid "Changes the look of some elements"
+msgstr "Muda o visual de alguns elementos"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:38
+msgid "Sets whether to show some elements like cards"
+msgstr "Configura se elementos serão mostrados como cards"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:43
+msgid "Changes the color of the text to dark"
+msgstr "Muda a cor do texto para escura"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:44
+msgid "Changes the color of the text if the background is too light"
+msgstr "Muda a cor do texto se o fundo for muito claro"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:49
+msgid "Default weather city"
+msgstr "Cidade padrão"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:50
+msgid "Changes the default city for the weather"
+msgstr "Muda a cidade padrão para previsão de clima"
+
+#: Forecast/App.py:41 Forecast/App.py:83
+msgid "Refresh"
+msgstr "Recarregar"
+
+#: Forecast/App.py:56
+msgid "Forecast - loading"
+msgstr "Previsão - carregando"
+
+#: Forecast/App.py:84 Forecast/App.py:312 Forecast/App.py:323
+msgid "Preferences"
+msgstr "Preferências"
+
+#: Forecast/App.py:85
+msgid "About Forecast"
+msgstr "Sobre Previsão do tempo"
+
+#: Forecast/App.py:131 Forecast/App.py:181
+msgid "No internet connection"
+msgstr "Sem conexão de rede"
+
+#: Forecast/App.py:134
+msgid "Forecast - No Internet Connection"
+msgstr "Previsão do tempo - Sem conexão de rede"
+
+#: Forecast/App.py:200
+msgid "Weather app for Linux"
+msgstr "App de clima para o Linux"
+
+#. TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+#: Forecast/App.py:205
+msgid "translator-credits"
+msgstr "Créditos de tradutor"
+
+#: Forecast/App.py:224 Forecast/App.py:247
+msgid "Search a city"
+msgstr "Selecione uma cidade"
+
+#: Forecast/App.py:242
+msgid "Welcome to Forecast!\n"
+msgstr "Bem-vindo ao Previsão de tempo\n"
+
+#: Forecast/App.py:318 Forecast/App.py:328
+msgid "Locations"
+msgstr "Locais"
+
+#: Forecast/App.py:357
+msgid "App Preferences"
+msgstr "Preferências do app"
+
+#: Forecast/App.py:359
+msgid "Appearance Preferences"
+msgstr "Preferências do visual"
+
+#: Forecast/App.py:363
+msgid "Use Gradient as Background"
+msgstr "Usar gradiente como fundo"
+
+#: Forecast/App.py:364
+msgid ""
+"Applies a gradient based on current weather and time. Requires restart to "
+"disable"
+msgstr ""
+"Aplica efeito gradiente baseado no clima e tempo. Requer reinício para "
+"ser desabilitado"
+
+#: Forecast/App.py:370
+msgid "Use glassy background look"
+msgstr "Usa fundo semi-transparente"
+
+#: Forecast/App.py:371
+msgid "Applies a glass-like background to all elements"
+msgstr "Aplica fundo semitransparente a todos os elementos"
+
+#: Forecast/App.py:376
+msgid "Use dark text on dark background"
+msgstr "Usa texto escuro em fundo escuro"
+
+#: Forecast/App.py:377
+msgid "Chenges the text color from light to dark on light backgrounds"
+msgstr "Muda a cor do texto de clara pra escura em fundos claros"
+
+#: Forecast/App.py:396
+msgid "Select which unit of measurement to use"
+msgstr "Seleciona qual unidade de medida usar"
+
+#: Forecast/App.py:401
+msgid "API Preferences"
+msgstr "Preferências de API"
+
+#: Forecast/App.py:413
+msgid "Use Personal API Key"
+msgstr "Usar chave de API pessoal"
+
+#: Forecast/App.py:414
+msgid "Choose whether to use default API key or personal key"
+msgstr "Escolha uso de chave API padrão ou chave pessoal"
+
+#: Forecast/App.py:418
+msgid "Personal API Key"
+msgstr "Chave de API pessoal"
+
+#: Forecast/WttrInfo.py:54
+msgid "Weather"
+msgstr "Clima"
+
+#: Forecast/WttrInfo.py:154
+msgid "Today"
+msgstr "Hoje"
+
+#: Forecast/WttrInfo.py:232
+msgid "You must wait at least one minute to refresh"
+msgstr "Você precisa esperar pelo menos um minuto pra recarregar"
+
+#: Forecast/WttrInfo.py:291
+msgid "Local time: "
+msgstr "Hora local:"
+
+#: Forecast/WttrInfo.py:303
+msgid "Last update:"
+msgstr "Última atualização:"
+
+#: Forecast/WttrInfo.py:316
+msgid "N"
+msgstr "N"
+
+#: Forecast/WttrInfo.py:316
+msgid "NNE"
+msgstr "NNE"
+
+#: Forecast/WttrInfo.py:316
+msgid "NE"
+msgstr "NE"
+
+#: Forecast/WttrInfo.py:316
+msgid "ENE"
+msgstr "ENE"
+
+#: Forecast/WttrInfo.py:316
+msgid "E"
+msgstr "E"
+
+#: Forecast/WttrInfo.py:316
+msgid "ESE"
+msgstr "ESE"
+
+#: Forecast/WttrInfo.py:316
+msgid "SE"
+msgstr "SE"
+
+#: Forecast/WttrInfo.py:316
+msgid "SSE"
+msgstr "SSE"
+
+#: Forecast/WttrInfo.py:317
+msgid "S"
+msgstr "S"
+
+#: Forecast/WttrInfo.py:317
+msgid "SSW"
+msgstr "SSW"
+
+#: Forecast/WttrInfo.py:317
+msgid "SW"
+msgstr "SW"
+
+#: Forecast/WttrInfo.py:317
+msgid "WSW"
+msgstr "WSW"
+
+#: Forecast/WttrInfo.py:317
+msgid "W"
+msgstr "W"
+
+#: Forecast/WttrInfo.py:317
+msgid "WNW"
+msgstr "WNW"
+
+#: Forecast/WttrInfo.py:317
+msgid "NW"
+msgstr "NW"
+
+#: Forecast/WttrInfo.py:317
+msgid "NNW"
+msgstr "NNW"
+
+#: Forecast/WttrInfo.py:349
+msgid "Feels like"
+msgstr "Sensação de"
+
+#: Forecast/WttrInfo.py:350
+msgid "Wind"
+msgstr "Vento"
+
+#: Forecast/WttrInfo.py:351
+msgid "Gusts"
+msgstr "Radajas"
+
+#: Forecast/WttrInfo.py:352
+msgid "Pressure"
+msgstr "Pressão"
+
+#: Forecast/WttrInfo.py:353
+msgid "Humidity"
+msgstr "Umidade"
+
+#: Forecast/WttrInfo.py:354
+msgid "Visibility"
+msgstr "Visibilidade"
+
+#: Forecast/WttrInfo.py:355
+msgid "Sunrise"
+msgstr "Nascer do sol"
+
+#: Forecast/WttrInfo.py:356
+msgid "Sunset"
+msgstr "Pôr do sol"
+
+#: Forecast/WttrInfo.py:523
+msgid "The selected city has already been added"
+msgstr "A cidade selecionada já foi adicionada"
+
+#: Forecast/WttrInfo.py:741
+msgid "Thunderstorm with Light Rain"
+msgstr "Tempestade com chuvas leves"
+
+#: Forecast/WttrInfo.py:742
+msgid "Thunderstorm with Rain"
+msgstr "Tempestade com chuvas"
+
+#: Forecast/WttrInfo.py:743
+msgid "Thunderstorm with Heavy Rain"
+msgstr "Tempestade com chuvas pesadas"
+
+#: Forecast/WttrInfo.py:744
+msgid "Light Thunderstorm"
+msgstr "Tempestade leve"
+
+#: Forecast/WttrInfo.py:745
+msgid "Thunderstorm"
+msgstr "Tempestade"
+
+#: Forecast/WttrInfo.py:746
+msgid "Heavy Thunderstorm"
+msgstr "Tempestade pesada"
+
+#: Forecast/WttrInfo.py:747
+msgid "Ragged Thunderstorm"
+msgstr "Tempestade irregular"
+
+#: Forecast/WttrInfo.py:748
+msgid "Light Drizzle"
+msgstr "Leve garoa"
+
+#: Forecast/WttrInfo.py:749
+msgid "Drizzle"
+msgstr "Garoa"
+
+#: Forecast/WttrInfo.py:750
+msgid "Heavy Drizzle"
+msgstr "Garoa pesada"
+
+#: Forecast/WttrInfo.py:751
+msgid "Light Drizzle Rain"
+msgstr "Leve chuvisco"
+
+#: Forecast/WttrInfo.py:752
+msgid "Drizzle Rain"
+msgstr "Chuvisco"
+
+#: Forecast/WttrInfo.py:753
+msgid "Heavy Drizzle Rain"
+msgstr "Chuvisco pesado"
+
+#: Forecast/WttrInfo.py:754
+msgid "Shower Rain and Drizzle"
+msgstr "Chuva e garoa"
+
+#: Forecast/WttrInfo.py:755
+msgid "Heavy Rain and Drizzle"
+msgstr "Chuva e garoa pesados"
+
+#: Forecast/WttrInfo.py:756
+msgid "Shower Drizzle"
+msgstr "Garoa leve"
+
+#: Forecast/WttrInfo.py:757
+msgid "Light Rain"
+msgstr "Chuva leve"
+
+#: Forecast/WttrInfo.py:758
+msgid "Moderate Rain"
+msgstr "Chuva moderada"
+
+#: Forecast/WttrInfo.py:759
+msgid "Heavy Rain"
+msgstr "Chuva pesada"
+
+#: Forecast/WttrInfo.py:760
+msgid "Very Heavy Rain"
+msgstr "Chuva muito pesada"
+
+#: Forecast/WttrInfo.py:761
+msgid "Extreme Rain"
+msgstr "Chuva extrema"
+
+#: Forecast/WttrInfo.py:762
+msgid "Freezing Rain"
+msgstr "Chuva congelante"
+
+#: Forecast/WttrInfo.py:763
+msgid "Light Shower Rain"
+msgstr "Chuva leve"
+
+#: Forecast/WttrInfo.py:764
+msgid "Shower Rain"
+msgstr "Chuva leve"
+
+#: Forecast/WttrInfo.py:765
+msgid "Heavy Shower Rain"
+msgstr "Pesada chuva"
+
+#: Forecast/WttrInfo.py:766
+msgid "Ragged Shower Rain"
+msgstr "Chuvisco irregular"
+
+#: Forecast/WttrInfo.py:767
+msgid "Light Snow"
+msgstr "Pouca neve"
+
+#: Forecast/WttrInfo.py:768
+msgid "Snow"
+msgstr "Neve"
+
+#: Forecast/WttrInfo.py:769
+msgid "Heavy Snow"
+msgstr "Neve pesada"
+
+#: Forecast/WttrInfo.py:770
+msgid "Sleet"
+msgstr "Granizo"
+
+#: Forecast/WttrInfo.py:771
+msgid "Light Shower Sleet"
+msgstr "Granizo com chuvisco leve"
+
+#: Forecast/WttrInfo.py:772
+msgid "Shower Sleet"
+msgstr "Granizo com chuvisco"
+
+#: Forecast/WttrInfo.py:773
+msgid "Light Rain and Snow"
+msgstr "Chuva leve e neve"
+
+#: Forecast/WttrInfo.py:774
+msgid "Rain and Snow"
+msgstr "Chuva e neve"
+
+#: Forecast/WttrInfo.py:775
+msgid "Light Shower Snow"
+msgstr "Chuva de neve leve"
+
+#: Forecast/WttrInfo.py:776
+msgid "Shower Snow"
+msgstr "Chuva de neve"
+
+#: Forecast/WttrInfo.py:777
+msgid "Heavy Shower Snow"
+msgstr "Chuva de neve pesada"
+
+#: Forecast/WttrInfo.py:778
+msgid "Mist"
+msgstr "Névoa"
+
+#: Forecast/WttrInfo.py:779
+msgid "Smoke"
+msgstr "Fumaça"
+
+#: Forecast/WttrInfo.py:780
+msgid "Haze"
+msgstr "Neblina"
+
+#: Forecast/WttrInfo.py:781
+msgid "Sand/Dust Whirls"
+msgstr "Turbilhões de areia/poeira"
+
+#: Forecast/WttrInfo.py:782
+msgid "Fog"
+msgstr "Nevoeiro"
+
+#: Forecast/WttrInfo.py:783
+msgid "Sand"
+msgstr "Areia"
+
+#: Forecast/WttrInfo.py:784
+msgid "Dust"
+msgstr "Poeira"
+
+#: Forecast/WttrInfo.py:785
+msgid "Volcanic Ash"
+msgstr "Cinzas vulcânicas"
+
+#: Forecast/WttrInfo.py:786
+msgid "Squalls"
+msgstr "Rajadas"
+
+#: Forecast/WttrInfo.py:787
+msgid "Tornado"
+msgstr "Tornados"
+
+#: Forecast/WttrInfo.py:788
+msgid "Clear Sky"
+msgstr "Céus limpos"
+
+#: Forecast/WttrInfo.py:789
+msgid "Few Clouds"
+msgstr "Poucas nuves"
+
+#: Forecast/WttrInfo.py:790
+msgid "Scattered Clouds"
+msgstr "Nuvens dispersas"
+
+#: Forecast/WttrInfo.py:791
+msgid "Broken Clouds"
+msgstr "Nuvens partidas"
+
+#: Forecast/WttrInfo.py:792
+msgid "Overcast Clouds"
+msgstr "Encoberto de nuvens"
