@@ -550,7 +550,7 @@ msgstr "Очень сильный дождь"
 
 #: Forecast/WttrInfo.py:761
 msgid "Extreme Rain"
-msgstr "Очень-очень сильный дождь"
+msgstr "Очень сильный дождь"
 
 #: Forecast/WttrInfo.py:762
 msgid "Freezing Rain"
