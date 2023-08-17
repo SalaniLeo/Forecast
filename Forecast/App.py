@@ -480,13 +480,14 @@ class ForecastPreferences(Adw.PreferencesWindow):
         if self.locations_changed:
             Forecast.refresh()
 
-def start(AppId, type):
+def start(AppId, package):
     global package
-    package = type
 
     css_provider = Gtk.CssProvider()
 
     if package == 'flatpak':
+        css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
+    elif package == 'snap':
         css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
     elif package == None:
         css_provider.load_from_path('data/style.css')
@@ -495,6 +496,8 @@ def start(AppId, type):
 
     if package == 'flatpak':
         constants.icon_loc = '/app/share/icons/hicolor/scalable/status/'
+    elif package == 'snap':
+        constants.icon_loc = os.path.join(os.environ.get('SNAP', ''), 'usr/share/icons/hicolor/scalable/status/')
     elif package == 'debian':
         constants.icon_loc = os.path.abspath(os.path.dirname(__file__))+'/data/status/'
     elif package == None:
