@@ -480,9 +480,9 @@ class ForecastPreferences(Adw.PreferencesWindow):
         if self.locations_changed:
             Forecast.refresh()
 
-def start(AppId, package):
+def start(AppId, type):
     global package
-
+    package = type
     css_provider = Gtk.CssProvider()
 
     if package == 'flatpak':
