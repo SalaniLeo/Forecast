@@ -18,19 +18,19 @@
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1.png</image>
       <caption>first screenshot</caption>
     </screenshot>
-    <screenshot type="default">
+    <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2.png</image>
       <caption>second screenshot</caption>
     </screenshot>
-    <screenshot type="default">
+    <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3.png</image>
       <caption>third screenshot</caption>
     </screenshot>
-    <screenshot type="default">
+    <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4.png</image>
       <caption>fourth screenshot</caption>
     </screenshot>
-    <screenshot type="default">
+    <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app5.png</image>
       <caption>fifth screenshot</caption>
     </screenshot>
