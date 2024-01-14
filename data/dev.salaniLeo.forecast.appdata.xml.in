@@ -7,7 +7,11 @@
     <p>Alternative weather app with custom css styling and more</p>
   </description>
   <launchable type="desktop-id">dev.salaniLeo.forecast.desktop</launchable>
+  <translation type="gettext">forecast</translation>
   <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
+  <url type="bugtracker">https://github.com/SalaniLeo/Forecast/issues</url>
+  <url type="vcs-browser">https://github.com/SalaniLeo/Forecast</url>
+  <url type="translate">https://github.com/SalaniLeo/Forecast/tree/master/po</url>
   <metadata_license>CC-BY-SA-3.0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <content_rating type="oars-1.1" />
