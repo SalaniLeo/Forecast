@@ -4,3 +4,6 @@ data/dev.salaniLeo.forecast.desktop.in
 data/dev.salaniLeo.forecast.gschema.xml
 Forecast/App.py
 Forecast/WttrInfo.py
+Forecast/accurate_forecast.py
+Forecast/data.py
+Forecast/style.py

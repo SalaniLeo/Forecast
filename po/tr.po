@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-18 22:47+0300\n"
-"PO-Revision-Date: 2023-06-18 22:47+0300\n"
+"POT-Creation-Date: 2023-10-07 11:02+0300\n"
+"PO-Revision-Date: 2023-10-07 11:16+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -17,10 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:4
-#: data/dev.salaniLeo.forecast.desktop.in:3 Forecast/App.py:136
-#: Forecast/App.py:195
+#: data/dev.salaniLeo.forecast.desktop.in:3 Forecast/App.py:193
+#: Forecast/App.py:264 Forecast/WttrInfo.py:138
 msgid "Forecast"
 msgstr "Hava Tahmini"
 
@@ -29,146 +30,159 @@ msgid "Weather app for GNOME"
 msgstr "GNOME için hava tahmini uygulaması"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:7
-msgid "Beautiful and modern weather app for Linux"
-msgstr "Linux için güzel ve modern bir hava durumu uygulaması"
+msgid "Alternative weather app with custom css styling and more"
+msgstr ""
+"Özel css biçemine ve daha fazlasına sahip alternatif hava durumu uygulaması"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:19
-msgid "clouds"
-msgstr "bulutlar"
+msgid "first screenshot"
+msgstr "ilk ekran görüntüsü"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:23
-msgid "sandstorm"
-msgstr "kum fırtınası"
+msgid "second screenshot"
+msgstr "ikinci ekran görüntüsü"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:27
-msgid "night"
-msgstr "gece"
+msgid "third screenshot"
+msgstr "üçüncü ekran görüntüsü"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:36
-msgid "Version 0.2"
-msgstr "Sürüm 0.2"
+#: data/dev.salaniLeo.forecast.appdata.xml.in:31
+msgid "fourth screenshot"
+msgstr "dördüncü ekran görüntüsü"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:37
-msgid "Updates:"
-msgstr "Güncellemeler:"
+#: data/dev.salaniLeo.forecast.appdata.xml.in:35
+msgid "fifth screenshot"
+msgstr "beşinci ekran görüntüsü"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:39
-msgid "Improved design"
-msgstr "Tasarım iyileştirildi"
+#: data/dev.salaniLeo.forecast.desktop.in:6
+msgid "Weather;Forecast;Temperature;"
+msgstr "Weather;Forecast;Temperature;Hava Durumu;Hava Tahmini;Sıcaklık;"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:40
-msgid "Searching for cities is a lot quicker"
-msgstr "Şehir arama artık çok daha hızlı"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:41
-msgid "Added roadmap on github"
-msgstr "Github'a yol haritası eklendi"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:42
-msgid "Added one minute time pause for refreshing"
-msgstr "Yenileme için 1 dakikalık bekleme eklendi"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:44
-msgid "Design changes:"
-msgstr "Tasarım değişiklikleri:"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:46
-msgid "Added 5 days forecast"
-msgstr "5 günlük hava tahmini eklendi"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:47
-msgid "Modified current data label"
-msgstr "Tarih etiketi değiştirildi"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:48
-msgid "Added glass effect to 3 hours forecast and wind"
-msgstr "3 saatlik hava durumu tahmini ve rüzgara cam efekti eklendi"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:55
-msgid "First release"
-msgstr "İlk sürüm"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:7
-#: data/dev.salaniLeo.forecast.gschema.xml:13
-msgid "The app starts with this option enabled"
-msgstr "Uygulama bu seçenek etkinleştirilmiş başlatılır"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:8
-#: data/dev.salaniLeo.forecast.gschema.xml:14
-msgid "Automatically enables the option to create appimages in foldermode"
-msgstr ""
-"Klasör kipinde uygulama görüntüleri oluşturma seçeneğini kendiliğinden "
-"etkinleştirir"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:20
-msgid "Uses a weather based gradient as background"
-msgstr "Hava durumu temelli renk geçişlerini arka plan olarak kullanır"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:21
-msgid "Use gradient for background"
-msgstr "Arka plan için renk geçişi kullan"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:26
-msgid "List of weather places"
-msgstr "Hava durumu konumları"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:27
-msgid "Stores all user selected location"
-msgstr "Kullanıcının seçtiği tüm konumları depolar"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:32 Forecast/App.py:263
-msgid "Units"
-msgstr "Birim"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:33
-msgid "Chooses what unit of measure to use"
-msgstr "Hangi ölçü biriminin kullanılacağını belirler"
-
-#: Forecast/App.py:46
-msgid "Forecast - loading"
-msgstr "Hava Tahmini - yükleniyor"
-
-#: Forecast/App.py:58 Forecast/App.py:230
-msgid "Preferences"
-msgstr "Tercihler"
-
-#: Forecast/App.py:59
-msgid "About Forecast"
-msgstr "Hava Tahmini Hakkında"
-
-#: Forecast/App.py:70
-msgid "Refresh"
-msgstr "Yenile"
-
-#: Forecast/App.py:139
+#: data/dev.salaniLeo.forecast.desktop.in:7
 msgid "Forecast app for GNOME"
 msgstr "GNOME için hava tahmini uygulaması"
 
-#: Forecast/App.py:144
+#: data/dev.salaniLeo.forecast.gschema.xml:7
+msgid "Stores the api key"
+msgstr "API anahtarını depolar"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:8
+msgid "stores the api key"
+msgstr "API anahtarını depolar"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:13
+msgid "If false uses the default api key"
+msgstr "False ise öntanımlı API anahtarını kullanır"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:14
+msgid "When this is true the app know to use the custom api key"
+msgstr "True olduğunda, uygulama özel API anahtarını kullanacağını bilir"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:19
+msgid "Uses a weather based gradient as background"
+msgstr "Hava durumu temelli renk geçişlerini arka plan olarak kullanır"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:20
+msgid "Use gradient for background"
+msgstr "Arka plan için renk geçişi kullan"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:25
+msgid "List of weather places"
+msgstr "Hava durumu konumları"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:26
+msgid "Stores all user selected location"
+msgstr "Kullanıcının seçtiği tüm konumları depolar"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:31 Forecast/App.py:380
+msgid "Units"
+msgstr "Birim"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:32
+msgid "Chooses what unit of measure to use"
+msgstr "Hangi ölçü biriminin kullanılacağını belirler"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:37
+msgid "Changes the look of some elements"
+msgstr "Kimi ögelerin görünümünü değiştirir"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:38
+msgid "Sets whether to show some elements like cards"
+msgstr "Kartlar gibi kimi ögelerin gösterim durumunu ayarlar"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:43
+msgid "Changes the color of the text to dark"
+msgstr "Metnin rengini koyu olarak değiştirir"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:44
+msgid "Changes the color of the text if the background is too light"
+msgstr "Arka plan çok açıksa metnin rengini değiştirir"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:49
+msgid "Default weather city"
+msgstr "Öntanımlı hava durumu şehri"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:50
+msgid "Changes the default city for the weather"
+msgstr "Hava durumu için öntanımlı şehri değiştirir"
+
+#: Forecast/App.py:39 Forecast/App.py:83
+msgid "Refresh"
+msgstr "Yenile"
+
+#: Forecast/App.py:55
+msgid "Forecast - loading"
+msgstr "Hava Tahmini - yükleniyor"
+
+#: Forecast/App.py:84 Forecast/App.py:298 Forecast/App.py:309
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: Forecast/App.py:85
+msgid "About Forecast"
+msgstr "Hava Tahmini Hakkında"
+
+#: Forecast/App.py:128 Forecast/App.py:177
+msgid "No internet connection"
+msgstr "İnternet bağlantısı yok"
+
+#: Forecast/App.py:130
+msgid "Forecast - No Internet Connection"
+msgstr "Hava Tahmini - İnternet Bağlantısı Yok"
+
+#: Forecast/App.py:196
+msgid "Weather app for Linux"
+msgstr "GNOME için hava durumu uygulaması"
+
+#: Forecast/App.py:201
 msgid "translator-credits"
 msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#: Forecast/App.py:177
-msgid ""
-"Welcome to Forecast!\n"
-"Search a City"
-msgstr ""
-"Hava Tahminiʼne Hoş Geldiniz\n"
-"Şehir Arayın!"
-
-#: Forecast/App.py:207
+#: Forecast/App.py:220 Forecast/App.py:243
 msgid "Search a city"
 msgstr "Şehir ara"
 
-#: Forecast/App.py:239
+#: Forecast/App.py:238
+msgid "Welcome to Forecast!\n"
+msgstr "Hava Tahminiʼne Hoş Geldiniz!\n"
+
+#: Forecast/App.py:304 Forecast/App.py:314
+msgid "Locations"
+msgstr "Konumlar"
+
+#: Forecast/App.py:342
 msgid "App Preferences"
 msgstr "Uygulama Tercihleri"
 
-#: Forecast/App.py:244
+#: Forecast/App.py:344
+msgid "Appearance Preferences"
+msgstr "Görünüm Tercihleri"
+
+#: Forecast/App.py:348
 msgid "Use Gradient as Background"
 msgstr "Renk Geçişini Arka Plan Olarak Kullan"
 
-#: Forecast/App.py:245
+#: Forecast/App.py:349
 msgid ""
 "Applies a gradient based on current weather and time. Requires restart to "
 "disable"
@@ -176,325 +190,471 @@ msgstr ""
 "Geçerli hava durumuna ve zamana göre renk geçişi uygular. Devre dışı "
 "bırakmak için yeniden başlatma gerektirir"
 
-#: Forecast/App.py:264
+#: Forecast/App.py:355
+msgid "Use glassy background look"
+msgstr "Camsı arka plan görünümü kullan"
+
+#: Forecast/App.py:356
+msgid "Applies a glass-like background to all elements"
+msgstr "Tüm ögelere cam benzeri arka plan uygular"
+
+#: Forecast/App.py:361
+msgid "Use dark text on dark background"
+msgstr "Koyu arka plan üzerinde koyu metin kullan"
+
+#: Forecast/App.py:362
+msgid "Chenges the text color from light to dark on light backgrounds"
+msgstr "Açık arka planlarda metin rengini açıktan koyuya çevirir"
+
+#: Forecast/App.py:381
 msgid "Select which unit of measurement to use"
 msgstr "Hangi ölçü biriminin kullanılacağını seçin"
 
-#: Forecast/App.py:269
+#: Forecast/App.py:386
 msgid "API Preferences"
 msgstr "API Tercihleri"
 
-#: Forecast/App.py:278
+#: Forecast/App.py:398
 msgid "Use Personal API Key"
 msgstr "Kişisel API Anahtarı Kullan"
 
-#: Forecast/App.py:279
+#: Forecast/App.py:399
 msgid "Choose whether to use default API key or personal key"
 msgstr ""
 "Öntanımlı API anahtarının mı yoksa kişisel anahtarın mı kullanılacağını seçin"
 
-#: Forecast/WttrInfo.py:198
+#: Forecast/App.py:403
+msgid "Personal API Key"
+msgstr "Kişisel API Anahtarı"
+
+#: Forecast/WttrInfo.py:105
+msgid "Base"
+msgstr "Taban"
+
+#: Forecast/WttrInfo.py:106
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+#: Forecast/WttrInfo.py:122
+msgid "Today"
+msgstr "Bugün"
+
+#: Forecast/WttrInfo.py:193
 msgid "You must wait at least one minute to refresh"
 msgstr "Yenileme için en az 1 dakika beklemelisiniz"
 
-#: Forecast/WttrInfo.py:281
-msgid "N"
-msgstr "Kuzey"
+#: Forecast/WttrInfo.py:249
+msgid "Local time: "
+msgstr "Yerel saat:"
 
-#: Forecast/WttrInfo.py:281
-msgid "NNE"
-msgstr "Kuzey, Kuzey Doğu"
+#: Forecast/WttrInfo.py:261
+msgid "Last update:"
+msgstr "Son güncelleme:"
 
-#: Forecast/WttrInfo.py:281
-msgid "NE"
-msgstr "Kuzey Doğu"
-
-#: Forecast/WttrInfo.py:281
-msgid "ENE"
-msgstr "Doğu, Kuzey Doğu"
-
-#: Forecast/WttrInfo.py:281
-msgid "E"
-msgstr "Doğu"
-
-#: Forecast/WttrInfo.py:281
-msgid "ESE"
-msgstr "Doğu, Güney Doğu"
-
-#: Forecast/WttrInfo.py:281
-msgid "SE"
-msgstr "Güney Doğu"
-
-#: Forecast/WttrInfo.py:281
-msgid "SSE"
-msgstr "Güney, Güney Doğu"
-
-#: Forecast/WttrInfo.py:282
-msgid "S"
-msgstr "Güney"
-
-#: Forecast/WttrInfo.py:282
-msgid "SSW"
-msgstr "Güney, Güney Batı"
-
-#: Forecast/WttrInfo.py:282
-msgid "SW"
-msgstr "Güney Batı"
-
-#: Forecast/WttrInfo.py:282
-msgid "WSW"
-msgstr "Batı, Güney Batı"
-
-#: Forecast/WttrInfo.py:282
-msgid "W"
-msgstr "Batı"
-
-#: Forecast/WttrInfo.py:282
-msgid "WNW"
-msgstr "Batı, Kuzey Batı"
-
-#: Forecast/WttrInfo.py:282
-msgid "NW"
-msgstr "Kuzey Batı"
-
-#: Forecast/WttrInfo.py:282
-msgid "NNW"
-msgstr "Kuzey, Kuzey Batı"
-
-#: Forecast/WttrInfo.py:312
-msgid "Last update"
-msgstr "Son güncelleme"
-
-#: Forecast/WttrInfo.py:313
+#: Forecast/WttrInfo.py:331 Forecast/WttrInfo.py:349
+#: Forecast/accurate_forecast.py:201
 msgid "Feels like"
 msgstr "Hissedilen"
 
-#: Forecast/WttrInfo.py:314
+#: Forecast/WttrInfo.py:332 Forecast/WttrInfo.py:350
+#: Forecast/accurate_forecast.py:202
 msgid "Wind"
 msgstr "Rüzgar"
 
-#: Forecast/WttrInfo.py:315
-msgid "Gusts"
-msgstr "Bora"
-
-#: Forecast/WttrInfo.py:316
+#: Forecast/WttrInfo.py:333 Forecast/WttrInfo.py:352
+#: Forecast/accurate_forecast.py:203
 msgid "Pressure"
 msgstr "Basınç"
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/WttrInfo.py:334 Forecast/WttrInfo.py:353
+#: Forecast/accurate_forecast.py:204
 msgid "Humidity"
 msgstr "Nem"
 
-#: Forecast/WttrInfo.py:643
+#: Forecast/WttrInfo.py:335 Forecast/data.py:105 Forecast/data.py:116
+msgid "Pollution"
+msgstr "Kirlilik"
+
+#: Forecast/WttrInfo.py:336
+msgid "Last update"
+msgstr "Son güncelleme"
+
+#: Forecast/WttrInfo.py:351
+msgid "Gusts"
+msgstr "Bora"
+
+#: Forecast/WttrInfo.py:354 Forecast/accurate_forecast.py:205
+msgid "Visibility"
+msgstr "Görünürlük"
+
+#: Forecast/WttrInfo.py:367
+msgid "Sunrise"
+msgstr "Gün doğumu"
+
+#: Forecast/WttrInfo.py:368
+msgid "Sunset"
+msgstr "Gün batımı"
+
+#: Forecast/WttrInfo.py:369
+msgid "Timezone"
+msgstr "Zaman dilimi"
+
+#: Forecast/WttrInfo.py:379
+msgid "Pollution level"
+msgstr "Kirlilik düzeyi"
+
+#: Forecast/WttrInfo.py:387
+msgid "co"
+msgstr "co"
+
+#: Forecast/WttrInfo.py:388
+msgid "no2"
+msgstr "no2"
+
+#: Forecast/WttrInfo.py:389
+msgid "o3"
+msgstr "o3"
+
+#: Forecast/WttrInfo.py:390
+msgid "so2"
+msgstr "so2"
+
+#: Forecast/WttrInfo.py:391
+msgid "pm 2.5"
+msgstr "pm 2.5"
+
+#: Forecast/WttrInfo.py:392
+msgid "pm 10"
+msgstr "pm 10"
+
+#: Forecast/WttrInfo.py:522
+msgid "The selected city has already been added"
+msgstr "Seçilen şehir zaten eklendi"
+
+#: Forecast/accurate_forecast.py:200
+msgid "Temperature"
+msgstr "Sıcaklık"
+
+#: Forecast/accurate_forecast.py:206
+msgid "rain_prb"
+msgstr "rain_prb"
+
+#: Forecast/accurate_forecast.py:221
+msgid "Time"
+msgstr "Zaman"
+
+#: Forecast/accurate_forecast.py:233
+msgid "System"
+msgstr "Sistem"
+
+#: Forecast/accurate_forecast.py:239 Forecast/data.py:112
+msgid "Conditions"
+msgstr "Koşullar"
+
+#: Forecast/data.py:10
+msgid "Metric System"
+msgstr "Metrik Sistem"
+
+#: Forecast/data.py:11
+msgid "Imperial System"
+msgstr "İmparatorluk Sistemi"
+
+#: Forecast/data.py:26
+msgid "Good"
+msgstr "İyi"
+
+#: Forecast/data.py:27
+msgid "Fair"
+msgstr "Uygun"
+
+#: Forecast/data.py:28
+msgid "Moderate"
+msgstr "Orta"
+
+#: Forecast/data.py:29
+msgid "Poor"
+msgstr "Kötü"
+
+#: Forecast/data.py:30
+msgid "Very Poor"
+msgstr "Çok Kötü"
+
+#: Forecast/data.py:34
+msgid "N"
+msgstr "Kuzey"
+
+#: Forecast/data.py:34
+msgid "NNE"
+msgstr "Kuzey, Kuzey Doğu"
+
+#: Forecast/data.py:34
+msgid "NE"
+msgstr "Kuzey Doğu"
+
+#: Forecast/data.py:34
+msgid "ENE"
+msgstr "Doğu, Kuzey Doğu"
+
+#: Forecast/data.py:34
+msgid "E"
+msgstr "Doğu"
+
+#: Forecast/data.py:34
+msgid "ESE"
+msgstr "Doğu, Güney Doğu"
+
+#: Forecast/data.py:34
+msgid "SE"
+msgstr "Güney Doğu"
+
+#: Forecast/data.py:34
+msgid "SSE"
+msgstr "Güney, Güney Doğu"
+
+#: Forecast/data.py:35
+msgid "S"
+msgstr "Güney"
+
+#: Forecast/data.py:35
+msgid "SSW"
+msgstr "Güney, Güney Batı"
+
+#: Forecast/data.py:35
+msgid "SW"
+msgstr "Güney Batı"
+
+#: Forecast/data.py:35
+msgid "WSW"
+msgstr "Batı, Güney Batı"
+
+#: Forecast/data.py:35
+msgid "W"
+msgstr "Batı"
+
+#: Forecast/data.py:35
+msgid "WNW"
+msgstr "Batı, Kuzey Batı"
+
+#: Forecast/data.py:35
+msgid "NW"
+msgstr "Kuzey Batı"
+
+#: Forecast/data.py:35
+msgid "NNW"
+msgstr "Kuzey, Kuzey Batı"
+
+#: Forecast/data.py:103
+msgid "Weather"
+msgstr "Hava durumu"
+
+#: Forecast/data.py:128
+msgid "Location info"
+msgstr "Konum bilgisi"
+
+#: Forecast/style.py:146
 msgid "Thunderstorm with Light Rain"
 msgstr "Hafif Yağmurlu Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:644
+#: Forecast/style.py:147
 msgid "Thunderstorm with Rain"
 msgstr "Yağmurlu Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:645
+#: Forecast/style.py:148
 msgid "Thunderstorm with Heavy Rain"
 msgstr "Sağanak Yağışlı Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:646
+#: Forecast/style.py:149
 msgid "Light Thunderstorm"
 msgstr "Hafif Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:647
+#: Forecast/style.py:150
 msgid "Thunderstorm"
 msgstr "Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:648
+#: Forecast/style.py:151
 msgid "Heavy Thunderstorm"
 msgstr "Yoğun Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:649
+#: Forecast/style.py:152
 msgid "Ragged Thunderstorm"
 msgstr "Düzensiz Gök Gürültülü Fırtına"
 
-#: Forecast/WttrInfo.py:650
+#: Forecast/style.py:153
 msgid "Light Drizzle"
 msgstr "Hafif Çiseleme"
 
-#: Forecast/WttrInfo.py:651
+#: Forecast/style.py:154
 msgid "Drizzle"
 msgstr "Çiseleme"
 
-#: Forecast/WttrInfo.py:652
+#: Forecast/style.py:155
 msgid "Heavy Drizzle"
 msgstr "Yoğun Çiseleme"
 
-#: Forecast/WttrInfo.py:653
+#: Forecast/style.py:156
 msgid "Light Drizzle Rain"
 msgstr "Hafif Çiseleyen Yağmur"
 
-#: Forecast/WttrInfo.py:654
+#: Forecast/style.py:157
 msgid "Drizzle Rain"
 msgstr "Çiseleyen Yağmur"
 
-#: Forecast/WttrInfo.py:655
+#: Forecast/style.py:158
 msgid "Heavy Drizzle Rain"
 msgstr "Yoğun Çiseleyen Yağmur"
 
-#: Forecast/WttrInfo.py:656
+#: Forecast/style.py:159
 msgid "Shower Rain and Drizzle"
 msgstr "Sağanak Yağmur ve Çiseleme"
 
-#: Forecast/WttrInfo.py:657
+#: Forecast/style.py:160
 msgid "Heavy Rain and Drizzle"
 msgstr "Yoğun Yağmur ve Çiseleme"
 
-#: Forecast/WttrInfo.py:658
+#: Forecast/style.py:161
 msgid "Shower Drizzle"
 msgstr "Sağanak Çiseleme"
 
-#: Forecast/WttrInfo.py:659
+#: Forecast/style.py:162
 msgid "Light Rain"
 msgstr "Hafif Yağmur"
 
-#: Forecast/WttrInfo.py:660
+#: Forecast/style.py:163
 msgid "Moderate Rain"
 msgstr "Ilıman Yağmur"
 
-#: Forecast/WttrInfo.py:661
+#: Forecast/style.py:164
 msgid "Heavy Rain"
 msgstr "Yoğun Yağmur"
 
-#: Forecast/WttrInfo.py:662
+#: Forecast/style.py:165
 msgid "Very Heavy Rain"
 msgstr "Çok Şiddetli Yağmur"
 
-#: Forecast/WttrInfo.py:663
+#: Forecast/style.py:166
 msgid "Extreme Rain"
 msgstr "Aşırı Sağanak Yağmur"
 
-#: Forecast/WttrInfo.py:664
+#: Forecast/style.py:167
 msgid "Freezing Rain"
 msgstr "Dondurucu Yağmur"
 
-#: Forecast/WttrInfo.py:665
+#: Forecast/style.py:168
 msgid "Light Shower Rain"
 msgstr "Hafif Sağanak Yağmur"
 
-#: Forecast/WttrInfo.py:666
+#: Forecast/style.py:169
 msgid "Shower Rain"
 msgstr "Sağanak Yağmur"
 
-#: Forecast/WttrInfo.py:667
+#: Forecast/style.py:170
 msgid "Heavy Shower Rain"
 msgstr "Ağır Sağanak Yağmur"
 
-#: Forecast/WttrInfo.py:668
+#: Forecast/style.py:171
 msgid "Ragged Shower Rain"
 msgstr "Düzensiz Sağanak Yağmur"
 
-#: Forecast/WttrInfo.py:669
+#: Forecast/style.py:172
 msgid "Light Snow"
 msgstr "Hafif Kar"
 
-#: Forecast/WttrInfo.py:670
+#: Forecast/style.py:173
 msgid "Snow"
 msgstr "Kar"
 
-#: Forecast/WttrInfo.py:671
+#: Forecast/style.py:174
 msgid "Heavy Snow"
 msgstr "Yoğun Kar"
 
-#: Forecast/WttrInfo.py:672
+#: Forecast/style.py:175
 msgid "Sleet"
 msgstr "Sulu Kar"
 
-#: Forecast/WttrInfo.py:673
+#: Forecast/style.py:176
 msgid "Light Shower Sleet"
 msgstr "Hafif Sağanak Sulu Kar"
 
-#: Forecast/WttrInfo.py:674
+#: Forecast/style.py:177
 msgid "Shower Sleet"
 msgstr "Sağanak Sulu Kar"
 
-#: Forecast/WttrInfo.py:675
+#: Forecast/style.py:178
 msgid "Light Rain and Snow"
 msgstr "Hafif Yağmurla Karışık Kar"
 
-#: Forecast/WttrInfo.py:676
+#: Forecast/style.py:179
 msgid "Rain and Snow"
 msgstr "Yağmurla Karışık Kar"
 
-#: Forecast/WttrInfo.py:677
+#: Forecast/style.py:180
 msgid "Light Shower Snow"
 msgstr "Hafif Sağanak Şeklinde Kar"
 
-#: Forecast/WttrInfo.py:678
+#: Forecast/style.py:181
 msgid "Shower Snow"
 msgstr "Sağanak Şeklinde Kar"
 
-#: Forecast/WttrInfo.py:679
+#: Forecast/style.py:182
 msgid "Heavy Shower Snow"
 msgstr "Yoğun Sağanak Şeklinde Kar"
 
-#: Forecast/WttrInfo.py:680
+#: Forecast/style.py:183
 msgid "Mist"
 msgstr "Sis"
 
-#: Forecast/WttrInfo.py:681
+#: Forecast/style.py:184
 msgid "Smoke"
 msgstr "Duman"
 
-#: Forecast/WttrInfo.py:682
+#: Forecast/style.py:185
 msgid "Haze"
 msgstr "Pus"
 
-#: Forecast/WttrInfo.py:683
+#: Forecast/style.py:186
 msgid "Sand/Dust Whirls"
 msgstr "Kum/Toz Hortumu"
 
-#: Forecast/WttrInfo.py:684
+#: Forecast/style.py:187
 msgid "Fog"
 msgstr "Sis"
 
-#: Forecast/WttrInfo.py:685
+#: Forecast/style.py:188
 msgid "Sand"
 msgstr "Kum"
 
-#: Forecast/WttrInfo.py:686
+#: Forecast/style.py:189
 msgid "Dust"
 msgstr "Toz"
 
-#: Forecast/WttrInfo.py:687
+#: Forecast/style.py:190
 msgid "Volcanic Ash"
 msgstr "Volkanik Kül"
 
-#: Forecast/WttrInfo.py:688
+#: Forecast/style.py:191
 msgid "Squalls"
 msgstr "Yerel Fırtına"
 
-#: Forecast/WttrInfo.py:689
+#: Forecast/style.py:192
 msgid "Tornado"
 msgstr "Kasırga"
 
-#: Forecast/WttrInfo.py:690
+#: Forecast/style.py:193
 msgid "Clear Sky"
 msgstr "Açık Gök"
 
-#: Forecast/WttrInfo.py:691
+#: Forecast/style.py:194
 msgid "Few Clouds"
 msgstr "Az Bulutlu"
 
-#: Forecast/WttrInfo.py:692
+#: Forecast/style.py:195
 msgid "Scattered Clouds"
 msgstr "Dağınık Bulutlu"
 
-#: Forecast/WttrInfo.py:693
+#: Forecast/style.py:196
 msgid "Broken Clouds"
 msgstr "Parçalı Bulutlu"
 
-#: Forecast/WttrInfo.py:694
+#: Forecast/style.py:197
 msgid "Overcast Clouds"
 msgstr "Bulutlu"
-
-#~ msgid "Weather;Forecast;Temperature;"
-#~ msgstr "Weather;Forecast;Temperature;Hava Durumu;Hava Tahmini;Sıcaklık;"
-
-#~ msgid "About"
-#~ msgstr "Hakkında"
