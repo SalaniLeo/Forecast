@@ -7,6 +7,7 @@ from gettext import gettext as _
 from datetime import datetime
 from Forecast.style import *
 from Forecast.data import *
+import itertools
 
 main = None
 max_tmp_labels = []
@@ -33,41 +34,44 @@ class accurate_forecast(Gtk.Box):
         self.append(self.days_stack)
         self.get_forecast_days(meteo, forecast)
         elements.add_page(self, 'Forecast', self.main_window.weather_stack, main_window.pages_names)
-        main_window.icons_list.append(days_icons[0])
+        # main_window.icons_list.append(days_icons[0])
         self.days_switcher.set_size_request(window.saved_loc_box.get_width()+8, -1)
 
     def get_forecast_days(self, meteo, forecast):
+
         self.hours = 3
-        self.day = 0
+        self.day = -1
         self.day_weather = []
 
         min_temp = forecast["list"][0]['main']['temp']
         max_temp = forecast["list"][0]['main']['temp']
         self.min_temps = []
         self.max_temps = []
-        date = str(datetime.today()).split('-')[2]
-        today = str(date).split(' ')[0]
 
         for weather in forecast["list"]:
                 temperature = weather['main']['temp']
-                self.day_weather.append(weather)
+
+                if self.day >= 0:
+                    self.day_weather.append(weather)
 
                 if temperature < min_temp:
                     min_temp = temperature
                 if temperature > max_temp:
                     max_temp = temperature
 
-                if self.hours % 24 == 0:
+                if int(weather["dt_txt"][11:13]) == 0:
+                    self.day += 1
+
+                if int(weather["dt_txt"][11:13]) == 0 and self.day >= 1:
 
                     self.min_temps.append(min_temp)
                     self.max_temps.append(max_temp)
 
-                    day_forecast(self, weather)
+                    day_forecast(self, weather, forecast)
 
                     min_temp = temperature
                     max_temp = temperature
                     self.day_weather = []
-                    self.day = self.day + 1
 
                 self.hours = self.hours + 3
         self.days_stack.connect("notify::visible-child", change_bg, main_window, days_icons, days_names)
@@ -76,25 +80,24 @@ class accurate_forecast(Gtk.Box):
         accurate_forecast.get_forecast_days(main, weather, forecast)
 
 class day_forecast(Gtk.Box):
-    def __init__(self, accurate_forecast, weather):
+    def __init__(self, accurate_forecast, weather, forecast):
         super().__init__()
         global days_icons, days_names
         date_string = weather['dt_txt'][0:10]
         day_name = datetime.strptime(date_string, "%Y-%m-%d").strftime("%A")
         days_names.append(day_name)
 
+        day_icon = forecast["list"][int(accurate_forecast.hours/3 - 4)]["weather"][0]['icon']
+        days_icons.append(day_icon)
+        day_id = forecast["list"][int(accurate_forecast.hours/3 - 4)]["weather"][0]['id']
+        day_img = app_style.create_icon(day_icon, 100, constants.icon_loc)
+        day_img.set_valign(Gtk.Align.CENTER)
 
         self.main_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.main_box.set_hexpand(True)
 
-        max_temp = accurate_forecast.max_temps[accurate_forecast.day]
-        min_temp = accurate_forecast.min_temps[accurate_forecast.day]
-        day_icon = weather["weather"][0]['icon']
-        day_id = weather["weather"][0]['id']
-        day_img = app_style.create_icon(day_icon, 100, constants.icon_loc)
-        day_img.set_valign(Gtk.Align.CENTER)
-
-        days_icons.append(day_icon)
+        max_temp = accurate_forecast.max_temps[accurate_forecast.day-1]
+        min_temp = accurate_forecast.min_temps[accurate_forecast.day-1]
 
         self.top_left_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         inner_top = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=3)
@@ -147,7 +150,6 @@ class day_forecast(Gtk.Box):
         hourly_boxes = []
 
         for weather in day_weather:
-            
             btn = Gtk.Button.new_from_icon_name('view-more-horizontal-symbolic')
             btn.set_halign(Gtk.Align.CENTER)
             btn.set_size_request(-1, 10)

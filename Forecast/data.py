@@ -210,5 +210,4 @@ def change_bg(stack, gparamstring, main_window, icons, names):
         app_style.apply_bg(main_window, icon, True)
 
 def sw_set_bg(switch, state, main_window, icons, names):
-    print(icons[0])
     app_style.apply_bg(main_window, icons[0], False)

@@ -4,7 +4,6 @@ from Forecast.accurate_forecast import *
 from Forecast.style import app_style
 from Forecast.data import *
 import gi
-import os
 import time
 import threading
 gi.require_version('Gtk', '4.0')
@@ -169,6 +168,7 @@ class main_page(Gtk.Box):
         wttr_thrd = threading.Thread(target=reload_weather, args=(lati, longi, change_units))
         wttr_thrd.start()
         main_window.loading_stack.set_visible_child(main_window.spinner_box)
+        wttr_thrd.join()
 
 def reload_weather(lati, longi, change_units):
         global meteo, lat, lon, last_refresh, app, forecast, pollution
@@ -217,7 +217,7 @@ def reload_weather(lati, longi, change_units):
 
 # ---- updates cities inside combo box ---- #
 def load_locations(remove, active, window):
-    if remove:
+    if not remove:
         main_window.saved_loc_box.remove_all()
     for text in app_data.weather_locs_list():
         main_window.saved_loc_box.append_text(text=str(text.rsplit(" - ",1)[0]))

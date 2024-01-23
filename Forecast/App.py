@@ -27,6 +27,8 @@ class Application(Gtk.ApplicationWindow):
         self.pages_names = []
         self.icons_list  = []
 
+        # constants.settings.set_strv('wthr-locs', "")
+
         # city search bar
         self.search_bar = Forecast.search_entry()
         
@@ -441,8 +443,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
         if option == "gradient-bg":
             switch.connect('state-set', sw_set_bg, application, application.icons_list, application.pages_names)
 
-        # if option == 'use-glassy':
-        #     switch.connect('state-set', style.apply_glassy)
+        if option == 'use-glassy':
+            switch.connect('state-set', style.apply_glassy)
 
         if option == 'enhance-contrast':
             switch.connect('state-set', style.apply_enhanced_text)

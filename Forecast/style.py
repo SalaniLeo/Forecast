@@ -137,7 +137,6 @@ class app_style():
                 css_classes = ['snow_night', night]
             elif icon == "50":
                 css_classes = ['fog_night', night]
-
         return css_classes
 
     # ---- function to translate id to weather description ---- #
