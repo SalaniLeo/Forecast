@@ -17,220 +17,220 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:4
+#: data/dev.salanileo.forecast.appdata.xml.in:4
 msgid "Forecast"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:5
+#: data/dev.salanileo.forecast.appdata.xml.in:5
 msgid "Weather app for GNOME"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:7
+#: data/dev.salanileo.forecast.appdata.xml.in:7
 msgid "Alternative weather app with custom css styling and more"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:19
+#: data/dev.salanileo.forecast.appdata.xml.in:19
 msgid "first screenshot"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:23
+#: data/dev.salanileo.forecast.appdata.xml.in:23
 msgid "second screenshot"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:27
+#: data/dev.salanileo.forecast.appdata.xml.in:27
 msgid "third screenshot"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:31
+#: data/dev.salanileo.forecast.appdata.xml.in:31
 msgid "fourth screenshot"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:35
+#: data/dev.salanileo.forecast.appdata.xml.in:35
 msgid "fifth screenshot"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:42
+#: data/dev.salanileo.forecast.appdata.xml.in:42
 msgid "Version 0.2.2"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:43
-#: data/dev.salaniLeo.forecast.appdata.xml.in:67
-#: data/dev.salaniLeo.forecast.appdata.xml.in:84
+#: data/dev.salanileo.forecast.appdata.xml.in:43
+#: data/dev.salanileo.forecast.appdata.xml.in:67
+#: data/dev.salanileo.forecast.appdata.xml.in:84
 msgid "Updates:"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:45
+#: data/dev.salanileo.forecast.appdata.xml.in:45
 msgid "Improved design, see below"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:46
+#: data/dev.salanileo.forecast.appdata.xml.in:46
 msgid "Added locations page in preferences"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:47
+#: data/dev.salanileo.forecast.appdata.xml.in:47
 msgid "Now you can delete locations"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:48
+#: data/dev.salanileo.forecast.appdata.xml.in:48
 msgid "Added no network status page"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:49
+#: data/dev.salanileo.forecast.appdata.xml.in:49
 msgid "Added reload shortcut"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:50
+#: data/dev.salanileo.forecast.appdata.xml.in:50
 msgid "Fixed some bugs"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:52
-#: data/dev.salaniLeo.forecast.appdata.xml.in:72
-#: data/dev.salaniLeo.forecast.appdata.xml.in:91
+#: data/dev.salanileo.forecast.appdata.xml.in:52
+#: data/dev.salanileo.forecast.appdata.xml.in:72
+#: data/dev.salanileo.forecast.appdata.xml.in:91
 msgid "Design changes:"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:54
+#: data/dev.salanileo.forecast.appdata.xml.in:54
 msgid "Improved background gradient for all conditions during night"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:55
+#: data/dev.salanileo.forecast.appdata.xml.in:55
 msgid "Modified first time open window"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:56
+#: data/dev.salanileo.forecast.appdata.xml.in:56
 msgid "Added smooth transitioning between cities"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:57
+#: data/dev.salanileo.forecast.appdata.xml.in:57
 msgid "Added smooth transitioning when reloading"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:58
+#: data/dev.salanileo.forecast.appdata.xml.in:58
 msgid "Added loading page while getting api response"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:59
+#: data/dev.salanileo.forecast.appdata.xml.in:59
 msgid "Added probability of rain in 3-hours forecast"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:66
+#: data/dev.salanileo.forecast.appdata.xml.in:66
 msgid "Version 0.2.1"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:69
-#: data/dev.salaniLeo.forecast.appdata.xml.in:86
+#: data/dev.salanileo.forecast.appdata.xml.in:69
+#: data/dev.salanileo.forecast.appdata.xml.in:86
 msgid "Improved design"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:70
+#: data/dev.salanileo.forecast.appdata.xml.in:70
 msgid "Custom api-key option is now more legible"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:74
+#: data/dev.salanileo.forecast.appdata.xml.in:74
 msgid "Added dark text on light backgrounds"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:75
+#: data/dev.salanileo.forecast.appdata.xml.in:75
 msgid "Added option to use glass-like background for all elements"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:76
+#: data/dev.salanileo.forecast.appdata.xml.in:76
 msgid "Readded local time for selected city"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:83
+#: data/dev.salanileo.forecast.appdata.xml.in:83
 msgid "Version 0.2"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:87
+#: data/dev.salanileo.forecast.appdata.xml.in:87
 msgid "Searching for cities is a lot quicker"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:88
+#: data/dev.salanileo.forecast.appdata.xml.in:88
 msgid "Added roadmap on github"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:89
+#: data/dev.salanileo.forecast.appdata.xml.in:89
 msgid "Added one minute time pause for refreshing"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:93
+#: data/dev.salanileo.forecast.appdata.xml.in:93
 msgid "Added 5 days forecast"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:94
+#: data/dev.salanileo.forecast.appdata.xml.in:94
 msgid "Modified current data label"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:95
+#: data/dev.salanileo.forecast.appdata.xml.in:95
 msgid "Added glass effect to 3 hours forecast and wind"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:102
+#: data/dev.salanileo.forecast.appdata.xml.in:102
 msgid "First release"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:7
+#: data/dev.salanileo.forecast.gschema.xml:7
 msgid "Stores the api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:8
+#: data/dev.salanileo.forecast.gschema.xml:8
 msgid "stores the api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:13
+#: data/dev.salanileo.forecast.gschema.xml:13
 msgid "If false uses the default api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:14
+#: data/dev.salanileo.forecast.gschema.xml:14
 msgid "When this is true the app know to use the custom api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:19
+#: data/dev.salanileo.forecast.gschema.xml:19
 msgid "Uses a weather based gradient as background"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:20
+#: data/dev.salanileo.forecast.gschema.xml:20
 msgid "Use gradient for background"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:25
+#: data/dev.salanileo.forecast.gschema.xml:25
 msgid "List of weather places"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:26
+#: data/dev.salanileo.forecast.gschema.xml:26
 msgid "Stores all user selected location"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:31
+#: data/dev.salanileo.forecast.gschema.xml:31
 msgid "Units"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:32
+#: data/dev.salanileo.forecast.gschema.xml:32
 msgid "Chooses what unit of measure to use"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:37
+#: data/dev.salanileo.forecast.gschema.xml:37
 msgid "Changes the look of some elements"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:38
+#: data/dev.salanileo.forecast.gschema.xml:38
 msgid "Sets whether to show some elements like cards"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:43
+#: data/dev.salanileo.forecast.gschema.xml:43
 msgid "Changes the color of the text to dark"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:44
+#: data/dev.salanileo.forecast.gschema.xml:44
 msgid "Changes the color of the text if the background is too light"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:49
+#: data/dev.salanileo.forecast.gschema.xml:49
 msgid "Default weather city"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:50
+#: data/dev.salanileo.forecast.gschema.xml:50
 msgid "Changes the default city for the weather"
 msgstr ""
 

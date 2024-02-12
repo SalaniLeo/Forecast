@@ -1,7 +1,7 @@
 {
-    "app-id": "dev.salaniLeo.forecast",
+    "app-id": "dev.salanileo.forecast",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "44",
+    "runtime-version": "45",
     "sdk": "org.gnome.Sdk",
     "command": "forecast",
     "finish-args": [

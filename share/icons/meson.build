@@ -1,4 +1,4 @@
-application_id = 'dev.salaniLeo.forecast'
+application_id = 'dev.salanileo.forecast'
 
 scalable_dir = join_paths('hicolor', 'scalable', 'apps')
 install_data(

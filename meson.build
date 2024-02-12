@@ -1,10 +1,10 @@
 project('forecast',
-          version: '0.2.2',
+          version: '1.0',
     meson_version: '>= 0.59.0',
   default_options: [ 'warning_level=2', 'werror=false', 'prefix=/app'],
 )
 
-APPLICATION_ID = 'dev.salaniLeo.forecast@0@'.format('')
+APPLICATION_ID = 'dev.salanileo.forecast@0@'.format('')
 PKGDATA_DIR = join_paths(get_option('prefix'), get_option('datadir'), APPLICATION_ID)
 PKGLIB_DIR = join_paths(get_option('prefix'), get_option('libdir'), APPLICATION_ID)
 

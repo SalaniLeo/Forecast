@@ -1,44 +1,36 @@
-.glassy{
-
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 4px;
-    margin: 4px;
+.glass{
+    border-radius: 7.5px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.flat{
+    outline: none;
+    border: none;
+    box-shadow: none;
 }
 
-.dark {
-    color: rgba(0, 0, 0, 0.65);
+.font_big{
+    font-size: 25px;
+    font-weight: 900;
 }
-
-.light {
-    color: rgba(255, 255, 255, 1);
+.title_box{
+    padding: 10px;
 }
-
-.text_light{
-    color: rgba(255, 255, 255, 0.8);
+.font_medium{
+    font-size: 18px;
+    font-weight: 600;
 }
-
-.text_medium{
+.font_bold{
+    font-weight: 600;
+}
+.font_light{
+    color: rgba(255,255,255,0.5);
+}
+.font_small{
+    font-size: 14px;
+}
+.font_app_title{
     font-size: 16px;
-    font-weight: 550; 
-}
-
-.text_big{
-    font-size: 24px;
-    font-weight: 500;
-}
-
-.bold{
-
-    font-size: 28px;
-    font-weight: 1000;
-
-}
-
-.text_space{
-
-    line-height: 24px;
-
+    font-weight: 550;
 }
 
 .main_window{
@@ -48,14 +40,7 @@
     border-radius:13px;
     border : 1px solid rgba(100, 100, 100,.3);
     background-color: #282828;
-}
-
-.info_sw{
-
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 10px;
-
+    transition-duration: 0.75s;
 }
 
 /* ------------- day --------------- */

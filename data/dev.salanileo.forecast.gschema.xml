@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="dev.salaniLeo.forecast" path="/dev/salaniLeo/forecast/" gettext-domain="forecast">
+  <schema id="dev.salanileo.forecast" path="/dev/salanileo/forecast/" gettext-domain="forecast">
 
     <key name="api-key-s" type="s">
       <default>'72d251b81d30ef572ae667dfe6c4ee1a'</default>
@@ -17,7 +17,7 @@
     <key name="gradient-bg" type="b">
       <default>true</default>
       <summary>Uses a weather based gradient as background</summary>
-      <description>Use gradient for background</description>
+      <description>Chooses wether the user wants a gradient for background</description>
     </key>
 
     <key name="wthr-locs" type="as">
@@ -29,25 +29,19 @@
     <key name="units" type="s">
       <default>'Metric System, °C - Km/h'</default>
       <summary>Units</summary>
-      <description>Chooses what unit of measure to use</description>
+      <description>Chooses between the metric and imperial systems of measurement</description>
     </key>
 
-    <key name="use-glassy" type="b">
-      <default>false</default>
-      <summary>Changes the look of some elements</summary>
-      <description>Sets whether to show some elements like cards</description>
-    </key>
-
-    <key name="enhance-contrast" type="b">
-      <default>true</default>
-      <summary>Changes the color of the text to dark</summary>
-      <description>Changes the color of the text if the background is too light</description>
+    <key name="time-format" type="i">
+      <default>24</default>
+      <summary>use 12h or 24h</summary>
+      <description>Chooses between the 12h and the 24h time format</description>
     </key>
 
     <key name="selected-city" type="i">
       <default>0</default>
       <summary>Default weather city</summary>
-      <description>Changes the default city for the weather</description>
+      <description>Chooses the default city for the weather</description>
     </key>
 
   </schema>

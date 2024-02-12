@@ -1,6 +1,6 @@
-# Turkish translation of dev.salaniLeo.forecast.
-# Copyright (C) 2023 dev.salaniLeo.forecast's COPYRIGHT HOLDER
-# This file is distributed under the same license as the dev.salaniLeo.forecast package.
+# Turkish translation of dev.salanileo.forecast.
+# Copyright (C) 2023 dev.salanileo.forecast's COPYRIGHT HOLDER
+# This file is distributed under the same license as the dev.salanileo.forecast package.
 #
 # Sabri Ünal <libreajans@gmail.com>, 2023.
 #
@@ -18,109 +18,109 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:4
-#: data/dev.salaniLeo.forecast.desktop.in:3 Forecast/App.py:136
+#: data/dev.salanileo.forecast.appdata.xml.in:4
+#: data/dev.salanileo.forecast.desktop.in:3 Forecast/App.py:136
 #: Forecast/App.py:195
 msgid "Forecast"
 msgstr "Hava Tahmini"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:5
+#: data/dev.salanileo.forecast.appdata.xml.in:5
 msgid "Weather app for GNOME"
 msgstr "GNOME için hava tahmini uygulaması"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:7
+#: data/dev.salanileo.forecast.appdata.xml.in:7
 msgid "Beautiful and modern weather app for Linux"
 msgstr "Linux için güzel ve modern bir hava durumu uygulaması"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:19
+#: data/dev.salanileo.forecast.appdata.xml.in:19
 msgid "clouds"
 msgstr "bulutlar"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:23
+#: data/dev.salanileo.forecast.appdata.xml.in:23
 msgid "sandstorm"
 msgstr "kum fırtınası"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:27
+#: data/dev.salanileo.forecast.appdata.xml.in:27
 msgid "night"
 msgstr "gece"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:36
+#: data/dev.salanileo.forecast.appdata.xml.in:36
 msgid "Version 0.2"
 msgstr "Sürüm 0.2"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:37
+#: data/dev.salanileo.forecast.appdata.xml.in:37
 msgid "Updates:"
 msgstr "Güncellemeler:"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:39
+#: data/dev.salanileo.forecast.appdata.xml.in:39
 msgid "Improved design"
 msgstr "Tasarım iyileştirildi"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:40
+#: data/dev.salanileo.forecast.appdata.xml.in:40
 msgid "Searching for cities is a lot quicker"
 msgstr "Şehir arama artık çok daha hızlı"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:41
+#: data/dev.salanileo.forecast.appdata.xml.in:41
 msgid "Added roadmap on github"
 msgstr "Github'a yol haritası eklendi"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:42
+#: data/dev.salanileo.forecast.appdata.xml.in:42
 msgid "Added one minute time pause for refreshing"
 msgstr "Yenileme için 1 dakikalık bekleme eklendi"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:44
+#: data/dev.salanileo.forecast.appdata.xml.in:44
 msgid "Design changes:"
 msgstr "Tasarım değişiklikleri:"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:46
+#: data/dev.salanileo.forecast.appdata.xml.in:46
 msgid "Added 5 days forecast"
 msgstr "5 günlük hava tahmini eklendi"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:47
+#: data/dev.salanileo.forecast.appdata.xml.in:47
 msgid "Modified current data label"
 msgstr "Tarih etiketi değiştirildi"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:48
+#: data/dev.salanileo.forecast.appdata.xml.in:48
 msgid "Added glass effect to 3 hours forecast and wind"
 msgstr "3 saatlik hava durumu tahmini ve rüzgara cam efekti eklendi"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:55
+#: data/dev.salanileo.forecast.appdata.xml.in:55
 msgid "First release"
 msgstr "İlk sürüm"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:7
-#: data/dev.salaniLeo.forecast.gschema.xml:13
+#: data/dev.salanileo.forecast.gschema.xml:7
+#: data/dev.salanileo.forecast.gschema.xml:13
 msgid "The app starts with this option enabled"
 msgstr "Uygulama bu seçenek etkinleştirilmiş başlatılır"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:8
-#: data/dev.salaniLeo.forecast.gschema.xml:14
+#: data/dev.salanileo.forecast.gschema.xml:8
+#: data/dev.salanileo.forecast.gschema.xml:14
 msgid "Automatically enables the option to create appimages in foldermode"
 msgstr ""
 "Klasör kipinde uygulama görüntüleri oluşturma seçeneğini kendiliğinden "
 "etkinleştirir"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:20
+#: data/dev.salanileo.forecast.gschema.xml:20
 msgid "Uses a weather based gradient as background"
 msgstr "Hava durumu temelli renk geçişlerini arka plan olarak kullanır"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:21
+#: data/dev.salanileo.forecast.gschema.xml:21
 msgid "Use gradient for background"
 msgstr "Arka plan için renk geçişi kullan"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:26
+#: data/dev.salanileo.forecast.gschema.xml:26
 msgid "List of weather places"
 msgstr "Hava durumu konumları"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:27
+#: data/dev.salanileo.forecast.gschema.xml:27
 msgid "Stores all user selected location"
 msgstr "Kullanıcının seçtiği tüm konumları depolar"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:32 Forecast/App.py:263
+#: data/dev.salanileo.forecast.gschema.xml:32 Forecast/App.py:263
 msgid "Units"
 msgstr "Birim"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:33
+#: data/dev.salanileo.forecast.gschema.xml:33
 msgid "Chooses what unit of measure to use"
 msgstr "Hangi ölçü biriminin kullanılacağını belirler"
 
