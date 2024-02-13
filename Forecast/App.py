@@ -129,11 +129,10 @@ class Forecast(Adw.Application):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.connect('activate', self.on_activate)
-        # self.create_action('refresh', self.refresh, ['<Control>r'])
+        self.create_action('refresh', self.refresh_weather, ['<Control>r'])
         self.create_action('preferences', self.show_settings, ['<Control>comma'])
         self.create_action('about', self.show_about)
         self.create_action('quit', self.exit_app, ['<Control>w', '<Control>q'])
-        self.activate()
 
     def on_activate(self, app):
         self.win = root(application=app)
@@ -150,16 +149,22 @@ class Forecast(Adw.Application):
     def show_settings(self, action, param):
         ForecastPreferences()
 
+   # ----- refreshes weather ----- #
+    def refresh_weather(self, action, param):
+        actions.refresh_weather(None, app, cities_stack)
+
     # ----- shows about window ------ #
     def show_about(self, action, param):
         dialog = Adw.AboutWindow()
         dialog.set_application_name(_("Forecast"))
         dialog.set_version("1.0")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments(_("Weather app for Linux. Based OpenWeatherMap api"))
+        dialog.set_comments(_("⛅ Weather and forecast app for Linux.\n Made also for mobile!\n Uses openweathermap api"))
         dialog.set_website("https://github.com/SalaniLeo/Forecast")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salanileo.forecast")
+        dialog.set_issue_url("https://github.com/SalaniLeo/Forecast/issues")
+        dialog.add_acknowledgement_section("Used APIs", ["OpenWeatherMap APIs https://openweathermap.org/api"])
         # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
         dialog.set_translator_credits(_("translator-credits"))
         dialog.present()
