@@ -25,6 +25,8 @@ class constants():
     available_units = [metric_system, imperial_system]
     time_formats = ['12', '24']
     time_am_pm   = ['am', 'pm']
+    root         = None
+    app          = None
 
     #pollution index
     air_good = _('Good')
@@ -118,6 +120,7 @@ class actions():
         if city not in cities:
             cities.append(city)
             global_variables.set_saved_cities(cities)
+            actions.refresh_weather(None, constants.app, constants.root)
         else:
             return
         if self != None:

@@ -9,15 +9,14 @@ from urllib.request import urlopen
 
 cities_stack = Gtk.Stack()
 toast_overlay = Adw.ToastOverlay.new()
-app = None
 
 class root(Adw.Window):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        global cities_stack, app
+        global cities_stack
 
-
-        app = self
+        constants.app = self
+        constants.root = cities_stack
 
         if len(global_variables.get_saved_cities()) == 0:
             url = 'http://ipinfo.io/json'
@@ -26,6 +25,9 @@ class root(Adw.Window):
             response = data['city']
             city = search_city.get_search_result(None, None, response, 'first_opening')
             global_variables.set_saved_cities([city])
+
+        if global_variables.get_default_city()>=len(global_variables.get_saved_cities()):
+            global_variables.set_default_city(len(global_variables.get_saved_cities())-1)
 
         self.root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.title = "Forecast"
@@ -151,7 +153,7 @@ class Forecast(Adw.Application):
 
    # ----- refreshes weather ----- #
     def refresh_weather(self, action, param):
-        actions.refresh_weather(None, app, cities_stack)
+        actions.refresh_weather(None, constants.app, cities_stack)
 
     # ----- shows about window ------ #
     def show_about(self, action, param):
@@ -196,7 +198,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         self.set_title(title=_('Preferences'))
         # self.connect('close-request', self.do_shutdown)
-        self.set_transient_for(app)
+        self.set_transient_for(constants.app)
         self.show()
 
         self.add_city_button = Gtk.Button.new_from_icon_name('list-add-symbolic')

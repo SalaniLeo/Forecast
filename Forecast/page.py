@@ -302,7 +302,7 @@ class components(city_page):
         scrolled_window = Gtk.ScrolledWindow()
         scrolled_window.set_margin_bottom(12)
         scrolled_window.set_child(hourly_box)
-        scrolled_window.set_hexpand(True)
+        # scrolled_window.set_hexpand(True)
         scrolled_window.set_min_content_height(100)
 
         base_box.append(title_widget)
@@ -792,6 +792,7 @@ class components(city_page):
         title_widget = Gtk.Label.new(title)
         title_widget.set_css_classes(['font_light'])
         data_widget = Gtk.Label.new(value)
+        data_widget.set_wrap(True)
         box.append(title_widget)
         box.append(data_widget)
         return box
