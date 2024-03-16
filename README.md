@@ -9,6 +9,8 @@
   <li>7 Day forecast 'graph' ☀️</li>
   <li>24 Hour hourly forecast ⌛</li>
   <li>Pollution index 🚬</li>
+  <li>One week in depth forecast ☔</li>
+  <li>Choose between Metric or Imperial systems 🌍</li>
   <li>... And more to come! 😃</li>
 </ul> 
 <h2>Install</h2>
