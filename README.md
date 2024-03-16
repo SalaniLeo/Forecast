@@ -1,5 +1,4 @@
-<h1>Forecast </h1>
-<img src="/share/icons/hicolor/scalable/apps/dev.salanileo.forecast.svg" alt="icon" style="height:40px">
+<h1> <img src="/share/icons/hicolor/scalable/apps/dev.salanileo.forecast.svg" alt="icon" style="height:25px; margin:0px;"> Forecast </h1>
 <h2> Beautiful weather app for Linux </h2>
 <p>Here with a complete rework!</p>
 <h2>⚠️Warning⚠️</h2>
