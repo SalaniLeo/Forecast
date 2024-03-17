@@ -22,11 +22,11 @@
 .font_bold{
     font-weight: 600;
 }
-.font_light{
-    color: rgba(255,255,255,0.5);
-}
 .font_small{
     font-size: 14px;
+}
+.font_light{
+    filter: invert(30%);
 }
 .font_app_title{
     font-size: 16px;
