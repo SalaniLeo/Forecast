@@ -41,13 +41,13 @@ class constants():
 
     def uv_index(uv_index):
         if uv_index >= 0 and uv_index <= 2:
-            return "Low"
+            return _("Low")
         elif uv_index >= 3 and uv_index <= 7:
-            return "Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap on a hat!"
+            return _("Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap on a hat!")
         elif uv_index >= 8:
-            return "Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen, and hat are a must!"
+            return _("Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen, and hat are a must!")
         else:
-            return "Invalid UV index input. Please provide a number within the valid range."
+            return _("Invalid UV index input. Please provide a number within the valid range.")
 
     def wind_dir(angle):
         directions = [
