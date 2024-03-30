@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-30 17:11+0300\n"
-"PO-Revision-Date: 2024-03-30 17:58+0300\n"
+"POT-Creation-Date: 2024-03-30 18:05+0300\n"
+"PO-Revision-Date: 2024-03-30 18:06+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -324,6 +324,11 @@ msgstr "Gün"
 msgid "Weather"
 msgstr "Hava Durumu"
 
+#: Forecast/page.py:165
+#, python-brace-format
+msgid "- Feels like {0}{1}"
+msgstr "- Hissedilen {0}{1}"
+
 #: Forecast/page.py:208
 msgid "Alerts"
 msgstr "Uyarılar"
@@ -382,7 +387,6 @@ msgid "CO"
 msgstr "CO"
 
 #: Forecast/page.py:479
-#| msgid "N"
 msgid "NO"
 msgstr "NO"
 

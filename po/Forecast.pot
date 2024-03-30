@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-30 17:11+0300\n"
+"POT-Creation-Date: 2024-03-30 18:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -311,6 +311,11 @@ msgstr ""
 #. -- adds wather and forecast pages --
 #: Forecast/page.py:73
 msgid "Weather"
+msgstr ""
+
+#: Forecast/page.py:165
+#, python-brace-format
+msgid "- Feels like {0}{1}"
 msgstr ""
 
 #: Forecast/page.py:208

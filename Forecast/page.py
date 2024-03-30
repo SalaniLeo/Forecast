@@ -162,7 +162,7 @@ class components(city_page):
         subtitle_widget = Gtk.Label.new(f'{temperature}{global_variables.get_temperature_units()}')
         subtitle_widget.set_halign(Gtk.Align.START)
         subtitle_widget.set_css_classes(['font_medium'])
-        feels_like_subtitle_widget = Gtk.Label.new(f'- {_("Feels like")} {feels_like}{global_variables.get_temperature_units()}')
+        feels_like_subtitle_widget = Gtk.Label.new(_("- Feels like {0}{1}").format(feels_like, global_variables.get_temperature_units()))
         feels_like_subtitle_widget.set_css_classes(['font_light', 'font_bold'])
         feels_like_subtitle_widget.set_valign(Gtk.Align.CENTER)
         subtitle_box.append(subtitle_widget)
