@@ -3,4 +3,7 @@ data/dev.salanileo.forecast.appdata.xml.in
 data/dev.salanileo.forecast.desktop.in
 data/dev.salanileo.forecast.gschema.xml
 Forecast/App.py
-Forecast/WttrInfo.py
+Forecast/data.py
+Forecast/page.py
+Forecast/start.py
+Forecast/style.py
