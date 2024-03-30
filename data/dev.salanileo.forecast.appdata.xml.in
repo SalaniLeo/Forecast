@@ -39,7 +39,8 @@
   <releases>
 
       <release version="0.3.0" date="2023-08-02">
-        <description>
+        <description translate="no">
+          <p>Version 0.3.0</p>
             <ul>
               <li>Added Forecast page</li>
               <li>Added 'Advanced' option for current conditions</li>
@@ -50,7 +51,8 @@
       </release>
 
       <release version="0.2.2" date="2023-07-02">
-        <description>
+        <description translate="no">
+          <p>Version 0.2.2</p>
             <ul>
               <li>Complete redesign, see github for more</li>
               <li>Added locations page in preferences</li>
@@ -63,7 +65,7 @@
     </release>
 
       <release version="0.2.1" date="2023-06-20">
-        <description>
+        <description translate="no">
           <p>Version 0.2.1</p>
             <p>Updates:</p>
             <ul>
@@ -80,7 +82,7 @@
     </release>
     
       <release version="0.2" date="2023-06-18">
-        <description>
+        <description translate="no">
           <p>Version 0.2</p>
             <p>Updates:</p>
             <ul>
@@ -99,7 +101,7 @@
     </release>
     
       <release version="0.1.0" date="2023-05-23">
-        <description>
+        <description translate="no">
           <p>First release</p>
         </description>
     </release>
