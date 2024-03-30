@@ -31,9 +31,10 @@ localedir = '@localedir@'
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-locale.bindtextdomain('forecast', localedir)
-locale.textdomain('forecast')
-gettext.install('forecast', localedir)
+locale.bindtextdomain("forecast", localedir)
+locale.textdomain("forecast")
+gettext.bindtextdomain("forecast", localedir)
+gettext.textdomain("forecast")
 
 if __name__ == '__main__':
     import gi
