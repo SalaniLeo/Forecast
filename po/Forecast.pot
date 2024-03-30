@@ -8,16 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-20 13:20+0200\n"
+"POT-Creation-Date: 2024-03-30 17:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:4
+#: data/dev.salanileo.forecast.desktop.in:3 Forecast/App.py:33
+#: Forecast/App.py:161 Forecast/page.py:74
 msgid "Forecast"
 msgstr ""
 
@@ -29,145 +31,44 @@ msgstr ""
 msgid "Alternative weather app with custom css styling and more"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:19
-msgid "first screenshot"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:23
-msgid "second screenshot"
-msgstr ""
-
 #: data/dev.salanileo.forecast.appdata.xml.in:27
-msgid "third screenshot"
+msgid "Main window in dark mode, clear sky"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:31
-msgid "fourth screenshot"
+msgid "Main window in light mode, clear sky"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:35
-msgid "fifth screenshot"
+msgid "Main window in dark mode, partly cloudy"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:42
-msgid "Version 0.2.2"
+#: data/dev.salanileo.forecast.appdata.xml.in:39
+msgid "Main window in light mode, partly cloudy"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:43
-#: data/dev.salanileo.forecast.appdata.xml.in:67
-#: data/dev.salanileo.forecast.appdata.xml.in:84
-msgid "Updates:"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:45
-msgid "Improved design, see below"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:46
-msgid "Added locations page in preferences"
+msgid "Main window in dark mode, clear sky, narrow view"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:47
-msgid "Now you can delete locations"
+msgid "Main window in light mode, clear sky, narrow view"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:48
-msgid "Added no network status page"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:49
-msgid "Added reload shortcut"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:50
-msgid "Fixed some bugs"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:52
-#: data/dev.salanileo.forecast.appdata.xml.in:72
-#: data/dev.salanileo.forecast.appdata.xml.in:91
-msgid "Design changes:"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:54
-msgid "Improved background gradient for all conditions during night"
+#: data/dev.salanileo.forecast.appdata.xml.in:51
+msgid "Preferences dialog in dark mode"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:55
-msgid "Modified first time open window"
+msgid "Preferences dialog in light mode"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:56
-msgid "Added smooth transitioning between cities"
+#: data/dev.salanileo.forecast.desktop.in:6
+msgid "Weather;Forecast;Temperature;"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:57
-msgid "Added smooth transitioning when reloading"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:58
-msgid "Added loading page while getting api response"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:59
-msgid "Added probability of rain in 3-hours forecast"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:66
-msgid "Version 0.2.1"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:69
-#: data/dev.salanileo.forecast.appdata.xml.in:86
-msgid "Improved design"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:70
-msgid "Custom api-key option is now more legible"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:74
-msgid "Added dark text on light backgrounds"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:75
-msgid "Added option to use glass-like background for all elements"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:76
-msgid "Readded local time for selected city"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:83
-msgid "Version 0.2"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:87
-msgid "Searching for cities is a lot quicker"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:88
-msgid "Added roadmap on github"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:89
-msgid "Added one minute time pause for refreshing"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:93
-msgid "Added 5 days forecast"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:94
-msgid "Modified current data label"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:95
-msgid "Added glass effect to 3 hours forecast and wind"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:102
-msgid "First release"
+#: data/dev.salanileo.forecast.desktop.in:7
+msgid "Forecast app for GNOME"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:7
@@ -191,7 +92,7 @@ msgid "Uses a weather based gradient as background"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:20
-msgid "Use gradient for background"
+msgid "Chooses wether the user wants a gradient for background"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:25
@@ -207,469 +108,528 @@ msgid "Units"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:32
-msgid "Chooses what unit of measure to use"
+msgid "Chooses between the metric and imperial systems of measurement"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:37
-msgid "Changes the look of some elements"
+msgid "use 12h or 24h"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:38
-msgid "Sets whether to show some elements like cards"
+msgid "Chooses between the 12h and the 24h time format"
 msgstr ""
 
 #: data/dev.salanileo.forecast.gschema.xml:43
-msgid "Changes the color of the text to dark"
-msgstr ""
-
-#: data/dev.salanileo.forecast.gschema.xml:44
-msgid "Changes the color of the text if the background is too light"
-msgstr ""
-
-#: data/dev.salanileo.forecast.gschema.xml:49
 msgid "Default weather city"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:50
-msgid "Changes the default city for the weather"
+#: data/dev.salanileo.forecast.gschema.xml:44
+msgid "Chooses the default city for the weather"
 msgstr ""
 
-#: Forecast/App.py:41 Forecast/App.py:83
-msgid "Refresh"
-msgstr ""
-
-#: Forecast/App.py:56
-msgid "Forecast - loading"
-msgstr ""
-
-#: Forecast/App.py:84 Forecast/App.py:312 Forecast/App.py:323
-msgid "Preferences"
-msgstr ""
-
-#: Forecast/App.py:85
-msgid "About Forecast"
-msgstr ""
-
-#: Forecast/App.py:131 Forecast/App.py:181
-msgid "No internet connection"
-msgstr ""
-
-#: Forecast/App.py:134
-msgid "Forecast - No Internet Connection"
-msgstr ""
-
-#: Forecast/App.py:197 Forecast/App.py:278
-msgid "Forecast"
-msgstr ""
-
-#: Forecast/App.py:200
-msgid "Weather app for Linux"
-msgstr ""
-
-#. TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
-#: Forecast/App.py:205
-msgid "translator-credits"
-msgstr ""
-
-#: Forecast/App.py:224 Forecast/App.py:247
-msgid "Search a city"
-msgstr ""
-
-#: Forecast/App.py:242
-msgid "Welcome to Forecast!\n"
-msgstr ""
-
-#: Forecast/App.py:318 Forecast/App.py:328
+#: Forecast/App.py:34 Forecast/App.py:208 Forecast/App.py:231
 msgid "Locations"
 msgstr ""
 
-#: Forecast/App.py:357
-msgid "App Preferences"
+#: Forecast/App.py:164
+msgid ""
+"⛅ Weather and forecast app for Linux.\n"
+" Made also for mobile!\n"
+" Uses openweathermap api"
 msgstr ""
 
-#: Forecast/App.py:359
+#. TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
+#: Forecast/App.py:171
+msgid "translator-credits"
+msgstr ""
+
+#: Forecast/App.py:186
+msgid "Refresh"
+msgstr ""
+
+#: Forecast/App.py:187 Forecast/App.py:199 Forecast/App.py:213
+msgid "Preferences"
+msgstr ""
+
+#: Forecast/App.py:188
+msgid "About Forecast"
+msgstr ""
+
+#: Forecast/App.py:238
+msgid "Units preferences"
+msgstr ""
+
+#: Forecast/App.py:240
 msgid "Appearance Preferences"
 msgstr ""
 
-#: Forecast/App.py:363
-msgid "Use Gradient as Background"
+#: Forecast/App.py:252
+msgid "Temperature units"
 msgstr ""
 
-#: Forecast/App.py:364
+#: Forecast/App.py:253
+msgid "Select which units to use"
+msgstr ""
+
+#: Forecast/App.py:269
+msgid "Time format"
+msgstr ""
+
+#: Forecast/App.py:270
+msgid "Select whether to use the 12h or 24h formats"
+msgstr ""
+
+#: Forecast/App.py:318
+msgid "Latitude"
+msgstr ""
+
+#: Forecast/App.py:322
+msgid "Longitude"
+msgstr ""
+
+#: Forecast/App.py:351
+msgid "Use coordinates"
+msgstr ""
+
+#: Forecast/data.py:11
+msgid "Metric System"
+msgstr ""
+
+#: Forecast/data.py:12
+msgid "Imperial System"
+msgstr ""
+
+#. pollution index
+#: Forecast/data.py:32
+msgid "Good"
+msgstr ""
+
+#: Forecast/data.py:33
+msgid "Fair"
+msgstr ""
+
+#: Forecast/data.py:34
+msgid "Moderate"
+msgstr ""
+
+#: Forecast/data.py:35
+msgid "Poor"
+msgstr ""
+
+#: Forecast/data.py:36
+msgid "Very Poor"
+msgstr ""
+
+#: Forecast/data.py:44
+msgid "Low"
+msgstr ""
+
+#: Forecast/data.py:46
 msgid ""
-"Applies a gradient based on current weather and time. Requires restart to "
-"disable"
+"Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap "
+"on a hat!"
 msgstr ""
 
-#: Forecast/App.py:370
-msgid "Use glassy background look"
+#: Forecast/data.py:48
+msgid ""
+"Avoid being outside during midday hours! Make sure you seek shade! Shirt, "
+"sunscreen, and hat are a must!"
 msgstr ""
 
-#: Forecast/App.py:371
-msgid "Applies a glass-like background to all elements"
+#: Forecast/data.py:50
+msgid "Invalid UV index input. Please provide a number within the valid range."
 msgstr ""
 
-#: Forecast/App.py:376
-msgid "Use dark text on dark background"
-msgstr ""
-
-#: Forecast/App.py:377
-msgid "Chenges the text color from light to dark on light backgrounds"
-msgstr ""
-
-#: Forecast/App.py:395
-msgid "Units"
-msgstr ""
-
-#: Forecast/App.py:396
-msgid "Select which unit of measurement to use"
-msgstr ""
-
-#: Forecast/App.py:401
-msgid "API Preferences"
-msgstr ""
-
-#: Forecast/App.py:413
-msgid "Use Personal API Key"
-msgstr ""
-
-#: Forecast/App.py:414
-msgid "Choose whether to use default API key or personal key"
-msgstr ""
-
-#: Forecast/App.py:418
-msgid "Personal API Key"
-msgstr ""
-
-
-#: Forecast/WttrInfo.py:54
-msgid "Weather"
-msgstr ""
-
-#: Forecast/WttrInfo.py:154
-msgid "Today"
-msgstr ""
-
-#: Forecast/WttrInfo.py:169
-msgid "Forecast"
-msgstr ""
-
-#: Forecast/WttrInfo.py:232
-msgid "You must wait at least one minute to refresh"
-msgstr ""
-
-#: Forecast/WttrInfo.py:291
-msgid "Local time: "
-msgstr ""
-
-#: Forecast/WttrInfo.py:303
-msgid "Last update:"
-msgstr ""
-
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "N"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "NNE"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "NE"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "ENE"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "E"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "ESE"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "SE"
 msgstr ""
 
-#: Forecast/WttrInfo.py:316
+#: Forecast/data.py:54
 msgid "SSE"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "S"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "SSW"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "SW"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "WSW"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "W"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "WNW"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "NW"
 msgstr ""
 
-#: Forecast/WttrInfo.py:317
+#: Forecast/data.py:55
 msgid "NNW"
 msgstr ""
 
-#: Forecast/WttrInfo.py:349
-msgid "Feels like"
+#: Forecast/page.py:58
+msgid "Days"
 msgstr ""
 
-#: Forecast/WttrInfo.py:350
-msgid "Wind"
+#. -- adds wather and forecast pages --
+#: Forecast/page.py:73
+msgid "Weather"
 msgstr ""
 
-#: Forecast/WttrInfo.py:351
-msgid "Gusts"
+#: Forecast/page.py:208
+msgid "Alerts"
 msgstr ""
 
-#: Forecast/WttrInfo.py:352
-msgid "Pressure"
+#: Forecast/page.py:241
+msgid "See description"
 msgstr ""
 
-#: Forecast/WttrInfo.py:353
+#: Forecast/page.py:259
+msgid "Current conditions"
+msgstr ""
+
+#: Forecast/page.py:278 Forecast/page.py:697
+msgid "Temperature"
+msgstr ""
+
+#: Forecast/page.py:279 Forecast/page.py:698
+msgid "Wind speed"
+msgstr ""
+
+#: Forecast/page.py:280 Forecast/page.py:699
 msgid "Humidity"
 msgstr ""
 
-#: Forecast/WttrInfo.py:354
-msgid "Visibility"
+#: Forecast/page.py:281 Forecast/page.py:700
+msgid "Cloudiness"
 msgstr ""
 
-#: Forecast/WttrInfo.py:355
-msgid "Sunrise"
+#. pop_widget = components.info_label(_("Probability of rain"), f'{rain_prob}')
+#: Forecast/page.py:283 Forecast/page.py:702
+msgid "UV Index"
 msgstr ""
 
-#: Forecast/WttrInfo.py:356
+#: Forecast/page.py:299
+msgid "24 Hours forecast"
+msgstr ""
+
+#: Forecast/page.py:339
+msgid "Weekly forecast"
+msgstr ""
+
+#: Forecast/page.py:430
+msgid "Pollution"
+msgstr ""
+
+#: Forecast/page.py:435
+msgid "Details"
+msgstr ""
+
+#: Forecast/page.py:457
+msgid "AQI"
+msgstr ""
+
+#: Forecast/page.py:472
+msgid "CO"
+msgstr ""
+
+#: Forecast/page.py:479
+msgid "NO"
+msgstr ""
+
+#: Forecast/page.py:486
+msgid "NO2"
+msgstr ""
+
+#: Forecast/page.py:493
+msgid "O3"
+msgstr ""
+
+#: Forecast/page.py:500
+msgid "SO2"
+msgstr ""
+
+#: Forecast/page.py:507
+msgid "pm 2.5"
+msgstr ""
+
+#: Forecast/page.py:514
+msgid "pm 10"
+msgstr ""
+
+#: Forecast/page.py:521
+msgid "NH3"
+msgstr ""
+
+#: Forecast/page.py:684
+msgid "Temperatures"
+msgstr ""
+
+#: Forecast/page.py:701
+msgid "Probability of rain"
+msgstr ""
+
+#: Forecast/page.py:704
+msgid "Conditions"
+msgstr ""
+
+#: Forecast/page.py:725
 msgid "Sunset"
 msgstr ""
 
-#: Forecast/WttrInfo.py:523
-msgid "The selected city has already been added"
+#: Forecast/page.py:733
+msgid "Sunrise"
 msgstr ""
 
-#: Forecast/WttrInfo.py:741
+#: Forecast/page.py:739
+msgid "Sun"
+msgstr ""
+
+#: Forecast/page.py:816
+msgid "Close"
+msgstr ""
+
+#: Forecast/style.py:101
 msgid "Thunderstorm with Light Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:742
+#: Forecast/style.py:102
 msgid "Thunderstorm with Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:743
+#: Forecast/style.py:103
 msgid "Thunderstorm with Heavy Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:744
+#: Forecast/style.py:104
 msgid "Light Thunderstorm"
 msgstr ""
 
-#: Forecast/WttrInfo.py:745
+#: Forecast/style.py:105
 msgid "Thunderstorm"
 msgstr ""
 
-#: Forecast/WttrInfo.py:746
+#: Forecast/style.py:106
 msgid "Heavy Thunderstorm"
 msgstr ""
 
-#: Forecast/WttrInfo.py:747
+#: Forecast/style.py:107
 msgid "Ragged Thunderstorm"
 msgstr ""
 
-#: Forecast/WttrInfo.py:748
+#: Forecast/style.py:108
 msgid "Light Drizzle"
 msgstr ""
 
-#: Forecast/WttrInfo.py:749
+#: Forecast/style.py:109
 msgid "Drizzle"
 msgstr ""
 
-#: Forecast/WttrInfo.py:750
+#: Forecast/style.py:110
 msgid "Heavy Drizzle"
 msgstr ""
 
-#: Forecast/WttrInfo.py:751
+#: Forecast/style.py:111
 msgid "Light Drizzle Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:752
+#: Forecast/style.py:112
 msgid "Drizzle Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:753
+#: Forecast/style.py:113
 msgid "Heavy Drizzle Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:754
+#: Forecast/style.py:114
 msgid "Shower Rain and Drizzle"
 msgstr ""
 
-#: Forecast/WttrInfo.py:755
+#: Forecast/style.py:115
 msgid "Heavy Rain and Drizzle"
 msgstr ""
 
-#: Forecast/WttrInfo.py:756
+#: Forecast/style.py:116
 msgid "Shower Drizzle"
 msgstr ""
 
-#: Forecast/WttrInfo.py:757
+#: Forecast/style.py:117
 msgid "Light Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:758
+#: Forecast/style.py:118
 msgid "Moderate Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:759
+#: Forecast/style.py:119
 msgid "Heavy Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:760
+#: Forecast/style.py:120
 msgid "Very Heavy Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:761
+#: Forecast/style.py:121
 msgid "Extreme Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:762
+#: Forecast/style.py:122
 msgid "Freezing Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:763
+#: Forecast/style.py:123
 msgid "Light Shower Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:764
+#: Forecast/style.py:124
 msgid "Shower Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:765
+#: Forecast/style.py:125
 msgid "Heavy Shower Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:766
+#: Forecast/style.py:126
 msgid "Ragged Shower Rain"
 msgstr ""
 
-#: Forecast/WttrInfo.py:767
+#: Forecast/style.py:127
 msgid "Light Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:768
+#: Forecast/style.py:128
 msgid "Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:769
+#: Forecast/style.py:129
 msgid "Heavy Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:770
+#: Forecast/style.py:130
 msgid "Sleet"
 msgstr ""
 
-#: Forecast/WttrInfo.py:771
+#: Forecast/style.py:131
 msgid "Light Shower Sleet"
 msgstr ""
 
-#: Forecast/WttrInfo.py:772
+#: Forecast/style.py:132
 msgid "Shower Sleet"
 msgstr ""
 
-#: Forecast/WttrInfo.py:773
+#: Forecast/style.py:133
 msgid "Light Rain and Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:774
+#: Forecast/style.py:134
 msgid "Rain and Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:775
+#: Forecast/style.py:135
 msgid "Light Shower Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:776
+#: Forecast/style.py:136
 msgid "Shower Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:777
+#: Forecast/style.py:137
 msgid "Heavy Shower Snow"
 msgstr ""
 
-#: Forecast/WttrInfo.py:778
+#: Forecast/style.py:138
 msgid "Mist"
 msgstr ""
 
-#: Forecast/WttrInfo.py:779
+#: Forecast/style.py:139
 msgid "Smoke"
 msgstr ""
 
-#: Forecast/WttrInfo.py:780
+#: Forecast/style.py:140
 msgid "Haze"
 msgstr ""
 
-#: Forecast/WttrInfo.py:781
+#: Forecast/style.py:141
 msgid "Sand/Dust Whirls"
 msgstr ""
 
-#: Forecast/WttrInfo.py:782
+#: Forecast/style.py:142
 msgid "Fog"
 msgstr ""
 
-#: Forecast/WttrInfo.py:783
+#: Forecast/style.py:143
 msgid "Sand"
 msgstr ""
 
-#: Forecast/WttrInfo.py:784
+#: Forecast/style.py:144
 msgid "Dust"
 msgstr ""
 
-#: Forecast/WttrInfo.py:785
+#: Forecast/style.py:145
 msgid "Volcanic Ash"
 msgstr ""
 
-#: Forecast/WttrInfo.py:786
+#: Forecast/style.py:146
 msgid "Squalls"
 msgstr ""
 
-#: Forecast/WttrInfo.py:787
+#: Forecast/style.py:147
 msgid "Tornado"
 msgstr ""
 
-#: Forecast/WttrInfo.py:788
+#: Forecast/style.py:148
 msgid "Clear Sky"
 msgstr ""
 
-#: Forecast/WttrInfo.py:789
+#: Forecast/style.py:149
 msgid "Few Clouds"
 msgstr ""
 
-#: Forecast/WttrInfo.py:790
+#: Forecast/style.py:150
 msgid "Scattered Clouds"
 msgstr ""
 
-#: Forecast/WttrInfo.py:791
+#: Forecast/style.py:151
 msgid "Broken Clouds"
 msgstr ""
 
-#: Forecast/WttrInfo.py:792
+#: Forecast/style.py:152
 msgid "Overcast Clouds"
 msgstr ""
