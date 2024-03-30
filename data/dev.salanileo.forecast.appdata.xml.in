@@ -6,7 +6,12 @@
   <description>
     <p>Alternative weather app with custom css styling and more</p>
   </description>
+  <developer_name translate="no">SalaniLeo</developer_name>
+  <developer id="io.github.SalaniLeo">
+    <name translate="no">SalaniLeo</name>
+  </developer>
   <launchable type="desktop-id">dev.salanileo.forecast.desktop</launchable>
+  <translation type="gettext">forecast</translation>
   <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
   <url type="bugtracker">https://github.com/SalaniLeo/Forecast/issues</url>
   <url type="vcs-browser">https://github.com/SalaniLeo/Forecast</url>
