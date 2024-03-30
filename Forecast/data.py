@@ -8,8 +8,8 @@ from .style import *
 from datetime import datetime
 
 class constants():
-    meters = _('Metric System')
-    miles = _('Imperial System')
+    meters = _("Metric System")
+    miles = _("Imperial System")
     metric_system = f'{meters}, °C - Km/h'
     imperial_system = f'{miles}, °F - mph'
 
@@ -29,11 +29,11 @@ class constants():
     app          = None
 
     #pollution index
-    air_good = _('Good')
-    air_fair = _('Fair')
-    air_moderate = _('Moderate')
-    air_poor = _('Poor')
-    air_very_poor = _('Very Poor')
+    air_good = _("Good")
+    air_fair = _("Fair")
+    air_moderate = _("Moderate")
+    air_poor = _("Poor")
+    air_very_poor = _("Very Poor")
 
     align_breakpoint = 700
     sidebar_breakpoint = 500
