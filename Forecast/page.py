@@ -226,9 +226,9 @@ class components(city_page):
             event_box.append(event_widget)
             event_box.set_spacing(6)
 
-            start_widget = Gtk.Label(label=f'{_("Start:")} {start}')
+            start_widget = Gtk.Label(label=_("Start: {0}").format(start))
             start_widget.set_halign(Gtk.Align.START)
-            end_widget = Gtk.Label(label=f'{_("End:")} {end}')
+            end_widget = Gtk.Label(label=_("End: {0}").format(end))
             end_widget.set_halign(Gtk.Align.START)
 
             duration_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -636,7 +636,7 @@ class components(city_page):
                 afternoon_temp = day['temp']['day']
 
                 night_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                night_temp_label = Gtk.Label.new(f'{_("Night")}')
+                night_temp_label = Gtk.Label.new(_("Night"))
                 night_temp_label.set_css_classes(['font_light'])
                 night_temp_label.set_size_request(75, 20)
                 night_temp_label.set_xalign(0)
@@ -650,7 +650,7 @@ class components(city_page):
                 night_temp_box.append(night_temp_label_data)
 
                 evening_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                evening_temp_label = Gtk.Label.new(f'{_("Evening")}')
+                evening_temp_label = Gtk.Label.new(_("Evening"))
                 evening_temp_label.set_css_classes(['font_light'])
                 evening_temp_label.set_size_request(75, 20)
                 evening_temp_label.set_xalign(0)
@@ -664,7 +664,7 @@ class components(city_page):
                 evening_temp_box.append(evening_temp_label_data)
 
                 morning_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                morning_temp_label = Gtk.Label.new(f'{_("Morning")}')
+                morning_temp_label = Gtk.Label.new(_("Morning"))
                 morning_temp_label.set_css_classes(['font_light'])
                 morning_temp_label.set_size_request(75, 20)
                 morning_temp_label.set_xalign(0)
@@ -678,7 +678,7 @@ class components(city_page):
                 morning_temp_box.append(morning_temp_label_data)
 
                 afternoon_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                afternoon_temp_label = Gtk.Label.new(f'{_("Afternoon")}')
+                afternoon_temp_label = Gtk.Label.new(_("Afternoon"))
                 afternoon_temp_label.set_css_classes(['font_light'])
                 afternoon_temp_label.set_size_request(75, 20)
                 afternoon_temp_label.set_xalign(0)

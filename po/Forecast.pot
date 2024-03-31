@@ -322,6 +322,16 @@ msgstr ""
 msgid "Alerts"
 msgstr ""
 
+#: Forecast/page.py:229
+#, python-brace-format
+msgid "Start: {0}"
+msgstr ""
+
+#: Forecast/page.py:231
+#, python-brace-format
+msgid "End: {0}"
+msgstr ""
+
 #: Forecast/page.py:241
 msgid "See description"
 msgstr ""
@@ -427,7 +437,23 @@ msgctxt "pollution"
 msgid "NH3"
 msgstr ""
 
-#: Forecast/page.py:684
+#: Forecast/page.py:639
+msgid "Night"
+msgstr ""
+
+#: Forecast/page.py:653
+msgid "Evening"
+msgstr ""
+
+#: Forecast/page.py:667
+msgid "Morning"
+msgstr ""
+
+#: Forecast/page.py:681
+msgid "Afternoon"
+msgstr ""
+
+#: Forecast/page.py:694
 msgid "Temperatures"
 msgstr ""
 
