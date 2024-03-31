@@ -367,39 +367,56 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: Forecast/page.py:457
+#. AQI: Air Quality Index
+#: Forecast/page.py:459
+msgctxt "pollution"
 msgid "AQI"
 msgstr ""
 
-#: Forecast/page.py:472
+#. CO: Carbon monoxide emissions, from sources like vehicles pose health risks
+#: Forecast/page.py:475
+msgctxt "pollution"
 msgid "CO"
 msgstr ""
 
-#: Forecast/page.py:479
+#. NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues
+#: Forecast/page.py:483
+msgctxt "pollution"
 msgid "NO"
 msgstr ""
 
-#: Forecast/page.py:486
+#: Forecast/page.py:491
+msgctxt "pollution"
 msgid "NO2"
 msgstr ""
 
-#: Forecast/page.py:493
+#. O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards
+#: Forecast/page.py:499
+msgctxt "pollution"
 msgid "O3"
 msgstr ""
 
-#: Forecast/page.py:500
+#. SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health
+#: Forecast/page.py:507
+msgctxt "pollution"
 msgid "SO2"
 msgstr ""
 
-#: Forecast/page.py:507
-msgid "pm 2.5"
+#. PM2.5: tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
+#: Forecast/page.py:515
+msgctxt "pollution"
+msgid "PM 2.5"
 msgstr ""
 
-#: Forecast/page.py:514
-msgid "pm 10"
+#. PM10: larger particles, pose health risks, especially to the respiratory system
+#: Forecast/page.py:523
+msgctxt "pollution"
+msgid "PM 10"
 msgstr ""
 
-#: Forecast/page.py:521
+#. H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health
+#: Forecast/page.py:531
+msgctxt "pollution"
 msgid "NH3"
 msgstr ""
 
