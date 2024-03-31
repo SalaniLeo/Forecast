@@ -457,6 +457,7 @@ class components(city_page):
 
             # AQI: Air Quality Index
             overall_text_widget = Gtk.Label.new(C_("pollution", "AQI"))
+            overall_text_widget.set_tooltip_text(C_("pollution", "AQI: Air Quality Index"))
             overall_text_widget.set_halign(Gtk.Align.END)
             overall_text_widget.set_hexpand(True)
 
@@ -473,6 +474,7 @@ class components(city_page):
             co_widget.set_halign(Gtk.Align.START)
             # CO: Carbon monoxide emissions, from sources like vehicles pose health risks
             co_text_widget = Gtk.Label.new(C_("pollution", "CO"))
+            co_text_widget.set_tooltip_text(C_("pollution", "CO: Carbon monoxide emissions, from sources like vehicles pose health risks"))
             co_text_widget.set_halign(Gtk.Align.START)
             data_box.append(co_widget)
             text_box.append(co_text_widget)
@@ -481,6 +483,7 @@ class components(city_page):
             no_widget.set_halign(Gtk.Align.START)
             # NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues
             no_text_widget = Gtk.Label.new(C_("pollution", "NO"))
+            no_text_widget.set_tooltip_text(C_("pollution", "NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues"))
             no_text_widget.set_halign(Gtk.Align.START)
             data_box.append(no_widget)
             text_box.append(no_text_widget)
@@ -489,6 +492,7 @@ class components(city_page):
             no2_widget = Gtk.Label.new(str(index['components']['no2']))
             no2_widget.set_halign(Gtk.Align.START)
             no2_text_widget = Gtk.Label.new(C_("pollution", "NO2"))
+            no2_text_widget.set_tooltip_text(C_("pollution", "NO2: Nitrogen dioxide, a poisonous gas that can be fatal if inhaled in large quantities"))
             no2_text_widget.set_halign(Gtk.Align.START)
             data_box.append(no2_widget)
             text_box.append(no2_text_widget)
@@ -497,6 +501,7 @@ class components(city_page):
             o3_widget.set_halign(Gtk.Align.START)
             # O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards
             o3_text_widget = Gtk.Label.new(C_("pollution", "O3"))
+            o3_text_widget.set_tooltip_text(C_("pollution", "O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards"))
             o3_text_widget.set_halign(Gtk.Align.START)
             data_box.append(o3_widget)
             text_box.append(o3_text_widget)
@@ -505,22 +510,25 @@ class components(city_page):
             so2_widget.set_halign(Gtk.Align.START)
             # SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health
             so2_text_widget = Gtk.Label.new(C_("pollution", "SO2"))
+            so2_text_widget.set_tooltip_text(C_("pollution", "SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health"))
             so2_text_widget.set_halign(Gtk.Align.START)
             data_box.append(so2_widget)
             text_box.append(so2_text_widget)
 
             pm25_widget = Gtk.Label.new(str(index['components']['pm2_5']))
             pm25_widget.set_halign(Gtk.Align.START)
-            # PM2.5: tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
+            # PM 2.5: Tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
             pm25_text_widget = Gtk.Label.new(C_("pollution", "PM 2.5"))
+            pm25_text_widget.set_tooltip_text(C_("pollution", "PM 2.5: Tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues"))
             pm25_text_widget.set_halign(Gtk.Align.START)
             data_box.append(pm25_widget)
             text_box.append(pm25_text_widget)
 
             pm10widget = Gtk.Label.new(str(index['components']['pm10']))
             pm10widget.set_halign(Gtk.Align.START)
-            # PM10: larger particles, pose health risks, especially to the respiratory system
+            # PM 10: larger particles, pose health risks, especially to the respiratory system
             pm10_text_widget = Gtk.Label.new(C_("pollution", "PM 10"))
+            pm10_text_widget.set_tooltip_text(C_("pollution", "PM 10: Larger particles, pose health risks, especially to the respiratory system"))
             pm10_text_widget.set_halign(Gtk.Align.START)
             data_box.append(pm10widget)
             text_box.append(pm10_text_widget)
@@ -529,6 +537,7 @@ class components(city_page):
             nh3_widget.set_halign(Gtk.Align.START)
             # H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health
             nh3_text_widget = Gtk.Label.new(C_("pollution", "NH3"))
+            nh3_text_widget.set_tooltip_text(C_("pollution", "H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health"))
             nh3_text_widget.set_halign(Gtk.Align.START)
             data_box.append(nh3_widget)
             text_box.append(nh3_text_widget)

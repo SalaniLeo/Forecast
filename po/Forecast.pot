@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-31 18:12+0300\n"
+"POT-Creation-Date: 2024-03-31 18:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -341,30 +341,30 @@ msgid "Current conditions"
 msgstr ""
 
 #. Value and percentage sign. In some languages, the order of the value and the percentage sign may need to be changed.
-#: Forecast/page.py:275 Forecast/page.py:709 Forecast/page.py:710
-#: Forecast/page.py:711
+#: Forecast/page.py:275 Forecast/page.py:718 Forecast/page.py:719
+#: Forecast/page.py:720
 #, python-brace-format
 msgid "{0}%"
 msgstr ""
 
-#: Forecast/page.py:279 Forecast/page.py:707
+#: Forecast/page.py:279 Forecast/page.py:716
 msgid "Temperature"
 msgstr ""
 
-#: Forecast/page.py:280 Forecast/page.py:708
+#: Forecast/page.py:280 Forecast/page.py:717
 msgid "Wind speed"
 msgstr ""
 
-#: Forecast/page.py:281 Forecast/page.py:709
+#: Forecast/page.py:281 Forecast/page.py:718
 msgid "Humidity"
 msgstr ""
 
-#: Forecast/page.py:282 Forecast/page.py:710
+#: Forecast/page.py:282 Forecast/page.py:719
 msgid "Cloudiness"
 msgstr ""
 
 #. pop_widget = components.info_label(_("Probability of rain"), f'{rain_prob}')
-#: Forecast/page.py:284 Forecast/page.py:712
+#: Forecast/page.py:284 Forecast/page.py:721
 msgid "UV Index"
 msgstr ""
 
@@ -390,94 +390,154 @@ msgctxt "pollution"
 msgid "AQI"
 msgstr ""
 
+#: Forecast/page.py:460
+msgctxt "pollution"
+msgid "AQI: Air Quality Index"
+msgstr ""
+
 #. CO: Carbon monoxide emissions, from sources like vehicles pose health risks
-#: Forecast/page.py:475
+#: Forecast/page.py:476
 msgctxt "pollution"
 msgid "CO"
 msgstr ""
 
+#: Forecast/page.py:477
+msgctxt "pollution"
+msgid ""
+"CO: Carbon monoxide emissions, from sources like vehicles pose health risks"
+msgstr ""
+
 #. NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues
-#: Forecast/page.py:483
+#: Forecast/page.py:485
 msgctxt "pollution"
 msgid "NO"
 msgstr ""
 
-#: Forecast/page.py:491
+#: Forecast/page.py:486
+msgctxt "pollution"
+msgid ""
+"NO: Nitric oxide, a colorless gas, poses health risks, including respiratory "
+"issues"
+msgstr ""
+
+#: Forecast/page.py:494
 msgctxt "pollution"
 msgid "NO2"
 msgstr ""
 
+#: Forecast/page.py:495
+msgctxt "pollution"
+msgid ""
+"NO2: Nitrogen dioxide, a poisonous gas that can be fatal if inhaled in large "
+"quantities"
+msgstr ""
+
 #. O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards
-#: Forecast/page.py:499
+#: Forecast/page.py:503
 msgctxt "pollution"
 msgid "O3"
 msgstr ""
 
+#: Forecast/page.py:504
+msgctxt "pollution"
+msgid ""
+"O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it "
+"poses respiratory hazards"
+msgstr ""
+
 #. SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health
-#: Forecast/page.py:507
+#: Forecast/page.py:512
 msgctxt "pollution"
 msgid "SO2"
 msgstr ""
 
-#. PM2.5: tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
-#: Forecast/page.py:515
+#: Forecast/page.py:513
+msgctxt "pollution"
+msgid ""
+"SO2: Sulfur dioxide emissions from industry and fossil fuels can harm "
+"respiratory health"
+msgstr ""
+
+#. PM 2.5: Tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
+#: Forecast/page.py:521
 msgctxt "pollution"
 msgid "PM 2.5"
 msgstr ""
 
-#. PM10: larger particles, pose health risks, especially to the respiratory system
-#: Forecast/page.py:523
+#: Forecast/page.py:522
+msgctxt "pollution"
+msgid ""
+"PM 2.5: Tiny airborne particles, deeply penetrate lungs, causing respiratory "
+"and cardiovascular issues"
+msgstr ""
+
+#. PM 10: larger particles, pose health risks, especially to the respiratory system
+#: Forecast/page.py:530
 msgctxt "pollution"
 msgid "PM 10"
 msgstr ""
 
-#. H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health
 #: Forecast/page.py:531
+msgctxt "pollution"
+msgid ""
+"PM 10: Larger particles, pose health risks, especially to the respiratory "
+"system"
+msgstr ""
+
+#. H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health
+#: Forecast/page.py:539
 msgctxt "pollution"
 msgid "NH3"
 msgstr ""
 
-#: Forecast/page.py:639
+#: Forecast/page.py:540
+msgctxt "pollution"
+msgid ""
+"H3: Ammonia, emissions, primarily from agriculture and industry, harm "
+"respiratory health"
+msgstr ""
+
+#: Forecast/page.py:648
 msgid "Night"
 msgstr ""
 
-#: Forecast/page.py:653
+#: Forecast/page.py:662
 msgid "Evening"
 msgstr ""
 
-#: Forecast/page.py:667
+#: Forecast/page.py:676
 msgid "Morning"
 msgstr ""
 
-#: Forecast/page.py:681
+#: Forecast/page.py:690
 msgid "Afternoon"
 msgstr ""
 
-#: Forecast/page.py:694
+#: Forecast/page.py:703
 msgid "Temperatures"
 msgstr ""
 
-#: Forecast/page.py:711
+#: Forecast/page.py:720
 msgid "Probability of rain"
 msgstr ""
 
-#: Forecast/page.py:714
+#: Forecast/page.py:723
 msgid "Conditions"
 msgstr ""
 
-#: Forecast/page.py:735
+#: Forecast/page.py:744
 msgid "Sunset"
 msgstr ""
 
-#: Forecast/page.py:743
+#: Forecast/page.py:752
 msgid "Sunrise"
 msgstr ""
 
-#: Forecast/page.py:749
+#: Forecast/page.py:758
 msgid "Sun"
 msgstr ""
 
-#: Forecast/page.py:826
+#: Forecast/page.py:835
 msgid "Close"
 msgstr ""
 
