@@ -271,8 +271,9 @@ class components(city_page):
         Visibility  = '>' + str(now['visibility']/1000) + constants.speed_unit.split('/')[0]
         Sunrise     = str(converters.convert_timestamp(now['sunrise']))
         Sunset      = str(converters.convert_timestamp(now['sunset']))
-        cloudiness  = f'{str(round(now["clouds"]))}%'
-        # rain_prob   = f'{str(round(now["pop"]*100))}%'
+        # Value and percentage sign. In some languages, the order of the value and the percentage sign may need to be changed.
+        cloudiness  = _("{0}%").format(str(round(now["clouds"])))
+        # rain_prob   = _("{0}%").format(str(round(now["pop"]*100)))
         uv_index    = constants.uv_index(round(now["uvi"]))
 
         day_temp_widget = components.info_label(_("Temperature"), f'{temp}')
@@ -705,9 +706,9 @@ class components(city_page):
 
                 day_temp = components.info_label(_("Temperature"), f'{str(round(day["temp"]["day"]))}{global_variables.get_temperature_units()}')
                 wind_speed = components.info_label(_("Wind speed"), f'{str(round(day["wind_speed"]))}{global_variables.get_speed_units()} {constants.wind_dir(day["wind_deg"])}')
-                humidity = components.info_label(_("Humidity"), f'{str(round(day["humidity"]))}%')
-                cloudiness = components.info_label(_("Cloudiness"), f'{str(round(day["clouds"]))}%')
-                pop = components.info_label(_("Probability of rain"), f'{str(round(day["pop"]*100))}%')
+                humidity = components.info_label(_("Humidity"), _("{0}%").format(str(round(day["humidity"]))))
+                cloudiness = components.info_label(_("Cloudiness"), _("{0}%").format(str(round(day["clouds"]))))
+                pop = components.info_label(_("Probability of rain"), _("{0}%").format(str(round(day["pop"]*100))))
                 uv_index = components.info_label(_("UV Index"), f'{constants.uv_index(round(day["uvi"]))}  ({str(round(day["uvi"],1))})')
 
                 conditions_title_widget = Gtk.Label.new(_("Conditions"))

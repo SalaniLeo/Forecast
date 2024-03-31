@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-30 18:05+0300\n"
+"POT-Creation-Date: 2024-03-31 18:12+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -330,40 +330,47 @@ msgstr ""
 msgid "Current conditions"
 msgstr ""
 
-#: Forecast/page.py:278 Forecast/page.py:697
+#. Value and percentage sign. In some languages, the order of the value and the percentage sign may need to be changed.
+#: Forecast/page.py:275 Forecast/page.py:709 Forecast/page.py:710
+#: Forecast/page.py:711
+#, python-brace-format
+msgid "{0}%"
+msgstr ""
+
+#: Forecast/page.py:279 Forecast/page.py:707
 msgid "Temperature"
 msgstr ""
 
-#: Forecast/page.py:279 Forecast/page.py:698
+#: Forecast/page.py:280 Forecast/page.py:708
 msgid "Wind speed"
 msgstr ""
 
-#: Forecast/page.py:280 Forecast/page.py:699
+#: Forecast/page.py:281 Forecast/page.py:709
 msgid "Humidity"
 msgstr ""
 
-#: Forecast/page.py:281 Forecast/page.py:700
+#: Forecast/page.py:282 Forecast/page.py:710
 msgid "Cloudiness"
 msgstr ""
 
 #. pop_widget = components.info_label(_("Probability of rain"), f'{rain_prob}')
-#: Forecast/page.py:283 Forecast/page.py:702
+#: Forecast/page.py:284 Forecast/page.py:712
 msgid "UV Index"
 msgstr ""
 
-#: Forecast/page.py:299
+#: Forecast/page.py:300
 msgid "24 Hours forecast"
 msgstr ""
 
-#: Forecast/page.py:339
+#: Forecast/page.py:340
 msgid "Weekly forecast"
 msgstr ""
 
-#: Forecast/page.py:430
+#: Forecast/page.py:431
 msgid "Pollution"
 msgstr ""
 
-#: Forecast/page.py:435
+#: Forecast/page.py:436
 msgid "Details"
 msgstr ""
 
@@ -424,27 +431,27 @@ msgstr ""
 msgid "Temperatures"
 msgstr ""
 
-#: Forecast/page.py:701
+#: Forecast/page.py:711
 msgid "Probability of rain"
 msgstr ""
 
-#: Forecast/page.py:704
+#: Forecast/page.py:714
 msgid "Conditions"
 msgstr ""
 
-#: Forecast/page.py:725
+#: Forecast/page.py:735
 msgid "Sunset"
 msgstr ""
 
-#: Forecast/page.py:733
+#: Forecast/page.py:743
 msgid "Sunrise"
 msgstr ""
 
-#: Forecast/page.py:739
+#: Forecast/page.py:749
 msgid "Sun"
 msgstr ""
 
-#: Forecast/page.py:816
+#: Forecast/page.py:826
 msgid "Close"
 msgstr ""
 
