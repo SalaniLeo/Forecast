@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-30 18:05+0300\n"
-"PO-Revision-Date: 2024-03-30 18:06+0300\n"
+"POT-Creation-Date: 2024-03-31 18:12+0300\n"
+"PO-Revision-Date: 2024-03-31 18:19+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -333,6 +333,16 @@ msgstr "- Hissedilen {0}{1}"
 msgid "Alerts"
 msgstr "Uyarılar"
 
+#: Forecast/page.py:229
+#, python-brace-format
+msgid "Start: {0}"
+msgstr "Başlangıç: {0}"
+
+#: Forecast/page.py:231
+#, python-brace-format
+msgid "End: {0}"
+msgstr "Bitiş: {0}"
+
 #: Forecast/page.py:241
 msgid "See description"
 msgstr "Açıklamaya bakın"
@@ -341,104 +351,144 @@ msgstr "Açıklamaya bakın"
 msgid "Current conditions"
 msgstr "Geçerli Koşullar"
 
-#: Forecast/page.py:278 Forecast/page.py:697
+#. Value and percentage sign. In some languages, the order of the value and the percentage sign may need to be changed.
+#: Forecast/page.py:275 Forecast/page.py:709 Forecast/page.py:710
+#: Forecast/page.py:711
+#, python-brace-format
+msgid "{0}%"
+msgstr "%{0}"
+
+#: Forecast/page.py:279 Forecast/page.py:707
 msgid "Temperature"
 msgstr "Sıcaklık"
 
-#: Forecast/page.py:279 Forecast/page.py:698
+#: Forecast/page.py:280 Forecast/page.py:708
 msgid "Wind speed"
 msgstr "Rüzgar hızı"
 
-#: Forecast/page.py:280 Forecast/page.py:699
+#: Forecast/page.py:281 Forecast/page.py:709
 msgid "Humidity"
 msgstr "Nem"
 
-#: Forecast/page.py:281 Forecast/page.py:700
+#: Forecast/page.py:282 Forecast/page.py:710
 msgid "Cloudiness"
 msgstr "Bulutluluk"
 
 #. pop_widget = components.info_label(_("Probability of rain"), f'{rain_prob}')
-#: Forecast/page.py:283 Forecast/page.py:702
+#: Forecast/page.py:284 Forecast/page.py:712
 msgid "UV Index"
 msgstr "UV İndeksi"
 
-#: Forecast/page.py:299
+#: Forecast/page.py:300
 msgid "24 Hours forecast"
 msgstr "24 Saatlik Tahmin"
 
-#: Forecast/page.py:339
+#: Forecast/page.py:340
 msgid "Weekly forecast"
 msgstr "Haftalık Tahmin"
 
-#: Forecast/page.py:430
+#: Forecast/page.py:431
 msgid "Pollution"
 msgstr "Kirlilik"
 
-#: Forecast/page.py:435
+#: Forecast/page.py:436
 msgid "Details"
 msgstr "Ayrıntılar"
 
-#: Forecast/page.py:457
+#. AQI: Air Quality Index
+#: Forecast/page.py:459
+msgctxt "pollution"
 msgid "AQI"
-msgstr "AQI"
+msgstr "HKİ"
 
-#: Forecast/page.py:472
+#. CO: Carbon monoxide emissions, from sources like vehicles pose health risks
+#: Forecast/page.py:475
+msgctxt "pollution"
 msgid "CO"
 msgstr "CO"
 
-#: Forecast/page.py:479
+#. NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues
+#: Forecast/page.py:483
+msgctxt "pollution"
 msgid "NO"
 msgstr "NO"
 
-#: Forecast/page.py:486
+#: Forecast/page.py:491
+msgctxt "pollution"
 msgid "NO2"
 msgstr "NO2"
 
-#: Forecast/page.py:493
+#. O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards
+#: Forecast/page.py:499
+msgctxt "pollution"
 msgid "O3"
 msgstr "O3"
 
-#: Forecast/page.py:500
+#. SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health
+#: Forecast/page.py:507
+msgctxt "pollution"
 msgid "SO2"
 msgstr "SO2"
 
-#: Forecast/page.py:507
-msgid "pm 2.5"
-msgstr "pm 2.5"
+#. PM2.5: tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
+#: Forecast/page.py:515
+msgctxt "pollution"
+msgid "PM 2.5"
+msgstr "PM 2.5"
 
-#: Forecast/page.py:514
-msgid "pm 10"
-msgstr "pm 10"
+#. PM10: larger particles, pose health risks, especially to the respiratory system
+#: Forecast/page.py:523
+msgctxt "pollution"
+msgid "PM 10"
+msgstr "PM 10"
 
-#: Forecast/page.py:521
+#. H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health
+#: Forecast/page.py:531
+msgctxt "pollution"
 msgid "NH3"
 msgstr "NH3"
 
-#: Forecast/page.py:684
+#: Forecast/page.py:639
+msgid "Night"
+msgstr "Gece"
+
+#: Forecast/page.py:653
+msgid "Evening"
+msgstr "Akşam"
+
+#: Forecast/page.py:667
+msgid "Morning"
+msgstr "Sabah"
+
+#: Forecast/page.py:681
+msgid "Afternoon"
+msgstr "Öğleden Sonra"
+
+#: Forecast/page.py:694
 msgid "Temperatures"
 msgstr "Sıcaklıklar"
 
-#: Forecast/page.py:701
+#: Forecast/page.py:711
 msgid "Probability of rain"
 msgstr "Yağmur olasılığı"
 
-#: Forecast/page.py:704
+#: Forecast/page.py:714
 msgid "Conditions"
 msgstr "Şartlar"
 
-#: Forecast/page.py:725
+#: Forecast/page.py:735
 msgid "Sunset"
 msgstr "Gün batımı"
 
-#: Forecast/page.py:733
+#: Forecast/page.py:743
 msgid "Sunrise"
 msgstr "Gün doğumu"
 
-#: Forecast/page.py:739
+#: Forecast/page.py:749
 msgid "Sun"
 msgstr "Güneş"
 
-#: Forecast/page.py:816
+#: Forecast/page.py:826
 msgid "Close"
 msgstr "Kapat"
 
@@ -649,3 +699,6 @@ msgstr "Parçalı Bulutlu"
 #: Forecast/style.py:152
 msgid "Overcast Clouds"
 msgstr "Bulutlu"
+
+#~ msgid "pm 10"
+#~ msgstr "pm 10"
