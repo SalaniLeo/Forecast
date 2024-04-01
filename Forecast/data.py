@@ -8,8 +8,8 @@ from .style import *
 from datetime import datetime
 
 class constants():
-    meters = _('Metric System')
-    miles = _('Imperial System')
+    meters = _("Metric System")
+    miles = _("Imperial System")
     metric_system = f'{meters}, °C - Km/h'
     imperial_system = f'{miles}, °F - mph'
 
@@ -29,11 +29,11 @@ class constants():
     app          = None
 
     #pollution index
-    air_good = _('Good')
-    air_fair = _('Fair')
-    air_moderate = _('Moderate')
-    air_poor = _('Poor')
-    air_very_poor = _('Very Poor')
+    air_good = _("Good")
+    air_fair = _("Fair")
+    air_moderate = _("Moderate")
+    air_poor = _("Poor")
+    air_very_poor = _("Very Poor")
 
     align_breakpoint = 700
     sidebar_breakpoint = 500
@@ -41,13 +41,13 @@ class constants():
 
     def uv_index(uv_index):
         if uv_index >= 0 and uv_index <= 2:
-            return "Low"
+            return _("Low")
         elif uv_index >= 3 and uv_index <= 7:
-            return "Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap on a hat!"
+            return _("Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap on a hat!")
         elif uv_index >= 8:
-            return "Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen, and hat are a must!"
+            return _("Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen, and hat are a must!")
         else:
-            return "Invalid UV index input. Please provide a number within the valid range."
+            return _("Invalid UV index input. Please provide a number within the valid range.")
 
     def wind_dir(angle):
         directions = [

@@ -2,7 +2,7 @@ import gi, cairo, threading
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, Gsk, GLib
-from gettext import gettext as _
+from gettext import gettext as _, pgettext as C_
 from .data import *
 from .page import *
 from .style import *
@@ -55,7 +55,7 @@ class city_page(Gtk.Stack):
         accurate_daily_forecast_stack = components.accurate_daily_forecast(daily, self, app)
 
         days_stack_root_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        days_stack_title_widget = Gtk.Label.new(_('Days'))
+        days_stack_title_widget = Gtk.Label.new(_("Days"))
         days_stack_title_widget.set_margin_top(12)
         days_stack_title_widget.set_margin_bottom(12)
         days_stack_title_widget.set_css_classes(['font_app_title'])
@@ -70,8 +70,8 @@ class city_page(Gtk.Stack):
         app.forecast_stacks_container.add_named(days_stack_root_box, self.city_name)
 
         # -- adds wather and forecast pages -- 
-        self.add_named(self.root, _('Weather'))
-        self.add_named(accurate_daily_forecast_stack, _('Forecast'))
+        self.add_named(self.root, _("Weather"))
+        self.add_named(accurate_daily_forecast_stack, _("Forecast"))
 
         self.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
@@ -162,7 +162,7 @@ class components(city_page):
         subtitle_widget = Gtk.Label.new(f'{temperature}{global_variables.get_temperature_units()}')
         subtitle_widget.set_halign(Gtk.Align.START)
         subtitle_widget.set_css_classes(['font_medium'])
-        feels_like_subtitle_widget = Gtk.Label.new(f'- {_("Feels like")} {feels_like}{global_variables.get_temperature_units()}')
+        feels_like_subtitle_widget = Gtk.Label.new(_("- Feels like {0}{1}").format(feels_like, global_variables.get_temperature_units()))
         feels_like_subtitle_widget.set_css_classes(['font_light', 'font_bold'])
         feels_like_subtitle_widget.set_valign(Gtk.Align.CENTER)
         subtitle_box.append(subtitle_widget)
@@ -205,7 +205,7 @@ class components(city_page):
         base_box = Gtk.Box()
 
         for alert in alerts:
-            title = Gtk.Label(label=_('Alerts'))
+            title = Gtk.Label(label=_("Alerts"))
             title.set_halign(Gtk.Align.START)
             title.set_margin_bottom(6)
             title.set_css_classes(['font_medium'])
@@ -226,9 +226,9 @@ class components(city_page):
             event_box.append(event_widget)
             event_box.set_spacing(6)
 
-            start_widget = Gtk.Label(label=f'{_("Start:")} {start}')
+            start_widget = Gtk.Label(label=_("Start: {0}").format(start))
             start_widget.set_halign(Gtk.Align.START)
-            end_widget = Gtk.Label(label=f'{_("End:")} {end}')
+            end_widget = Gtk.Label(label=_("End: {0}").format(end))
             end_widget.set_halign(Gtk.Align.START)
 
             duration_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -238,7 +238,7 @@ class components(city_page):
             duration_box.set_margin_start(4)
 
             button = Gtk.Button()
-            button.set_label(_('See description'))
+            button.set_label(_("See description"))
             button.set_css_classes(['flat'])
             button.connect('clicked', alarm_description, description, sender, app)
 
@@ -256,7 +256,7 @@ class components(city_page):
 
     def now_conditions(now, self, app):
         base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=9)
-        title_widget = Gtk.Label.new(_('Current conditions'))
+        title_widget = Gtk.Label.new(_("Current conditions"))
         title_widget.set_css_classes(['font_medium'])
         title_widget.set_halign(Gtk.Align.START)
         base_box.append(title_widget)
@@ -271,16 +271,17 @@ class components(city_page):
         Visibility  = '>' + str(now['visibility']/1000) + constants.speed_unit.split('/')[0]
         Sunrise     = str(converters.convert_timestamp(now['sunrise']))
         Sunset      = str(converters.convert_timestamp(now['sunset']))
-        cloudiness  = f'{str(round(now["clouds"]))}%'
-        # rain_prob   = f'{str(round(now["pop"]*100))}%'
+        # Value and percentage sign. In some languages, the order of the value and the percentage sign may need to be changed.
+        cloudiness  = _("{0}%").format(str(round(now["clouds"])))
+        # rain_prob   = _("{0}%").format(str(round(now["pop"]*100)))
         uv_index    = constants.uv_index(round(now["uvi"]))
 
-        day_temp_widget = components.info_label(_('Temperature'), f'{temp}')
-        wind_speed_widget = components.info_label(_('Wind speed'), f'{wind_speed}')
-        humidity_widget = components.info_label(_('Humidity'), f'{humidity}')
-        cloudiness_widget = components.info_label(_('Cloudiness'), f'{cloudiness}')
-        # pop_widget = components.info_label(_('Probability of rain'), f'{rain_prob}')
-        uv_index_widget = components.info_label(_('UV Index'), f'{uv_index}  ({str(round(now["uvi"],1))})')
+        day_temp_widget = components.info_label(_("Temperature"), f'{temp}')
+        wind_speed_widget = components.info_label(_("Wind speed"), f'{wind_speed}')
+        humidity_widget = components.info_label(_("Humidity"), f'{humidity}')
+        cloudiness_widget = components.info_label(_("Cloudiness"), f'{cloudiness}')
+        # pop_widget = components.info_label(_("Probability of rain"), f'{rain_prob}')
+        uv_index_widget = components.info_label(_("UV Index"), f'{uv_index}  ({str(round(now["uvi"],1))})')
 
         widgets_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
 
@@ -296,7 +297,7 @@ class components(city_page):
     def hourly_forecast(hourly):
         base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         title_widget = Gtk.Box()
-        title_widget.append(Gtk.Label.new(_('24 Hours forecast')))
+        title_widget.append(Gtk.Label.new(_("24 Hours forecast")))
         title_widget.set_css_classes(['font_medium'])
         hourly_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=18)
         scrolled_window = Gtk.ScrolledWindow()
@@ -336,7 +337,7 @@ class components(city_page):
         return base_box
 
     def daily_forecast(daily, self, app):
-        title_widget = Gtk.Label.new(_('Weekly forecast'))
+        title_widget = Gtk.Label.new(_("Weekly forecast"))
         title_widget.set_css_classes(['font_medium'])
         title_widget.set_halign(Gtk.Align.START)
 
@@ -427,12 +428,12 @@ class components(city_page):
         base_box.set_margin_top(12)
         base_box.set_hexpand(False)
 
-        title_widget = Gtk.Label.new(_('Pollution'))
+        title_widget = Gtk.Label.new(_("Pollution"))
         title_widget.set_css_classes(['font_medium'])
         title_widget.set_halign(Gtk.Align.START)
 
         pollution_details = Gtk.Expander()
-        subtitle_widget = Gtk.Label.new(_('Details'))
+        subtitle_widget = Gtk.Label.new(_("Details"))
         subtitle_widget.set_css_classes(['font_medium', 'font_light'])
         subtitle_widget.set_halign(Gtk.Align.START)
         pollution_details.set_label_widget(subtitle_widget)
@@ -454,7 +455,9 @@ class components(city_page):
             overall_widget.set_halign(Gtk.Align.START)
             overall_widget.set_hexpand(True)
 
-            overall_text_widget = Gtk.Label.new(_('AQI'))
+            # AQI: Air Quality Index
+            overall_text_widget = Gtk.Label.new(C_("pollution", "AQI"))
+            overall_text_widget.set_tooltip_text(C_("pollution", "AQI: Air Quality Index"))
             overall_text_widget.set_halign(Gtk.Align.END)
             overall_text_widget.set_hexpand(True)
 
@@ -469,56 +472,72 @@ class components(city_page):
 
             co_widget = Gtk.Label.new(str(index['components']['co']))
             co_widget.set_halign(Gtk.Align.START)
-            co_text_widget = Gtk.Label.new(_('CO'))
+            # CO: Carbon monoxide emissions, from sources like vehicles pose health risks
+            co_text_widget = Gtk.Label.new(C_("pollution", "CO"))
+            co_text_widget.set_tooltip_text(C_("pollution", "CO: Carbon monoxide emissions, from sources like vehicles pose health risks"))
             co_text_widget.set_halign(Gtk.Align.START)
             data_box.append(co_widget)
             text_box.append(co_text_widget)
 
             no_widget = Gtk.Label.new(str(index['components']['no']))
             no_widget.set_halign(Gtk.Align.START)
-            no_text_widget = Gtk.Label.new(_('NO'))
+            # NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues
+            no_text_widget = Gtk.Label.new(C_("pollution", "NO"))
+            no_text_widget.set_tooltip_text(C_("pollution", "NO: Nitric oxide, a colorless gas, poses health risks, including respiratory issues"))
             no_text_widget.set_halign(Gtk.Align.START)
             data_box.append(no_widget)
             text_box.append(no_text_widget)
 
+            # NO2: Nitrogen dioxide, a poisonous gas that can be fatal if inhaled in large quantities
             no2_widget = Gtk.Label.new(str(index['components']['no2']))
             no2_widget.set_halign(Gtk.Align.START)
-            no2_text_widget = Gtk.Label.new(_('NO2'))
+            no2_text_widget = Gtk.Label.new(C_("pollution", "NO2"))
+            no2_text_widget.set_tooltip_text(C_("pollution", "NO2: Nitrogen dioxide, a poisonous gas that can be fatal if inhaled in large quantities"))
             no2_text_widget.set_halign(Gtk.Align.START)
             data_box.append(no2_widget)
             text_box.append(no2_text_widget)
 
             o3_widget = Gtk.Label.new(str(index['components']['o3']))
             o3_widget.set_halign(Gtk.Align.START)
-            o3_text_widget = Gtk.Label.new(_('O3'))
+            # O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards
+            o3_text_widget = Gtk.Label.new(C_("pollution", "O3"))
+            o3_text_widget.set_tooltip_text(C_("pollution", "O3: Ozone (or trioxygen) is a strong oxidant, but at high concentrations, it poses respiratory hazards"))
             o3_text_widget.set_halign(Gtk.Align.START)
             data_box.append(o3_widget)
             text_box.append(o3_text_widget)
 
             so2_widget = Gtk.Label.new(str(index['components']['so2']))
             so2_widget.set_halign(Gtk.Align.START)
-            so2_text_widget = Gtk.Label.new(_('SO2'))
+            # SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health
+            so2_text_widget = Gtk.Label.new(C_("pollution", "SO2"))
+            so2_text_widget.set_tooltip_text(C_("pollution", "SO2: Sulfur dioxide emissions from industry and fossil fuels can harm respiratory health"))
             so2_text_widget.set_halign(Gtk.Align.START)
             data_box.append(so2_widget)
             text_box.append(so2_text_widget)
 
             pm25_widget = Gtk.Label.new(str(index['components']['pm2_5']))
             pm25_widget.set_halign(Gtk.Align.START)
-            pm25_text_widget = Gtk.Label.new(_('pm 2.5'))
+            # PM 2.5: Tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues
+            pm25_text_widget = Gtk.Label.new(C_("pollution", "PM 2.5"))
+            pm25_text_widget.set_tooltip_text(C_("pollution", "PM 2.5: Tiny airborne particles, deeply penetrate lungs, causing respiratory and cardiovascular issues"))
             pm25_text_widget.set_halign(Gtk.Align.START)
             data_box.append(pm25_widget)
             text_box.append(pm25_text_widget)
 
             pm10widget = Gtk.Label.new(str(index['components']['pm10']))
             pm10widget.set_halign(Gtk.Align.START)
-            pm10_text_widget = Gtk.Label.new(_('pm 10'))
+            # PM 10: larger particles, pose health risks, especially to the respiratory system
+            pm10_text_widget = Gtk.Label.new(C_("pollution", "PM 10"))
+            pm10_text_widget.set_tooltip_text(C_("pollution", "PM 10: Larger particles, pose health risks, especially to the respiratory system"))
             pm10_text_widget.set_halign(Gtk.Align.START)
             data_box.append(pm10widget)
             text_box.append(pm10_text_widget)
 
             nh3_widget = Gtk.Label.new(str(index['components']['nh3']))
             nh3_widget.set_halign(Gtk.Align.START)
-            nh3_text_widget = Gtk.Label.new(_('NH3'))
+            # H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health
+            nh3_text_widget = Gtk.Label.new(C_("pollution", "NH3"))
+            nh3_text_widget.set_tooltip_text(C_("pollution", "H3: Ammonia, emissions, primarily from agriculture and industry, harm respiratory health"))
             nh3_text_widget.set_halign(Gtk.Align.START)
             data_box.append(nh3_widget)
             text_box.append(nh3_text_widget)
@@ -626,7 +645,7 @@ class components(city_page):
                 afternoon_temp = day['temp']['day']
 
                 night_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                night_temp_label = Gtk.Label.new(f'{_("Night")}')
+                night_temp_label = Gtk.Label.new(_("Night"))
                 night_temp_label.set_css_classes(['font_light'])
                 night_temp_label.set_size_request(75, 20)
                 night_temp_label.set_xalign(0)
@@ -640,7 +659,7 @@ class components(city_page):
                 night_temp_box.append(night_temp_label_data)
 
                 evening_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                evening_temp_label = Gtk.Label.new(f'{_("Evening")}')
+                evening_temp_label = Gtk.Label.new(_("Evening"))
                 evening_temp_label.set_css_classes(['font_light'])
                 evening_temp_label.set_size_request(75, 20)
                 evening_temp_label.set_xalign(0)
@@ -654,7 +673,7 @@ class components(city_page):
                 evening_temp_box.append(evening_temp_label_data)
 
                 morning_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                morning_temp_label = Gtk.Label.new(f'{_("Morning")}')
+                morning_temp_label = Gtk.Label.new(_("Morning"))
                 morning_temp_label.set_css_classes(['font_light'])
                 morning_temp_label.set_size_request(75, 20)
                 morning_temp_label.set_xalign(0)
@@ -668,7 +687,7 @@ class components(city_page):
                 morning_temp_box.append(morning_temp_label_data)
 
                 afternoon_temp_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-                afternoon_temp_label = Gtk.Label.new(f'{_("Afternoon")}')
+                afternoon_temp_label = Gtk.Label.new(_("Afternoon"))
                 afternoon_temp_label.set_css_classes(['font_light'])
                 afternoon_temp_label.set_size_request(75, 20)
                 afternoon_temp_label.set_xalign(0)
@@ -681,7 +700,7 @@ class components(city_page):
                 afternoon_temp_box.append(afternoon_temp_graph)
                 afternoon_temp_box.append(afternoon_temp_label_data)
 
-                temps_title_widget = Gtk.Label.new(_('Temperatures'))
+                temps_title_widget = Gtk.Label.new(_("Temperatures"))
                 temps_title_widget.set_css_classes(['font_medium'])
                 temps_title_widget.set_margin_bottom(6)
                 temps_title_widget.set_halign(Gtk.Align.START)
@@ -694,14 +713,14 @@ class components(city_page):
 
                 current_conditions_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
 
-                day_temp = components.info_label(_('Temperature'), f'{str(round(day["temp"]["day"]))}{global_variables.get_temperature_units()}')
-                wind_speed = components.info_label(_('Wind speed'), f'{str(round(day["wind_speed"]))}{global_variables.get_speed_units()} {constants.wind_dir(day["wind_deg"])}')
-                humidity = components.info_label(_('Humidity'), f'{str(round(day["humidity"]))}%')
-                cloudiness = components.info_label(_('Cloudiness'), f'{str(round(day["clouds"]))}%')
-                pop = components.info_label(_('Probability of rain'), f'{str(round(day["pop"]*100))}%')
-                uv_index = components.info_label(_('UV Index'), f'{constants.uv_index(round(day["uvi"]))}  ({str(round(day["uvi"],1))})')
+                day_temp = components.info_label(_("Temperature"), f'{str(round(day["temp"]["day"]))}{global_variables.get_temperature_units()}')
+                wind_speed = components.info_label(_("Wind speed"), f'{str(round(day["wind_speed"]))}{global_variables.get_speed_units()} {constants.wind_dir(day["wind_deg"])}')
+                humidity = components.info_label(_("Humidity"), _("{0}%").format(str(round(day["humidity"]))))
+                cloudiness = components.info_label(_("Cloudiness"), _("{0}%").format(str(round(day["clouds"]))))
+                pop = components.info_label(_("Probability of rain"), _("{0}%").format(str(round(day["pop"]*100))))
+                uv_index = components.info_label(_("UV Index"), f'{constants.uv_index(round(day["uvi"]))}  ({str(round(day["uvi"],1))})')
 
-                conditions_title_widget = Gtk.Label.new(_('Conditions'))
+                conditions_title_widget = Gtk.Label.new(_("Conditions"))
                 conditions_title_widget.set_css_classes(['font_medium'])
                 conditions_title_widget.set_margin_bottom(6)
                 conditions_title_widget.set_halign(Gtk.Align.START)
@@ -722,7 +741,7 @@ class components(city_page):
 
                 sunset_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=9)
                 sunset_value = converters.convert_timestamp(day['sunset'])
-                sunset_widget = Gtk.Label.new(_('Sunset'))
+                sunset_widget = Gtk.Label.new(_("Sunset"))
                 sunset_widget.set_css_classes(['font_light'])
                 sunset_value_widget = Gtk.Label.new(f'{str(sunset_value)}')
                 sunset_box.append(sunset_widget)
@@ -730,13 +749,13 @@ class components(city_page):
 
                 sunrise_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=9)
                 sunrise_value = converters.convert_timestamp(day['sunrise'])
-                sunrise_widget = Gtk.Label.new(_('Sunrise'))
+                sunrise_widget = Gtk.Label.new(_("Sunrise"))
                 sunrise_widget.set_css_classes(['font_light'])
                 sunrise_value_widget = Gtk.Label.new(f'{str(sunrise_value)}')
                 sunrise_box.append(sunrise_widget)
                 sunrise_box.append(sunrise_value_widget)
 
-                sun_title = Gtk.Label.new(_('Sun'))
+                sun_title = Gtk.Label.new(_("Sun"))
                 sun_title.set_css_classes(['font_medium'])
                 sun_title.set_halign(Gtk.Align.START)
                 sunrise_sunset_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3)
@@ -813,7 +832,7 @@ class alarm_description(Gtk.MessageDialog):
         self.scrolled.set_margin_start(12)
         self.scrolled.set_vexpand(True)
 
-        self.closeButton = Gtk.Button(label=_('Close'))
+        self.closeButton = Gtk.Button(label=_("Close"))
         self.closeButton.set_hexpand(True)
         self.closeButton.set_size_request(-1, 50)
         self.closeButton.connect('clicked', self.exit)

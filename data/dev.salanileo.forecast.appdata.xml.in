@@ -6,8 +6,16 @@
   <description>
     <p>Alternative weather app with custom css styling and more</p>
   </description>
+  <developer_name translate="no">SalaniLeo</developer_name>
+  <developer id="io.github.SalaniLeo">
+    <name translate="no">SalaniLeo</name>
+  </developer>
   <launchable type="desktop-id">dev.salanileo.forecast.desktop</launchable>
+  <translation type="gettext">forecast</translation>
   <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
+  <url type="bugtracker">https://github.com/SalaniLeo/Forecast/issues</url>
+  <url type="vcs-browser">https://github.com/SalaniLeo/Forecast</url>
+  <url type="translate">https://github.com/SalaniLeo/Forecast/tree/master/po</url>
   <metadata_license>CC-BY-SA-3.0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <content_rating type="oars-1.1" />
@@ -15,31 +23,44 @@
   
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1.png</image>
-      <caption>first screenshot</caption>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1-dark.png</image>
+      <caption>Main window in dark mode, clear sky</caption>
     </screenshot>
-    <screenshot type="default">
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2.png</image>
-      <caption>second screenshot</caption>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1-light.png</image>
+      <caption>Main window in light mode, clear sky</caption>
     </screenshot>
-    <screenshot type="default">
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3.png</image>
-      <caption>third screenshot</caption>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2-dark.png</image>
+      <caption>Main window in dark mode, partly cloudy</caption>
     </screenshot>
-    <screenshot type="default">
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4.png</image>
-      <caption>fourth screenshot</caption>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2-light.png</image>
+      <caption>Main window in light mode, partly cloudy</caption>
     </screenshot>
-    <screenshot type="default">
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app5.png</image>
-      <caption>fifth screenshot</caption>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3-dark.png</image>
+      <caption>Main window in dark mode, clear sky, narrow view</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3-light.png</image>
+      <caption>Main window in light mode, clear sky, narrow view</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4-dark.png</image>
+      <caption>Preferences dialog in dark mode</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4-light.png</image>
+      <caption>Preferences dialog in light mode</caption>
     </screenshot>
   </screenshots>
 
   <releases>
 
       <release version="0.3.0" date="2023-08-02">
-        <description>
+        <description translate="no">
+          <p>Version 0.3.0</p>
             <ul>
               <li>Added Forecast page</li>
               <li>Added 'Advanced' option for current conditions</li>
@@ -50,7 +71,8 @@
       </release>
 
       <release version="0.2.2" date="2023-07-02">
-        <description>
+        <description translate="no">
+          <p>Version 0.2.2</p>
             <ul>
               <li>Complete redesign, see github for more</li>
               <li>Added locations page in preferences</li>
@@ -63,7 +85,7 @@
     </release>
 
       <release version="0.2.1" date="2023-06-20">
-        <description>
+        <description translate="no">
           <p>Version 0.2.1</p>
             <p>Updates:</p>
             <ul>
@@ -80,7 +102,7 @@
     </release>
     
       <release version="0.2" date="2023-06-18">
-        <description>
+        <description translate="no">
           <p>Version 0.2</p>
             <p>Updates:</p>
             <ul>
@@ -99,7 +121,7 @@
     </release>
     
       <release version="0.1.0" date="2023-05-23">
-        <description>
+        <description translate="no">
           <p>First release</p>
         </description>
     </release>

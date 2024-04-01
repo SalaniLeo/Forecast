@@ -30,8 +30,8 @@ class root(Adw.Window):
             global_variables.set_default_city(len(global_variables.get_saved_cities())-1)
 
         self.root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.title = "Forecast"
-        self.side_title = "Locations"
+        self.title = _("Forecast")
+        self.side_title = _("Locations")
         self.title_wiget = Gtk.Label.new(self.title)
         self.title_wiget.set_css_classes(['font_app_title'])
 
@@ -183,9 +183,9 @@ class Forecast(Adw.Application):
 class elements():
     def menu_button():
         menu_button_model = Gio.Menu()
-        menu_button_model.append(_('Refresh'), 'app.refresh')
-        menu_button_model.append(_('Preferences'), 'app.preferences')
-        menu_button_model.append(_('About Forecast'), 'app.about')
+        menu_button_model.append(_("Refresh"), "app.refresh")
+        menu_button_model.append(_("Preferences"), "app.preferences")
+        menu_button_model.append(_("About Forecast"), "app.about")
         menu_button = Gtk.MenuButton.new()
         menu_button.set_margin_end(4)
         menu_button.set_icon_name(icon_name='open-menu-symbolic')
@@ -196,7 +196,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
     def __init__(self):
         super().__init__()
 
-        self.set_title(title=_('Preferences'))
+        self.set_title(title=_("Preferences"))
         # self.connect('close-request', self.do_shutdown)
         self.set_transient_for(constants.app)
         self.show()
@@ -235,9 +235,9 @@ class ForecastPreferences(Adw.PreferencesWindow):
         location_page.add(self.locations_root)
 
         units_group = Adw.PreferencesGroup.new()
-        units_group.set_title(_('Units preferences'))
+        units_group.set_title(_("Units preferences"))
         appearance_preferences = Adw.PreferencesGroup.new()
-        appearance_preferences.set_title(_('Appearance Preferences'))
+        appearance_preferences.set_title(_("Appearance Preferences"))
 
         current_units = constants.available_units.index(global_variables.get_current_units())
 
@@ -249,8 +249,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
         units_choice.set_valign(Gtk.Align.CENTER)
 
         use_temp_units = Adw.ActionRow.new()
-        use_temp_units.set_title(_('Temperature units'))
-        use_temp_units.set_subtitle(_('Select which units to use'))
+        use_temp_units.set_title(_("Temperature units"))
+        use_temp_units.set_subtitle(_("Select which units to use"))
         use_temp_units.add_suffix(widget=units_choice)
 
         units_group.add(use_temp_units)
@@ -266,8 +266,8 @@ class ForecastPreferences(Adw.PreferencesWindow):
         time_format.set_valign(Gtk.Align.CENTER)
 
         use_time_format = Adw.ActionRow.new()
-        use_time_format.set_title(_('Time format'))
-        use_time_format.set_subtitle(_('Select whether to use the 12h or 24h formats'))
+        use_time_format.set_title(_("Time format"))
+        use_time_format.set_subtitle(_("Select whether to use the 12h or 24h formats"))
         use_time_format.add_suffix(widget=time_format)
 
         units_group.add(use_time_format)
@@ -315,11 +315,11 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         coords_top_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
         lat_input = Gtk.Entry.new()
-        lat_input.set_placeholder_text(_('Latitude'))
+        lat_input.set_placeholder_text(_("Latitude"))
         lat_input.set_hexpand(True)
 
         lon_input = Gtk.Entry.new()
-        lon_input.set_placeholder_text(_('Longitude'))
+        lon_input.set_placeholder_text(_("Longitude"))
         lon_input.set_hexpand(True)
 
         search_coords_button = Gtk.Button.new_from_icon_name('folder-saved-search-symbolic')
@@ -348,7 +348,7 @@ class ForecastPreferences(Adw.PreferencesWindow):
         self.query_stack.add_named(self.coords_query_box, 'coord_query')
 
         bottom_box = Gtk.Box()
-        use_coords_button = Gtk.ToggleButton(label=_('Use coordinates'))
+        use_coords_button = Gtk.ToggleButton(label=_("Use coordinates"))
         use_coords_button.connect('toggled', actions.switch_search, self.query_stack, ['name_query', 'coord_query'])
 
         bottom_box.append(use_coords_button)
