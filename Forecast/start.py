@@ -10,6 +10,9 @@ if 'FLATPAK_SANDBOX_DIR' in os.environ:
 if 'IS_APP_APPIMAGE' in os.environ:
     app_type = 'appimage'
 
+if 'SNAP' in os.environ:
+    app_type = 'snap'
+
 if 'IS_DEBIAN' in os.environ:
     app_type = 'debian'
 

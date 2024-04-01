@@ -88,6 +88,9 @@ class global_variables():
     def set_timezone_format(time_format):
         constants.settings.set_int('time-format', int(time_format))
 
+    def set_use_dyn_bg(sw, use):
+        constants.settings.set_boolean('gradient-bg', use)
+
     def get_max_search_cities():
         return 5
 
@@ -96,6 +99,9 @@ class global_variables():
 
     def get_distance_units():
         return global_variables.get_speed_units().split('/')[0]
+
+    def get_use_dyn_bg():
+        constants.settings.get_boolean('gradient-bg')
 
 class request():
     def weather(lat, lon):

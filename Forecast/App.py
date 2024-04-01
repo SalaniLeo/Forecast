@@ -235,9 +235,9 @@ class ForecastPreferences(Adw.PreferencesWindow):
         location_page.add(self.locations_root)
 
         units_group = Adw.PreferencesGroup.new()
-        units_group.set_title(_("Units preferences"))
-        appearance_preferences = Adw.PreferencesGroup.new()
-        appearance_preferences.set_title(_("Appearance Preferences"))
+        units_group.set_title(_('Units preferences'))
+        appearance_group = Adw.PreferencesGroup.new()
+        appearance_group.set_title(_('Appearance Preferences'))
 
         current_units = constants.available_units.index(global_variables.get_current_units())
 
@@ -272,8 +272,17 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         units_group.add(use_time_format)
 
+        use_dyn_bg = Adw.SwitchRow.new()
+        use_dyn_bg.set_title(_('Use dynamic background'))
+        use_dyn_bg.set_subtitle(_('When on, the background changes based on the weather'))
+        use_dyn_bg.add_suffix(widget=time_format)
+        use_dyn_bg.set_active(global_variables.get_use_dyn_bg())
+        use_dyn_bg.connect('activated', global_variables.set_use_dyn_bg, not global_variables.get_use_dyn_bg())
+
+        appearance_group.add(use_dyn_bg)
+
         forecast_opt_page.add(group=units_group)
-        forecast_opt_page.add(group=appearance_preferences)
+        forecast_opt_page.add(group=appearance_group)
 
     def change_units(self, combobox):
         global_variables.set_default_units(combobox.get_active_text())
@@ -387,13 +396,17 @@ def start(AppID, package):
 
     if package == 'flatpak':
         css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
-    elif package == None:
-        css_provider.load_from_path('data/style.css')
+    elif package == 'snap':
+        css_provider.load_from_resource('/dev/salaniLeo/forecast/style.css')
     elif package == 'debian':
         css_provider.load_from_path(os.path.abspath(os.path.dirname(__file__))+'/data/style.css')
+    elif package == None:
+        css_provider.load_from_path('data/style.css')
 
     if package == 'flatpak':
         constants.icon_loc = '/app/share/icons/hicolor/scalable/status/'
+    elif package == 'snap':
+        constants.icon_loc = os.path.join(os.environ.get('SNAP', ''), 'usr/share/icons/hicolor/scalable/status/')
     elif package == 'debian':
         constants.icon_loc = os.path.abspath(os.path.dirname(__file__))+'/data/status/'
     elif package == None:
