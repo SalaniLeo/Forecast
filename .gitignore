@@ -1,2 +1,5 @@
-/.flatpak-builder
-/_build
+.flatpak-builder
+.flatpak
+.venv
+.vscode
+Forecast/__pycache__
