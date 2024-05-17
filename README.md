@@ -2,7 +2,7 @@
 <h2> Beautiful weather app for Linux </h2>
 <p>Here with a complete rework!</p>
 <h2>⚠️Warning⚠️</h2>
-<p>There is currently a bug in GTK which causes an application to crash when removing a stack page from a stack sidebar, and unfortunately I am using a stack sidebar to manage saved locations. This means that unless GTK maintainers fix the issue I wont release any new 'official' version, but you can still clone this repo and use the app.</p>
+<p>There is currently a bug in GTK which causes an application to crash when removing a stack page from a stack sidebar, and unfortunately I am using a stack sidebar to manage saved locations. This means that unless GTK maintainers fix the issue I wont release any new 'official' version, but you can still clone this repo and use the app. <br> <b>Now when an Adw.Breakpoint is triggered it makes the StackSidebar change page... 😒</b>. <br>Sidebars are just a waste of time.</p>
 <h3>Features 💬</h3>
 <ul>
   <li>Mobile friendly user interface 📱</li>
