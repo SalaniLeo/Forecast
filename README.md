@@ -1,7 +1,7 @@
 <h1> <img src="/share/icons/hicolor/scalable/apps/dev.salanileo.forecast.svg" alt="icon" style="height:25px; margin:0px;"> <a href='https://forecast.salanileo.dev/'> Forecast </a> </h1>
 <h2> Beautiful weather app for Linux </h2>
 <p>Here with a complete rework!</p>
-ì<h3>Features 💬</h3>
+<h3>Features 💬</h3>
 <ul>
 	<li>Clean UI 🪟</li>
 	<li>7 Day forecast 'graph' ☀️</li>
