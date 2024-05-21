@@ -15,8 +15,12 @@ class root(Adw.Window):
         super().__init__(*args, **kwargs)
         global cities_stack
 
+        # global_variables.set_saved_cities([])
+
         constants.app = self
         constants.root = cities_stack
+        constants.city_page = city_page
+        constants.toast_overlay = toast_overlay
 
         if len(global_variables.get_saved_cities()) == 0:
             url = 'http://ipinfo.io/json'
@@ -26,11 +30,8 @@ class root(Adw.Window):
             city = search_city.get_search_result(None, None, response, 'first_opening')
             global_variables.set_saved_cities([city])
 
-        if global_variables.get_default_city()>=len(global_variables.get_saved_cities()):
-            global_variables.set_default_city(len(global_variables.get_saved_cities())-1)
-
         self.root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.title = _("Forecast")
+        self.title = ('')
         self.side_title = _("Locations")
         self.title_wiget = Gtk.Label.new(self.title)
         self.title_wiget.set_css_classes(['font_app_title'])
@@ -38,8 +39,15 @@ class root(Adw.Window):
         self.side_title_widget = Gtk.Label(label=self.side_title)
         self.side_title_widget.set_css_classes(['font_app_title'])
 
-        self.sidebar_button = Gtk.Button.new_from_icon_name('sidebar-show-symbolic')
-        self.sidebar_button.connect('clicked', actions.show_hide_sidebar, self)
+        # USE SIDEBAR WHEN CRASH BUG IS FIXED
+        #self.sidebar_button = Gtk.Button.new_from_icon_name('sidebar-show-symbolic')
+        #self.sidebar_button.connect('clicked', actions.show_hide_sidebar, self)
+
+        # COMMENT THIS TO USE SIDEBAR
+        self.city_selector = Gtk.ComboBoxText.new()
+
+        self.day_selector_stack = Gtk.Stack()
+        self.day_selector_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
 
         self.refresh_button = Gtk.Button.new_from_icon_name('view-refresh-symbolic')
         self.refresh_button.connect('clicked', actions.refresh_weather, self, cities_stack)
@@ -50,41 +58,46 @@ class root(Adw.Window):
         self.header_bar = Adw.HeaderBar()
         self.header_bar.set_css_classes(['flat'])
         self.header_bar.set_title_widget(self.title_wiget)
-        self.header_bar.pack_start(self.sidebar_button)
-        self.header_bar.pack_start(self.refresh_button)
+        
+        # INVERT THESE TWO TO USE SIDEBAR
+        #self.header_bar.pack_start(self.sidebar_button)
+        self.header_bar.pack_start(self.city_selector)
+
         self.header_bar.pack_end(self.menu_button)
+        self.header_bar.pack_end(self.refresh_button)
 
         self.root.append(self.header_bar)
 
         # --- cities stack ---
         cities_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         cities_stack.add_css_class(css_class='flat')
-        
+
+        # UNCOMMENT TO USE SIDEBAR
         # --- sidebar ---
         # headerbar
-        self.side_header_bar = Adw.HeaderBar()
-        self.side_header_bar.set_css_classes(['flat'])
-        self.side_header_bar.set_title_widget(self.side_title_widget)
+        #self.side_header_bar = Adw.HeaderBar()
+        #self.side_header_bar.set_css_classes(['flat'])
+        #self.side_header_bar.set_title_widget(self.side_title_widget)
         # scrolled window
-        self.sidebar = Gtk.ScrolledWindow()
+        #self.sidebar = Gtk.ScrolledWindow()
         # root box
-        self.sidebar_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.sidebar_stack = Gtk.Stack()
-        self.forecast_stacks_container = Gtk.Stack()
-        self.sidebar_stack.add_named(self.sidebar_box, 'Cities')
-        self.sidebar_stack.add_named(self.forecast_stacks_container, 'Days')
-        self.sidebar_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+        #self.sidebar_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        #self.sidebar_stack = Gtk.Stack()
+        #self.forecast_stacks_container = Gtk.Stack()
+        #self.sidebar_stack.add_named(self.sidebar_box, 'Cities')
+        #self.sidebar_stack.add_named(self.forecast_stacks_container, 'Days')
+        #self.sidebar_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
 
-        self.sidebar.set_child(self.sidebar_stack)
-        self.side_pane = Adw.OverlaySplitView()
-        self.side_pane.set_collapsed(False)
-        self.side_pane.set_max_sidebar_width(250)
-        self.page_switcher = Gtk.StackSidebar.new()
-        self.page_switcher.set_stack(stack=cities_stack)
-        self.page_switcher.set_vexpand(True)
+        #self.sidebar.set_child(self.sidebar_stack)
+        #self.side_pane = Adw.OverlaySplitView()
+        #self.side_pane.set_collapsed(False)
+        #self.side_pane.set_max_sidebar_width(250)
+        #self.page_switcher = Gtk.StackSidebar.new()
+        #self.page_switcher.set_stack(stack=cities_stack)
+        #self.page_switcher.set_vexpand(True)
 
-        self.sidebar_box.append(self.side_header_bar)
-        self.sidebar_box.append(self.page_switcher)
+        #self.sidebar_box.append(self.side_header_bar)
+        #self.sidebar_box.append(self.page_switcher)
 
         self.root.append(cities_stack)
 
@@ -93,32 +106,39 @@ class root(Adw.Window):
         #window handle for moving window
         self.window_handle = Gtk.WindowHandle()
         self.window_handle.set_child(toast_overlay)
-        self.side_pane.set_content(self.window_handle)
-        self.side_pane.set_sidebar(self.sidebar)
+
+        # UNCOMMENT FOR SIDEBAR
+        #self.side_pane.set_content(self.window_handle)
+        #self.side_pane.set_sidebar(self.sidebar)
 
         # --- window size --- 
-        self.set_default_size(900, 560)
-        self.set_size_request(constants.min_window_size, 300)
-        self.set_content(self.side_pane)
+        self.set_default_size(800, 500)
+        self.set_size_request(800, 500)
+        
+        # REPLACE WITH SIDE_PANE FOR SIDEBAR
+        self.set_content(self.window_handle)
 
+        # STRUCTURE EXPLAINED
         # self>side_pane>window_handle>toast_overlay>cities_stack
 
+        self.default_loader()
+        Forecast.change_city()
+        cities_stack.connect("notify::visible-child", self.page_loader)
+        self.signal = self.city_selector.connect('changed', actions.switch_city)
+
+    def default_loader(self):
         self.loaded_list = []
 
         for city in global_variables.get_saved_cities():
             load = False
-            if len(global_variables.get_saved_cities())<global_variables.get_default_city():
+            if len(global_variables.get_saved_cities())<=global_variables.get_default_city():
                 global_variables.set_default_city(0)
 
             if(city == global_variables.get_saved_cities()[global_variables.get_default_city()]):
                 load = True
-            self.loaded_list.append(load)
-            name = global_variables.get_city_name(city)
-            stack_page = city_page.new(self, city, load)
-            cities_stack.add_titled(child=stack_page, title=name, name=city)
 
-        Forecast.change_city()
-        cities_stack.connect("notify::visible-child", self.page_loader)
+            self.add_city(load, city)
+        self.city_selector.set_active(index_=global_variables.get_default_city())
 
     def page_loader(self, stack, add):
         city = stack.get_visible_child_name()
@@ -126,6 +146,23 @@ class root(Adw.Window):
         if not self.loaded_list[n]:
             cities_stack.get_visible_child().set_child(city_page.new(self, global_variables.get_saved_cities()[n], True))
             self.loaded_list[n] = True
+        else:
+            if(global_variables.get_use_dyn_bg()):
+                constants.app.set_css_classes(constants.css_classes[global_variables.get_saved_cities().index(city)])
+
+    def add_city(self, load, city):
+        name = global_variables.get_city_name(city)
+        constants.css_classes.append([])
+        constants.days_css_classes.append([])
+
+        self.city_selector.append_text(text=name)
+        self.loaded_list.append(load)
+        stack_page = city_page.new(self, city, load)
+
+        constants.root.add_titled(child=stack_page, title=name, name=city)
+
+    def delete_city(self, city):
+        self.city_selector.remove(global_variables.get_saved_cities().index(city))
 
 class Forecast(Adw.Application):
     def __init__(self, **kwargs):
@@ -159,22 +196,21 @@ class Forecast(Adw.Application):
     def show_about(self, action, param):
         dialog = Adw.AboutWindow()
         dialog.set_application_name(_("Forecast"))
-        dialog.set_version("1.0")
+        dialog.set_version("1.0.0")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments(_("⛅ Weather and forecast app for Linux.\n Made also for mobile!\n Uses openweathermap api"))
-        dialog.set_website("https://github.com/SalaniLeo/Forecast")
+        dialog.set_comments(_("⛅ Weather and forecast app for Linux.\nUses openweathermap api"))
+        dialog.set_website("https://forecast.salanileo.dev")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salanileo.forecast")
         dialog.set_issue_url("https://github.com/SalaniLeo/Forecast/issues")
         dialog.add_acknowledgement_section("Used APIs", ["OpenWeatherMap APIs https://openweathermap.org/api"])
-        # TRANSLATORS: eg. 'Translator Name <your.email@domain.com>' or 'Translator Name https://website.example'
-        dialog.set_translator_credits(_("translator-credits"))
         dialog.present()
 
     def change_city():
         cities_stack.set_visible_child(cities_stack.get_child_by_name(global_variables.get_saved_cities()[global_variables.get_default_city()]))
 
     def remove_city(name):
+        constants.app.delete_city(name)
         cities_stack.remove(cities_stack.get_child_by_name(name))
 
     def exit_app(self, action, param):
@@ -197,9 +233,10 @@ class ForecastPreferences(Adw.PreferencesWindow):
         super().__init__()
 
         self.set_title(title=_("Preferences"))
-        # self.connect('close-request', self.do_shutdown)
+        self.connect('close-request', self.do_shutdown)
         self.set_transient_for(constants.app)
         self.show()
+        self.valid_api_key = False
 
         self.add_city_button = Gtk.Button.new_from_icon_name('list-add-symbolic')
         self.add_city_button.set_css_classes(['flat'])
@@ -207,18 +244,19 @@ class ForecastPreferences(Adw.PreferencesWindow):
         location_page = Adw.PreferencesPage()
         location_page.set_title(_("Locations"))
         location_page.set_icon_name('mark-location-symbolic')
-        self.add(location_page)
 
         forecast_opt_page = Adw.PreferencesPage.new()
         forecast_opt_page.set_title(_("Preferences"))
         forecast_opt_page.set_icon_name('org.gnome.Settings-symbolic')
-        self.add(page=forecast_opt_page)
+
+        self.add(location_page)
+        self.add(forecast_opt_page)
 
         names = ['locations', 'search']
         self.locations_root = Adw.PreferencesGroup()
         self.locations = Adw.PreferencesGroup()
 
-        actions.load_preferences_saved_cities(self, False)
+        actions.load_preferences_saved_cities(self, False, 0)
 
         self.locations_stack = Gtk.Stack()
 
@@ -274,21 +312,74 @@ class ForecastPreferences(Adw.PreferencesWindow):
 
         use_dyn_bg = Adw.SwitchRow.new()
         use_dyn_bg.set_title(_('Use dynamic background'))
-        use_dyn_bg.set_subtitle(_('When on, the background changes based on the weather'))
-        use_dyn_bg.add_suffix(widget=time_format)
+        use_dyn_bg.set_subtitle(_('When on, the background changes based on the weather. Restart needed to apply'))
         use_dyn_bg.set_active(global_variables.get_use_dyn_bg())
-        use_dyn_bg.connect('activated', global_variables.set_use_dyn_bg, not global_variables.get_use_dyn_bg())
+        use_dyn_bg.connect('notify::active', self.change_dyn_bg)
 
         appearance_group.add(use_dyn_bg)
 
+        # -- api key -- #
+        api_preferences = Adw.PreferencesGroup.new()
+        api_preferences.set_title(_('API Preferences'))
+
+        # creates option for changing api key
+        self.api_key_entry = Gtk.Entry()
+        self.api_key_entry.set_editable(True)
+        self.api_key_entry.set_valign(Gtk.Align.CENTER)
+        self.api_key_entry.set_size_request(175, -1)
+        self.api_key_entry.set_width_chars(35)
+        self.api_key_entry.set_text(constants.settings.get_string('custom-api-key'))
+        self.api_key_entry.connect('changed', self.check_api_key)
+
+        api_key_row = Adw.SwitchRow.new()
+        api_key_row.set_title(title=_("Use Personal API Key"))
+        api_key_row.set_active(constants.settings.get_boolean('api-key-b'))
+        api_key_row.set_subtitle(_("Choose whether to use default API key or personal key"))
+        api_key_row.connect('notify::active', self.change_api_key, self.api_key_entry)
+
+        personal_api_key_row = Adw.ActionRow.new()
+        personal_api_key_row.set_title(title=_("Personal API Key"))
+        personal_api_key_row.add_suffix(widget=self.api_key_entry)
+        if not constants.settings.get_boolean('api-key-b'):
+            self.api_key_entry.set_css_classes(['error'])
+
+        # adds option rows to option page
+        api_preferences.add(child=api_key_row)
+        api_preferences.add(child=personal_api_key_row)
+
         forecast_opt_page.add(group=units_group)
         forecast_opt_page.add(group=appearance_group)
+        forecast_opt_page.add(group=api_preferences)
+
+    def check_api_key(self, row):
+        if(len(row.get_text()) == 32):
+            self.valid_api_key = True
+
+    def change_dyn_bg(self, switch, GBool):
+        self.add_toast(Adw.Toast(title=_('Restart needed to apply changes')))
+        global_variables.set_use_dyn_bg(switch.get_active())
 
     def change_units(self, combobox):
         global_variables.set_default_units(combobox.get_active_text())
+        self.add_toast(Adw.Toast(title=_('Restart needed to apply changes')))
 
     def change_time_format(self, combobox):
         global_variables.set_timezone_format(combobox.get_active_text())
+        self.add_toast(Adw.Toast(title=_('Restart needed to apply changes')))
+
+    def change_api_key(self, switch, GParamBoolean, api_key_entry):
+        if(not switch.get_active()):
+            api_key_entry.set_css_classes(['error'])
+            api_key_entry.set_text('')
+            constants.settings.set_boolean('api-key-b', False)
+            constants.settings.set_string('custom-api-key', '')
+        else:
+            api_key_entry.remove_css_class('error')
+            if(self.valid_api_key):
+                constants.settings.set_boolean('api-key-b', True)
+                self.add_toast(Adw.Toast(title=_('Restart needed to apply changes')))
+            else:
+                self.add_toast(Adw.Toast(title=_('Api key not valid')))
 
     def search_locations(self, names):
         self.search_locations = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -376,18 +467,23 @@ class ForecastPreferences(Adw.PreferencesWindow):
     def remove_city(self, button, n, row, row_list):
         n = row_list.index(row)
         if len(row_list) > 1: 
+            loc = (f'{row.get_title()} ({row.get_subtitle()})')
+            Forecast.remove_city(loc)
             self.locations.remove(row)
             cities = global_variables.get_saved_cities()
-            loc = (f'{row.get_title()} ({row.get_subtitle()})')
             cities.remove(loc)
             global_variables.set_saved_cities(cities)
-            Forecast.remove_city(loc)
 
     def set_default_city(self, button, n, row_list, default):
         row_list[global_variables.get_default_city()].remove(default)
         global_variables.set_default_city(n)
         row_list[global_variables.get_default_city()].add_suffix(default)
+        constants.app.city_selector.set_active(index_=n)
         Forecast.change_city()
+
+    def do_shutdown(self, window):
+        if self.valid_api_key:
+            constants.settings.set_string('custom-api-key', self.api_key_entry.get_text())
 
 def start(AppID, package):
 

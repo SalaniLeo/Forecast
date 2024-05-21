@@ -1,42 +1,39 @@
-import gi, cairo, threading
+import gi, threading
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
-from gi.repository import Gtk, Adw, Gsk, GLib
+from gi.repository import Gtk
 from gettext import gettext as _, pgettext as C_
 from .data import *
 from .page import *
 from .style import *
 
-timezone = 0
-days_container_stack = Gtk.Stack()
-
 class city_page(Gtk.Stack):
     def __init__(self, app, city):
         super().__init__()
-        global timezone
-        
-        self.root = Gtk.Box()
 
-        coords_raw = city[city.find("(")+1:city.find(")")] # gets coords of new city
-        lat = coords_raw.split("; ")[0]  # gets latitude of new city  
-        lon = coords_raw.split("; ")[1] # gets longitude of new city
+        self.city         = city
+        self.root         = Gtk.Box()
+        self.day_selector = Gtk.ComboBoxText.new()
+        self.css_classes  = []
 
-        meteo = request.weather(lat, lon)
-        pollution = request.pollution(lat, lon)
+        coords_raw = city[city.find("(")+1:city.find(")")]
+        lat        = coords_raw.split("; ")[0]
+        lon        = coords_raw.split("; ")[1]
 
-        self.city_name   = str(city.split('-')[0])
+        meteo      = request.weather(lat, lon)
+        pollution  = request.pollution(lat, lon)
 
-        timezone    = str(meteo['timezone_offset']/3600)
-        time_raw  = meteo['current']['dt']
-        day_name    = str(converters.convert_day(meteo['current']['dt']))
-        icon        = meteo['current']['weather'][0]['icon']
-        conditions  = str(meteo['current']['weather'][0]['description'])
-        temperature = str(round(meteo['current']['temp'], 1))
-        feels_like  = str(round(meteo['current']['feels_like']))
+        self.city_name = global_variables.get_city_name(city)
 
-        now = meteo['current']
-        daily = meteo['daily']
-        hourly = meteo['hourly']
+        try:
+            now    = meteo['current']
+            daily  = meteo['daily']
+            hourly = meteo['hourly']
+        except:
+            constants.toast_overlay.add_toast(Adw.Toast(title=_('Could not retrieve weather data')))
+            return
+
+        icon   = now['weather'][0]['icon']
 
         alerts = None
         try:
@@ -44,30 +41,23 @@ class city_page(Gtk.Stack):
         except:
             None
 
-        local_time = converters.convert_time_format(time_raw, timezone)
+        if global_variables.get_use_dyn_bg():
+            classes = app_style.get_css_bg(icon[:-1], icon[-1])
+            constants.css_classes[global_variables.get_saved_cities().index(city)] = classes
+            constants.app.set_css_classes(constants.css_classes[global_variables.get_saved_cities().index(city)])
 
-        title_box = components.title_box(icon,conditions,temperature,local_time,day_name, feels_like)
-        now_conditions = components.now_conditions(now, self, app)
+        title_box = components.title_box(meteo)
+        now_conditions = components.now_conditions(now, pollution, alerts)
         daily_forecast_box = components.daily_forecast(daily, self, app)
-        hourly_forecast_box = components.hourly_forecast(hourly)
-        current_pollution_box = components.current_pollution(pollution)
+        hourly_forecast_box = components.hourly_forecast(meteo, hourly)
+        # current_pollution_box = components.current_pollution(pollution)
 
         accurate_daily_forecast_stack = components.accurate_daily_forecast(daily, self, app)
 
-        days_stack_root_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        days_stack_title_widget = Gtk.Label.new(_("Days"))
-        days_stack_title_widget.set_margin_top(12)
-        days_stack_title_widget.set_margin_bottom(12)
-        days_stack_title_widget.set_css_classes(['font_app_title'])
+        self.day_selector.set_active(index_=0)
+        self.day_selector.connect('changed', actions.switch_day, accurate_daily_forecast_stack, self)
 
-        days_stack_sidebar = Gtk.StackSidebar()
-        days_stack_sidebar.set_stack(accurate_daily_forecast_stack)
-        days_stack_sidebar.set_vexpand(True)
-
-        days_stack_root_box.append(days_stack_title_widget)
-        days_stack_root_box.append(days_stack_sidebar)
-
-        app.forecast_stacks_container.add_named(days_stack_root_box, self.city_name)
+        app.day_selector_stack.add_titled(self.day_selector, city, city)
 
         # -- adds wather and forecast pages -- 
         self.add_named(self.root, _("Weather"))
@@ -76,55 +66,34 @@ class city_page(Gtk.Stack):
         self.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT)
 
         # -- root container for page --
-        base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        base_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=24)
         base_box.set_hexpand(True)
 
         # -- left container --
-        top_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        top_box.append(title_box)
-        top_box.set_vexpand(False)
-        top_box.set_hexpand(True)
-        top_box.set_spacing(6)
-        # top_box.set_margin_bottom(12)
-        top_box.set_size_request(-1, 125)
+        right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        right_box.append(title_box)
+        right_box.set_spacing(6)
+        right_box.append(daily_forecast_box)
 
-        alert_box = Gtk.Box()
-        if(alerts is not None):
-            alert_box = components.alarm_box(alerts, app)
-            alert_box.set_halign(Gtk.Align.CENTER)
+        left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        left_box.append(hourly_forecast_box)
+        left_box.set_hexpand(True)
+        # left_box.append(current_pollution_box)
+        left_box.append(now_conditions)
 
-            top_box.append(alert_box)
-
-        center_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        center_box.append(hourly_forecast_box)
-        center_box.append(daily_forecast_box)
-        center_box.append(current_pollution_box)
-        center_box.append(now_conditions)
-
-        base_box.append(top_box)
-        base_box.append(center_box)
+        base_box.append(right_box)
+        base_box.append(left_box)
 
         self.root.append(base_box)
-        self.root.set_vexpand(True)
-        self.root.set_hexpand(True)
         self.root.set_orientation(Gtk.Orientation.VERTICAL)
 
-        align_alerts = Adw.Breakpoint() # TODO
-        align_alerts.add_setter(alert_box, "halign", Gtk.Align.START);
-        align_alerts.add_setter(top_box, "orientation", Gtk.Orientation.VERTICAL)
-        align_alerts.set_condition(Adw.BreakpointCondition.new_length(Adw.BreakpointConditionLengthType.MAX_WIDTH, constants.align_breakpoint, Adw.LengthUnit.SP))
-        app.add_breakpoint(align_alerts)
-
-        repeat_align = Adw.Breakpoint() # TODO
-        repeat_align.add_setter(alert_box, "halign", Gtk.Align.START);
-        repeat_align.add_setter(top_box, "orientation", Gtk.Orientation.VERTICAL)
-        repeat_align.add_setter(app.side_pane, "collapsed", True);
-        repeat_align.set_condition(Adw.BreakpointCondition.new_length(Adw.BreakpointConditionLengthType.MAX_WIDTH, constants.sidebar_breakpoint, Adw.LengthUnit.SP))
-        app.add_breakpoint(repeat_align)
+        if(global_variables.get_use_dyn_bg()):
+            self.connect("notify::visible-child", self.change_bg, self.css_classes)
 
     def new(app, city, load):
         root = Gtk.ScrolledWindow()
         box = Gtk.Box()
+
         spinner = Spinner(box)
         root.set_child(spinner)
         if load:
@@ -134,16 +103,29 @@ class city_page(Gtk.Stack):
             box.set_margin_bottom(12)
             box.set_margin_start(12)
             box.set_margin_end(12)
-            box.set_visible(True)
         return root
 
     def fill_weather(box, app, city, spinner):
         box.append(city_page(app, city))
         spinner.set_visible_child(spinner.get_child_by_name('weather'))
 
+    def change_bg(self, child, stack, css_classes):
+        if self.get_visible_child_name() == "Weather":
+            constants.app.set_css_classes(constants.css_classes[global_variables.get_saved_cities().index(self.city)])
+        else:
+            constants.app.set_css_classes(constants.days_css_classes[global_variables.get_saved_cities().index(self.city)][0][constants.day_names.index(self.day_selector.get_active_text())])
+
 
 class components(city_page):
-    def title_box(icon, conditions, temperature, local_time, day_name, feels_like):
+    def title_box(meteo):
+
+        day_name    = str(converters.convert_day(meteo['current']['dt']))
+        icon        = meteo['current']['weather'][0]['icon']
+        conditions  = str(meteo['current']['weather'][0]['description'])
+        temperature = str(round(meteo['current']['temp'], 1))
+        feels_like  = str(round(meteo['current']['feels_like']))
+        local_time  = str(converters.convert_time(meteo['timezone_offset']))
+
         root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         # -- icon --
         icon_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
@@ -154,7 +136,7 @@ class components(city_page):
         title_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         # -- title --
-        title_widget = Gtk.Label.new(conditions)
+        title_widget = Gtk.Label.new(f'{conditions[0].upper()}{conditions[1:]}')
         title_widget.set_halign(Gtk.Align.START)
         title_widget.set_css_classes(['font_big'])
         # -- subtitle --
@@ -201,109 +183,172 @@ class components(city_page):
         root.set_vexpand(False)
         return root
 
-    def alarm_box(alerts, app):
-        base_box = Gtk.Box()
+    def alarm_box(alerts):
+        label_box = Gtk.Box(spacing=3)
+        data_box = Gtk.Box(spacing=3)
 
-        for alert in alerts:
-            title = Gtk.Label(label=_("Alerts"))
-            title.set_halign(Gtk.Align.START)
-            title.set_margin_bottom(6)
-            title.set_css_classes(['font_medium'])
-            event = str(alert['event'])
-            start = str(converters.convert_timestamp(alert['start']))
-            end   = str(converters.convert_timestamp(alert['end']))
-            description = str(alert['description'])
-            sender = str(alert['sender_name'])
+        label_box.append(components.label_label(_("Alerts")))
+        label_box.set_valign(Gtk.Align.CENTER)
+        label_box.set_halign(Gtk.Align.START)
+        label_box.set_margin_top(6)
+        label_box.set_size_request(60, -1)
+        label_box.set_css_classes(['font_light'])
 
-            event_icon = Gtk.Image.new_from_icon_name('dialog-warning-symbolic')
+        alert_button = Gtk.Button.new_from_icon_name('dialog-warning-symbolic')
+        alert_button.set_css_classes(['warning'])
+        alert_button.connect('clicked', alarm_description, alerts, constants.app)
 
-            event_widget = Gtk.Label()
-            event_widget.set_text(event)
-            event_widget.set_css_classes(['font_bold'])
+        data_box.append(alert_button)
+        data_box.set_size_request(60, -1)
 
-            event_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-            event_box.append(event_icon)
-            event_box.append(event_widget)
-            event_box.set_spacing(6)
+        return label_box, data_box
 
-            start_widget = Gtk.Label(label=_("Start: {0}").format(start))
-            start_widget.set_halign(Gtk.Align.START)
-            end_widget = Gtk.Label(label=_("End: {0}").format(end))
-            end_widget.set_halign(Gtk.Align.START)
-
-            duration_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-            duration_box.append(start_widget)
-            duration_box.append(end_widget)
-            duration_box.set_margin_top(4)
-            duration_box.set_margin_start(4)
-
-            button = Gtk.Button()
-            button.set_label(_("See description"))
-            button.set_css_classes(['flat'])
-            button.connect('clicked', alarm_description, description, sender, app)
-
-            top_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-            top_box.append(title)
-            top_box.append(event_box)
-            top_box.append(duration_box)
-            top_box.append(button)
-
-        base_box.append(top_box)
-        base_box.set_vexpand(True)
-        base_box.set_hexpand(True)
-
-        return base_box
-
-    def now_conditions(now, self, app):
+    def now_conditions(now, pollution, alerts):
         base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=9)
-        title_widget = Gtk.Label.new(_("Current conditions"))
-        title_widget.set_css_classes(['font_medium'])
-        title_widget.set_halign(Gtk.Align.START)
-        base_box.append(title_widget)
-        base_box.set_margin_bottom(6)
-        base_box.set_margin_top(20)
+        base_box.set_halign(Gtk.Align.CENTER)
 
-        temp  = str(round(now['temp'], 1)) + constants.degrees_unit
-        feels_like  = str(round(now['feels_like'], 1)) + constants.degrees_unit
-        humidity    = str(now["humidity"])   + "%    "
-        wind_speed  = str(now['wind_speed'])      + constants.speed_unit +' '+ constants.wind_dir(now['wind_deg'])
-        pressure    = str(now['pressure'])   + ' hPa    '
-        Visibility  = '>' + str(now['visibility']/1000) + constants.speed_unit.split('/')[0]
-        Sunrise     = str(converters.convert_timestamp(now['sunrise']))
-        Sunset      = str(converters.convert_timestamp(now['sunset']))
-        # Value and percentage sign. In some languages, the order of the value and the percentage sign may need to be changed.
-        cloudiness  = _("{0}%").format(str(round(now["clouds"])))
-        # rain_prob   = _("{0}%").format(str(round(now["pop"]*100)))
-        uv_index    = constants.uv_index(round(now["uvi"]))
+        top_bar = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        title = Gtk.Label.new(_("Conditions"))
+        title.set_css_classes(['font_medium'])
+        top_bar.append(title)
+        top_bar.set_hexpand(top_bar)
 
-        day_temp_widget = components.info_label(_("Temperature"), f'{temp}')
-        wind_speed_widget = components.info_label(_("Wind speed"), f'{wind_speed}')
-        humidity_widget = components.info_label(_("Humidity"), f'{humidity}')
-        cloudiness_widget = components.info_label(_("Cloudiness"), f'{cloudiness}')
-        # pop_widget = components.info_label(_("Probability of rain"), f'{rain_prob}')
-        uv_index_widget = components.info_label(_("UV Index"), f'{uv_index}  ({str(round(now["uvi"],1))})')
+        base_box.append(top_bar)
+        base_box.append(components.base_conditions(now, pollution, alerts))
 
-        widgets_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-
-        widgets_box.append(day_temp_widget)
-        widgets_box.append(wind_speed_widget)
-        widgets_box.append(humidity_widget)
-        widgets_box.append(cloudiness_widget)
-        widgets_box.append(uv_index_widget)
-
-        base_box.append(widgets_box)
         return base_box
 
-    def hourly_forecast(hourly):
+    def base_conditions(now, pollution, alerts):
+        base_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=32)
+        label_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3)
+        label_box.set_hexpand(True)
+        label_box.set_margin_start(32)
+        data_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3)
+        data_box.set_hexpand(True)
+
+        label_box.add_css_class('font_light')
+        label_box.append(components.label_label(_("Wind")))
+        label_box.append(components.label_label(_("Pressure")))
+        label_box.append(components.label_label(_("Humidity")))
+        label_box.append(components.label_label(_("Visibility")))
+        label_box.append(components.label_label(_("Sunrise")))
+        label_box.append(components.label_label(_("Sunset")))
+        label_box.append(components.label_label(_("AQI")))
+
+        data_box.append(components.data_label(f'{now["wind_speed"]}{constants.speed_unit} {constants.wind_dir(now["wind_deg"])}'))
+        data_box.append(components.data_label(f'{now["pressure"]}hPa'))
+        data_box.append(components.data_label(f'{now["humidity"]}%'))
+        data_box.append(components.data_label(f'{now["visibility"]/1000} {constants.speed_unit.split("/")[0]}'))
+        data_box.append(components.data_label(f'{converters.convert_timestamp(now["sunrise"])}'))
+        data_box.append(components.data_label(f'{converters.convert_timestamp(now["sunset"])}'))
+        data_box.append(components.data_label(pollution['list'][0]['main']['aqi']))
+
+        if(alerts is not None):
+            pollution_label, pollution_data_label = components.alarm_box(alerts)
+            label_box.append(pollution_label)
+            data_box.append(pollution_data_label)
+
+        base_box.append(label_box)
+        base_box.append(data_box)
+
+        return base_box
+
+    def label_label(name):
+        label = Gtk.Label.new(name)
+        label.set_css_classes(['font_light'])
+        label.set_halign(Gtk.Align.START)
+        return label
+
+    def data_label(name):
+        label = Gtk.Label.new(str(name))
+        label.set_halign(Gtk.Align.START)
+        return label
+
+    def adv_conditions(now, pollution):
+        root = Gtk.Stack()
+
+        root.add_titled(components.weather_conditions(now), "Weather", "Weather")
+        root.add_titled(components.pollution_conditions(now), "Pollution", "Pollution")
+
+        return root
+
+    def weather_conditions(now):
+        base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=9)
+        top_box = Gtk.Box(spacing=6)
+
+        back_button = Gtk.Button.new_from_icon_name("go-previous-symbolic")
+        title_label = Gtk.Label(label=_("Weather"))
+        title_label.set_hexpand(True)
+        title_label.set_css_classes(['font_medium'])
+        next_button = Gtk.Button.new_from_icon_name("go-next-symbolic")
+
+        top_box.append(back_button)
+        top_box.append(title_label)
+        top_box.append(next_button)
+        top_box.set_hexpand(True)
+
+        center_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
+        left_center_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
+        top_left_center_box = Gtk.Label(label=_("Conditions"))
+        top_left_center_box.set_halign(Gtk.Align.START)
+        top_left_center_box.set_css_classes(['font_bold'])
+        bottom_left_center_box = Gtk.Box(spacing=6)
+
+        label_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        data_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+
+        data_box.append(components.data_label(f'{now["feels_like"]}{constants.degrees_unit}'))
+        data_box.append(components.data_label(f'{now["wind_speed"]}{constants.speed_unit} {constants.wind_dir(now["wind_deg"])}'))
+        data_box.append(components.data_label(f'{now["pressure"]}hPa'))
+        data_box.append(components.data_label(f'{now["humidity"]}%'))
+        data_box.append(components.data_label(f'{now["visibility"]/1000}{constants.speed_unit.split("/")[0]}'))
+
+        label_box.append(components.label_label(_("Feels Like")))
+        label_box.append(components.label_label(_("Wind")))
+        label_box.append(components.label_label(_("Pressure")))
+        label_box.append(components.label_label(_("Pressure")))
+        label_box.append(components.label_label(_("Visibility")))
+
+        bottom_left_center_box.append(label_box)
+        bottom_left_center_box.append(data_box)
+
+        left_center_box.append(top_left_center_box)
+        left_center_box.append(bottom_left_center_box)
+        center_box.append(left_center_box)
+
+        # base_box.append(top_box)
+        base_box.append(center_box)
+
+        return base_box
+
+    def pollution_conditions(now):
+        base_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
+        top_box = Gtk.Box(spacing=6)
+
+        back_button = Gtk.Button.new_from_icon_name("go-previous-symbolic")
+        weather_title_label = Gtk.Label(label=_("Weather"))
+        next_button = Gtk.Button.new_from_icon_name("go-next-symbolic")
+
+        top_box.append(back_button)
+        top_box.append(weather_title_label)
+        top_box.append(next_button)
+        base_box.append(top_box)
+
+        return base_box
+
+    def hourly_forecast(meteo, hourly):
         base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         title_widget = Gtk.Box()
-        title_widget.append(Gtk.Label.new(_("24 Hours forecast")))
+        title_widget.append(Gtk.Label.new(_("Today")))
+        title_widget.set_halign(Gtk.Align.CENTER)
+        title_widget.set_margin_bottom(12)
         title_widget.set_css_classes(['font_medium'])
         hourly_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=18)
+        hourly_box.set_halign(Gtk.Align.CENTER)
+        hourly_box.set_hexpand(True)
         scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_margin_bottom(12)
+        scrolled_window.set_hexpand(True)
         scrolled_window.set_child(hourly_box)
-        # scrolled_window.set_hexpand(True)
         scrolled_window.set_min_content_height(100)
 
         base_box.append(title_widget)
@@ -311,16 +356,29 @@ class components(city_page):
 
         i = 0
         for hour in hourly:
-            if i <= 24:
+            if i <= 15 and i % 3 == 0:
                 hour_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
 
-                time_raw = hour['dt']
                 temp = hour['temp']
                 icon = hour['weather'][0]['icon']
 
-                time = converters.convert_time_format(time_raw, timezone)
+                time = int(converters.convert_time(meteo["timezone_offset"])[:2]) + i
 
-                time_widget = Gtk.Label.new(time)
+                if(global_variables.get_timezone_format()==24):
+                    if time >= 24:
+                        time = time - 24
+                        if time < 10:
+                            time = '0' + str(time)
+                    time = str(time) + ':00'
+                elif global_variables.get_timezone_format()==12:
+                    time_i = False
+                    while int(time) >= 12:
+                        time_i = not time_i
+                        time = time - 12
+                    if (time < 10):
+                        time = '0' + str(time)
+                    time = str(time) + " " + constants.time_am_pm[int(time_i)]
+                time_widget = Gtk.Label.new(str(time))
                 hour_box.append(time_widget)
 
                 temp_widget = Gtk.Label.new(f'{str(round(temp))} {global_variables.get_temperature_units()}')
@@ -350,14 +408,8 @@ class components(city_page):
         title_box.append(title_widget)
         title_box.append(title_button)
 
-        base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         base_box.append(title_box)
-        base_box.set_spacing(12)
-        top_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
-        center_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
-        base_box.append(top_box)
-        base_box.append(center_box)
-        base_box.set_valign(Gtk.Align.START)
 
         max_min = []
         overall_max = daily[0]['temp']['max']
@@ -371,6 +423,9 @@ class components(city_page):
                 min_temp = day['temp']['min']
                 icon     = day['weather'][0]['icon']
 
+                if len(constants.day_names) < 7:
+                    constants.day_names.append(day_name)
+
                 max_min.append(max_temp)
                 max_min.append(min_temp)
                 if max_temp > overall_max: overall_max = max_temp
@@ -378,7 +433,7 @@ class components(city_page):
 
                 day_box = components.temp_graph_box(day_name, icon, max_temp, min_temp, max_min)
 
-                top_box.append(day_box)
+                base_box.append(day_box)
 
             i += 1
         return base_box
@@ -401,7 +456,7 @@ class components(city_page):
 
         temp_graph = Gtk.DrawingArea()
         temp_graph.set_draw_func(app_style.draw_forecast_temps, max_min, max_temp, min_temp)
-        temp_graph.set_hexpand(True)
+        temp_graph.set_size_request(80,10)
 
         temp_box = Gtk.Box()
         temp_box.append(temp_graph)
@@ -412,8 +467,6 @@ class components(city_page):
         max_min_box.append(min_widget)
         max_min_box.append(temp_box)
         max_min_box.append(max_widget)
-        max_min_box.set_hexpand(False)
-        max_min_box.set_size_request(100,10)
 
         day_box.append(icon_widget)
         day_box.append(day_widget)
@@ -564,8 +617,10 @@ class components(city_page):
 
     def accurate_daily_forecast(daily, self, app):
         root = Gtk.Stack()
+        root.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
         i = 0
         boxes = []
+        css_classes = []
         for day in daily:
             if i < 7:
                 base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
@@ -579,7 +634,7 @@ class components(city_page):
                 back_button.set_vexpand(False)
                 back_button.set_valign(Gtk.Align.START)
 
-                center_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
+                center_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=24)
                 center_box.set_hexpand(True)
 
                 top_box = Gtk.Box()
@@ -593,6 +648,7 @@ class components(city_page):
 
                 icon_widget = Gtk.Image()
                 app_style.forecast_icon(icon, 100, icon_widget, constants.icon_loc)
+                self.day_selector.append_text(text=str(day_name))
 
                 conditions_widget = Gtk.Label.new(conditions)
                 conditions_widget.set_css_classes(['font_medium'])
@@ -632,8 +688,8 @@ class components(city_page):
                 top_box.append(icon_box)
                 top_box.append(important_info_box)
                 top_box.append(back_button)
-                root.add_titled(base_box, str(i), day_name)
 
+                root.add_titled(base_box, day_name, day_name)
 
                 day_temps_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
                 day_temps_box.set_hexpand(True)
@@ -737,7 +793,16 @@ class components(city_page):
 
                 center_top_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
                 center_top_box.set_vexpand(False)
+
                 boxes.append(center_top_box)
+
+                if(global_variables.get_use_dyn_bg()):
+                    if 'night' in constants.css_classes[global_variables.get_saved_cities().index(self.city)][0]:
+                        classes = app_style.get_css_bg(icon[:-1], 'n')
+                    else:
+                        classes = app_style.get_css_bg(icon[:-1], 'd')
+                    self.css_classes.append(classes)
+                    css_classes.append(classes)
 
                 sunset_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=9)
                 sunset_value = converters.convert_timestamp(day['sunset'])
@@ -758,16 +823,17 @@ class components(city_page):
                 sun_title = Gtk.Label.new(_("Sun"))
                 sun_title.set_css_classes(['font_medium'])
                 sun_title.set_halign(Gtk.Align.START)
+                sun_title.set_margin_bottom(6)
                 sunrise_sunset_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=3)
+                sunrise_sunset_box.append(sun_title)
                 sunrise_sunset_box.append(sunrise_box)
                 sunrise_sunset_box.append(sunset_box)
 
                 center_center_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
-                center_center_box.append(sun_title)
-                center_center_box.append(sunrise_sunset_box)
+                center_center_box.append(current_conditions_box)
 
-                center_top_box.append(current_conditions_box)
                 center_top_box.append(day_temps_box)
+                center_top_box.append(sunrise_sunset_box)
 
                 center_box.append(center_top_box)
                 center_box.append(center_center_box)
@@ -775,12 +841,7 @@ class components(city_page):
                 base_box.append(top_box)
                 base_box.append(center_box)
             i += 1
-
-        awd_breakpoint = Adw.Breakpoint() # TODO
-        for each in boxes:
-            awd_breakpoint.add_setter(each, 'orientation', Gtk.Orientation.HORIZONTAL)
-        awd_breakpoint.set_condition(Adw.BreakpointCondition.new_length(Adw.BreakpointConditionLengthType.MIN_WIDTH, constants.sidebar_breakpoint, Adw.LengthUnit.SP))
-        app.add_breakpoint(awd_breakpoint)
+        constants.days_css_classes[global_variables.get_saved_cities().index(self.city)].append(css_classes)
 
         return root
 
@@ -790,11 +851,17 @@ class components(city_page):
 
         names = ['Cities', "Days"]
 
-        name = names[names.index(app.sidebar_stack.get_visible_child_name())]
-        child = not bool(names.index(name))
-        app.sidebar_stack.set_visible_child(app.sidebar_stack.get_child_by_name(names[child]))
-        stack_sidebar_root = app.sidebar_stack.get_child_by_name(names[child])
-        stack_sidebar_root.set_visible_child(stack_sidebar_root.get_child_by_name(self.city_name))
+        app.header_bar.remove(app.city_selector)
+        app.header_bar.pack_start(app.day_selector_stack)
+
+        app.day_selector_stack.set_visible_child(app.day_selector_stack.get_child_by_name(self.city))
+
+        #name = names[names.index(app.sidebar_stack.get_visible_child_name())]
+        #child = not bool(names.index(name))
+        #app.sidebar_stack.set_visible_child(app.sidebar_stack.get_child_by_name(names[child]))
+        #stack_sidebar_root = app.sidebar_stack.get_child_by_name(names[child])
+        #stack_sidebar_root.set_visible_child(stack_sidebar_root.get_child_by_name(self.city_name))
+
 
     def back_to_wather(button, stack, app, names):
         stack.set_transition_type(Gtk.StackTransitionType.SLIDE_RIGHT)
@@ -802,29 +869,38 @@ class components(city_page):
 
         names = ['Cities', "Days"]
 
-        name = names[names.index(app.sidebar_stack.get_visible_child_name())]
-        child = not bool(names.index(name))
-        app.sidebar_stack.set_visible_child(app.sidebar_stack.get_child_by_name(names[child]))
+        app.header_bar.remove(app.day_selector_stack)
+        app.header_bar.pack_start(app.city_selector)
+
+        #name = names[names.index(app.sidebar_stack.get_visible_child_name())]
+        #child = not bool(names.index(name))
+        #app.sidebar_stack.set_visible_child(app.sidebar_stack.get_child_by_name(names[child]))
 
     def info_label(title, value):
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=9)
-        title_widget = Gtk.Label.new(title)
+        title_box = Gtk.Box()
+        title_widget = Gtk.Label()
+        title_widget.set_halign(Gtk.Align.START)
         title_widget.set_css_classes(['font_light'])
+        title_widget.set_text(title)
         data_widget = Gtk.Label.new(value)
         data_widget.set_wrap(True)
-        box.append(title_widget)
+        title_box.append(title_widget)
+        title_box.set_size_request(130, -1)
+        box.append(title_box)
         box.append(data_widget)
+        box.set_halign(Gtk.Align.START)
         return box
 
 class alarm_description(Gtk.MessageDialog):
-    def __init__(self, button, description, sender, app, *args, **kwargs):
+    def __init__(self, button, alerts, app, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.set_default_size(500,225)
-        self.set_title(title=sender)
-        self.set_transient_for(app)
-        self.set_modal(True)
 
         self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.box.set_margin_start(12)
+        self.box.set_margin_end(12)
+        self.box.set_margin_top(12)
+        self.box.set_margin_bottom(12)
 
         self.scrolled = Gtk.ScrolledWindow()
         self.scrolled.set_margin_bottom(12)
@@ -833,19 +909,52 @@ class alarm_description(Gtk.MessageDialog):
         self.scrolled.set_vexpand(True)
 
         self.closeButton = Gtk.Button(label=_("Close"))
-        self.closeButton.set_hexpand(True)
-        self.closeButton.set_size_request(-1, 50)
+        self.closeButton.set_hexpand(False)
+        self.closeButton.set_halign(Gtk.Align.END)
         self.closeButton.connect('clicked', self.exit)
+        self.closeButton.set_css_classes(['suggested-action'])
 
         self.box.append(self.scrolled)
         self.box.append(self.closeButton)
 
         self.set_child(self.box)
 
-        self.alert = Gtk.Label.new(description)
-        self.alert.set_wrap(True)
-        self.scrolled.set_child(self.alert)
+        self.inner_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.scrolled.set_child(self.inner_box)
+
+        alert_num = 0
+
+        for alert in alerts:
+            tags = ""
+            for tag in alert['tags']:
+                tags = tags + " " + tag
+            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+            title = Gtk.Label.new(f'{alert["event"]} -{tags}')
+            title.set_css_classes(['title-4'])
+            title.set_halign(Gtk.Align.START)
+            subtitle = Gtk.Label.new(f'{str(converters.convert_timestamp_full(alert["start"]))} - {str(converters.convert_timestamp_full(alert["end"]))}')
+            subtitle.set_halign(Gtk.Align.START)
+
+            description = alert['description']
+            description_box = Gtk.Label()
+            description_box.set_wrap(True)
+            description_box.set_margin_top(6)
+            description_box.set_markup(description)
+
+            box.append(title)
+            box.append(subtitle)
+            box.append(description_box)
+            box.set_margin_bottom(6)
+            box.set_margin_top(6)
+
+            self.inner_box.append(box)
+            alert_num = alert_num + 1
+
         self.show()
+        self.set_title(title=f'{_("Alerts")} ({alert_num})')
+        self.set_transient_for(app)
+        self.set_modal(True)
+        self.set_default_size(600, 400)
 
     def exit(self, button):
         self.close()

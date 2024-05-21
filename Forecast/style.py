@@ -4,13 +4,9 @@ gi.require_version('Adw', '1')
 from gi.repository import Gtk
 from gettext import gettext as _
 
-css_classes = []
-night = False
-
 class app_style():
     def forecast_icon(icon, size, img, loc):
             img.set_pixel_size(size)
-            
             if icon == "01d":
                 img.set_from_file(loc + 'weather-clear-large.svg')
             elif icon == "02d" or icon == "03d":
@@ -27,7 +23,6 @@ class app_style():
                 img.set_from_file(loc + 'weather-snow-large.svg')
             elif icon == "50d":
                 img.set_from_file(loc + 'weather-fog-large.svg')
-
             # -------- night icons --------- # 
             elif icon == "01n":
                 img.set_from_file(loc + 'weather-clear-night-large.svg')
@@ -46,54 +41,42 @@ class app_style():
             elif icon == "50n":
                 img.set_from_file(loc + 'weather-fog-large.svg')
 
-    def get_icon_info(icon):
-        info = []
-        if 'd' in icon:
-            base = icon.split('d')[0]
-            icon = f'{base}d'
-            night = False
-        elif 'n' in icon:
-            base = icon.split('n')[0]
-            night = True
-            icon = f'{base}n'
-        info = [base, night]
-        return info
-
     def get_css_bg(icon, night):
-        if not night:
+        if night == "d":
             if icon == "01":
-                css_classes = ["clear_sky", night]
+                css_classes = ["clear_sky"]
             elif icon == "02" or icon == "03":
-                css_classes = ['few_clouds', night]
+                css_classes = ['few_clouds']
             elif icon == "04":
-                css_classes = ['overcast', night]
+                css_classes = ['overcast']
             elif icon == "09":
-                css_classes = ['showers_scattered', night]
+                css_classes = ['showers_scattered']
             elif icon == "10":
-                css_classes = ['showers_large', night]
+                css_classes = ['showers_large']
             elif icon == "11":
-                css_classes = ['storm', night]
+                css_classes = ['storm']
             elif icon == "13":
-                css_classes = ['snow', night]
+                css_classes = ['snow']
             elif icon == "50":
-                css_classes = ['fog', night]
+                css_classes = ['fog']
         else:
             if icon == "01":
-                css_classes = ['clear_sky_night', night]
+                css_classes = ['clear_sky_night']
             elif icon == "02" or icon == "03":
-                css_classes = ['few_clouds_night', night]
+                css_classes = ['few_clouds_night']
             elif icon == "04":
-                css_classes = ['overcast_night', night]
+                css_classes = ['overcast_night']
             elif icon == "09":
-                css_classes = ['showers_scattered_night', night]
+                css_classes = ['showers_scattered_night']
             elif icon == "10":
-                css_classes = ['showers_large_night', night]
+                css_classes = ['showers_large_night']
             elif icon == "11":
-                css_classes = ['storm_night', night]
+                css_classes = ['storm_night']
             elif icon == "13":
-                css_classes = ['snow_night', night]
+                css_classes = ['snow_night']
             elif icon == "50":
-                css_classes = ['fog_night', night]
+                css_classes = ['fog_night']
+        css_classes.append('application_window')
         return css_classes
 
     def get_wttr_description(code):
@@ -152,13 +135,6 @@ class app_style():
             804: (_("Overcast Clouds"))
         }
         return switcher.get(int(code), ('Not available'))
-    
-    def apply_bg(main_window, icon, forecast):
-        global night
-        if not forecast:
-            night = app_style.get_icon_info(icon)[-1]
-        icon = app_style.get_icon_info(icon)[0]
-        main_window.set_css_classes([app_style.get_css_bg(icon, night)[0], "main_window"])
 
     def draw_aqi_index(da: Gtk.DrawingArea, context: cairo.Context, width, height, index):
         width_index = index*10*2

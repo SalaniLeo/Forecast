@@ -58,14 +58,17 @@
 
   <releases>
 
-      <release version="0.3.0" date="2023-08-02">
+      <release version="1.0.0" date="2024-05-30">
         <description translate="no">
-          <p>Version 0.3.0</p>
+          <p>Version 1.0.0</p>
             <ul>
+              <li>Rewritten from ground up!</li>
+              <li>Added Forecast up to a week</li>
+              <li>Added Forecast temperatures graph</li>
+              <li>Added air quality index</li>
               <li>Added Forecast page</li>
-              <li>Added 'Advanced' option for current conditions</li>
-              <li>Added symbol to let you know the default city</li>
-              <li>Fixed some bugs</li>
+              <li>You can now add a city with coordinates</li>
+              <li>And much more...</li>
             </ul>
         </description>
       </release>

@@ -1,4 +1,4 @@
-import requests, threading, gi, time
+import requests, threading, gi, time, locale
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gio, Adw, Gtk
@@ -12,6 +12,7 @@ class constants():
     miles = _("Imperial System")
     metric_system = f'{meters}, °C - Km/h'
     imperial_system = f'{miles}, °F - mph'
+    system_locale = locale.getdefaultlocale()[0].split("_")[0]
 
     settings     = Gio.Settings.new("dev.salanileo.forecast")
     units        = settings.get_string('units').split(' ')[0].lower()
@@ -21,12 +22,17 @@ class constants():
     poll_unit    = ' μg/m3'
     icon_loc     = None
     today        = datetime.now()
-    api_key      = settings.get_string('api-key-s')
     available_units = [metric_system, imperial_system]
     time_formats = ['12', '24']
-    time_am_pm   = ['am', 'pm']
+    time_am_pm   = ['AM', 'PM']
+    css_classes  = []
+    days_css_classes = []
+    day_names    = []
     root         = None
     app          = None
+    toast_overlay= None
+    city_page    = None
+    last_refresh = 0
 
     #pollution index
     air_good = _("Good")
@@ -37,17 +43,16 @@ class constants():
 
     align_breakpoint = 700
     sidebar_breakpoint = 500
-    min_window_size = sidebar_breakpoint/1.475
 
     def uv_index(uv_index):
         if uv_index >= 0 and uv_index <= 2:
             return _("Low")
         elif uv_index >= 3 and uv_index <= 7:
-            return _("Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap on a hat!")
+            return _("Seek shade during midday hours!")
         elif uv_index >= 8:
-            return _("Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen, and hat are a must!")
+            return _("Avoid being outside during midday hours!")
         else:
-            return _("Invalid UV index input. Please provide a number within the valid range.")
+            return _("Invalid UV index input.")
 
     def wind_dir(angle):
         directions = [
@@ -88,7 +93,7 @@ class global_variables():
     def set_timezone_format(time_format):
         constants.settings.set_int('time-format', int(time_format))
 
-    def set_use_dyn_bg(sw, use):
+    def set_use_dyn_bg(use):
         constants.settings.set_boolean('gradient-bg', use)
 
     def get_max_search_cities():
@@ -101,15 +106,30 @@ class global_variables():
         return global_variables.get_speed_units().split('/')[0]
 
     def get_use_dyn_bg():
-        constants.settings.get_boolean('gradient-bg')
+        return constants.settings.get_boolean('gradient-bg')
+
+    def get_last_refresh():
+        return constants.last_refresh
+
+    def set_last_refresh(time):
+        constants.last_refresh = time
+
+    def get_api_key():
+        if constants.settings.get_boolean("api-key-b"):
+            return constants.settings.get_string('custom-api-key')
+        else:
+            return constants.settings.get_string('api-key-s')
+
+    def set_api_key(key):
+        return constants.settings.get_string('custom-api-key', key)
 
 class request():
     def weather(lat, lon):
-        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&appid={constants.api_key}')
+        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={global_variables.get_api_key()}')
         return response.json()
 
     def pollution(lat, lon):
-        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&appid={constants.api_key}')
+        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={global_variables.get_api_key()}')
         return response.json()
 
 row_list = []
@@ -117,29 +137,63 @@ class actions():
     def show_hide_sidebar(button, application):
         application.side_pane.set_show_sidebar(not application.side_pane.get_show_sidebar())
 
-    def refresh_weather(button, app, stack):
-        for city in global_variables.get_saved_cities():
-            stack.remove(stack.get_child_by_name(city))
+    def refresh_weather(button, app, cities_stack):
+        i = 0
+
+        now = time.time()
+
+        if(now - global_variables.get_last_refresh() >= 120):
+            global_variables.set_last_refresh(time.time())
+            for city in global_variables.get_saved_cities():
+                if app.loaded_list[i] == True:
+                    if i == global_variables.get_default_city() or city == cities_stack.get_visible_child_name():
+                        load = True
+                    else:
+                        load = False
+                    cities_stack.remove(cities_stack.get_child_by_name(city))
+                    app.day_selector_stack.remove(app.day_selector_stack.get_child_by_name(city))
+
+                    stack_page = constants.city_page.new(app, city, load)
+                    constants.root.add_titled(child=stack_page, title=global_variables.get_city_name(city), name=city)
+                    if app.day_selector_stack.get_parent() != None:
+                        app.header_bar.remove(app.day_selector_stack)
+                        app.header_bar.pack_start(app.city_selector)
+                constants.app.set_css_classes(constants.css_classes[global_variables.get_saved_cities().index(city)])
+                i = i + 1
+        else:
+            constants.toast_overlay.add_toast(Adw.Toast(title=_('Wait at least 2 minutes between refreshes!')))
+
 
     def add_city(row, city, self=None):
         cities = global_variables.get_saved_cities()
         if city not in cities:
             cities.append(city)
             global_variables.set_saved_cities(cities)
-            actions.refresh_weather(None, constants.app, constants.root)
+            constants.app.add_city(False, city)
         else:
             return
         if self != None:
+            city_num = 0
             actions.switch_search(None, self.locations_stack)
-            actions.load_preferences_saved_cities(self, True)
+            actions.load_preferences_saved_cities(self, True, city_num)
 
     def switch_search(button, stack, names=['locations','search']):
         name = names[names.index(stack.get_visible_child_name())]
         child = not bool(names.index(name))
-        stack.set_visible_child(stack.get_child_by_name(names[child]))
+        stack.set_visible_child(stack.get_child_by_name(names[int(child)]))
 
-    def load_preferences_saved_cities(self, reload):
-        
+    def switch_day(combobox, stack, self):
+        stack.set_visible_child(stack.get_child_by_name(combobox.get_active_text()))
+        if(global_variables.get_use_dyn_bg()):
+            constants.app.set_css_classes(constants.days_css_classes[global_variables.get_saved_cities().index(self.city)][0][constants.day_names.index(combobox.get_active_text())])
+
+    def switch_city(combobox):
+        i = 0
+        for city in global_variables.get_saved_cities():
+            if combobox.get_active_text() == global_variables.get_city_name(city):
+                constants.root.set_visible_child(constants.root.get_child_by_name(city))
+
+    def load_preferences_saved_cities(self, reload, city_num):
         i = -1
         if reload:
             for row in row_list:
@@ -150,6 +204,7 @@ class actions():
         default.set_sensitive(False)
         default.set_css_classes(['flat'])
 
+        row_list.clear()
         for loc in global_variables.get_saved_cities(): 
             coords_raw = loc[loc.find("(")+1:loc.find(")")]
 
@@ -176,11 +231,11 @@ class actions():
             row_list.append(location)
             b.connect('clicked', self.remove_city, i, location, row_list)
 
-        i = 0
+        city_num = 0
         for row in row_list:
-            row.connect("activated", self.set_default_city, i, row_list, default)
-            i += 1
-        
+            row.connect("activated", self.set_default_city, city_num, row_list, default)
+            city_num = city_num + 1
+
 class converters():
     def convert_timezone(hours):
         if hours < 0:
@@ -194,6 +249,11 @@ class converters():
         formatted_time = converted_time.strftime("%H:%M")
         return formatted_time
 
+    def convert_timestamp_full(time):
+        converted_time = datetime.fromtimestamp(time)
+        formatted_time = converted_time.strftime("%D - %H:%M")
+        return formatted_time
+
     def convert_day(time):
         converted_time = datetime.fromtimestamp(time)
         formatted_time = converted_time.strftime("%A")
@@ -203,33 +263,23 @@ class converters():
     def convert_time(timezone):
         local_time = timezone//3600
         converted_datetime = local_time + int(datetime.utcnow().strftime("%H"))
-        if converted_datetime > 24:
-            converted_datetime = "0" + str(converted_datetime - 24)
-        elif(converted_datetime < 10) and local_time > 0:
-            converted_datetime = "0" + str(converted_datetime)
-        elif(converted_datetime < 10) and local_time < 0:
-            converted_datetime = '0' + str(converted_datetime).split('-')[-1]
-        local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M")
+        if (global_variables.get_timezone_format()==24):
+            if converted_datetime > 24:
+                converted_datetime = "0" + str(converted_datetime - 24)
+            elif(converted_datetime < 10) and local_time > 0:
+                converted_datetime = "0" + str(converted_datetime)
+            elif(converted_datetime < 10) and local_time < 0:
+                converted_datetime = '0' + str(converted_datetime).split('-')[-1]
+            local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M")
+        elif global_variables.get_timezone_format()==12:
+            time_i = False
+            while int(converted_datetime) >= 12:
+                time_i = not time_i
+                converted_datetime = converted_datetime - 12
+                if converted_datetime < 10:
+                    converted_datetime = '0' + str(converted_datetime)
+            local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M") + " " + constants.time_am_pm[int(time_i)]
         return local_full_time
-
-    def convert_time_format(time_raw, timezone):
-        o = 0
-        time = int(converters.convert_timestamp(time_raw).split(':')[0])+int(timezone.split('.')[0])
-        if(time > global_variables.get_timezone_format()):
-            o = 1
-        if time == 24: o = not o
-        if time == 12: o = not o
-
-        if time > global_variables.get_timezone_format():
-            time = time - global_variables.get_timezone_format()
-        if global_variables.get_timezone_format() == 12:
-            return f'{str(time)}:{converters.convert_timestamp(time_raw).split(":")[-1]} {constants.time_am_pm[o]}'
-        else:
-            time = f'{str(time)}:{converters.convert_timestamp(time_raw).split(":")[-1]}'
-            if time == '24:00':
-                time = '00:00'
-            return time
-
 
 cities = []
         
@@ -250,20 +300,24 @@ class search_city():
             lat = reverse_query[0].get_text()
             lon = reverse_query[1].get_text()
 
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={global_variables.get_max_search_cities()}&appid=72d251b81d30ef572ae667dfe6c4ee1a')
+            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={global_variables.get_max_search_cities()}&appid={global_variables.get_api_key()}')
             data = geocoding.json() 
-            #TODO API KEI
+
         elif type(reverse_query) == bool:
             place_to_search = searchbar.get_text()
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit={global_variables.get_max_search_cities()}&appid=72d251b81d30ef572ae667dfe6c4ee1a')
+            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit={global_variables.get_max_search_cities()}&appid={global_variables.get_api_key()}')
             data = geocoding.json()
             if place_to_search == "":
                 return
         elif type(reverse_query) == str:
             place_to_search = self
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit=1&appid=72d251b81d30ef572ae667dfe6c4ee1a')
+            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit=1&appid={global_variables.get_api_key()}')
             city = geocoding.json()
-            location = f'{city[0]["name"]} - {city[0]["country"]} ({city[0]["lat"]}; {city[0]["lon"]})'
+            if len(city) == 0:
+                location = f'Ferrara - IT (44.8372737; 11.6186451)'
+            else:
+                location = f'{city[0]["name"]} - {city[0]["country"]} ({city[0]["lat"]}; {city[0]["lon"]})'
+
             return location
 
         if len(cities) != 0:
