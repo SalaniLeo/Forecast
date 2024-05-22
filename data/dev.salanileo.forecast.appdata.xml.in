@@ -2,9 +2,9 @@
 <component type="desktop">
   <id>dev.salanileo.forecast</id>
   <name>Forecast</name>
-  <summary>Weather app for GNOME</summary>
+  <summary>⛅ Weather app for Linux made in LibAdwaita</summary>
   <description>
-    <p>Alternative weather app with custom css styling and more</p>
+    <p>Forecast is another weather app made for linux. It has a modern and clean interface, perfect for reading the weather.</p>
   </description>
   <developer_name translate="no">SalaniLeo</developer_name>
   <developer id="io.github.SalaniLeo">
@@ -12,7 +12,7 @@
   </developer>
   <launchable type="desktop-id">dev.salanileo.forecast.desktop</launchable>
   <translation type="gettext">forecast</translation>
-  <url type="homepage">https://github.com/SalaniLeo/Forecast</url>
+  <url type="homepage">https://forecast.salanileo.dev/</url>
   <url type="bugtracker">https://github.com/SalaniLeo/Forecast/issues</url>
   <url type="vcs-browser">https://github.com/SalaniLeo/Forecast</url>
   <url type="translate">https://github.com/SalaniLeo/Forecast/tree/master/po</url>
@@ -42,7 +42,7 @@
 
   <releases>
 
-      <release version="1.0.0" date="2024-05-30">
+      <release version="1.0.0" date="2024-05-25">
         <description translate="no">
           <p>Version 1.0.0</p>
             <ul>

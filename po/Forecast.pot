@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 15:02+0200\n"
+"POT-Creation-Date: 2024-05-22 15:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -558,11 +558,13 @@ msgid "Overcast Clouds"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:5
-msgid "Weather app for GNOME"
+msgid "⛅ Weather app for Linux made in LibAdwaita"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:7
-msgid "Alternative weather app with custom css styling and more"
+msgid ""
+"Forecast is another weather app made for linux. It has a modern and clean "
+"interface, perfect for reading the weather."
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:27

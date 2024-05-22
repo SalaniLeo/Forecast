@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 15:02+0200\n"
-"PO-Revision-Date: 2024-05-22 15:02+0200\n"
+"POT-Creation-Date: 2024-05-22 15:12+0200\n"
+"PO-Revision-Date: 2024-05-22 18:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -80,7 +80,8 @@ msgid "Use dynamic background"
 msgstr "Usar gradiente como fundo"
 
 #: Forecast/App.py:315
-msgid "When on, the background changes based on the weather. Restart needed to apply"
+msgid ""
+"When on, the background changes based on the weather. Restart needed to apply"
 msgstr ""
 
 #: Forecast/App.py:323
@@ -578,12 +579,16 @@ msgid "Overcast Clouds"
 msgstr "Encoberto de nuvens"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:5
-msgid "Weather app for GNOME"
-msgstr "Aplicativo de clima para GNOME"
+#, fuzzy
+#| msgid "Weather app for Linux"
+msgid "⛅ Weather app for Linux made in LibAdwaita"
+msgstr "App de clima para o Linux"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:7
-msgid "Alternative weather app with custom css styling and more"
-msgstr "Aplicativo de clima alternativo com estilo css personalizado e muito mais"
+msgid ""
+"Forecast is another weather app made for linux. It has a modern and clean "
+"interface, perfect for reading the weather."
+msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:27
 #, fuzzy
@@ -643,7 +648,8 @@ msgstr "Se o valor é falso, usa a chave api padrão"
 
 #: data/dev.salanileo.forecast.gschema.xml:20
 msgid "When this is true the app know to use the custom api key"
-msgstr "Quando isto é verdadeiro, o app sabe como utilizar a chave api customizada"
+msgstr ""
+"Quando isto é verdadeiro, o app sabe como utilizar a chave api customizada"
 
 #: data/dev.salanileo.forecast.gschema.xml:25
 msgid "Uses a weather based gradient as background"
@@ -688,6 +694,13 @@ msgstr "Cidade padrão"
 #| msgid "Changes the default city for the weather"
 msgid "Chooses the default city for the weather"
 msgstr "Muda a cidade padrão para previsão de clima"
+
+#~ msgid "Weather app for GNOME"
+#~ msgstr "Aplicativo de clima para GNOME"
+
+#~ msgid "Alternative weather app with custom css styling and more"
+#~ msgstr ""
+#~ "Aplicativo de clima alternativo com estilo css personalizado e muito mais"
 
 #~ msgid "first screenshot"
 #~ msgstr "primeira captura de tela"
@@ -815,9 +828,6 @@ msgstr "Muda a cidade padrão para previsão de clima"
 #~ msgid "Forecast - No Internet Connection"
 #~ msgstr "Previsão do tempo - Sem conexão de rede"
 
-#~ msgid "Weather app for Linux"
-#~ msgstr "App de clima para o Linux"
-
 #~ msgid "translator-credits"
 #~ msgstr "Créditos de tradutor"
 
@@ -830,8 +840,12 @@ msgstr "Muda a cidade padrão para previsão de clima"
 #~ msgid "App Preferences"
 #~ msgstr "Preferências do app"
 
-#~ msgid "Applies a gradient based on current weather and time. Requires restart to disable"
-#~ msgstr "Aplica efeito gradiente baseado no clima e tempo. Requer reinício para ser desabilitado"
+#~ msgid ""
+#~ "Applies a gradient based on current weather and time. Requires restart to "
+#~ "disable"
+#~ msgstr ""
+#~ "Aplica efeito gradiente baseado no clima e tempo. Requer reinício para "
+#~ "ser desabilitado"
 
 #~ msgid "Use glassy background look"
 #~ msgstr "Usa fundo semi-transparente"

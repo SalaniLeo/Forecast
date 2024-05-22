@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 15:02+0200\n"
-"PO-Revision-Date: 2024-05-22 15:02+0200\n"
+"POT-Creation-Date: 2024-05-22 15:12+0200\n"
+"PO-Revision-Date: 2024-05-22 18:32+0200\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -84,7 +84,8 @@ msgid "Use dynamic background"
 msgstr ""
 
 #: Forecast/App.py:315
-msgid "When on, the background changes based on the weather. Restart needed to apply"
+msgid ""
+"When on, the background changes based on the weather. Restart needed to apply"
 msgstr ""
 
 #: Forecast/App.py:323
@@ -574,12 +575,14 @@ msgid "Overcast Clouds"
 msgstr "Bulutlu"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:5
-msgid "Weather app for GNOME"
-msgstr "GNOME için hava tahmini uygulaması"
+msgid "⛅ Weather app for Linux made in LibAdwaita"
+msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:7
-msgid "Alternative weather app with custom css styling and more"
-msgstr "Özel css biçemine ve daha fazlasına sahip alternatif hava durumu uygulaması"
+msgid ""
+"Forecast is another weather app made for linux. It has a modern and clean "
+"interface, perfect for reading the weather."
+msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:27
 #, fuzzy
@@ -637,7 +640,8 @@ msgstr "Yanlış (false) ise öntanımlı API anahtarını kullanır"
 
 #: data/dev.salanileo.forecast.gschema.xml:20
 msgid "When this is true the app know to use the custom api key"
-msgstr "Doğru (true) olduğunda, uygulama özel API anahtarını kullanacağını bilir"
+msgstr ""
+"Doğru (true) olduğunda, uygulama özel API anahtarını kullanacağını bilir"
 
 #: data/dev.salanileo.forecast.gschema.xml:25
 msgid "Uses a weather based gradient as background"
@@ -679,6 +683,14 @@ msgstr "Öntanımlı hava durumu şehri"
 msgid "Chooses the default city for the weather"
 msgstr "Hava durumu için öntanımlı şehri seçer"
 
+#~ msgid "Weather app for GNOME"
+#~ msgstr "GNOME için hava tahmini uygulaması"
+
+#~ msgid "Alternative weather app with custom css styling and more"
+#~ msgstr ""
+#~ "Özel css biçemine ve daha fazlasına sahip alternatif hava durumu "
+#~ "uygulaması"
+
 #~ msgid "Main window in dark mode, clear sky"
 #~ msgstr "Ana pencere koyu kipte, açık gökyüzü"
 
@@ -706,14 +718,24 @@ msgstr "Hava durumu için öntanımlı şehri seçer"
 #~ msgid "translator-credits"
 #~ msgstr "Sabri Ünal <libreajans@gmail.com>"
 
-#~ msgid "Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and slap on a hat!"
-#~ msgstr "Öğle saatlerinde gölgede durun! Tişört giyin, güneş kremi sürün ve şapka takın!"
+#~ msgid ""
+#~ "Seek shade during midday hours! Slip on a shirt, slop on sunscreen, and "
+#~ "slap on a hat!"
+#~ msgstr ""
+#~ "Öğle saatlerinde gölgede durun! Tişört giyin, güneş kremi sürün ve şapka "
+#~ "takın!"
 
-#~ msgid "Avoid being outside during midday hours! Make sure you seek shade! Shirt, sunscreen, and hat are a must!"
-#~ msgstr "Öğle saatlerinde dışarıda bulunmaktan kaçının! Gölge aradığınızdan emin olun! Gömlek giyin, güneş kremi sürün ve şapka takın!"
+#~ msgid ""
+#~ "Avoid being outside during midday hours! Make sure you seek shade! Shirt, "
+#~ "sunscreen, and hat are a must!"
+#~ msgstr ""
+#~ "Öğle saatlerinde dışarıda bulunmaktan kaçının! Gölge aradığınızdan emin "
+#~ "olun! Gömlek giyin, güneş kremi sürün ve şapka takın!"
 
-#~ msgid "Invalid UV index input. Please provide a number within the valid range."
-#~ msgstr "Geçersiz UV indeksi girdisi. Lütfen geçerli aralıkta bir sayı girin."
+#~ msgid ""
+#~ "Invalid UV index input. Please provide a number within the valid range."
+#~ msgstr ""
+#~ "Geçersiz UV indeksi girdisi. Lütfen geçerli aralıkta bir sayı girin."
 
 #~ msgid "Days"
 #~ msgstr "Gün"
