@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 14:21+0200\n"
-"PO-Revision-Date: 2024-05-22 14:52+0200\n"
+"POT-Creation-Date: 2024-05-22 15:02+0200\n"
+"PO-Revision-Date: 2024-05-22 15:02+0200\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Türkçe <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -361,7 +361,7 @@ msgstr "UV İndeksi"
 msgid "Sun"
 msgstr "Güneş"
 
-#: Forecast/page.py:913
+#: Forecast/page.py:911
 msgid "Close"
 msgstr "Kapat"
 
@@ -582,36 +582,26 @@ msgid "Alternative weather app with custom css styling and more"
 msgstr "Özel css biçemine ve daha fazlasına sahip alternatif hava durumu uygulaması"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:27
-msgid "Main window in dark mode, clear sky"
-msgstr "Ana pencere koyu kipte, açık gökyüzü"
+#, fuzzy
+#| msgid "Rain and Snow"
+msgid "Main window"
+msgstr "Yağmurla Karışık Kar"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:31
-msgid "Main window in light mode, clear sky"
-msgstr "Ana pencere açık kipte, açık gökyüzü"
+#, fuzzy
+#| msgid "Forecast"
+msgid "Forecast window"
+msgstr "Hava Tahmini"
 
 #: data/dev.salanileo.forecast.appdata.xml.in:35
-msgid "Main window in dark mode, partly cloudy"
-msgstr "Ana pencere koyu kipte, bulutlu gökyüzü"
+msgid "Main window with custom background"
+msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:39
-msgid "Main window in light mode, partly cloudy"
-msgstr "Ana pencere açık kipte, bulutlu gökyüzü"
-
-#: data/dev.salanileo.forecast.appdata.xml.in:43
-msgid "Main window in dark mode, clear sky, narrow view"
-msgstr "Ana pencere koyu kipte, açık gökyüzü, ince görünüm"
-
-#: data/dev.salanileo.forecast.appdata.xml.in:47
-msgid "Main window in light mode, clear sky, narrow view"
-msgstr "Ana pencere açık kipte, açık gökyüzü, ince görünüm"
-
-#: data/dev.salanileo.forecast.appdata.xml.in:51
-msgid "Preferences dialog in dark mode"
-msgstr "Tercihler iletişim kutusu koyu kipte"
-
-#: data/dev.salanileo.forecast.appdata.xml.in:55
-msgid "Preferences dialog in light mode"
-msgstr "Işık modunda tercihler iletişim kutusu"
+#, fuzzy
+#| msgid "Preferences"
+msgid "Preferences dialog"
+msgstr "Tercihler"
 
 #: data/dev.salanileo.forecast.desktop.in:6
 msgid "Weather;Forecast;Temperature;"
@@ -688,6 +678,30 @@ msgstr "Öntanımlı hava durumu şehri"
 #: data/dev.salanileo.forecast.gschema.xml:50
 msgid "Chooses the default city for the weather"
 msgstr "Hava durumu için öntanımlı şehri seçer"
+
+#~ msgid "Main window in dark mode, clear sky"
+#~ msgstr "Ana pencere koyu kipte, açık gökyüzü"
+
+#~ msgid "Main window in light mode, clear sky"
+#~ msgstr "Ana pencere açık kipte, açık gökyüzü"
+
+#~ msgid "Main window in dark mode, partly cloudy"
+#~ msgstr "Ana pencere koyu kipte, bulutlu gökyüzü"
+
+#~ msgid "Main window in light mode, partly cloudy"
+#~ msgstr "Ana pencere açık kipte, bulutlu gökyüzü"
+
+#~ msgid "Main window in dark mode, clear sky, narrow view"
+#~ msgstr "Ana pencere koyu kipte, açık gökyüzü, ince görünüm"
+
+#~ msgid "Main window in light mode, clear sky, narrow view"
+#~ msgstr "Ana pencere açık kipte, açık gökyüzü, ince görünüm"
+
+#~ msgid "Preferences dialog in dark mode"
+#~ msgstr "Tercihler iletişim kutusu koyu kipte"
+
+#~ msgid "Preferences dialog in light mode"
+#~ msgstr "Işık modunda tercihler iletişim kutusu"
 
 #~ msgid "translator-credits"
 #~ msgstr "Sabri Ünal <libreajans@gmail.com>"

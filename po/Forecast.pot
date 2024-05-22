@@ -6,16 +6,16 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 14:21+0200\n"
+"POT-Creation-Date: 2024-05-22 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
 
 #: Forecast/App.py:35 Forecast/App.py:245 Forecast/App.py:269
 msgid "Locations"
@@ -74,7 +74,8 @@ msgid "Use dynamic background"
 msgstr ""
 
 #: Forecast/App.py:315
-msgid "When on, the background changes based on the weather. Restart needed to apply"
+msgid ""
+"When on, the background changes based on the weather. Restart needed to apply"
 msgstr ""
 
 #: Forecast/App.py:323
@@ -344,7 +345,7 @@ msgstr ""
 msgid "Sun"
 msgstr ""
 
-#: Forecast/page.py:913
+#: Forecast/page.py:911
 msgid "Close"
 msgstr ""
 
@@ -565,35 +566,19 @@ msgid "Alternative weather app with custom css styling and more"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:27
-msgid "Main window in dark mode, clear sky"
+msgid "Main window"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:31
-msgid "Main window in light mode, clear sky"
+msgid "Forecast window"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:35
-msgid "Main window in dark mode, partly cloudy"
+msgid "Main window with custom background"
 msgstr ""
 
 #: data/dev.salanileo.forecast.appdata.xml.in:39
-msgid "Main window in light mode, partly cloudy"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:43
-msgid "Main window in dark mode, clear sky, narrow view"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:47
-msgid "Main window in light mode, clear sky, narrow view"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:51
-msgid "Preferences dialog in dark mode"
-msgstr ""
-
-#: data/dev.salanileo.forecast.appdata.xml.in:55
-msgid "Preferences dialog in light mode"
+msgid "Preferences dialog"
 msgstr ""
 
 #: data/dev.salanileo.forecast.desktop.in:6
