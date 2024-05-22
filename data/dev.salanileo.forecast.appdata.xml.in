@@ -24,35 +24,19 @@
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1-dark.png</image>
-      <caption>Main window in dark mode, clear sky</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app1-light.png</image>
-      <caption>Main window in light mode, clear sky</caption>
+      <caption>Main window</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2-dark.png</image>
-      <caption>Main window in dark mode, partly cloudy</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app2-light.png</image>
-      <caption>Main window in light mode, partly cloudy</caption>
+      <caption>Forecast window</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3-dark.png</image>
-      <caption>Main window in dark mode, clear sky, narrow view</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app3-light.png</image>
-      <caption>Main window in light mode, clear sky, narrow view</caption>
+      <caption>Main window with custom background</caption>
     </screenshot>
     <screenshot>
       <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4-dark.png</image>
-      <caption>Preferences dialog in dark mode</caption>
-    </screenshot>
-    <screenshot>
-      <image>https://raw.githubusercontent.com/SalaniLeo/Forecast/master/data/images/app4-light.png</image>
-      <caption>Preferences dialog in light mode</caption>
+      <caption>Preferences dialog</caption>
     </screenshot>
   </screenshots>
 
