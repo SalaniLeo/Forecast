@@ -139,7 +139,7 @@ class components(city_page):
         title_widget = Gtk.Label.new(f'{conditions[0].upper()}{conditions[1:]}')
         title_widget.set_halign(Gtk.Align.START)
         title_widget.set_css_classes(['font_big'])
-        # -- subtitle --
+        title_widget.set_wrap(True)
         subtitle_box = Gtk.Box()
         subtitle_widget = Gtk.Label.new(f'{temperature}{global_variables.get_temperature_units()}')
         subtitle_widget.set_halign(Gtk.Align.START)
@@ -346,13 +346,13 @@ class components(city_page):
         hourly_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=18)
         hourly_box.set_halign(Gtk.Align.CENTER)
         hourly_box.set_hexpand(True)
-        scrolled_window = Gtk.ScrolledWindow()
-        scrolled_window.set_hexpand(True)
-        scrolled_window.set_child(hourly_box)
-        scrolled_window.set_min_content_height(100)
+        # scrolled_window = Gtk.ScrolledWindow()
+        # scrolled_window.set_hexpand(True)
+        # scrolled_window.set_child(hourly_box)
+        # scrolled_window.set_min_content_height(100)
 
         base_box.append(title_widget)
-        base_box.append(scrolled_window)
+        base_box.append(hourly_box)
 
         i = 0
         for hour in hourly:
