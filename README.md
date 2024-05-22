@@ -5,7 +5,7 @@
 <ul>
 	<li>Clean UI 🪟</li>
 	<li>7 Day forecast 'graph' ☀️</li>
-	<li>24 Hour hourly forecast ⌛</li>
+	<li>Day hourly forecast ⌛</li>
 	<li>One week in depth forecast ☔</li>
 	<li>Choose between Metric or Imperial systems 🌍</li>
 	<li>... And more to come! 😃</li>
