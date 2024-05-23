@@ -11,7 +11,7 @@ class constants():
     meters = _("Metric System")
     miles = _("Imperial System")
     metric_system = f'{meters}, °C - Km/h'
-    imperial_system = f'{miles}, °F - mph'
+    imperial_system = f'{miles}, °F - mi/h'
     system_locale = locale.getdefaultlocale()[0].split("_")[0]
 
     settings     = Gio.Settings.new("dev.salanileo.forecast")
