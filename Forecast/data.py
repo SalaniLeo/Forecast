@@ -158,7 +158,8 @@ class actions():
                     if app.day_selector_stack.get_parent() != None:
                         app.header_bar.remove(app.day_selector_stack)
                         app.header_bar.pack_start(app.city_selector)
-                constants.app.set_css_classes(constants.css_classes[global_variables.get_saved_cities().index(city)])
+                    if global_variables.get_use_dyn_bg():
+                        constants.app.set_css_classes(constants.css_classes[global_variables.get_saved_cities().index(city)])
                 i = i + 1
         else:
             constants.toast_overlay.add_toast(Adw.Toast(title=_('Wait at least 2 minutes between refreshes!')))
