@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>dev.salanileo.forecast</id>
+  <id>dev.salaniLeo.forecast</id>
   <name>Forecast</name>
   <summary>⛅ Weather app for Linux made in LibAdwaita</summary>
   <description>
@@ -10,7 +10,7 @@
   <developer id="io.github.SalaniLeo">
     <name translate="no">SalaniLeo</name>
   </developer>
-  <launchable type="desktop-id">dev.salanileo.forecast.desktop</launchable>
+  <launchable type="desktop-id">dev.salaniLeo.forecast.desktop</launchable>
   <translation type="gettext">forecast</translation>
   <url type="homepage">https://forecast.salanileo.dev/</url>
   <url type="bugtracker">https://github.com/SalaniLeo/Forecast/issues</url>

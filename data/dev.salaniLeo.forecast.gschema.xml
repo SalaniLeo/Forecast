@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="dev.salanileo.forecast" path="/dev/salanileo/forecast/" gettext-domain="forecast">
+  <schema id="dev.salaniLeo.forecast" path="/dev/salanileo/forecast/" gettext-domain="forecast">
 
     <key name="api-key-s" type="s">
       <default>'72d251b81d30ef572ae667dfe6c4ee1a'</default>

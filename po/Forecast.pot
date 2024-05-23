@@ -22,8 +22,8 @@ msgid "Locations"
 msgstr ""
 
 #: Forecast/App.py:198 Forecast/page.py:64
-#: data/dev.salanileo.forecast.appdata.xml.in:4
-#: data/dev.salanileo.forecast.desktop.in:3
+#: data/dev.salaniLeo.forecast.appdata.xml.in:4
+#: data/dev.salaniLeo.forecast.desktop.in:3
 msgid "Forecast"
 msgstr ""
 
@@ -557,100 +557,100 @@ msgstr ""
 msgid "Overcast Clouds"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:5
+#: data/dev.salaniLeo.forecast.appdata.xml.in:5
 msgid "⛅ Weather app for Linux made in LibAdwaita"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:7
+#: data/dev.salaniLeo.forecast.appdata.xml.in:7
 msgid ""
 "Forecast is another weather app made for linux. It has a modern and clean "
 "interface, perfect for reading the weather."
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:27
+#: data/dev.salaniLeo.forecast.appdata.xml.in:27
 msgid "Main window"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:31
+#: data/dev.salaniLeo.forecast.appdata.xml.in:31
 msgid "Forecast window"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:35
+#: data/dev.salaniLeo.forecast.appdata.xml.in:35
 msgid "Main window with custom background"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:39
+#: data/dev.salaniLeo.forecast.appdata.xml.in:39
 msgid "Preferences dialog"
 msgstr ""
 
-#: data/dev.salanileo.forecast.desktop.in:6
+#: data/dev.salaniLeo.forecast.desktop.in:6
 msgid "Weather;Forecast;Temperature;"
 msgstr ""
 
-#: data/dev.salanileo.forecast.desktop.in:7
+#: data/dev.salaniLeo.forecast.desktop.in:7
 msgid "Forecast app for GNOME"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:7
+#: data/dev.salaniLeo.forecast.gschema.xml:7
 msgid "Stores the api key"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:8
+#: data/dev.salaniLeo.forecast.gschema.xml:8
 msgid "stores the api key"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:13
+#: data/dev.salaniLeo.forecast.gschema.xml:13
 msgid "Stores the users api key"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:14
+#: data/dev.salaniLeo.forecast.gschema.xml:14
 msgid "stores the users api key"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:19
+#: data/dev.salaniLeo.forecast.gschema.xml:19
 msgid "If false uses the default api key"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:20
+#: data/dev.salaniLeo.forecast.gschema.xml:20
 msgid "When this is true the app know to use the custom api key"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:25
+#: data/dev.salaniLeo.forecast.gschema.xml:25
 msgid "Uses a weather based gradient as background"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:26
+#: data/dev.salaniLeo.forecast.gschema.xml:26
 msgid "Chooses wether the user wants a gradient for background"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:31
+#: data/dev.salaniLeo.forecast.gschema.xml:31
 msgid "List of weather places"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:32
+#: data/dev.salaniLeo.forecast.gschema.xml:32
 msgid "Stores all user selected location"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:37
+#: data/dev.salaniLeo.forecast.gschema.xml:37
 msgid "Units"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:38
+#: data/dev.salaniLeo.forecast.gschema.xml:38
 msgid "Chooses between the metric and imperial systems of measurement"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:43
+#: data/dev.salaniLeo.forecast.gschema.xml:43
 msgid "use 12h or 24h"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:44
+#: data/dev.salaniLeo.forecast.gschema.xml:44
 msgid "Chooses between the 12h and the 24h time format"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:49
+#: data/dev.salaniLeo.forecast.gschema.xml:49
 msgid "Default weather city"
 msgstr ""
 
-#: data/dev.salanileo.forecast.gschema.xml:50
+#: data/dev.salaniLeo.forecast.gschema.xml:50
 msgid "Chooses the default city for the weather"
 msgstr ""

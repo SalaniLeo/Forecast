@@ -201,7 +201,7 @@ class Forecast(Adw.Application):
         dialog.set_comments(_("⛅ Weather and forecast app for Linux.\nUses openweathermap api"))
         dialog.set_website("https://forecast.salanileo.dev")
         dialog.set_developers(["Leonardo Salani"])
-        dialog.set_application_icon("dev.salanileo.forecast")
+        dialog.set_application_icon("dev.salaniLeo.forecast")
         dialog.set_issue_url("https://github.com/SalaniLeo/Forecast/issues")
         dialog.add_acknowledgement_section("Used APIs", ["OpenWeatherMap APIs https://openweathermap.org/api"])
         dialog.present()

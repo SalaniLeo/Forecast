@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Forecast
 Exec=forecast
-Icon=dev.salanileo.forecast
+Icon=dev.salaniLeo.forecast
 Keywords=Weather;Forecast;Temperature;
 Comment=Forecast app for GNOME
 Terminal=false

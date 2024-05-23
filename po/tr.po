@@ -1,6 +1,6 @@
-# Turkish translation of dev.salanileo.forecast.
-# Copyright (C) 2023-2024 dev.salanileo.forecast's COPYRIGHT HOLDER
-# This file is distributed under the same license as the dev.salanileo.forecast package.
+# Turkish translation of dev.salaniLeo.forecast.
+# Copyright (C) 2023-2024 dev.salaniLeo.forecast's COPYRIGHT HOLDER
+# This file is distributed under the same license as the dev.salaniLeo.forecast package.
 #
 # Sabri Ünal <yakushabb@gmail.com>, 2023.
 #
@@ -24,8 +24,8 @@ msgid "Locations"
 msgstr "Konumlar"
 
 #: Forecast/App.py:198 Forecast/page.py:64
-#: data/dev.salanileo.forecast.appdata.xml.in:4
-#: data/dev.salanileo.forecast.desktop.in:3
+#: data/dev.salaniLeo.forecast.appdata.xml.in:4
+#: data/dev.salaniLeo.forecast.desktop.in:3
 msgid "Forecast"
 msgstr "Hava Tahmini"
 
@@ -574,112 +574,112 @@ msgstr "Parçalı Bulutlu"
 msgid "Overcast Clouds"
 msgstr "Bulutlu"
 
-#: data/dev.salanileo.forecast.appdata.xml.in:5
+#: data/dev.salaniLeo.forecast.appdata.xml.in:5
 msgid "⛅ Weather app for Linux made in LibAdwaita"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:7
+#: data/dev.salaniLeo.forecast.appdata.xml.in:7
 msgid ""
 "Forecast is another weather app made for linux. It has a modern and clean "
 "interface, perfect for reading the weather."
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:27
+#: data/dev.salaniLeo.forecast.appdata.xml.in:27
 #, fuzzy
 #| msgid "Rain and Snow"
 msgid "Main window"
 msgstr "Yağmurla Karışık Kar"
 
-#: data/dev.salanileo.forecast.appdata.xml.in:31
+#: data/dev.salaniLeo.forecast.appdata.xml.in:31
 #, fuzzy
 #| msgid "Forecast"
 msgid "Forecast window"
 msgstr "Hava Tahmini"
 
-#: data/dev.salanileo.forecast.appdata.xml.in:35
+#: data/dev.salaniLeo.forecast.appdata.xml.in:35
 msgid "Main window with custom background"
 msgstr ""
 
-#: data/dev.salanileo.forecast.appdata.xml.in:39
+#: data/dev.salaniLeo.forecast.appdata.xml.in:39
 #, fuzzy
 #| msgid "Preferences"
 msgid "Preferences dialog"
 msgstr "Tercihler"
 
-#: data/dev.salanileo.forecast.desktop.in:6
+#: data/dev.salaniLeo.forecast.desktop.in:6
 msgid "Weather;Forecast;Temperature;"
 msgstr "Weather;Forecast;Temperature;Hava Durumu;Hava Tahmini;Sıcaklık;"
 
-#: data/dev.salanileo.forecast.desktop.in:7
+#: data/dev.salaniLeo.forecast.desktop.in:7
 msgid "Forecast app for GNOME"
 msgstr "GNOME için hava tahmini uygulaması"
 
-#: data/dev.salanileo.forecast.gschema.xml:7
+#: data/dev.salaniLeo.forecast.gschema.xml:7
 msgid "Stores the api key"
 msgstr "API anahtarını depolar"
 
-#: data/dev.salanileo.forecast.gschema.xml:8
+#: data/dev.salaniLeo.forecast.gschema.xml:8
 msgid "stores the api key"
 msgstr "API anahtarını depolar"
 
-#: data/dev.salanileo.forecast.gschema.xml:13
+#: data/dev.salaniLeo.forecast.gschema.xml:13
 #, fuzzy
 #| msgid "Stores the api key"
 msgid "Stores the users api key"
 msgstr "API anahtarını depolar"
 
-#: data/dev.salanileo.forecast.gschema.xml:14
+#: data/dev.salaniLeo.forecast.gschema.xml:14
 #, fuzzy
 #| msgid "stores the api key"
 msgid "stores the users api key"
 msgstr "API anahtarını depolar"
 
-#: data/dev.salanileo.forecast.gschema.xml:19
+#: data/dev.salaniLeo.forecast.gschema.xml:19
 msgid "If false uses the default api key"
 msgstr "Yanlış (false) ise öntanımlı API anahtarını kullanır"
 
-#: data/dev.salanileo.forecast.gschema.xml:20
+#: data/dev.salaniLeo.forecast.gschema.xml:20
 msgid "When this is true the app know to use the custom api key"
 msgstr ""
 "Doğru (true) olduğunda, uygulama özel API anahtarını kullanacağını bilir"
 
-#: data/dev.salanileo.forecast.gschema.xml:25
+#: data/dev.salaniLeo.forecast.gschema.xml:25
 msgid "Uses a weather based gradient as background"
 msgstr "Hava durumu temelli renk geçişlerini arka plan olarak kullanır"
 
-#: data/dev.salanileo.forecast.gschema.xml:26
+#: data/dev.salaniLeo.forecast.gschema.xml:26
 msgid "Chooses wether the user wants a gradient for background"
 msgstr "Kullanıcının arka plan için renk geçişi isteyip istemediğini belirler"
 
-#: data/dev.salanileo.forecast.gschema.xml:31
+#: data/dev.salaniLeo.forecast.gschema.xml:31
 msgid "List of weather places"
 msgstr "Hava durumu konumları"
 
-#: data/dev.salanileo.forecast.gschema.xml:32
+#: data/dev.salaniLeo.forecast.gschema.xml:32
 msgid "Stores all user selected location"
 msgstr "Kullanıcının seçtiği tüm konumları depolar"
 
-#: data/dev.salanileo.forecast.gschema.xml:37
+#: data/dev.salaniLeo.forecast.gschema.xml:37
 msgid "Units"
 msgstr "Birim"
 
-#: data/dev.salanileo.forecast.gschema.xml:38
+#: data/dev.salaniLeo.forecast.gschema.xml:38
 msgid "Chooses between the metric and imperial systems of measurement"
 msgstr "Metrik ve İngiliz ölçü sistemleri arasında seçim yapar"
 
-#: data/dev.salanileo.forecast.gschema.xml:43
+#: data/dev.salaniLeo.forecast.gschema.xml:43
 msgid "use 12h or 24h"
 msgstr "12 saat ya da 24 saat kullan"
 
-#: data/dev.salanileo.forecast.gschema.xml:44
+#: data/dev.salaniLeo.forecast.gschema.xml:44
 msgid "Chooses between the 12h and the 24h time format"
 msgstr "12 saat ve 24 saat zaman biçimi arasında seçim yapar"
 
-#: data/dev.salanileo.forecast.gschema.xml:49
+#: data/dev.salaniLeo.forecast.gschema.xml:49
 msgid "Default weather city"
 msgstr "Öntanımlı hava durumu şehri"
 
-#: data/dev.salanileo.forecast.gschema.xml:50
+#: data/dev.salaniLeo.forecast.gschema.xml:50
 msgid "Chooses the default city for the weather"
 msgstr "Hava durumu için öntanımlı şehri seçer"
 

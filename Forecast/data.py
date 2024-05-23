@@ -14,7 +14,7 @@ class constants():
     imperial_system = f'{miles}, °F - mi/h'
     system_locale = locale.getdefaultlocale()[0].split("_")[0]
 
-    settings     = Gio.Settings.new("dev.salanileo.forecast")
+    settings     = Gio.Settings.new("dev.salaniLeo.forecast")
     units        = settings.get_string('units').split(' ')[0].lower()
     raw_units    = settings.get_string('units')
     degrees_unit = raw_units[raw_units.find(",")+1:raw_units.find("-")]

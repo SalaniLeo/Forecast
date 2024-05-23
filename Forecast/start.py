@@ -1,7 +1,7 @@
 import os
 from .App import start
 
-AppId="dev.salanileo.forecast"
+AppId="dev.salaniLeo.forecast"
 app_type = None
 
 if 'FLATPAK_SANDBOX_DIR' in os.environ:

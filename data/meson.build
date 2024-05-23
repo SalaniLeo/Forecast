@@ -1,6 +1,6 @@
 desktop_file = i18n.merge_file(
-        input: 'dev.salanileo.forecast.desktop.in',
-       output: 'dev.salanileo.forecast.desktop',
+        input: 'dev.salaniLeo.forecast.desktop.in',
+       output: 'dev.salaniLeo.forecast.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -13,8 +13,8 @@ if desktop_utils.found()
 endif
 
 appstream_file = i18n.merge_file(
-        input: 'dev.salanileo.forecast.appdata.xml.in',
-       output: 'dev.salanileo.forecast.appdata.xml',
+        input: 'dev.salaniLeo.forecast.appdata.xml.in',
+       output: 'dev.salaniLeo.forecast.appdata.xml',
        po_dir: '../po',
       install: true,
   install_dir: join_paths(get_option('datadir'), 'appdata')
@@ -25,7 +25,7 @@ if appstream_util.found()
   test('Validate appstream file', appstream_util, args: ['validate', appstream_file])
 endif
 
-install_data('dev.salanileo.forecast.gschema.xml',
+install_data('dev.salaniLeo.forecast.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 
