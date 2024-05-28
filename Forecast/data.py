@@ -5,7 +5,7 @@ from gi.repository import Gio, Adw, Gtk
 from datetime import datetime
 from gettext import gettext as _
 from .style import *
-from datetime import datetime
+from datetime import datetime, timezone
 
 class constants():
     meters = _("Metric System")
@@ -261,25 +261,20 @@ class converters():
         return formatted_time
 
     # ---- converts the timezone of the selected city into real time ---- #
-    def convert_time(timezone):
-        local_time = timezone//3600
-        converted_datetime = local_time + int(datetime.utcnow().strftime("%H"))
-        if (global_variables.get_timezone_format()==24):
-            if converted_datetime > 24:
-                converted_datetime = "0" + str(converted_datetime - 24)
-            elif(converted_datetime < 10) and local_time > 0:
-                converted_datetime = "0" + str(converted_datetime)
-            elif(converted_datetime < 10) and local_time < 0:
-                converted_datetime = '0' + str(converted_datetime).split('-')[-1]
-            local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M")
-        elif global_variables.get_timezone_format()==12:
-            time_i = False
-            while int(converted_datetime) >= 12:
-                time_i = not time_i
-                converted_datetime = converted_datetime - 12
-                if converted_datetime < 10:
-                    converted_datetime = '0' + str(converted_datetime)
-            local_full_time = str(converted_datetime) + ":" + datetime.now().strftime("%M") + " " + constants.time_am_pm[int(time_i)]
+    def convert_time(offset):
+        local_offset = offset//3600
+        now_utc = datetime.now(timezone.utc)
+        utc_hour = now_utc.hour
+        local_time = utc_hour + local_offset
+
+        if local_time >= 24:
+            local_time = "0" + str(local_time - 24)
+        if(local_time < 10) and local_time > 0:
+            local_time = "0" + str(local_time)
+        if(int(local_time) < 10) and int(local_time) < 0:
+            local_time = '0' + str(local_time).split('-')[-1]
+        local_full_time = str(local_time) + ":" + datetime.now().strftime("%M")
+
         return local_full_time
 
 cities = []

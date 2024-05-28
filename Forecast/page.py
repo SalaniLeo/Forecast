@@ -124,7 +124,11 @@ class components(city_page):
         conditions  = str(meteo['current']['weather'][0]['description'])
         temperature = str(round(meteo['current']['temp'], 1))
         feels_like  = str(round(meteo['current']['feels_like']))
-        local_time  = str(converters.convert_time(meteo['timezone_offset']))
+        time_full   = str(converters.convert_time(meteo['timezone_offset']))
+
+        if global_variables.get_timezone_format() == 12:
+            d = datetime.strptime(str(time_full), "%H:%M")
+            time_full = d.strftime("%I:%M %p")
 
         root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         # -- icon --
@@ -155,7 +159,7 @@ class components(city_page):
         icon_box.set_vexpand(False)
 
         # -- local time label --
-        city_time = Gtk.Label.new(f'{day_name}, {local_time}')
+        city_time = Gtk.Label.new(f'{day_name}, {time_full}')
         city_time.set_halign(Gtk.Align.START)
         city_time.set_valign(Gtk.Align.END)
         # -- top container for title and subtitle --
@@ -363,21 +367,15 @@ class components(city_page):
                 icon = hour['weather'][0]['icon']
 
                 time = int(converters.convert_time(meteo["timezone_offset"])[:2]) + i
+                if time >= 24:
+                    time = time - 24
 
-                if(global_variables.get_timezone_format()==24):
-                    if time >= 24:
-                        time = time - 24
-                        if time < 10:
-                            time = '0' + str(time)
-                    time = str(time) + ':00'
-                elif global_variables.get_timezone_format()==12:
-                    time_i = False
-                    while int(time) >= 12:
-                        time_i = not time_i
-                        time = time - 12
-                    if (time < 10):
-                        time = '0' + str(time)
-                    time = str(time) + " " + constants.time_am_pm[int(time_i)]
+                if global_variables.get_timezone_format() == 12:
+                    d = datetime.strptime(str(time), "%H")
+                    time = d.strftime("%I %p")
+                else:
+                    time = f'{time}:00'
+
                 time_widget = Gtk.Label.new(str(time))
                 hour_box.append(time_widget)
 
