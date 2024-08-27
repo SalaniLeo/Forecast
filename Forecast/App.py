@@ -41,7 +41,7 @@ class root(Adw.Window):
 
         self.title = ('')
         self.side_title = _("Locations")
-        # self.title_wiget = Gtk.StackSwitcher()
+        self.title_wiget = Gtk.Label()
         # self.title_wiget.set_stack(self.root_stack)
 
         self.side_title_widget = Gtk.Label(label=self.side_title)
@@ -65,7 +65,7 @@ class root(Adw.Window):
         # --- headerbar ---
         self.header_bar = Adw.HeaderBar()
         self.header_bar.set_css_classes(['flat'])
-        # self.header_bar.set_title_widget(self.title_wiget)
+        self.header_bar.set_title_widget(self.title_wiget)
         
         # INVERT THESE TWO TO USE SIDEBAR
         #self.header_bar.pack_start(self.sidebar_button)
