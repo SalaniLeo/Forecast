@@ -453,7 +453,7 @@ class components(city_page):
         min_widget = Gtk.Label.new(f'{round(min_temp)} {global_variables.get_temperature_units()}')
 
         temp_graph = Gtk.DrawingArea()
-        temp_graph.set_draw_func(app_style.draw_forecast_temps, max_min, max_temp, min_temp)
+        temp_graph.set_draw_func(app_style.draw_forecast_temps, max_min, min_temp, max_temp)
         temp_graph.set_size_request(80,10)
 
         temp_box = Gtk.Box()

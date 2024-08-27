@@ -170,56 +170,59 @@ class app_style():
         context.stroke()
 
     def get_color_gradient(number):
+        if not (1 <= number <= 5):
+            raise ValueError("Number must be between 1 and 5.")
+
         green_value = int((5 - number) * 255 / 4)
         red_value = int((number - 1) * 255 / 4)
         color_dict = {'red': red_value, 'green': green_value, 'blue': 0}
         return color_dict
 
     def draw_forecast_temps(da: Gtk.DrawingArea, context: cairo.Context, width, height, intervals, start, end):
+        if not (min(intervals) <= start <= max(intervals)) or not (min(intervals) <= end <= max(intervals)):
+            raise ValueError("Start and end values must be within the range of intervals.")
 
         gradient = cairo.LinearGradient(0, 0, width, 0)
-        gradient.add_color_stop_rgb(0, 66/255, 135/255, 245/255)
-        gradient.add_color_stop_rgb(1, 245/255, 209/255, 66/255)
+        gradient.add_color_stop_rgb(0, 66/255, 135/255, 245/255)  # Blue
+        gradient.add_color_stop_rgb(1, 245/255, 209/255, 66/255)  # Yellow
 
         context.set_source(gradient)
 
-        width=width-(width/25)
+        width = width - (width / 20)
         max_val = max(intervals)
         min_val = min(intervals)
 
         width_curve_radius = 2.5
-        start_pixel = app_style.map_to_pixel(round(end), min_val, max_val, width)+width_curve_radius*2
-        end_pixel = app_style.map_to_pixel(round(start), min_val, max_val, width)-width_curve_radius
+        start_pixel = app_style.map_to_pixel(start, min_val, max_val, width) + width_curve_radius * 4
+        end_pixel = app_style.map_to_pixel(end, min_val, max_val, width)
 
-        y_top = height/3+width_curve_radius
-        y_middle = height/2
-        y_bottom = height-(height/3)-width_curve_radius
+        y_top = height / 3 + width_curve_radius
+        y_middle = height / 2
+        y_bottom = height - (height / 3) - width_curve_radius
 
-        radius_end_pixel = end_pixel+width_curve_radius
-        radius_start_pixel = start_pixel-width_curve_radius
+        radius_end_pixel = end_pixel + width_curve_radius
+        radius_start_pixel = start_pixel - width_curve_radius
 
         context.set_line_width(7.5)
-        context.move_to(start_pixel,y_top)
+        context.move_to(start_pixel, y_top)
 
         if round(start) == round(end):
-            context.arc(start_pixel, y_middle, width_curve_radius,  0, 2 * math.pi)
+            context.arc(start_pixel, y_middle, width_curve_radius, 0, 2 * math.pi)
         elif abs(round(start) - round(end)) == 1:
-            end_pixel = end_pixel*math.sqrt(2)
-            radius_end_pixel = end_pixel+width_curve_radius
-            context.line_to(end_pixel,y_top)
-            context.curve_to(end_pixel,y_top, radius_end_pixel, y_middle, end_pixel, y_bottom)
-            context.line_to(start_pixel,y_bottom)
-            context.curve_to(start_pixel, y_bottom, radius_start_pixel, y_middle, start_pixel+1, y_top)
+            context.line_to(end_pixel, y_top)
+            context.curve_to(end_pixel, y_top, radius_end_pixel, y_middle, end_pixel, y_bottom)
+            context.line_to(start_pixel, y_bottom)
+            context.curve_to(start_pixel, y_bottom, radius_start_pixel, y_middle, start_pixel + 1, y_top)
         else:
-            context.line_to(end_pixel,y_top)
-            context.curve_to(end_pixel,y_top, radius_end_pixel, y_middle, end_pixel, y_bottom)
-            context.line_to(start_pixel,y_bottom)
-            context.curve_to(start_pixel, y_bottom, radius_start_pixel, y_middle, start_pixel+1, y_top)
+            context.line_to(end_pixel, y_top)
+            context.curve_to(end_pixel, y_top, radius_end_pixel, y_middle, end_pixel, y_bottom)
+            context.line_to(start_pixel, y_bottom)
+            context.curve_to(start_pixel, y_bottom, radius_start_pixel, y_middle, start_pixel + 1, y_top)
 
         context.stroke()
 
     def map_to_pixel(value, min_val, max_val, width):
-        return (value - min_val) / (max_val - min_val) * width
+        return ((value - min_val) / ( max_val - min_val)) * width
 
     def draw_single_temp(da: Gtk.DrawingArea, context: cairo.Context, width, height, temp_to_draw, max_temp, min_temp):
         gradient = cairo.LinearGradient(0, 0, width, 0)
