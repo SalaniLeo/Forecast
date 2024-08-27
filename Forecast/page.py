@@ -71,24 +71,31 @@ class city_page(Gtk.Stack):
 
         # -- left container --
         right_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        right_box.append(title_box)
+        right_box.append(hourly_forecast_box)
         right_box.set_spacing(6)
-        right_box.append(daily_forecast_box)
+        right_box.append(now_conditions)
 
         left_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=12)
-        left_box.append(hourly_forecast_box)
+        left_box.append(title_box)
         left_box.set_hexpand(True)
+        left_box.set_halign(Gtk.Align.START)
         # left_box.append(current_pollution_box)
-        left_box.append(now_conditions)
+        left_box.append(daily_forecast_box)
 
-        base_box.append(right_box)
         base_box.append(left_box)
+        base_box.append(right_box)
 
         self.root.append(base_box)
         self.root.set_orientation(Gtk.Orientation.VERTICAL)
 
         if(global_variables.get_use_dyn_bg()):
             self.connect("notify::visible-child", self.change_bg, self.css_classes)
+
+        mobile_layout = Adw.Breakpoint() # TODO
+        mobile_layout.add_setter(left_box, "halign", Gtk.Align.CENTER)
+        mobile_layout.add_setter(base_box, "orientation", Gtk.Orientation.VERTICAL)
+        mobile_layout.set_condition(Adw.BreakpointCondition.new_length(Adw.BreakpointConditionLengthType.MAX_WIDTH, constants.align_breakpoint, Adw.LengthUnit.SP))
+        app.add_breakpoint(mobile_layout)
 
     def new(app, city, load):
         root = Gtk.ScrolledWindow()
@@ -408,6 +415,7 @@ class components(city_page):
 
         base_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=6)
         base_box.append(title_box)
+        # base_box.set_halign(Gtk.Align.START)
 
         max_min = []
         overall_max = daily[0]['temp']['max']

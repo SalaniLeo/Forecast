@@ -121,7 +121,7 @@ class root(Adw.Window):
 
         # --- window size --- 
         self.set_default_size(800, 500)
-        self.set_size_request(800, 500)
+        self.set_size_request(400, 500)
         
         # REPLACE WITH SIDE_PANE FOR SIDEBAR
         self.set_content(self.window_handle)
@@ -206,7 +206,7 @@ class Forecast(Adw.Application):
         dialog.set_application_name(_("Forecast"))
         dialog.set_version("1.0.0")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments(_("⛅ Weather and forecast app for Linux.\nUses openweathermap api"))
+        dialog.set_comments(_("⛅ Check the weather!.\nUses openweathermap api"))
         dialog.set_website("https://forecast.salanileo.dev")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salaniLeo.forecast")
