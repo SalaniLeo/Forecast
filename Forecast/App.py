@@ -120,7 +120,7 @@ class root(Adw.Window):
         #self.side_pane.set_sidebar(self.sidebar)
 
         # --- window size --- 
-        self.set_default_size(600, 400)
+        self.set_default_size(800, 500)
         self.set_size_request(400, 400)
         
         # REPLACE WITH SIDE_PANE FOR SIDEBAR

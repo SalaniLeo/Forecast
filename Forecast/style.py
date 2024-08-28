@@ -189,16 +189,20 @@ class app_style():
         context.set_source(gradient)
 
         width = width - (width / 20)
-        max_val = max(intervals)
-        min_val = min(intervals)
+        max_val = max(intervals) + 1
+        min_val = min(intervals) - 1
 
         width_curve_radius = 2.5
-        start_pixel = app_style.map_to_pixel(start, min_val, max_val, width) + width_curve_radius * 4
+        start_pixel = app_style.map_to_pixel(start, min_val, max_val, width)
         end_pixel = app_style.map_to_pixel(end, min_val, max_val, width)
 
         y_top = height / 3 + width_curve_radius
         y_middle = height / 2
         y_bottom = height - (height / 3) - width_curve_radius
+
+        # min_interval = width / (max_val - min_val)
+        # if end_pixel - start_pixel < 1:
+        #     end_pixel = start_pixel + min_interval
 
         radius_end_pixel = end_pixel + width_curve_radius
         radius_start_pixel = start_pixel - width_curve_radius
