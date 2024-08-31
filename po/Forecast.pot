@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 15:12+0200\n"
+"POT-Creation-Date: 2024-08-31 19:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,336 +17,337 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Forecast/App.py:35 Forecast/App.py:245 Forecast/App.py:269
+#: Forecast/App.py:38 Forecast/page.py:63 Forecast/page.py:291
+#: Forecast/page.py:340
+msgid "Weather"
+msgstr ""
+
+#: Forecast/App.py:43 Forecast/App.py:253 Forecast/App.py:277
 msgid "Locations"
 msgstr ""
 
-#: Forecast/App.py:198 Forecast/page.py:64
+#: Forecast/App.py:206 Forecast/page.py:64
 #: data/dev.salaniLeo.forecast.appdata.xml.in:4
 #: data/dev.salaniLeo.forecast.desktop.in:3
 msgid "Forecast"
 msgstr ""
 
-#: Forecast/App.py:201
+#: Forecast/App.py:209
 msgid ""
-"⛅ Weather and forecast app for Linux.\n"
+"⛅ Check the weather!.\n"
 "Uses openweathermap api"
 msgstr ""
 
-#: Forecast/App.py:222
+#: Forecast/App.py:230
 msgid "Refresh"
 msgstr ""
 
-#: Forecast/App.py:223 Forecast/App.py:235 Forecast/App.py:249
+#: Forecast/App.py:231 Forecast/App.py:243 Forecast/App.py:257
 msgid "Preferences"
 msgstr ""
 
-#: Forecast/App.py:224
+#: Forecast/App.py:232
 msgid "About Forecast"
 msgstr ""
 
-#: Forecast/App.py:276
+#: Forecast/App.py:284
 msgid "Units preferences"
 msgstr ""
 
-#: Forecast/App.py:278
+#: Forecast/App.py:286
 msgid "Appearance Preferences"
 msgstr ""
 
-#: Forecast/App.py:290
+#: Forecast/App.py:298
 msgid "Temperature units"
 msgstr ""
 
-#: Forecast/App.py:291
+#: Forecast/App.py:299
 msgid "Select which units to use"
 msgstr ""
 
-#: Forecast/App.py:307
+#: Forecast/App.py:315
 msgid "Time format"
 msgstr ""
 
-#: Forecast/App.py:308
+#: Forecast/App.py:316
 msgid "Select whether to use the 12h or 24h formats"
 msgstr ""
 
-#: Forecast/App.py:314
+#: Forecast/App.py:322
 msgid "Use dynamic background"
 msgstr ""
 
-#: Forecast/App.py:315
+#: Forecast/App.py:323
 msgid ""
 "When on, the background changes based on the weather. Restart needed to apply"
 msgstr ""
 
-#: Forecast/App.py:323
+#: Forecast/App.py:331
 msgid "API Preferences"
 msgstr ""
 
-#: Forecast/App.py:335
+#: Forecast/App.py:343
 msgid "Use Personal API Key"
 msgstr ""
 
-#: Forecast/App.py:337
+#: Forecast/App.py:345
 msgid "Choose whether to use default API key or personal key"
 msgstr ""
 
-#: Forecast/App.py:341
+#: Forecast/App.py:349
 msgid "Personal API Key"
 msgstr ""
 
-#: Forecast/App.py:359 Forecast/App.py:364 Forecast/App.py:368
-#: Forecast/App.py:380
+#: Forecast/App.py:367 Forecast/App.py:372 Forecast/App.py:376
+#: Forecast/App.py:388
 msgid "Restart needed to apply changes"
 msgstr ""
 
-#: Forecast/App.py:382
+#: Forecast/App.py:390
 msgid "Api key not valid"
 msgstr ""
 
-#: Forecast/App.py:418
+#: Forecast/App.py:426
 msgid "Latitude"
 msgstr ""
 
-#: Forecast/App.py:422
+#: Forecast/App.py:430
 msgid "Longitude"
 msgstr ""
 
-#: Forecast/App.py:451
+#: Forecast/App.py:459
 msgid "Use coordinates"
-msgstr ""
-
-#: Forecast/data.py:11
-msgid "Metric System"
-msgstr ""
-
-#: Forecast/data.py:12
-msgid "Imperial System"
-msgstr ""
-
-#: Forecast/data.py:38
-msgid "Good"
-msgstr ""
-
-#: Forecast/data.py:39
-msgid "Fair"
-msgstr ""
-
-#: Forecast/data.py:40
-msgid "Moderate"
-msgstr ""
-
-#: Forecast/data.py:41
-msgid "Poor"
-msgstr ""
-
-#: Forecast/data.py:42
-msgid "Very Poor"
-msgstr ""
-
-#: Forecast/data.py:49
-msgid "Low"
-msgstr ""
-
-#: Forecast/data.py:51
-msgid "Seek shade during midday hours!"
-msgstr ""
-
-#: Forecast/data.py:53
-msgid "Avoid being outside during midday hours!"
-msgstr ""
-
-#: Forecast/data.py:55
-msgid "Invalid UV index input."
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "N"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "NNE"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "NE"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "ENE"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "E"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "ESE"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "SE"
-msgstr ""
-
-#: Forecast/data.py:59
-msgid "SSE"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "S"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "SSW"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "SW"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "WSW"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "W"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "WNW"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "NW"
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "NNW"
-msgstr ""
-
-#: Forecast/data.py:164
-msgid "Wait at least 2 minutes between refreshes!"
 msgstr ""
 
 #: Forecast/page.py:33
 msgid "Could not retrieve weather data"
 msgstr ""
 
-#: Forecast/page.py:63 Forecast/page.py:280 Forecast/page.py:329
-msgid "Weather"
-msgstr ""
-
-#: Forecast/page.py:147
+#: Forecast/page.py:158
 #, python-brace-format
 msgid "- Feels like {0}{1}"
 msgstr ""
 
-#: Forecast/page.py:190
+#: Forecast/page.py:201
 msgid "Alerts"
 msgstr ""
 
-#: Forecast/page.py:211 Forecast/page.py:292 Forecast/page.py:779
+#: Forecast/page.py:222 Forecast/page.py:303 Forecast/page.py:785
 msgid "Conditions"
 msgstr ""
 
-#: Forecast/page.py:230 Forecast/page.py:307
+#: Forecast/page.py:241 Forecast/page.py:318
 msgid "Wind"
 msgstr ""
 
-#: Forecast/page.py:231 Forecast/page.py:308 Forecast/page.py:309
+#: Forecast/page.py:242 Forecast/page.py:319 Forecast/page.py:320
 msgid "Pressure"
 msgstr ""
 
-#: Forecast/page.py:232 Forecast/page.py:774
+#: Forecast/page.py:243 Forecast/page.py:780
 msgid "Humidity"
 msgstr ""
 
-#: Forecast/page.py:233 Forecast/page.py:310
+#: Forecast/page.py:244 Forecast/page.py:321
 msgid "Visibility"
 msgstr ""
 
-#: Forecast/page.py:234 Forecast/page.py:817
+#: Forecast/page.py:245 Forecast/page.py:823
 msgid "Sunrise"
 msgstr ""
 
-#: Forecast/page.py:235 Forecast/page.py:809
+#: Forecast/page.py:246 Forecast/page.py:815
 msgid "Sunset"
 msgstr ""
 
-#: Forecast/page.py:236
+#: Forecast/page.py:247
 msgid "AQI"
 msgstr ""
 
-#: Forecast/page.py:306
+#: Forecast/page.py:317
 msgid "Feels Like"
 msgstr ""
 
-#: Forecast/page.py:342
+#: Forecast/page.py:353
 msgid "Today"
 msgstr ""
 
-#: Forecast/page.py:398
+#: Forecast/page.py:403
 msgid "Weekly forecast"
 msgstr ""
 
-#: Forecast/page.py:484
+#: Forecast/page.py:490
 msgid "Pollution"
 msgstr ""
 
-#: Forecast/page.py:489
+#: Forecast/page.py:495
 msgid "Details"
 msgstr ""
 
-#: Forecast/page.py:704
+#: Forecast/page.py:710
 msgid "Night"
 msgstr ""
 
-#: Forecast/page.py:718
+#: Forecast/page.py:724
 msgid "Evening"
 msgstr ""
 
-#: Forecast/page.py:732
+#: Forecast/page.py:738
 msgid "Morning"
 msgstr ""
 
-#: Forecast/page.py:746
+#: Forecast/page.py:752
 msgid "Afternoon"
 msgstr ""
 
-#: Forecast/page.py:759
+#: Forecast/page.py:765
 msgid "Temperatures"
 msgstr ""
 
-#: Forecast/page.py:772
+#: Forecast/page.py:778
 msgid "Temperature"
 msgstr ""
 
-#: Forecast/page.py:773
+#: Forecast/page.py:779
 msgid "Wind speed"
 msgstr ""
 
-#: Forecast/page.py:774 Forecast/page.py:775 Forecast/page.py:776
+#: Forecast/page.py:780 Forecast/page.py:781 Forecast/page.py:782
 #, python-brace-format
 msgid "{0}%"
 msgstr ""
 
-#: Forecast/page.py:775
+#: Forecast/page.py:781
 msgid "Cloudiness"
 msgstr ""
 
-#: Forecast/page.py:776
+#: Forecast/page.py:782
 msgid "Probability of rain"
 msgstr ""
 
-#: Forecast/page.py:777
+#: Forecast/page.py:783
 msgid "UV Index"
 msgstr ""
 
-#: Forecast/page.py:823
+#: Forecast/page.py:829
 msgid "Sun"
 msgstr ""
 
-#: Forecast/page.py:911
+#: Forecast/page.py:917
 msgid "Close"
+msgstr ""
+
+#: Forecast/data.py:12
+msgid "Metric System"
+msgstr ""
+
+#: Forecast/data.py:13
+msgid "Imperial System"
+msgstr ""
+
+#: Forecast/data.py:39
+msgid "Good"
+msgstr ""
+
+#: Forecast/data.py:40
+msgid "Fair"
+msgstr ""
+
+#: Forecast/data.py:41
+msgid "Moderate"
+msgstr ""
+
+#: Forecast/data.py:42
+msgid "Poor"
+msgstr ""
+
+#: Forecast/data.py:43
+msgid "Very Poor"
+msgstr ""
+
+#: Forecast/data.py:50
+msgid "Low"
+msgstr ""
+
+#: Forecast/data.py:52
+msgid "Seek shade during midday hours!"
+msgstr ""
+
+#: Forecast/data.py:54
+msgid "Avoid being outside during midday hours!"
+msgstr ""
+
+#: Forecast/data.py:56
+msgid "Invalid UV index input."
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "N"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "NNE"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "NE"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "ENE"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "E"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "ESE"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "SE"
+msgstr ""
+
+#: Forecast/data.py:60
+msgid "SSE"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "S"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "SSW"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "SW"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "WSW"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "W"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "WNW"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "NW"
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "NNW"
+msgstr ""
+
+#: Forecast/data.py:166
+msgid "Wait at least 2 minutes between refreshes!"
 msgstr ""
 
 #: Forecast/style.py:84
@@ -558,13 +559,11 @@ msgid "Overcast Clouds"
 msgstr ""
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:5
-msgid "⛅ Weather app for Linux made in LibAdwaita"
+msgid "⛅ Check the weather!"
 msgstr ""
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:7
-msgid ""
-"Forecast is another weather app made for linux. It has a modern and clean "
-"interface, perfect for reading the weather."
+msgid "Check the weather with a simple, intuitive and modern app"
 msgstr ""
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:27
@@ -592,65 +591,57 @@ msgid "Forecast app for GNOME"
 msgstr ""
 
 #: data/dev.salaniLeo.forecast.gschema.xml:7
-msgid "Stores the api key"
-msgstr ""
-
-#: data/dev.salaniLeo.forecast.gschema.xml:8
-msgid "stores the api key"
-msgstr ""
-
-#: data/dev.salaniLeo.forecast.gschema.xml:13
 msgid "Stores the users api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:14
+#: data/dev.salaniLeo.forecast.gschema.xml:8
 msgid "stores the users api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:19
+#: data/dev.salaniLeo.forecast.gschema.xml:13
 msgid "If false uses the default api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:20
+#: data/dev.salaniLeo.forecast.gschema.xml:14
 msgid "When this is true the app know to use the custom api key"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:25
+#: data/dev.salaniLeo.forecast.gschema.xml:19
 msgid "Uses a weather based gradient as background"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:26
+#: data/dev.salaniLeo.forecast.gschema.xml:20
 msgid "Chooses wether the user wants a gradient for background"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:31
+#: data/dev.salaniLeo.forecast.gschema.xml:25
 msgid "List of weather places"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:32
+#: data/dev.salaniLeo.forecast.gschema.xml:26
 msgid "Stores all user selected location"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:37
+#: data/dev.salaniLeo.forecast.gschema.xml:31
 msgid "Units"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:38
+#: data/dev.salaniLeo.forecast.gschema.xml:32
 msgid "Chooses between the metric and imperial systems of measurement"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:43
+#: data/dev.salaniLeo.forecast.gschema.xml:37
 msgid "use 12h or 24h"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:44
+#: data/dev.salaniLeo.forecast.gschema.xml:38
 msgid "Chooses between the 12h and the 24h time format"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:49
+#: data/dev.salaniLeo.forecast.gschema.xml:43
 msgid "Default weather city"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.gschema.xml:50
+#: data/dev.salaniLeo.forecast.gschema.xml:44
 msgid "Chooses the default city for the weather"
 msgstr ""

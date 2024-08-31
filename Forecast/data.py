@@ -6,6 +6,7 @@ from datetime import datetime
 from gettext import gettext as _
 from .style import *
 from datetime import datetime, timezone
+import os
 
 class constants():
     meters = _("Metric System")
@@ -125,11 +126,11 @@ class global_variables():
 
 class request():
     def weather(lat, lon):
-        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={global_variables.get_api_key()}')
+        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
         return response.json()
 
     def pollution(lat, lon):
-        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={global_variables.get_api_key()}')
+        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
         return response.json()
 
 row_list = []

@@ -3,3 +3,4 @@
 .venv
 .vscode
 Forecast/__pycache__
+.env
