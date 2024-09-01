@@ -1,11 +1,14 @@
 from gettext import gettext as _
 import gi, os, sys, re, json
 from .data import *
+from .maps import *
 from .page import *
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, Gdk
 from urllib.request import urlopen
+from dotenv import load_dotenv
+load_dotenv()
 
 cities_stack = Gtk.Stack()
 toast_overlay = Adw.ToastOverlay.new()
@@ -31,10 +34,17 @@ class root(Adw.Window):
             global_variables.set_saved_cities([city])
 
         self.root = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        # self.maps_page = maps_page(self, global_variables.get_saved_cities()[global_variables.get_default_city()])
+
+        self.root_stack = Gtk.Stack()
+        self.root_stack.add_titled(cities_stack, _('Weather'), _('Weather'))
+        # self.root_stack.add_titled(self.maps_page, _('Maps'), _('Maps'))
+        self.root_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE)
+
         self.title = ('')
         self.side_title = _("Locations")
-        self.title_wiget = Gtk.Label.new(self.title)
-        self.title_wiget.set_css_classes(['font_app_title'])
+        self.title_wiget = Gtk.Label()
+        # self.title_wiget.set_stack(self.root_stack)
 
         self.side_title_widget = Gtk.Label(label=self.side_title)
         self.side_title_widget.set_css_classes(['font_app_title'])
@@ -76,7 +86,7 @@ class root(Adw.Window):
         # --- sidebar ---
         # headerbar
         #self.side_header_bar = Adw.HeaderBar()
-        #self.side_header_bar.set_css_classes(['flat'])
+        #self.side_header_bar.set_css_classes(['flatitle_wigett'])
         #self.side_header_bar.set_title_widget(self.side_title_widget)
         # scrolled window
         #self.sidebar = Gtk.ScrolledWindow()
@@ -99,7 +109,7 @@ class root(Adw.Window):
         #self.sidebar_box.append(self.side_header_bar)
         #self.sidebar_box.append(self.page_switcher)
 
-        self.root.append(cities_stack)
+        self.root.append(self.root_stack)
 
         toast_overlay.set_child(child=self.root)
 
@@ -113,7 +123,7 @@ class root(Adw.Window):
 
         # --- window size --- 
         self.set_default_size(800, 500)
-        self.set_size_request(800, 500)
+        self.set_size_request(400, 400)
         
         # REPLACE WITH SIDE_PANE FOR SIDEBAR
         self.set_content(self.window_handle)
@@ -198,7 +208,7 @@ class Forecast(Adw.Application):
         dialog.set_application_name(_("Forecast"))
         dialog.set_version("1.0.0")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
-        dialog.set_comments(_("⛅ Weather and forecast app for Linux.\nUses openweathermap api"))
+        dialog.set_comments(_("⛅ Check the weather!.\nUses openweathermap api"))
         dialog.set_website("https://forecast.salanileo.dev")
         dialog.set_developers(["Leonardo Salani"])
         dialog.set_application_icon("dev.salaniLeo.forecast")

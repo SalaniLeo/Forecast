@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: forecast\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-22 15:12+0200\n"
-"PO-Revision-Date: 2024-05-27 19:45+0530\n"
+"POT-Creation-Date: 2024-08-31 19:52+0200\n"
+"PO-Revision-Date: 2024-08-31 19:54+0200\n"
 "Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
 "Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
 "Language: hi\n"
@@ -17,343 +17,343 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 46.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
-#: Forecast/App.py:35 Forecast/App.py:245 Forecast/App.py:269
+#: Forecast/App.py:38 Forecast/page.py:63 Forecast/page.py:291 Forecast/page.py:340
+msgid "Weather"
+msgstr "मौसम"
+
+#: Forecast/App.py:43 Forecast/App.py:253 Forecast/App.py:277
 msgid "Locations"
 msgstr "स्थान"
 
-#: Forecast/App.py:198 Forecast/page.py:64
-#: data/dev.salaniLeo.forecast.appdata.xml.in:4
+#: Forecast/App.py:206 Forecast/page.py:64 data/dev.salaniLeo.forecast.appdata.xml.in:4
 #: data/dev.salaniLeo.forecast.desktop.in:3
 msgid "Forecast"
 msgstr "फोरकास्ट"
 
-#: Forecast/App.py:201
+#: Forecast/App.py:209
+#, fuzzy
+#| msgid ""
+#| "⛅ Weather and forecast app for Linux.\n"
+#| "Uses openweathermap api"
 msgid ""
-"⛅ Weather and forecast app for Linux.\n"
+"⛅ Check the weather!.\n"
 "Uses openweathermap api"
 msgstr ""
 "⛅ Linux के लिए मौसम और पूर्वानुमान ऐप।\n"
 "openweathermap API का प्रयोग करता है"
 
-#: Forecast/App.py:222
+#: Forecast/App.py:230
 msgid "Refresh"
 msgstr "ताजा करें"
 
-#: Forecast/App.py:223 Forecast/App.py:235 Forecast/App.py:249
+#: Forecast/App.py:231 Forecast/App.py:243 Forecast/App.py:257
 msgid "Preferences"
 msgstr "प्राथमिकताएं"
 
-#: Forecast/App.py:224
+#: Forecast/App.py:232
 msgid "About Forecast"
 msgstr "फोरकास्ट के बारे में"
 
-#: Forecast/App.py:276
+#: Forecast/App.py:284
 msgid "Units preferences"
 msgstr "इकाई प्राथमिकताएं"
 
-#: Forecast/App.py:278
+#: Forecast/App.py:286
 msgid "Appearance Preferences"
 msgstr "दिखावट प्राथमिकताएं"
 
-#: Forecast/App.py:290
+#: Forecast/App.py:298
 msgid "Temperature units"
 msgstr "तापमान इकाइयां"
 
-#: Forecast/App.py:291
+#: Forecast/App.py:299
 msgid "Select which units to use"
 msgstr "प्रयोग करने हेतु इकाइयां चुनें"
 
-#: Forecast/App.py:307
+#: Forecast/App.py:315
 msgid "Time format"
 msgstr "समय प्रारूप"
 
-#: Forecast/App.py:308
+#: Forecast/App.py:316
 msgid "Select whether to use the 12h or 24h formats"
 msgstr "प्रयोग हेतु 12 घंटे या 24 घंटे का प्रारूप चुनें"
 
-#: Forecast/App.py:314
+#: Forecast/App.py:322
 msgid "Use dynamic background"
 msgstr "गतिशील पृष्ठभूमि का प्रयोग करें"
 
-#: Forecast/App.py:315
-msgid ""
-"When on, the background changes based on the weather. Restart needed to apply"
-msgstr ""
-"चालू होने पर, मौसम के आधार पर पृष्ठभूमि बदल जाती है। लागू करने के लिए पुनः प्रारंभ करना "
-"आवश्यक है"
-
 #: Forecast/App.py:323
+msgid "When on, the background changes based on the weather. Restart needed to apply"
+msgstr ""
+"चालू होने पर, मौसम के आधार पर पृष्ठभूमि बदल जाती है। लागू करने के लिए पुनः प्रारंभ करना आवश्यक है"
+
+#: Forecast/App.py:331
 msgid "API Preferences"
 msgstr "API प्राथमिकताएं"
 
-#: Forecast/App.py:335
+#: Forecast/App.py:343
 msgid "Use Personal API Key"
 msgstr "निजी API कुंजी का प्रयोग करें"
 
-#: Forecast/App.py:337
+#: Forecast/App.py:345
 msgid "Choose whether to use default API key or personal key"
 msgstr "प्रयोग हेतु तयशुदा API कुंजी या निजी कुंजी चुनें"
 
-#: Forecast/App.py:341
+#: Forecast/App.py:349
 msgid "Personal API Key"
 msgstr "निजी API कुंजी"
 
-#: Forecast/App.py:359 Forecast/App.py:364 Forecast/App.py:368
-#: Forecast/App.py:380
+#: Forecast/App.py:367 Forecast/App.py:372 Forecast/App.py:376 Forecast/App.py:388
 msgid "Restart needed to apply changes"
 msgstr "परिवर्तन लागू करने के लिए पुनः प्रारंभ करना आवश्यक है"
 
-#: Forecast/App.py:382
+#: Forecast/App.py:390
 msgid "Api key not valid"
 msgstr "API कुंजी मान्य नहीं है"
 
-#: Forecast/App.py:418
+#: Forecast/App.py:426
 msgid "Latitude"
 msgstr "अक्षांश"
 
-#: Forecast/App.py:422
+#: Forecast/App.py:430
 msgid "Longitude"
 msgstr "देशान्तर"
 
-#: Forecast/App.py:451
+#: Forecast/App.py:459
 msgid "Use coordinates"
 msgstr "निर्देशांक का प्रयोग करें"
-
-#: Forecast/data.py:11
-msgid "Metric System"
-msgstr "मेट्रिक प्रणाली"
-
-#: Forecast/data.py:12
-msgid "Imperial System"
-msgstr "इम्पीरियल प्रणाली"
-
-#: Forecast/data.py:38
-msgid "Good"
-msgstr "अच्छा"
-
-#: Forecast/data.py:39
-msgid "Fair"
-msgstr "साफ"
-
-#: Forecast/data.py:40
-msgid "Moderate"
-msgstr "मध्यम"
-
-#: Forecast/data.py:41
-msgid "Poor"
-msgstr "खराब"
-
-#: Forecast/data.py:42
-msgid "Very Poor"
-msgstr "बहुत खराब"
-
-#: Forecast/data.py:49
-msgid "Low"
-msgstr "कम"
-
-#: Forecast/data.py:51
-msgid "Seek shade during midday hours!"
-msgstr "दोपहर के समय छाया में रहें!"
-
-#: Forecast/data.py:53
-msgid "Avoid being outside during midday hours!"
-msgstr "दोपहर के समय बाहर रहने से बचें!"
-
-#: Forecast/data.py:55
-msgid "Invalid UV index input."
-msgstr "अमान्य UV सूचकांक इनपुट।"
-
-#: Forecast/data.py:59
-msgid "N"
-msgstr "N"
-
-#: Forecast/data.py:59
-msgid "NNE"
-msgstr "NNE"
-
-#: Forecast/data.py:59
-msgid "NE"
-msgstr "NE"
-
-#: Forecast/data.py:59
-msgid "ENE"
-msgstr "ENE"
-
-#: Forecast/data.py:59
-msgid "E"
-msgstr "E"
-
-#: Forecast/data.py:59
-msgid "ESE"
-msgstr "ESE"
-
-#: Forecast/data.py:59
-msgid "SE"
-msgstr "SE"
-
-#: Forecast/data.py:59
-msgid "SSE"
-msgstr "SSE"
-
-#: Forecast/data.py:60
-msgid "S"
-msgstr "S"
-
-#: Forecast/data.py:60
-msgid "SSW"
-msgstr "SSW"
-
-#: Forecast/data.py:60
-msgid "SW"
-msgstr "SW"
-
-#: Forecast/data.py:60
-msgid "WSW"
-msgstr "WSW"
-
-#: Forecast/data.py:60
-msgid "W"
-msgstr "W"
-
-#: Forecast/data.py:60
-msgid "WNW"
-msgstr "WNW"
-
-#: Forecast/data.py:60
-msgid "NW"
-msgstr "NW"
-
-#: Forecast/data.py:60
-msgid "NNW"
-msgstr "NNW"
-
-#: Forecast/data.py:164
-msgid "Wait at least 2 minutes between refreshes!"
-msgstr "ताजा करने के बीच कम से कम 2 मिनट प्रतीक्षा करें!"
 
 #: Forecast/page.py:33
 msgid "Could not retrieve weather data"
 msgstr "मौसम डेटा पुनर्प्राप्त नहीं किया जा सका"
 
-#: Forecast/page.py:63 Forecast/page.py:280 Forecast/page.py:329
-msgid "Weather"
-msgstr "मौसम"
-
-#: Forecast/page.py:147
+#: Forecast/page.py:158
 #, python-brace-format
 msgid "- Feels like {0}{1}"
 msgstr "- {0}{1} जैसा महसूस होता है"
 
-#: Forecast/page.py:190
+#: Forecast/page.py:201
 msgid "Alerts"
 msgstr "चेतावनी"
 
-#: Forecast/page.py:211 Forecast/page.py:292 Forecast/page.py:779
+#: Forecast/page.py:222 Forecast/page.py:303 Forecast/page.py:785
 msgid "Conditions"
 msgstr "स्थिति"
 
-#: Forecast/page.py:230 Forecast/page.py:307
+#: Forecast/page.py:241 Forecast/page.py:318
 msgid "Wind"
 msgstr "हवा"
 
-#: Forecast/page.py:231 Forecast/page.py:308 Forecast/page.py:309
+#: Forecast/page.py:242 Forecast/page.py:319 Forecast/page.py:320
 msgid "Pressure"
 msgstr "वायुदाब"
 
-#: Forecast/page.py:232 Forecast/page.py:774
+#: Forecast/page.py:243 Forecast/page.py:780
 msgid "Humidity"
 msgstr "आर्द्रता"
 
-#: Forecast/page.py:233 Forecast/page.py:310
+#: Forecast/page.py:244 Forecast/page.py:321
 msgid "Visibility"
 msgstr "दृश्यता"
 
-#: Forecast/page.py:234 Forecast/page.py:817
+#: Forecast/page.py:245 Forecast/page.py:823
 msgid "Sunrise"
 msgstr "सूर्योदय"
 
-#: Forecast/page.py:235 Forecast/page.py:809
+#: Forecast/page.py:246 Forecast/page.py:815
 msgid "Sunset"
 msgstr "सूर्यास्त"
 
-#: Forecast/page.py:236
+#: Forecast/page.py:247
 msgid "AQI"
 msgstr "AQI"
 
-#: Forecast/page.py:306
+#: Forecast/page.py:317
 msgid "Feels Like"
 msgstr "जैसा महसूस"
 
-#: Forecast/page.py:342
+#: Forecast/page.py:353
 msgid "Today"
 msgstr "आज"
 
-#: Forecast/page.py:398
+#: Forecast/page.py:403
 msgid "Weekly forecast"
 msgstr "साप्ताहिक पूर्वानुमान"
 
-#: Forecast/page.py:484
+#: Forecast/page.py:490
 msgid "Pollution"
 msgstr "प्रदूषण"
 
-#: Forecast/page.py:489
+#: Forecast/page.py:495
 msgid "Details"
 msgstr "विवरण"
 
-#: Forecast/page.py:704
+#: Forecast/page.py:710
 msgid "Night"
 msgstr "रात"
 
-#: Forecast/page.py:718
+#: Forecast/page.py:724
 msgid "Evening"
 msgstr "शाम"
 
-#: Forecast/page.py:732
+#: Forecast/page.py:738
 msgid "Morning"
 msgstr "सुबह"
 
-#: Forecast/page.py:746
+#: Forecast/page.py:752
 msgid "Afternoon"
 msgstr "दोपहर"
 
-#: Forecast/page.py:759
+#: Forecast/page.py:765
 msgid "Temperatures"
 msgstr "तापमान"
 
-#: Forecast/page.py:772
+#: Forecast/page.py:778
 msgid "Temperature"
 msgstr "तापमान"
 
-#: Forecast/page.py:773
+#: Forecast/page.py:779
 msgid "Wind speed"
 msgstr "हवा की गति"
 
-#: Forecast/page.py:774 Forecast/page.py:775 Forecast/page.py:776
+#: Forecast/page.py:780 Forecast/page.py:781 Forecast/page.py:782
 #, python-brace-format
 msgid "{0}%"
 msgstr "{0}%"
 
-#: Forecast/page.py:775
+#: Forecast/page.py:781
 msgid "Cloudiness"
 msgstr "बादल"
 
-#: Forecast/page.py:776
+#: Forecast/page.py:782
 msgid "Probability of rain"
 msgstr "बारिश संभावना"
 
-#: Forecast/page.py:777
+#: Forecast/page.py:783
 msgid "UV Index"
 msgstr "UV सूचकांक"
 
-#: Forecast/page.py:823
+#: Forecast/page.py:829
 msgid "Sun"
 msgstr "सूरज"
 
-#: Forecast/page.py:911
+#: Forecast/page.py:917
 msgid "Close"
 msgstr "बंद करें"
+
+#: Forecast/data.py:12
+msgid "Metric System"
+msgstr "मेट्रिक प्रणाली"
+
+#: Forecast/data.py:13
+msgid "Imperial System"
+msgstr "इम्पीरियल प्रणाली"
+
+#: Forecast/data.py:39
+msgid "Good"
+msgstr "अच्छा"
+
+#: Forecast/data.py:40
+msgid "Fair"
+msgstr "साफ"
+
+#: Forecast/data.py:41
+msgid "Moderate"
+msgstr "मध्यम"
+
+#: Forecast/data.py:42
+msgid "Poor"
+msgstr "खराब"
+
+#: Forecast/data.py:43
+msgid "Very Poor"
+msgstr "बहुत खराब"
+
+#: Forecast/data.py:50
+msgid "Low"
+msgstr "कम"
+
+#: Forecast/data.py:52
+msgid "Seek shade during midday hours!"
+msgstr "दोपहर के समय छाया में रहें!"
+
+#: Forecast/data.py:54
+msgid "Avoid being outside during midday hours!"
+msgstr "दोपहर के समय बाहर रहने से बचें!"
+
+#: Forecast/data.py:56
+msgid "Invalid UV index input."
+msgstr "अमान्य UV सूचकांक इनपुट।"
+
+#: Forecast/data.py:60
+msgid "N"
+msgstr "N"
+
+#: Forecast/data.py:60
+msgid "NNE"
+msgstr "NNE"
+
+#: Forecast/data.py:60
+msgid "NE"
+msgstr "NE"
+
+#: Forecast/data.py:60
+msgid "ENE"
+msgstr "ENE"
+
+#: Forecast/data.py:60
+msgid "E"
+msgstr "E"
+
+#: Forecast/data.py:60
+msgid "ESE"
+msgstr "ESE"
+
+#: Forecast/data.py:60
+msgid "SE"
+msgstr "SE"
+
+#: Forecast/data.py:60
+msgid "SSE"
+msgstr "SSE"
+
+#: Forecast/data.py:61
+msgid "S"
+msgstr "S"
+
+#: Forecast/data.py:61
+msgid "SSW"
+msgstr "SSW"
+
+#: Forecast/data.py:61
+msgid "SW"
+msgstr "SW"
+
+#: Forecast/data.py:61
+msgid "WSW"
+msgstr "WSW"
+
+#: Forecast/data.py:61
+msgid "W"
+msgstr "W"
+
+#: Forecast/data.py:61
+msgid "WNW"
+msgstr "WNW"
+
+#: Forecast/data.py:61
+msgid "NW"
+msgstr "NW"
+
+#: Forecast/data.py:61
+msgid "NNW"
+msgstr "NNW"
+
+#: Forecast/data.py:166
+msgid "Wait at least 2 minutes between refreshes!"
+msgstr "ताजा करने के बीच कम से कम 2 मिनट प्रतीक्षा करें!"
 
 #: Forecast/style.py:84
 msgid "Thunderstorm with Light Rain"
@@ -564,16 +564,12 @@ msgid "Overcast Clouds"
 msgstr "छाये हुए बादल"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:5
-msgid "⛅ Weather app for Linux made in LibAdwaita"
-msgstr "⛅ Linux के लिए LibAdwaita में बनाया गया मौसम ऐप"
+msgid "⛅ Check the weather!"
+msgstr ""
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:7
-msgid ""
-"Forecast is another weather app made for linux. It has a modern and clean "
-"interface, perfect for reading the weather."
+msgid "Check the weather with a simple, intuitive and modern app"
 msgstr ""
-"पूर्वानुमान Linux के लिए बनाया गया एक और मौसम ऐप है। इसमें एक आधुनिक और स्वच्छ इंटरफ़ेस "
-"है, जो मौसम को पढ़ने के लिए बिल्कुल उपयुक्त है।"
 
 #: data/dev.salaniLeo.forecast.appdata.xml.in:27
 msgid "Main window"
@@ -600,65 +596,73 @@ msgid "Forecast app for GNOME"
 msgstr "गनोम के लिए पूर्वानुमान ऐप"
 
 #: data/dev.salaniLeo.forecast.gschema.xml:7
-msgid "Stores the api key"
-msgstr "API कुंजी संग्रहीत करता है"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:8
-msgid "stores the api key"
-msgstr "API कुंजी संग्रहीत करता है"
-
-#: data/dev.salaniLeo.forecast.gschema.xml:13
 msgid "Stores the users api key"
 msgstr "उपयोक्ता API कुंजी संग्रहीत करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:14
+#: data/dev.salaniLeo.forecast.gschema.xml:8
 msgid "stores the users api key"
 msgstr "उपयोक्ता API कुंजी संग्रहीत करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:19
+#: data/dev.salaniLeo.forecast.gschema.xml:13
 msgid "If false uses the default api key"
 msgstr "यदि अचयनित है तो तयशुदा API कुंजी का प्रयोग करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:20
+#: data/dev.salaniLeo.forecast.gschema.xml:14
 msgid "When this is true the app know to use the custom api key"
 msgstr "जब यह चयनित होता है तो ऐप तदनुकूल API कुंजी का प्रयोग करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:25
+#: data/dev.salaniLeo.forecast.gschema.xml:19
 msgid "Uses a weather based gradient as background"
 msgstr "पृष्ठभूमि के रूप में मौसम आधारित ग्रेडिएंट का प्रयोग करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:26
+#: data/dev.salaniLeo.forecast.gschema.xml:20
 msgid "Chooses wether the user wants a gradient for background"
 msgstr "चुनें कि क्या उपयोक्ता पृष्ठभूमि के लिए ग्रेडिएंट चाहता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:31
+#: data/dev.salaniLeo.forecast.gschema.xml:25
 msgid "List of weather places"
 msgstr "मौसम स्थानों की सूची"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:32
+#: data/dev.salaniLeo.forecast.gschema.xml:26
 msgid "Stores all user selected location"
 msgstr "उपयोक्ता द्वारा चयनित सभी स्थान संग्रहीत करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:37
+#: data/dev.salaniLeo.forecast.gschema.xml:31
 msgid "Units"
 msgstr "इकाइयां"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:38
+#: data/dev.salaniLeo.forecast.gschema.xml:32
 msgid "Chooses between the metric and imperial systems of measurement"
 msgstr "माप की मेट्रिक और इम्पीरियल प्रणालियों के बीच चयन करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:43
+#: data/dev.salaniLeo.forecast.gschema.xml:37
 msgid "use 12h or 24h"
 msgstr "12 घंटे या 24 घंटे का प्रयोग"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:44
+#: data/dev.salaniLeo.forecast.gschema.xml:38
 msgid "Chooses between the 12h and the 24h time format"
 msgstr "12 घंटे और 24 घंटे के समय प्रारूप के बीच चयन करता है"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:49
+#: data/dev.salaniLeo.forecast.gschema.xml:43
 msgid "Default weather city"
 msgstr "तयशुदा मौसम शहर"
 
-#: data/dev.salaniLeo.forecast.gschema.xml:50
+#: data/dev.salaniLeo.forecast.gschema.xml:44
 msgid "Chooses the default city for the weather"
 msgstr "मौसम के लिए तयशुदा शहर चुनता है"
+
+#~ msgid "⛅ Weather app for Linux made in LibAdwaita"
+#~ msgstr "⛅ Linux के लिए LibAdwaita में बनाया गया मौसम ऐप"
+
+#~ msgid ""
+#~ "Forecast is another weather app made for linux. It has a modern and clean interface, "
+#~ "perfect for reading the weather."
+#~ msgstr ""
+#~ "पूर्वानुमान Linux के लिए बनाया गया एक और मौसम ऐप है। इसमें एक आधुनिक और स्वच्छ इंटरफ़ेस है, जो "
+#~ "मौसम को पढ़ने के लिए बिल्कुल उपयुक्त है।"
+
+#~ msgid "Stores the api key"
+#~ msgstr "API कुंजी संग्रहीत करता है"
+
+#~ msgid "stores the api key"
+#~ msgstr "API कुंजी संग्रहीत करता है"

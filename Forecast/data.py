@@ -6,6 +6,7 @@ from datetime import datetime
 from gettext import gettext as _
 from .style import *
 from datetime import datetime, timezone
+import os
 
 class constants():
     meters = _("Metric System")
@@ -125,11 +126,12 @@ class global_variables():
 
 class request():
     def weather(lat, lon):
-        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={global_variables.get_api_key()}')
+        print(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
+        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
         return response.json()
 
     def pollution(lat, lon):
-        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={global_variables.get_api_key()}')
+        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
         return response.json()
 
 row_list = []
@@ -265,12 +267,12 @@ class converters():
         local_offset = offset//3600
         now_utc = datetime.now(timezone.utc)
         utc_hour = now_utc.hour
-        local_time = utc_hour + local_offset
+        local_time = int(utc_hour + local_offset)
 
-        if local_time >= 24:
-            local_time = "0" + str(local_time - 24)
-        if(local_time < 10) and local_time > 0:
-            local_time = "0" + str(local_time)
+        if int(local_time) >= 24:
+            local_time = "0" + str(int(local_time) - 24)
+        if(int(local_time) < 10) and int(local_time) > 0:
+            local_time = "0" + str(int(local_time))
         if(int(local_time) < 10) and int(local_time) < 0:
             local_time = '0' + str(local_time).split('-')[-1]
         local_full_time = str(local_time) + ":" + datetime.now().strftime("%M")

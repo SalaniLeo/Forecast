@@ -2,9 +2,9 @@
 <component type="desktop">
   <id>dev.salaniLeo.forecast</id>
   <name>Forecast</name>
-  <summary>⛅ Weather app for Linux made in LibAdwaita</summary>
+  <summary>⛅ Check the weather! </summary>
   <description>
-    <p>Forecast is another weather app made for linux. It has a modern and clean interface, perfect for reading the weather.</p>
+    <p>Check the weather with a simple, intuitive and modern app</p>
   </description>
   <developer_name translate="no">SalaniLeo</developer_name>
   <developer id="io.github.SalaniLeo">

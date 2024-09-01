@@ -2,12 +2,6 @@
 <schemalist>
   <schema id="dev.salaniLeo.forecast" path="/dev/salanileo/forecast/" gettext-domain="forecast">
 
-    <key name="api-key-s" type="s">
-      <default>'72d251b81d30ef572ae667dfe6c4ee1a'</default>
-      <summary>Stores the api key</summary>
-      <description>stores the api key</description>
-    </key>
-
     <key name="custom-api-key" type="s">
       <default>''</default>
       <summary>Stores the users api key</summary>
