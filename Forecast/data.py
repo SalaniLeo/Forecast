@@ -126,7 +126,6 @@ class global_variables():
 
 class request():
     def weather(lat, lon):
-        print(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
         response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
         return response.json()
 
