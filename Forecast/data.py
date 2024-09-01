@@ -126,11 +126,11 @@ class global_variables():
 
 class request():
     def weather(lat, lon):
-        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
+        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
         return response.json()
 
     def pollution(lat, lon):
-        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid={os.environ.get("WEATHER_TOKEN")}')
+        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
         return response.json()
 
 row_list = []
@@ -297,18 +297,18 @@ class search_city():
             lat = reverse_query[0].get_text()
             lon = reverse_query[1].get_text()
 
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={global_variables.get_max_search_cities()}&appid={global_variables.get_api_key()}')
+            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={global_variables.get_max_search_cities()}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
             data = geocoding.json() 
 
         elif type(reverse_query) == bool:
             place_to_search = searchbar.get_text()
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit={global_variables.get_max_search_cities()}&appid={global_variables.get_api_key()}')
+            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit={global_variables.get_max_search_cities()}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
             data = geocoding.json()
             if place_to_search == "":
                 return
         elif type(reverse_query) == str:
             place_to_search = self
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit=1&appid={global_variables.get_api_key()}')
+            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit=1&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
             city = geocoding.json()
             if len(city) == 0:
                 location = f'Ferrara - IT (44.8372737; 11.6186451)'

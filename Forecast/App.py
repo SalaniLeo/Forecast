@@ -7,8 +7,6 @@ gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 from gi.repository import Gtk, Adw, Gdk
 from urllib.request import urlopen
-from dotenv import load_dotenv
-load_dotenv()
 
 cities_stack = Gtk.Stack()
 toast_overlay = Adw.ToastOverlay.new()

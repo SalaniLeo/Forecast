@@ -12,7 +12,7 @@ class maps_page(Gtk.Box):
         layer = 'clouds_new'
 
         browser = WebKit.WebView()
-        browser.load_uri(f'https://tile.openweathermap.org/map/{layer}/{0}/{0}/{0}.png?appid={global_variables.get_api_key()}')
+        # browser.load_uri(f'https://tile.openweathermap.org/map/{layer}/{0}/{0}/{0}.png?appid=')
         # browser.load_uri(f'https://weather.salanileo.dev')
 
         scrolled_window = Gtk.ScrolledWindow()
