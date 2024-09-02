@@ -1,0 +1,653 @@
+# Forecast.
+# Copyright (C) 2024 Forecast contributors 
+# This file is distributed under the same license as the Forecast application.
+# Konstantin Tutsch <mail@konstantintutsch.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Last-Translator: Konstantin Tutsch <mail@konstantintutsch.com>\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: unnamed project\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"PO-Revision-Date: 2024-09-02 15:36+0200\n"
+"X-Generator: Gtranslator 46.1\n"
+
+#: Forecast/App.py:38 Forecast/page.py:63 Forecast/page.py:291
+#: Forecast/page.py:340
+msgid "Weather"
+msgstr "Wetter"
+
+#: Forecast/App.py:43 Forecast/App.py:253 Forecast/App.py:277
+msgid "Locations"
+msgstr "Orte"
+
+#: Forecast/App.py:206 Forecast/page.py:64
+#: data/dev.salaniLeo.forecast.appdata.xml.in:4
+#: data/dev.salaniLeo.forecast.desktop.in:3
+msgid "Forecast"
+msgstr "Forecast"
+
+#: Forecast/App.py:209
+msgid ""
+"⛅ Check the weather!.\n"
+"Uses openweathermap api"
+msgstr ""
+"⛅ Überprüfen Sie den Wetterberichte!\n"
+"Nutzt die OpenWeatherMap API"
+
+#: Forecast/App.py:230
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: Forecast/App.py:231 Forecast/App.py:243 Forecast/App.py:257
+msgid "Preferences"
+msgstr "Einstellungen"
+
+#: Forecast/App.py:232
+msgid "About Forecast"
+msgstr "Über Forecast"
+
+#: Forecast/App.py:284
+msgid "Units preferences"
+msgstr "Einheiten"
+
+#: Forecast/App.py:286
+msgid "Appearance Preferences"
+msgstr "Erscheinungsbild"
+
+#: Forecast/App.py:298
+msgid "Temperature units"
+msgstr "Temperatureinheiten"
+
+#: Forecast/App.py:299
+msgid "Select which units to use"
+msgstr "Wählen Sie die zu verwendenden Einheiten"
+
+#: Forecast/App.py:315
+msgid "Time format"
+msgstr "Zeitformat"
+
+#: Forecast/App.py:316
+msgid "Select whether to use the 12h or 24h formats"
+msgstr "Wählen Sie zwischen dem 12 Stunden- und dem 24 Stundensystem."
+
+#: Forecast/App.py:322
+msgid "Use dynamic background"
+msgstr "Dynamischen Hintergrund anzeigen"
+
+#: Forecast/App.py:323
+msgid ""
+"When on, the background changes based on the weather. Restart needed to apply"
+msgstr "Lassen Sie den Hintergrund sich an das aktuelle Wetter anpassen."
+
+#: Forecast/App.py:331
+msgid "API Preferences"
+msgstr "API"
+
+#: Forecast/App.py:343
+msgid "Use Personal API Key"
+msgstr "Persönlichen API Schlüssel verwenden"
+
+#: Forecast/App.py:345
+msgid "Choose whether to use default API key or personal key"
+msgstr "Wählen Sie zwischen dem Standard oder einem persönlichen API Schlüssel"
+
+#: Forecast/App.py:349
+msgid "Personal API Key"
+msgstr "Persönlicher API Schlüssel"
+
+#: Forecast/App.py:367 Forecast/App.py:372 Forecast/App.py:376
+#: Forecast/App.py:388
+msgid "Restart needed to apply changes"
+msgstr "Neustart wird benötigt, um die Änderungen anzunehmen"
+
+#: Forecast/App.py:390
+msgid "Api key not valid"
+msgstr "API Schlüssel nicht valide"
+
+#: Forecast/App.py:426
+msgid "Latitude"
+msgstr "Breitengrad"
+
+#: Forecast/App.py:430
+msgid "Longitude"
+msgstr "Längengrad"
+
+#: Forecast/App.py:459
+msgid "Use coordinates"
+msgstr "Mit Koordinaten angeben"
+
+#: Forecast/page.py:33
+msgid "Could not retrieve weather data"
+msgstr "Wetterbericht konnte nicht geladen werden"
+
+#: Forecast/page.py:158
+#, python-brace-format
+msgid "- Feels like {0}{1}"
+msgstr "- Gefühlt {0}{1}"
+
+#: Forecast/page.py:201
+msgid "Alerts"
+msgstr "Warnungen"
+
+#: Forecast/page.py:222 Forecast/page.py:303 Forecast/page.py:785
+msgid "Conditions"
+msgstr "Konditionen"
+
+#: Forecast/page.py:241 Forecast/page.py:318
+msgid "Wind"
+msgstr "Wind"
+
+#: Forecast/page.py:242 Forecast/page.py:319 Forecast/page.py:320
+msgid "Pressure"
+msgstr "Luftdruck"
+
+#: Forecast/page.py:243 Forecast/page.py:780
+msgid "Humidity"
+msgstr "Luftfeuchte"
+
+#: Forecast/page.py:244 Forecast/page.py:321
+msgid "Visibility"
+msgstr "Sicht"
+
+#: Forecast/page.py:245 Forecast/page.py:823
+msgid "Sunrise"
+msgstr "Sonnenaufgang"
+
+#: Forecast/page.py:246 Forecast/page.py:815
+msgid "Sunset"
+msgstr "Sonnenuntergang"
+
+#: Forecast/page.py:247
+msgid "AQI"
+msgstr "AQI"
+
+#: Forecast/page.py:317
+msgid "Feels Like"
+msgstr "Gefühlt"
+
+#: Forecast/page.py:353
+msgid "Today"
+msgstr "Heute"
+
+#: Forecast/page.py:403
+msgid "Weekly forecast"
+msgstr "Wöchentlicher Wetterbericht"
+
+#: Forecast/page.py:490
+msgid "Pollution"
+msgstr "Luftverschmutzung"
+
+#: Forecast/page.py:495
+msgid "Details"
+msgstr "Details"
+
+#: Forecast/page.py:710
+msgid "Night"
+msgstr "Nacht"
+
+#: Forecast/page.py:724
+msgid "Evening"
+msgstr "Abend"
+
+#: Forecast/page.py:738
+msgid "Morning"
+msgstr "Morgen"
+
+#: Forecast/page.py:752
+msgid "Afternoon"
+msgstr "Nachmittag"
+
+#: Forecast/page.py:765
+msgid "Temperatures"
+msgstr "Temperaturen"
+
+#: Forecast/page.py:778
+msgid "Temperature"
+msgstr "Temperatur"
+
+#: Forecast/page.py:779
+msgid "Wind speed"
+msgstr "Windgeschwindigkeit"
+
+#: Forecast/page.py:780 Forecast/page.py:781 Forecast/page.py:782
+#, python-brace-format
+msgid "{0}%"
+msgstr "{0}%"
+
+#: Forecast/page.py:781
+msgid "Cloudiness"
+msgstr "Bewölkung"
+
+#: Forecast/page.py:782
+msgid "Probability of rain"
+msgstr "Regenwahrscheinlichkeit"
+
+#: Forecast/page.py:783
+msgid "UV Index"
+msgstr "UV Index"
+
+#: Forecast/page.py:829
+msgid "Sun"
+msgstr "Sonnen"
+
+#: Forecast/page.py:917
+msgid "Close"
+msgstr "Schließen"
+
+#: Forecast/data.py:12
+msgid "Metric System"
+msgstr "Metrisches System (SI)"
+
+#: Forecast/data.py:13
+msgid "Imperial System"
+msgstr "Angloamerikanisches System"
+
+#: Forecast/data.py:39
+msgid "Good"
+msgstr "Gut"
+
+#: Forecast/data.py:40
+msgid "Fair"
+msgstr "Angemessen"
+
+#: Forecast/data.py:41
+msgid "Moderate"
+msgstr "Mäßig"
+
+#: Forecast/data.py:42
+msgid "Poor"
+msgstr "Schlecht"
+
+#: Forecast/data.py:43
+msgid "Very Poor"
+msgstr "Sehr Schlecht"
+
+#: Forecast/data.py:50
+msgid "Low"
+msgstr "Niedrig"
+
+#: Forecast/data.py:52
+msgid "Seek shade during midday hours!"
+msgstr "Suchen Sie in der Mittagszeit schattige Orte auf!"
+
+#: Forecast/data.py:54
+msgid "Avoid being outside during midday hours!"
+msgstr "Vermeiden Sie es, während der Mittagszeit draußen zu sein!"
+
+#: Forecast/data.py:56
+msgid "Invalid UV index input."
+msgstr "Ungültige UV Index Eingabe!"
+
+#: Forecast/data.py:60
+msgid "N"
+msgstr "N"
+
+#: Forecast/data.py:60
+msgid "NNE"
+msgstr "NNE"
+
+#: Forecast/data.py:60
+msgid "NE"
+msgstr "NE"
+
+#: Forecast/data.py:60
+msgid "ENE"
+msgstr "ENE"
+
+#: Forecast/data.py:60
+msgid "E"
+msgstr "E"
+
+#: Forecast/data.py:60
+msgid "ESE"
+msgstr "ESE"
+
+#: Forecast/data.py:60
+msgid "SE"
+msgstr "SE"
+
+#: Forecast/data.py:60
+msgid "SSE"
+msgstr "SSE"
+
+#: Forecast/data.py:61
+msgid "S"
+msgstr "S"
+
+#: Forecast/data.py:61
+msgid "SSW"
+msgstr "SSW"
+
+#: Forecast/data.py:61
+msgid "SW"
+msgstr "SW"
+
+#: Forecast/data.py:61
+msgid "WSW"
+msgstr "WSW"
+
+#: Forecast/data.py:61
+msgid "W"
+msgstr "W"
+
+#: Forecast/data.py:61
+msgid "WNW"
+msgstr "WNW"
+
+#: Forecast/data.py:61
+msgid "NW"
+msgstr "NW"
+
+#: Forecast/data.py:61
+msgid "NNW"
+msgstr "NNW"
+
+#: Forecast/data.py:166
+msgid "Wait at least 2 minutes between refreshes!"
+msgstr "Warten Sie mindestens 2 Minuten zwischen Aktualisierungen!"
+
+#: Forecast/style.py:84
+msgid "Thunderstorm with Light Rain"
+msgstr "Gewitter mit Leichtem Regen"
+
+#: Forecast/style.py:85
+msgid "Thunderstorm with Rain"
+msgstr "Gewitter mit Regen"
+
+#: Forecast/style.py:86
+msgid "Thunderstorm with Heavy Rain"
+msgstr "Gewitter mit Starkem Regen"
+
+#: Forecast/style.py:87
+msgid "Light Thunderstorm"
+msgstr "Leichtes Gewitter"
+
+#: Forecast/style.py:88
+msgid "Thunderstorm"
+msgstr "Gewitter"
+
+#: Forecast/style.py:89
+msgid "Heavy Thunderstorm"
+msgstr "Starkes Gewitter"
+
+#: Forecast/style.py:90
+msgid "Ragged Thunderstorm"
+msgstr "Schweres Gewitter"
+
+#: Forecast/style.py:91
+msgid "Light Drizzle"
+msgstr "Leichter Nieselregen"
+
+#: Forecast/style.py:92
+msgid "Drizzle"
+msgstr "Nieselregen"
+
+#: Forecast/style.py:93
+msgid "Heavy Drizzle"
+msgstr "Starker Nieselregen"
+
+#: Forecast/style.py:94
+msgid "Light Drizzle Rain"
+msgstr "Leichter Nieselregen"
+
+#: Forecast/style.py:95
+msgid "Drizzle Rain"
+msgstr "Nieselregen"
+
+#: Forecast/style.py:96
+msgid "Heavy Drizzle Rain"
+msgstr "Starker Nieselregen"
+
+#: Forecast/style.py:97
+msgid "Shower Rain and Drizzle"
+msgstr "Schauer und Nieselregen"
+
+#: Forecast/style.py:98
+msgid "Heavy Rain and Drizzle"
+msgstr "Starkregen und Nieselregen"
+
+#: Forecast/style.py:99
+msgid "Shower Drizzle"
+msgstr "Vereinzelter Nieselregen"
+
+#: Forecast/style.py:100
+msgid "Light Rain"
+msgstr "Leichter Regen"
+
+#: Forecast/style.py:101
+msgid "Moderate Rain"
+msgstr "Mäßiger Regen"
+
+#: Forecast/style.py:102
+msgid "Heavy Rain"
+msgstr "Starker Regen"
+
+#: Forecast/style.py:103
+msgid "Very Heavy Rain"
+msgstr "Schwerer Regen"
+
+#: Forecast/style.py:104
+msgid "Extreme Rain"
+msgstr "Extremer Regen"
+
+#: Forecast/style.py:105
+msgid "Freezing Rain"
+msgstr "Gefrierender Regen"
+
+#: Forecast/style.py:106
+msgid "Light Shower Rain"
+msgstr "Leichte Regenschauer"
+
+#: Forecast/style.py:107
+msgid "Shower Rain"
+msgstr "Regenschauer"
+
+#: Forecast/style.py:108
+msgid "Heavy Shower Rain"
+msgstr "Starke Regenschauer"
+
+#: Forecast/style.py:109
+msgid "Ragged Shower Rain"
+msgstr "Schwere Regenschauer"
+
+#: Forecast/style.py:110
+msgid "Light Snow"
+msgstr "Leichter Schneefall"
+
+#: Forecast/style.py:111
+msgid "Snow"
+msgstr "Schneefall"
+
+#: Forecast/style.py:112
+msgid "Heavy Snow"
+msgstr "Starker Schneefall"
+
+#: Forecast/style.py:113
+msgid "Sleet"
+msgstr "Graupelhagel"
+
+#: Forecast/style.py:114
+msgid "Light Shower Sleet"
+msgstr "Leichter Graupelhagel"
+
+#: Forecast/style.py:115
+msgid "Shower Sleet"
+msgstr "Vereinzelte Graupelhagel"
+
+#: Forecast/style.py:116
+msgid "Light Rain and Snow"
+msgstr "Leichter Regen und Schneefall"
+
+#: Forecast/style.py:117
+msgid "Rain and Snow"
+msgstr "Regen und Schneefall"
+
+#: Forecast/style.py:118
+msgid "Light Shower Snow"
+msgstr "Leichter, Vereinzelter Schneefall"
+
+#: Forecast/style.py:119
+msgid "Shower Snow"
+msgstr "Vereinzelter Schneefall"
+
+#: Forecast/style.py:120
+msgid "Heavy Shower Snow"
+msgstr "Starker, Vereinzelter Schneefall"
+
+#: Forecast/style.py:121
+msgid "Mist"
+msgstr "Nebel"
+
+#: Forecast/style.py:122
+msgid "Smoke"
+msgstr "Rauch"
+
+#: Forecast/style.py:123
+msgid "Haze"
+msgstr "Dunst"
+
+#: Forecast/style.py:124
+msgid "Sand/Dust Whirls"
+msgstr "Sand-/Staubwirbel"
+
+#: Forecast/style.py:125
+msgid "Fog"
+msgstr "Nebel"
+
+#: Forecast/style.py:126
+msgid "Sand"
+msgstr "Sand"
+
+#: Forecast/style.py:127
+msgid "Dust"
+msgstr "Staub"
+
+#: Forecast/style.py:128
+msgid "Volcanic Ash"
+msgstr "Vulkanasche"
+
+#: Forecast/style.py:129
+msgid "Squalls"
+msgstr "Windböen"
+
+#: Forecast/style.py:130
+msgid "Tornado"
+msgstr "Tornado"
+
+#: Forecast/style.py:131
+msgid "Clear Sky"
+msgstr "Klarer Himmel"
+
+#: Forecast/style.py:132
+msgid "Few Clouds"
+msgstr "Wenige Wolken"
+
+#: Forecast/style.py:133
+msgid "Scattered Clouds"
+msgstr "Vereinzelte Wolken"
+
+#: Forecast/style.py:134
+msgid "Broken Clouds"
+msgstr "Durchbrochene Wolken"
+
+#: Forecast/style.py:135
+msgid "Overcast Clouds"
+msgstr "Bedeckter Himmel"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:5
+msgid "⛅ Check the weather!"
+msgstr "⛅ Überprüfen Sie den Wetterbericht!"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:7
+msgid "Check the weather with a simple, intuitive and modern app"
+msgstr ""
+"Überprüfen Sie den Wetterbericht mit Hilfe einer simplen, intuitiven und "
+"modernen App"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:27
+msgid "Main window"
+msgstr "Hauptfenster"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:31
+msgid "Forecast window"
+msgstr "Wetterbericht Fenster"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:35
+msgid "Main window with custom background"
+msgstr "Hauptfenster mit angepasstem Hintergrund"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:39
+msgid "Preferences dialog"
+msgstr "Einstellungsdialog"
+
+#: data/dev.salaniLeo.forecast.desktop.in:6
+msgid "Weather;Forecast;Temperature;"
+msgstr "Wetter;Wetterbericht;Temperatur;"
+
+#: data/dev.salaniLeo.forecast.desktop.in:7
+msgid "Forecast app for GNOME"
+msgstr "Wetterapp für GNOME"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:7
+msgid "Stores the users api key"
+msgstr "Speichert den persönlichen API Schlüssel"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:8
+msgid "stores the users api key"
+msgstr "Speichert den persönlichen API Schlüssel"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:13
+msgid "If false uses the default api key"
+msgstr "Nutzt den Standard API Schlüssel wenn falsch"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:14
+msgid "When this is true the app know to use the custom api key"
+msgstr ""
+"Die App weiß, dass sie den Standard API Schlüssel nutzt, wenn eingeschaltet"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:19
+msgid "Uses a weather based gradient as background"
+msgstr "Nutzt einen wetterbasierten Übergang als Hintergrund"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:20
+msgid "Chooses wether the user wants a gradient for background"
+msgstr "Wählen Sie, ob Sie einen Übergang als Hintergrund nutzen möchten"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:25
+msgid "List of weather places"
+msgstr "Liste der Orte"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:26
+msgid "Stores all user selected location"
+msgstr "Speichert alle vom Nutzer ausgewählten Orte"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:31
+msgid "Units"
+msgstr "Einheiten"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:32
+msgid "Chooses between the metric and imperial systems of measurement"
+msgstr ""
+"Wählen Sie zwischen dem metrischen (SI) und dem angloamerikanischen "
+"Einheitensystem"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:37
+msgid "use 12h or 24h"
+msgstr "Zeitsystem"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:38
+msgid "Chooses between the 12h and the 24h time format"
+msgstr "Wählt zwischen dem 12 Stunden- oder dem 24 Stundensystem"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:43
+msgid "Default weather city"
+msgstr "Standard Ort"
+
+#: data/dev.salaniLeo.forecast.gschema.xml:44
+msgid "Chooses the default city for the weather"
+msgstr "Wählt den Standard Ort für Wetter"
