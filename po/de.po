@@ -1,7 +1,6 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Forecast.
+# Copyright (C) 2024 Forecast contributors 
+# This file is distributed under the same license as the Forecast application.
 # Konstantin Tutsch <mail@konstantintutsch.com>, 2024.
 #
 msgid ""
