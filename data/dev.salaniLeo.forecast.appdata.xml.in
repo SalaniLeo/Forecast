@@ -42,6 +42,15 @@
 
   <releases>
 
+      <release version="1.1.1" date="2024-09-04">
+        <description translate="no">
+          <p>Version 1.1.1</p>
+            <ul>
+              <li>Api key is now hidden</li>
+            </ul>
+        </description>
+      </release>
+
       <release version="1.1.0" date="2024-09-01">
         <description translate="no">
           <p>Version 1.1.0</p>
