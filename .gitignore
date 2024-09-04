@@ -7,3 +7,4 @@ Forecast/__pycache__
 dist
 weatherInfo.spec
 build
+Forecast/weatherInfo.py

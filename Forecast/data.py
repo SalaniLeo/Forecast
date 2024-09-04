@@ -6,7 +6,7 @@ from datetime import datetime
 from gettext import gettext as _
 from .style import *
 from datetime import datetime, timezone
-import subprocess, os
+import subprocess, os, json
 
 class constants():
     meters = _("Metric System")
@@ -129,12 +129,12 @@ class request():
     def weather(lat, lon):
         command = f'exec {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        return result.stdout
+        return json.loads(result.stdout)
 
     def pollution(lat, lon):
         command = f'exec {constants.binary_path} --request=pollution --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        return result.stdout
+        return json.loads(result.stdout)
 
 row_list = []
 class actions():
@@ -302,14 +302,14 @@ class search_city():
 
             command = f'exec {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            data = result.stdout.json() 
+            data = json.loads(result.stdout)
 
         elif type(reverse_query) == bool:
             place_to_search = searchbar.get_text()
             
             command = f'exec {constants.binary_path} --request=geocoding --place_to_search={place_to_search}'
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            data = result.stdout.json() 
+            data = json.loads(result.stdout)
             if place_to_search == "":
                 return
 
@@ -317,7 +317,7 @@ class search_city():
             place_to_search = self
             command = f'exec {constants.binary_path} --request=geocoding --place_to_search={place_to_search}'
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            city = result.stdout.json() 
+            city = json.loads(result.stdout)
 
             if len(city) == 0:
                 location = f'Ferrara - IT (44.8372737; 11.6186451)'
