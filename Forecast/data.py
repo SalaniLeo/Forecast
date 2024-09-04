@@ -127,14 +127,14 @@ class global_variables():
 
 class request():
     def weather(lat, lon):
-        command = f'python3 {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
+        command = f'exec {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
         return result.stdout
 
     def pollution(lat, lon):
-        command = f'python3 {constants.binary_path} --request=pollution --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
+        command = f'exec {constants.binary_path} --request=pollution --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        return result
+        return result.stdout
 
 row_list = []
 class actions():
@@ -300,19 +300,25 @@ class search_city():
             lat = reverse_query[0].get_text()
             lon = reverse_query[1].get_text()
 
-            geocoding = os.system(f'{constants.binary_path} --request=reverse_geocoding --lat={lat} --lon={lon}')
-            data = geocoding.json() 
+            command = f'exec {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            data = result.stdout.json() 
 
         elif type(reverse_query) == bool:
             place_to_search = searchbar.get_text()
-            geocoding = os.system(f'{constants.binary_path} --request=geocoding --place_to_search={place_to_search}')
-            data = geocoding.json()
+            
+            command = f'exec {constants.binary_path} --request=geocoding --place_to_search={place_to_search}'
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            data = result.stdout.json() 
             if place_to_search == "":
                 return
+
         elif type(reverse_query) == str:
             place_to_search = self
-            geocoding = os.system(f'{constants.binary_path} --request=geocoding --place_to_search={place_to_search}')
-            city = geocoding.json()
+            command = f'exec {constants.binary_path} --request=geocoding --place_to_search={place_to_search}'
+            result = subprocess.run(command, shell=True, capture_output=True, text=True)
+            city = result.stdout.json() 
+
             if len(city) == 0:
                 location = f'Ferrara - IT (44.8372737; 11.6186451)'
             else:

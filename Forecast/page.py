@@ -23,6 +23,8 @@ class city_page(Gtk.Stack):
         meteo      = request.weather(lat, lon)
         pollution  = request.pollution(lat, lon)
 
+        print(meteo)
+
         self.city_name = global_variables.get_city_name(city)
 
         try:
