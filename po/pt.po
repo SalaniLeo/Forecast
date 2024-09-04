@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-31 19:52+0200\n"
-"PO-Revision-Date: 2024-08-31 19:55+0200\n"
+"POT-Creation-Date: 2024-09-04 03:20+0200\n"
+"PO-Revision-Date: 2024-09-04 03:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt\n"
@@ -16,359 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.4.4\n"
-
-#: Forecast/App.py:38 Forecast/page.py:63 Forecast/page.py:291
-#: Forecast/page.py:340
-msgid "Weather"
-msgstr "Clima"
-
-#: Forecast/App.py:43 Forecast/App.py:253 Forecast/App.py:277
-msgid "Locations"
-msgstr "Locais"
-
-#: Forecast/App.py:206 Forecast/page.py:64
-#: data/dev.salaniLeo.forecast.appdata.xml.in:4
-#: data/dev.salaniLeo.forecast.desktop.in:3
-msgid "Forecast"
-msgstr "Previsão do tempo"
-
-#: Forecast/App.py:209
-msgid ""
-"⛅ Check the weather!.\n"
-"Uses openweathermap api"
-msgstr ""
-
-#: Forecast/App.py:230
-msgid "Refresh"
-msgstr "Recarregar"
-
-#: Forecast/App.py:231 Forecast/App.py:243 Forecast/App.py:257
-msgid "Preferences"
-msgstr "Preferências"
-
-#: Forecast/App.py:232
-msgid "About Forecast"
-msgstr "Sobre Previsão do tempo"
-
-#: Forecast/App.py:284
-#, fuzzy
-#| msgid "Preferences"
-msgid "Units preferences"
-msgstr "Preferências"
-
-#: Forecast/App.py:286
-msgid "Appearance Preferences"
-msgstr "Preferências do visual"
-
-#: Forecast/App.py:298
-msgid "Temperature units"
-msgstr ""
-
-#: Forecast/App.py:299
-#, fuzzy
-#| msgid "Select which unit of measurement to use"
-msgid "Select which units to use"
-msgstr "Seleciona qual unidade de medida usar"
-
-#: Forecast/App.py:315
-msgid "Time format"
-msgstr ""
-
-#: Forecast/App.py:316
-msgid "Select whether to use the 12h or 24h formats"
-msgstr ""
-
-#: Forecast/App.py:322
-#, fuzzy
-#| msgid "Use Gradient as Background"
-msgid "Use dynamic background"
-msgstr "Usar gradiente como fundo"
-
-#: Forecast/App.py:323
-msgid "When on, the background changes based on the weather. Restart needed to apply"
-msgstr ""
-
-#: Forecast/App.py:331
-msgid "API Preferences"
-msgstr "Preferências de API"
-
-#: Forecast/App.py:343
-msgid "Use Personal API Key"
-msgstr "Usar chave de API pessoal"
-
-#: Forecast/App.py:345
-msgid "Choose whether to use default API key or personal key"
-msgstr "Escolha uso de chave API padrão ou chave pessoal"
-
-#: Forecast/App.py:349
-msgid "Personal API Key"
-msgstr "Chave de API pessoal"
-
-#: Forecast/App.py:367 Forecast/App.py:372 Forecast/App.py:376
-#: Forecast/App.py:388
-msgid "Restart needed to apply changes"
-msgstr ""
-
-#: Forecast/App.py:390
-msgid "Api key not valid"
-msgstr ""
-
-#: Forecast/App.py:426
-msgid "Latitude"
-msgstr ""
-
-#: Forecast/App.py:430
-msgid "Longitude"
-msgstr ""
-
-#: Forecast/App.py:459
-msgid "Use coordinates"
-msgstr ""
-
-#: Forecast/page.py:33
-msgid "Could not retrieve weather data"
-msgstr ""
-
-#: Forecast/page.py:158
-#, fuzzy, python-brace-format
-#| msgid "Feels like"
-msgid "- Feels like {0}{1}"
-msgstr "Sensação de"
-
-#: Forecast/page.py:201
-msgid "Alerts"
-msgstr ""
-
-#: Forecast/page.py:222 Forecast/page.py:303 Forecast/page.py:785
-#, fuzzy
-#| msgid "Locations"
-msgid "Conditions"
-msgstr "Locais"
-
-#: Forecast/page.py:241 Forecast/page.py:318
-msgid "Wind"
-msgstr "Vento"
-
-#: Forecast/page.py:242 Forecast/page.py:319 Forecast/page.py:320
-msgid "Pressure"
-msgstr "Pressão"
-
-#: Forecast/page.py:243 Forecast/page.py:780
-msgid "Humidity"
-msgstr "Umidade"
-
-#: Forecast/page.py:244 Forecast/page.py:321
-msgid "Visibility"
-msgstr "Visibilidade"
-
-#: Forecast/page.py:245 Forecast/page.py:823
-msgid "Sunrise"
-msgstr "Nascer do sol"
-
-#: Forecast/page.py:246 Forecast/page.py:815
-msgid "Sunset"
-msgstr "Pôr do sol"
-
-#: Forecast/page.py:247
-msgid "AQI"
-msgstr ""
-
-#: Forecast/page.py:317
-#, fuzzy
-#| msgid "Feels like"
-msgid "Feels Like"
-msgstr "Sensação de"
-
-#: Forecast/page.py:353
-msgid "Today"
-msgstr "Hoje"
-
-#: Forecast/page.py:403
-#, fuzzy
-#| msgid "Added 5 days forecast"
-msgid "Weekly forecast"
-msgstr "Adicionada previsão de 5 dias"
-
-#: Forecast/page.py:490
-msgid "Pollution"
-msgstr ""
-
-#: Forecast/page.py:495
-msgid "Details"
-msgstr ""
-
-#: Forecast/page.py:710
-msgid "Night"
-msgstr ""
-
-#: Forecast/page.py:724
-msgid "Evening"
-msgstr ""
-
-#: Forecast/page.py:738
-msgid "Morning"
-msgstr ""
-
-#: Forecast/page.py:752
-msgid "Afternoon"
-msgstr ""
-
-#: Forecast/page.py:765
-msgid "Temperatures"
-msgstr ""
-
-#: Forecast/page.py:778
-msgid "Temperature"
-msgstr ""
-
-#: Forecast/page.py:779
-msgid "Wind speed"
-msgstr ""
-
-#: Forecast/page.py:780 Forecast/page.py:781 Forecast/page.py:782
-#, python-brace-format
-msgid "{0}%"
-msgstr ""
-
-#: Forecast/page.py:781
-#, fuzzy
-#| msgid "Few Clouds"
-msgid "Cloudiness"
-msgstr "Poucas nuves"
-
-#: Forecast/page.py:782
-msgid "Probability of rain"
-msgstr ""
-
-#: Forecast/page.py:783
-msgid "UV Index"
-msgstr ""
-
-#: Forecast/page.py:829
-#, fuzzy
-#| msgid "Sunset"
-msgid "Sun"
-msgstr "Pôr do sol"
-
-#: Forecast/page.py:917
-msgid "Close"
-msgstr ""
-
-#: Forecast/data.py:12
-msgid "Metric System"
-msgstr ""
-
-#: Forecast/data.py:13
-msgid "Imperial System"
-msgstr ""
-
-#: Forecast/data.py:39
-msgid "Good"
-msgstr ""
-
-#: Forecast/data.py:40
-msgid "Fair"
-msgstr ""
-
-#: Forecast/data.py:41
-#, fuzzy
-#| msgid "Moderate Rain"
-msgid "Moderate"
-msgstr "Chuva moderada"
-
-#: Forecast/data.py:42
-msgid "Poor"
-msgstr ""
-
-#: Forecast/data.py:43
-msgid "Very Poor"
-msgstr ""
-
-#: Forecast/data.py:50
-msgid "Low"
-msgstr ""
-
-#: Forecast/data.py:52
-msgid "Seek shade during midday hours!"
-msgstr ""
-
-#: Forecast/data.py:54
-msgid "Avoid being outside during midday hours!"
-msgstr ""
-
-#: Forecast/data.py:56
-msgid "Invalid UV index input."
-msgstr ""
-
-#: Forecast/data.py:60
-msgid "N"
-msgstr "N"
-
-#: Forecast/data.py:60
-msgid "NNE"
-msgstr "NNE"
-
-#: Forecast/data.py:60
-msgid "NE"
-msgstr "NE"
-
-#: Forecast/data.py:60
-msgid "ENE"
-msgstr "ENE"
-
-#: Forecast/data.py:60
-msgid "E"
-msgstr "E"
-
-#: Forecast/data.py:60
-msgid "ESE"
-msgstr "ESE"
-
-#: Forecast/data.py:60
-msgid "SE"
-msgstr "SE"
-
-#: Forecast/data.py:60
-msgid "SSE"
-msgstr "SSE"
-
-#: Forecast/data.py:61
-msgid "S"
-msgstr "S"
-
-#: Forecast/data.py:61
-msgid "SSW"
-msgstr "SSW"
-
-#: Forecast/data.py:61
-msgid "SW"
-msgstr "SW"
-
-#: Forecast/data.py:61
-msgid "WSW"
-msgstr "WSW"
-
-#: Forecast/data.py:61
-msgid "W"
-msgstr "W"
-
-#: Forecast/data.py:61
-msgid "WNW"
-msgstr "WNW"
-
-#: Forecast/data.py:61
-msgid "NW"
-msgstr "NW"
-
-#: Forecast/data.py:61
-msgid "NNW"
-msgstr "NNW"
-
-#: Forecast/data.py:166
-#, fuzzy
-#| msgid "You must wait at least one minute to refresh"
-msgid "Wait at least 2 minutes between refreshes!"
-msgstr "Você precisa esperar pelo menos um minuto pra recarregar"
 
 #: Forecast/style.py:84
 msgid "Thunderstorm with Light Rain"
@@ -578,35 +225,362 @@ msgstr "Nuvens partidas"
 msgid "Overcast Clouds"
 msgstr "Encoberto de nuvens"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:5
-msgid "⛅ Check the weather!"
-msgstr ""
+#: Forecast/App.py:38 Forecast/page.py:66 Forecast/page.py:294
+#: Forecast/page.py:343
+msgid "Weather"
+msgstr "Clima"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:7
-msgid "Check the weather with a simple, intuitive and modern app"
-msgstr ""
+#: Forecast/App.py:43 Forecast/App.py:253 Forecast/App.py:277
+msgid "Locations"
+msgstr "Locais"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:27
-#, fuzzy
-#| msgid "Rain and Snow"
-msgid "Main window"
-msgstr "Chuva e neve"
-
-#: data/dev.salaniLeo.forecast.appdata.xml.in:31
-#, fuzzy
-#| msgid "Forecast"
-msgid "Forecast window"
+#: Forecast/App.py:206 Forecast/page.py:67
+#: data/dev.salaniLeo.forecast.desktop.in:3
+#: data/dev.salaniLeo.forecast.appdata.xml.in:4
+msgid "Forecast"
 msgstr "Previsão do tempo"
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:35
-msgid "Main window with custom background"
+#: Forecast/App.py:209
+msgid ""
+"⛅ Check the weather!.\n"
+"Uses openweathermap api"
 msgstr ""
 
-#: data/dev.salaniLeo.forecast.appdata.xml.in:39
+#: Forecast/App.py:230
+msgid "Refresh"
+msgstr "Recarregar"
+
+#: Forecast/App.py:231 Forecast/App.py:243 Forecast/App.py:257
+msgid "Preferences"
+msgstr "Preferências"
+
+#: Forecast/App.py:232
+msgid "About Forecast"
+msgstr "Sobre Previsão do tempo"
+
+#: Forecast/App.py:284
 #, fuzzy
 #| msgid "Preferences"
-msgid "Preferences dialog"
+msgid "Units preferences"
 msgstr "Preferências"
+
+#: Forecast/App.py:286
+msgid "Appearance Preferences"
+msgstr "Preferências do visual"
+
+#: Forecast/App.py:298
+msgid "Temperature units"
+msgstr ""
+
+#: Forecast/App.py:299
+#, fuzzy
+#| msgid "Select which unit of measurement to use"
+msgid "Select which units to use"
+msgstr "Seleciona qual unidade de medida usar"
+
+#: Forecast/App.py:315
+msgid "Time format"
+msgstr ""
+
+#: Forecast/App.py:316
+msgid "Select whether to use the 12h or 24h formats"
+msgstr ""
+
+#: Forecast/App.py:322
+#, fuzzy
+#| msgid "Use Gradient as Background"
+msgid "Use dynamic background"
+msgstr "Usar gradiente como fundo"
+
+#: Forecast/App.py:323
+msgid "When on, the background changes based on the weather. Restart needed to apply"
+msgstr ""
+
+#: Forecast/App.py:331
+msgid "API Preferences"
+msgstr "Preferências de API"
+
+#: Forecast/App.py:343
+msgid "Use Personal API Key"
+msgstr "Usar chave de API pessoal"
+
+#: Forecast/App.py:345
+msgid "Choose whether to use default API key or personal key"
+msgstr "Escolha uso de chave API padrão ou chave pessoal"
+
+#: Forecast/App.py:349
+msgid "Personal API Key"
+msgstr "Chave de API pessoal"
+
+#: Forecast/App.py:367 Forecast/App.py:372 Forecast/App.py:376
+#: Forecast/App.py:388
+msgid "Restart needed to apply changes"
+msgstr ""
+
+#: Forecast/App.py:390
+msgid "Api key not valid"
+msgstr ""
+
+#: Forecast/App.py:426
+msgid "Latitude"
+msgstr ""
+
+#: Forecast/App.py:430
+msgid "Longitude"
+msgstr ""
+
+#: Forecast/App.py:459
+msgid "Use coordinates"
+msgstr ""
+
+#: Forecast/data.py:12
+msgid "Metric System"
+msgstr ""
+
+#: Forecast/data.py:13
+msgid "Imperial System"
+msgstr ""
+
+#: Forecast/data.py:40
+msgid "Good"
+msgstr ""
+
+#: Forecast/data.py:41
+msgid "Fair"
+msgstr ""
+
+#: Forecast/data.py:42
+#, fuzzy
+#| msgid "Moderate Rain"
+msgid "Moderate"
+msgstr "Chuva moderada"
+
+#: Forecast/data.py:43
+msgid "Poor"
+msgstr ""
+
+#: Forecast/data.py:44
+msgid "Very Poor"
+msgstr ""
+
+#: Forecast/data.py:51
+msgid "Low"
+msgstr ""
+
+#: Forecast/data.py:53
+msgid "Seek shade during midday hours!"
+msgstr ""
+
+#: Forecast/data.py:55
+msgid "Avoid being outside during midday hours!"
+msgstr ""
+
+#: Forecast/data.py:57
+msgid "Invalid UV index input."
+msgstr ""
+
+#: Forecast/data.py:61
+msgid "N"
+msgstr "N"
+
+#: Forecast/data.py:61
+msgid "NNE"
+msgstr "NNE"
+
+#: Forecast/data.py:61
+msgid "NE"
+msgstr "NE"
+
+#: Forecast/data.py:61
+msgid "ENE"
+msgstr "ENE"
+
+#: Forecast/data.py:61
+msgid "E"
+msgstr "E"
+
+#: Forecast/data.py:61
+msgid "ESE"
+msgstr "ESE"
+
+#: Forecast/data.py:61
+msgid "SE"
+msgstr "SE"
+
+#: Forecast/data.py:61
+msgid "SSE"
+msgstr "SSE"
+
+#: Forecast/data.py:62
+msgid "S"
+msgstr "S"
+
+#: Forecast/data.py:62
+msgid "SSW"
+msgstr "SSW"
+
+#: Forecast/data.py:62
+msgid "SW"
+msgstr "SW"
+
+#: Forecast/data.py:62
+msgid "WSW"
+msgstr "WSW"
+
+#: Forecast/data.py:62
+msgid "W"
+msgstr "W"
+
+#: Forecast/data.py:62
+msgid "WNW"
+msgstr "WNW"
+
+#: Forecast/data.py:62
+msgid "NW"
+msgstr "NW"
+
+#: Forecast/data.py:62
+msgid "NNW"
+msgstr "NNW"
+
+#: Forecast/data.py:169
+#, fuzzy
+#| msgid "You must wait at least one minute to refresh"
+msgid "Wait at least 2 minutes between refreshes!"
+msgstr "Você precisa esperar pelo menos um minuto pra recarregar"
+
+#: Forecast/page.py:34
+msgid "Exceeded limit of api calls :("
+msgstr ""
+
+#: Forecast/page.py:36
+msgid "Could not retrieve weather data"
+msgstr ""
+
+#: Forecast/page.py:161
+#, fuzzy, python-brace-format
+#| msgid "Feels like"
+msgid "- Feels like {0}{1}"
+msgstr "Sensação de"
+
+#: Forecast/page.py:204
+msgid "Alerts"
+msgstr ""
+
+#: Forecast/page.py:225 Forecast/page.py:306 Forecast/page.py:788
+#, fuzzy
+#| msgid "Locations"
+msgid "Conditions"
+msgstr "Locais"
+
+#: Forecast/page.py:244 Forecast/page.py:321
+msgid "Wind"
+msgstr "Vento"
+
+#: Forecast/page.py:245 Forecast/page.py:322 Forecast/page.py:323
+msgid "Pressure"
+msgstr "Pressão"
+
+#: Forecast/page.py:246 Forecast/page.py:783
+msgid "Humidity"
+msgstr "Umidade"
+
+#: Forecast/page.py:247 Forecast/page.py:324
+msgid "Visibility"
+msgstr "Visibilidade"
+
+#: Forecast/page.py:248 Forecast/page.py:826
+msgid "Sunrise"
+msgstr "Nascer do sol"
+
+#: Forecast/page.py:249 Forecast/page.py:818
+msgid "Sunset"
+msgstr "Pôr do sol"
+
+#: Forecast/page.py:250
+msgid "AQI"
+msgstr ""
+
+#: Forecast/page.py:320
+#, fuzzy
+#| msgid "Feels like"
+msgid "Feels Like"
+msgstr "Sensação de"
+
+#: Forecast/page.py:356
+msgid "Today"
+msgstr "Hoje"
+
+#: Forecast/page.py:406
+#, fuzzy
+#| msgid "Added 5 days forecast"
+msgid "Weekly forecast"
+msgstr "Adicionada previsão de 5 dias"
+
+#: Forecast/page.py:493
+msgid "Pollution"
+msgstr ""
+
+#: Forecast/page.py:498
+msgid "Details"
+msgstr ""
+
+#: Forecast/page.py:713
+msgid "Night"
+msgstr ""
+
+#: Forecast/page.py:727
+msgid "Evening"
+msgstr ""
+
+#: Forecast/page.py:741
+msgid "Morning"
+msgstr ""
+
+#: Forecast/page.py:755
+msgid "Afternoon"
+msgstr ""
+
+#: Forecast/page.py:768
+msgid "Temperatures"
+msgstr ""
+
+#: Forecast/page.py:781
+msgid "Temperature"
+msgstr ""
+
+#: Forecast/page.py:782
+msgid "Wind speed"
+msgstr ""
+
+#: Forecast/page.py:783 Forecast/page.py:784 Forecast/page.py:785
+#, python-brace-format
+msgid "{0}%"
+msgstr ""
+
+#: Forecast/page.py:784
+#, fuzzy
+#| msgid "Few Clouds"
+msgid "Cloudiness"
+msgstr "Poucas nuves"
+
+#: Forecast/page.py:785
+msgid "Probability of rain"
+msgstr ""
+
+#: Forecast/page.py:786
+msgid "UV Index"
+msgstr ""
+
+#: Forecast/page.py:832
+#, fuzzy
+#| msgid "Sunset"
+msgid "Sun"
+msgstr "Pôr do sol"
+
+#: Forecast/page.py:920
+msgid "Close"
+msgstr ""
 
 #: data/dev.salaniLeo.forecast.desktop.in:6
 msgid "Weather;Forecast;Temperature;"
@@ -681,6 +655,36 @@ msgstr "Cidade padrão"
 #| msgid "Changes the default city for the weather"
 msgid "Chooses the default city for the weather"
 msgstr "Muda a cidade padrão para previsão de clima"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:5
+msgid "⛅ Check the weather!"
+msgstr ""
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:7
+msgid "Check the weather with a simple, intuitive and modern app"
+msgstr ""
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:27
+#, fuzzy
+#| msgid "Rain and Snow"
+msgid "Main window"
+msgstr "Chuva e neve"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:31
+#, fuzzy
+#| msgid "Forecast"
+msgid "Forecast window"
+msgstr "Previsão do tempo"
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:35
+msgid "Main window with custom background"
+msgstr ""
+
+#: data/dev.salaniLeo.forecast.appdata.xml.in:39
+#, fuzzy
+#| msgid "Preferences"
+msgid "Preferences dialog"
+msgstr "Preferências"
 
 #, fuzzy
 #~| msgid "Weather app for Linux"
