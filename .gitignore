@@ -4,3 +4,6 @@
 .vscode
 Forecast/__pycache__
 .env
+dist
+weatherInfo.spec
+build
