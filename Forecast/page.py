@@ -30,7 +30,10 @@ class city_page(Gtk.Stack):
             daily  = meteo['daily']
             hourly = meteo['hourly']
         except:
-            constants.toast_overlay.add_toast(Adw.Toast(title=_('Could not retrieve weather data')))
+            if 'exceeding' in meteo:
+                constants.toast_overlay.add_toast(Adw.Toast(title=_('Exceeded limit of api calls :(')))
+            else:
+                constants.toast_overlay.add_toast(Adw.Toast(title=_('Could not retrieve weather data')))
             return
 
         icon   = now['weather'][0]['icon']

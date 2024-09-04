@@ -6,7 +6,7 @@ from datetime import datetime
 from gettext import gettext as _
 from .style import *
 from datetime import datetime, timezone
-import os
+import subprocess, os
 
 class constants():
     meters = _("Metric System")
@@ -14,6 +14,7 @@ class constants():
     metric_system = f'{meters}, °C - Km/h'
     imperial_system = f'{miles}, °F - mi/h'
     system_locale = locale.getdefaultlocale()[0].split("_")[0]
+    binary_path = f'{os.path.dirname(os.path.realpath(__file__))}/weatherInfo'
 
     settings     = Gio.Settings.new("dev.salaniLeo.forecast")
     units        = settings.get_string('units').split(' ')[0].lower()
@@ -126,12 +127,14 @@ class global_variables():
 
 class request():
     def weather(lat, lon):
-        response = requests.get(f'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
-        return response.json()
+        command = f'python3 {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        return result.stdout
 
     def pollution(lat, lon):
-        response = requests.get(f'http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&units={constants.units}&lang={constants.system_locale}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
-        return response.json()
+        command = f'python3 {constants.binary_path} --request=pollution --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        return result
 
 row_list = []
 class actions():
@@ -297,18 +300,18 @@ class search_city():
             lat = reverse_query[0].get_text()
             lon = reverse_query[1].get_text()
 
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/reverse?lat={lat}&lon={lon}&limit={global_variables.get_max_search_cities()}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
+            geocoding = os.system(f'{constants.binary_path} --request=reverse_geocoding --lat={lat} --lon={lon}')
             data = geocoding.json() 
 
         elif type(reverse_query) == bool:
             place_to_search = searchbar.get_text()
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit={global_variables.get_max_search_cities()}&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
+            geocoding = os.system(f'{constants.binary_path} --request=geocoding --place_to_search={place_to_search}')
             data = geocoding.json()
             if place_to_search == "":
                 return
         elif type(reverse_query) == str:
             place_to_search = self
-            geocoding = requests.get(f'http://api.openweathermap.org/geo/1.0/direct?q={place_to_search}&limit=1&appid=fe717eebc0eb0b5d9a534b6f6146bc15')
+            geocoding = os.system(f'{constants.binary_path} --request=geocoding --place_to_search={place_to_search}')
             city = geocoding.json()
             if len(city) == 0:
                 location = f'Ferrara - IT (44.8372737; 11.6186451)'
