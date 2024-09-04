@@ -23,8 +23,6 @@ class city_page(Gtk.Stack):
         meteo      = request.weather(lat, lon)
         pollution  = request.pollution(lat, lon)
 
-        self.city_name = global_variables.get_city_name(city)
-
         try:
             now    = meteo['current']
             daily  = meteo['daily']
