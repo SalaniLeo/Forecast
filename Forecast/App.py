@@ -204,7 +204,7 @@ class Forecast(Adw.Application):
     def show_about(self, action, param):
         dialog = Adw.AboutWindow()
         dialog.set_application_name(_("Forecast"))
-        dialog.set_version("1.0.0")
+        dialog.set_version("1.1.2")
         dialog.set_license_type(Gtk.License(Gtk.License.GPL_3_0))
         dialog.set_comments(_("⛅ Check the weather!.\nUses openweathermap api"))
         dialog.set_website("https://forecast.salanileo.dev")
