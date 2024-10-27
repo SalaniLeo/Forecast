@@ -300,13 +300,12 @@ class search_city():
             lat = reverse_query[0].get_text()
             lon = reverse_query[1].get_text()
 
-            command = f'exec {constants.binary_path} --request=weather --lat={lat} --lon={lon} --units={constants.units} --locale={constants.system_locale}'
+            command = f'exec {constants.binary_path} --request=reverse_geocoding --lat={lat} --lon={lon} --locale={constants.system_locale}'
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
             data = json.loads(result.stdout)
 
         elif type(reverse_query) == bool:
             place_to_search = searchbar.get_text()
-            
             command = f'exec {constants.binary_path} --request=geocoding --place_to_search={place_to_search}'
             result = subprocess.run(command, shell=True, capture_output=True, text=True)
             data = json.loads(result.stdout)
